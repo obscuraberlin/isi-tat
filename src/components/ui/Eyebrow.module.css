@@ -1,0 +1,26 @@
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.onDark {
+  color: var(--text-muted-light);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.rule::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}

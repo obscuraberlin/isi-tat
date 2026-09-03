@@ -1,0 +1,61 @@
+.play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  color: var(--text-light);
+  background: linear-gradient(
+    to top,
+    rgba(8, 8, 8, 0.5) 0%,
+    rgba(8, 8, 8, 0.05) 55%,
+    rgba(8, 8, 8, 0) 100%
+  );
+  transition: background-color var(--d-base) var(--ease-out);
+}
+
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(64px, 6vw, 84px);
+  height: clamp(64px, 6vw, 84px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(12, 12, 12, 0.34);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    transform var(--d-base) var(--ease-out),
+    background-color var(--d-base) var(--ease-out),
+    border-color var(--d-base) var(--ease-out);
+}
+
+.icon {
+  width: 17px;
+  height: 20px;
+  margin-left: 4px;
+  fill: currentColor;
+}
+
+.label {
+  position: absolute;
+  left: clamp(16px, 2vw, 26px);
+  bottom: clamp(16px, 2vw, 26px);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .play:hover .circle {
+    transform: scale(1.06);
+    background: rgba(200, 166, 106, 0.9);
+    border-color: transparent;
+    color: #0d0b07;
+  }
+}

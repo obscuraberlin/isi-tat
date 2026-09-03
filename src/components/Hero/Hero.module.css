@@ -1,0 +1,288 @@
+.hero {
+  position: relative;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+  padding-top: var(--header-h);
+}
+
+/* Warmer, sehr dezenter Lichtschein — kein Gold-Overkill */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 166, 106, 0.13) 0%,
+    transparent 62%
+  );
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+/* ---------- Text ---------- */
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: var(--max-text-wide);
+}
+
+.headline {
+  font-size: var(--fs-hero);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  margin-top: clamp(16px, 1.8vw, 24px);
+}
+
+/* Zweite Ebene: gleicher Charakter, ruhigere Groesse — Gold bleibt Akzent. */
+.accentBlock {
+  display: block;
+  margin-top: clamp(10px, 1vw, 16px);
+  font-size: var(--fs-hero-accent);
+  line-height: 1.08;
+  letter-spacing: var(--tr-head);
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+}
+
+.lineInner {
+  display: block;
+  transform: translateY(105%);
+  animation: lineUp 900ms var(--ease-out) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes lineUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.sub {
+  max-width: 46ch;
+  margin-top: clamp(20px, 2.4vw, 30px);
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--text-muted-light);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(28px, 3.2vw, 42px);
+  width: 100%;
+}
+
+.trustLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px clamp(20px, 2.4vw, 34px);
+  margin-top: clamp(26px, 3vw, 38px);
+  padding-top: clamp(20px, 2.4vw, 28px);
+  border-top: 1px solid var(--line-light);
+  width: 100%;
+}
+
+.trustItem {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  color: var(--text-muted-light);
+  white-space: nowrap;
+}
+
+/* ---------- Visual ---------- */
+
+.visual {
+  position: relative;
+}
+
+.visualFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-visual);
+  animation: visualIn 1200ms var(--ease-out) both;
+  animation-delay: 120ms;
+}
+
+@keyframes visualIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to top,
+      rgba(8, 8, 8, 0.72) 0%,
+      rgba(8, 8, 8, 0.12) 42%,
+      rgba(8, 8, 8, 0) 70%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(8, 8, 8, 0.55) 0%,
+      rgba(8, 8, 8, 0) 26%
+    );
+}
+
+/* ---------- Entrance-Staffelung ---------- */
+
+.fadeUp {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 700ms var(--ease-out) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 767px) {
+  /* Visual laeuft randlos unter den transparenten Header — cinematischer
+     Einstieg, ohne dass der Text unter den Fold rutscht. */
+  .hero {
+    padding-top: 0;
+    padding-bottom: clamp(44px, 8vw, 64px);
+  }
+
+  .inner {
+    gap: 0;
+    padding-inline: 0;
+  }
+
+  .visual {
+    order: -1;
+  }
+
+  .visualFrame {
+    border-radius: 0;
+    height: 44svh;
+    min-height: 280px;
+    max-height: 420px;
+  }
+
+  .visualFrame > div {
+    height: 100%;
+  }
+
+  .copy {
+    padding-inline: var(--gutter);
+    margin-top: -34px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .headline {
+    margin-top: 12px;
+  }
+
+  .sub {
+    margin-top: 16px;
+    font-size: var(--fs-body);
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .trustLine {
+    margin-top: 24px;
+    padding-top: 18px;
+    gap: 8px 16px;
+  }
+
+  .trustItem {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ---------- Tablet / Desktop ---------- */
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: clamp(96px, 10vh, 140px) clamp(64px, 8vh, 110px);
+    padding-top: calc(var(--header-h) + clamp(40px, 6vh, 90px));
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+  }
+
+  .visualFrame {
+    max-height: min(74vh, 620px);
+  }
+
+  .visualFrame > div {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .inner {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(56px, 6vw, 96px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lineInner,
+  .fadeUp,
+  .visualFrame {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Medien-Radius folgt dem Frame (Mobile: 0, Desktop: --r-visual) */
+.visualFrame > div {
+  border-radius: inherit;
+}

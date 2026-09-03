@@ -1,0 +1,122 @@
+.section {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding-block: var(--section-y);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(40px, 5vw, 88px);
+  align-items: start;
+}
+
+.headline {
+  font-size: var(--fs-section);
+  letter-spacing: var(--tr-tight);
+  margin-top: 22px;
+}
+
+.headlineAccentLine {
+  display: block;
+}
+
+.body {
+  max-width: var(--max-text);
+  margin-top: clamp(24px, 2.6vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.05em;
+  color: #3a3a3a;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.body p:first-child {
+  font-size: var(--fs-body-lg);
+  color: var(--text-dark);
+}
+
+/* ---------- Visual ---------- */
+
+.visual {
+  position: relative;
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  box-shadow: var(--sh-soft);
+}
+
+.visual > div {
+  border-radius: inherit;
+}
+
+/* ---------- Metriken ---------- */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(56px, 6vw, 96px);
+  background: var(--line-dark);
+  border-block: 1px solid var(--line-dark);
+}
+
+.metric {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  background: var(--bg-light);
+  padding: clamp(22px, 2.6vw, 34px) clamp(14px, 2vw, 26px);
+}
+
+.metric dd {
+  margin: 0;
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1;
+  color: var(--text-dark);
+}
+
+.metricLabel {
+  margin-top: 10px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.metricNote {
+  margin-top: 18px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+    gap: clamp(56px, 6vw, 110px);
+  }
+
+  .visual {
+    position: sticky;
+    top: calc(var(--header-h) + 40px);
+  }
+}

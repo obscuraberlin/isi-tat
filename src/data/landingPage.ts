@@ -140,12 +140,12 @@ export const trust = {
     "ISI TAT über Ruf, Erfahrung und Zusammenarbeit",
     "3 / 4",
   ),
-  /* Zahlen bleiben Platzhalter, bis sie bestaetigt sind. */
+  /* Vom Auftraggeber freigegeben (Stand: Uebernahme aus der Vorgaengerseite). */
   metrics: [
-    { value: "[XX]+", label: "JAHRE ERFAHRUNG" },
-    { value: "[XX]+", label: "PROJEKTE" },
-    { value: "[XX]+", label: "KONTAKTE / NETZWERK" },
-    { value: "[XX]+", label: "MEMBER" },
+    { value: "20+", label: "JAHRE ERFAHRUNG" },
+    { value: "7", label: "UNTERNEHMEN MITGEGRÜNDET" },
+    { value: "8+", label: "STELLIG UMGESETZT" },
+    { value: "150+", label: "MITGLIEDER IM CLUB" },
   ],
 } as const;
 
@@ -215,6 +215,29 @@ export const insideTheClub = {
       href: null,
     },
   ] satisfies ContentCard[],
+} as const;
+
+/* --------------------------------------------------------------------------
+   TIMELINE — vorbereitet fuer Phase 2
+   Jahre vom Auftraggeber freigegeben, Beschreibungstexte fehlen noch.
+   -------------------------------------------------------------------------- */
+
+export interface TimelineEntry {
+  year: string;
+  title: string;
+  text: string;
+}
+
+export const timeline = {
+  headline: ["EIN WEG.", "20+ JAHRE.", "ECHTE ERFAHRUNGEN."],
+  entries: [
+    { year: "2003", title: "ANFÄNGE", text: "TODO_CONTENT" },
+    { year: "2008", title: "VERTRIEB", text: "TODO_CONTENT" },
+    { year: "2013", title: "BUSINESS", text: "TODO_CONTENT" },
+    { year: "2018", title: "WACHSTUM", text: "TODO_CONTENT" },
+    { year: "2021", title: "FREIHEIT", text: "TODO_CONTENT" },
+    { year: "HEUTE", title: "ISI TAT", text: "TODO_CONTENT" },
+  ] satisfies TimelineEntry[],
 } as const;
 
 /* --------------------------------------------------------------------------

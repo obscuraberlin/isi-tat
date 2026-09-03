@@ -59,9 +59,6 @@ export function TrustSection() {
               </div>
             ))}
           </dl>
-          <p className={styles.metricNote}>
-            Zahlen werden erst veröffentlicht, wenn sie bestätigt sind.
-          </p>
         </Reveal>
       </div>
     </section>

@@ -97,12 +97,6 @@
   color: var(--text-muted);
 }
 
-.metricNote {
-  margin-top: 18px;
-  font-size: var(--fs-small);
-  color: var(--text-muted);
-}
-
 @media (min-width: 768px) {
   .metrics {
     grid-template-columns: repeat(4, minmax(0, 1fr));

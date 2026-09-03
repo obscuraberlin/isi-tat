@@ -40,11 +40,11 @@ const title = "ISI TAT BUSINESS CLUB";
 const html = `<title>${title}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 :root {
   --font-inter: "Inter";
-  --font-inter-tight: "Inter Tight";
+  --font-archivo: "Archivo";
 }
 ${css}
 </style>

@@ -48,8 +48,11 @@
   /* ---------- Typografie ---------- */
   --font-sans: "Netflix Sans", var(--font-inter), "Helvetica Neue", Helvetica,
     Arial, sans-serif;
-  --font-display: "Netflix Sans", var(--font-inter-tight), var(--font-inter),
+  --font-display: "Netflix Sans", var(--font-archivo), var(--font-inter),
     "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Headlines laufen leicht schmal — das gibt der Typo Haltung,
+     ohne in eine Condensed-Schrift zu kippen. */
+  --display-width: 88;
 
   /* Hero 44 -> 92 | Section 36 -> 72 | Sub 24 -> 36 | Card 20 -> 26 */
   --fs-hero: clamp(2.75rem, 1.2rem + 5.2vw, 4.5rem);
@@ -109,6 +112,12 @@
   }
 }
 
+@media (max-width: 767px) {
+  :root {
+    --display-width: 82;
+  }
+}
+
 /* ---------- Reset ---------- */
 *,
 *::before,
@@ -152,7 +161,9 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
   font-weight: 700;
+  font-variation-settings: "wdth" var(--display-width);
   letter-spacing: var(--tr-head);
   line-height: var(--lh-head);
   text-wrap: balance;

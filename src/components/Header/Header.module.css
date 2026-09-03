@@ -49,6 +49,7 @@
 
 .logoMark {
   font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -215,6 +216,7 @@
 
 .menuLink {
   font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
   font-size: clamp(1.75rem, 8vw, 2.5rem);
   font-weight: 700;
   letter-spacing: var(--tr-head);

@@ -92,6 +92,15 @@ export const nav = [
 
 export const hero = {
   eyebrow: "ISI TAT BUSINESS CLUB",
+  /* Metazeile im Stil einer Streaming-Titelseite.
+     `edition` und `quality` sind Angaben ueber das Material — `quality`
+     nur stehen lassen, wenn tatsaechlich in 4K produziert wird.
+     Serien- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
+  meta: {
+    by: "BY ISI TAT",
+    edition: "2026",
+    quality: "4K",
+  },
   headline: {
     lines: ["ERFAHRUNG LÄSST SICH", "NICHT ABKÜRZEN."],
     /** Wird im Champagne-Akzent gesetzt. */
@@ -99,7 +108,6 @@ export const hero = {
   },
   subheadline:
     "Zwanzig Jahre Vertrieb, Unternehmertum und Netzwerk — in einem Raum, der nicht für jeden offen ist.",
-  trustLine: ["20+ JAHRE", "VERTRIEB", "UNTERNEHMERTUM", "NETZWERK", "LIVE"],
   video: media(
     "[ISI_HERO_VIDEO]",
     "video",
@@ -164,6 +172,8 @@ export interface Episode {
 
 export interface Series {
   id: string;
+  /** "serie" zaehlt in die Serien-Zahl, "live" ist ein Format. */
+  format: "serie" | "live";
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
@@ -180,6 +190,7 @@ export const insideTheClub = {
   eyebrow: "Inside",
   headline: "INSIDE THE CLUB.",
   subline: "Vier Welten. Kein Lehrplan.",
+  /* Wird aus `catalogue` zusammengesetzt — siehe unten. */
   note: "Folgen kommen laufend dazu. Es gibt keine Reihenfolge — du steigst ein, wo es dich betrifft.",
   /* Folgentitel sind Entwuerfe, bis die finalen Titel aus der Mediathek vorliegen.
      Ausnahme: "Konsum vs Investieren" ist eine real existierende Folge. */
@@ -189,6 +200,7 @@ export const insideTheClub = {
     {
       /* interne Ablage: MINDSET:PERSÖNLICHKEIT */
       id: "mindset",
+      format: "serie",
       label: "MINDSET & PERSÖNLICHKEIT",
       tagline: "Entscheiden, wenn es unbequem wird.",
       description:
@@ -206,6 +218,7 @@ export const insideTheClub = {
     {
       /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
       id: "beruf",
+      format: "serie",
       label: "DER BERUF",
       tagline: "Vom Job zum eigenen Unternehmen.",
       description:
@@ -223,6 +236,7 @@ export const insideTheClub = {
     {
       /* interne Ablage: GELD */
       id: "geld",
+      format: "serie",
       label: "GELD",
       tagline: "Verdienen ist das eine. Behalten das andere.",
       description:
@@ -243,6 +257,7 @@ export const insideTheClub = {
          beschreibt eine Vertriebsmechanik und faellt unter Punkt 7 des Briefings
          (internes Geschaeftsmodell nicht oeffentlich kommunizieren). */
       id: "netzwerk",
+      format: "serie",
       label: "NETZWERK",
       tagline: "Wer dich kennt, entscheidet mit.",
       description:
@@ -258,6 +273,7 @@ export const insideTheClub = {
     },
     {
       id: "live",
+      format: "live",
       label: "LIVE",
       tagline: "Roundtables, Gespräche, Begegnungen.",
       description:
@@ -273,6 +289,15 @@ export const insideTheClub = {
       ],
     },
   ] satisfies Series[],
+} as const;
+
+/** Aus den Daten abgeleitet — waechst automatisch mit der Mediathek. */
+export const catalogue = {
+  seriesCount: insideTheClub.series.filter((s) => s.format === "serie").length,
+  episodeCount: insideTheClub.series.reduce(
+    (total, s) => total + s.episodes.length,
+    0,
+  ),
 } as const;
 
 /* --------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { Series } from "@/data/landingPage";
-import { cta, insideTheClub } from "@/data/landingPage";
+import { cta, hero, insideTheClub } from "@/data/landingPage";
 import { useScrollLock } from "@/lib/hooks";
 import { Media } from "@/components/Media/Media";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -96,11 +96,17 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
           <div className={styles.stageBody}>
             <h2 className={styles.title}>{series.label}</h2>
             <div className={styles.meta}>
-              <span className={styles.tag}>Serie</span>
+              <span className={styles.tag}>
+                {series.format === "live" ? "Format" : "Serie"}
+              </span>
+              <span className={styles.tag}>{hero.meta.edition}</span>
+              <span className={`${styles.tag} ${styles.tagAccent}`}>
+                {hero.meta.quality}
+              </span>
               <span>
                 {count} {count === 1 ? "Folge" : "Folgen"}
               </span>
-              <span>·</span>
+              <span aria-hidden="true">·</span>
               <span>{series.tagline}</span>
             </div>
           </div>

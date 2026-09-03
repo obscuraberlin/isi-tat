@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { cta, hero } from "@/data/landingPage";
+import { catalogue, cta, hero } from "@/data/landingPage";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import { Media } from "@/components/Media/Media";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -61,11 +61,29 @@ export function Hero() {
             </Line>
           </h1>
 
-          <p className={`${styles.sub} ${styles.fadeUp}`} style={delay(880)}>
+          {/* Metazeile: was das Ganze ist, in einer Zeile. */}
+          <div className={`${styles.meta} ${styles.fadeUp}`} style={delay(880)}>
+            <span className={styles.metaBy}>{hero.meta.by}</span>
+            <span className={styles.badge}>{hero.meta.edition}</span>
+            <span className={`${styles.badge} ${styles.badgeAccent}`}>
+              {hero.meta.quality}
+            </span>
+            <span className={styles.metaCounts}>
+              <span className={styles.metaPlain}>
+                {catalogue.seriesCount} Serien
+              </span>
+              <span className={styles.metaDot} aria-hidden="true" />
+              <span className={styles.metaPlain}>
+                {catalogue.episodeCount} Folgen
+              </span>
+            </span>
+          </div>
+
+          <p className={`${styles.sub} ${styles.fadeUp}`} style={delay(1000)}>
             {hero.subheadline}
           </p>
 
-          <div className={`${styles.ctas} ${styles.fadeUp}`} style={delay(1000)}>
+          <div className={`${styles.ctas} ${styles.fadeUp}`} style={delay(1120)}>
             <ButtonLink href={cta.primary.href} variant="primaryOnDark">
               {cta.primary.label}
             </ButtonLink>
@@ -74,13 +92,6 @@ export function Hero() {
             </Button>
           </div>
 
-          <ul className={`${styles.trustLine} ${styles.fadeUp}`} style={delay(1120)}>
-            {hero.trustLine.map((item) => (
-              <li key={item} className={styles.trustItem}>
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className={styles.visual}>

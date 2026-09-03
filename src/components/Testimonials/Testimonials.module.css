@@ -39,6 +39,7 @@
 
 .name {
   font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
   font-size: var(--fs-card);
   font-weight: 700;
   letter-spacing: var(--tr-head);

@@ -38,6 +38,7 @@
 
 .block {
   font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
   font-size: var(--fs-section);
   font-weight: 700;
   letter-spacing: var(--tr-tight);

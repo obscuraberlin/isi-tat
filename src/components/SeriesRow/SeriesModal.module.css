@@ -1,0 +1,228 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 280;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(4, 4, 4, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: clamp(0px, 5vh, 64px) clamp(0px, 4vw, 40px);
+  animation: overlayIn 260ms var(--ease-out) both;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 940px;
+  background: var(--bg-dark-alt);
+  color: var(--text-light);
+  border-radius: clamp(0px, 2vw, 20px);
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+  animation: panelIn 380ms var(--ease-out) both;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---------- Kopf ---------- */
+
+.stage {
+  position: relative;
+}
+
+.stage > div {
+  border-radius: 0;
+}
+
+.stageScrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    var(--bg-dark-alt) 0%,
+    rgba(17, 17, 17, 0.5) 38%,
+    rgba(17, 17, 17, 0) 72%
+  );
+}
+
+.stageBody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(20px, 3vw, 40px);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.1rem + 2.6vw, 3rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.04;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 14px;
+  font-size: var(--fs-small);
+  color: var(--text-muted-light);
+}
+
+.tag {
+  padding: 5px 11px;
+  border: 1px solid var(--line-light);
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.close {
+  position: absolute;
+  top: clamp(12px, 1.6vw, 20px);
+  right: clamp(12px, 1.6vw, 20px);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.62);
+  backdrop-filter: blur(8px);
+  color: var(--text-light);
+  font-size: 20px;
+  line-height: 1;
+  transition: background-color var(--d-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* ---------- Inhalt ---------- */
+
+.content {
+  padding: clamp(20px, 3vw, 40px);
+  padding-top: clamp(18px, 2vw, 26px);
+  display: grid;
+  gap: clamp(24px, 3vw, 44px);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.description {
+  max-width: 60ch;
+  font-size: var(--fs-body);
+  line-height: 1.62;
+  color: var(--text-muted-light);
+}
+
+.episodesTitle {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.episodes {
+  display: flex;
+  flex-direction: column;
+}
+
+.episode {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 22px);
+  padding: clamp(14px, 1.5vw, 18px) 0;
+  border-top: 1px solid var(--line-light);
+}
+
+.episode:last-child {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.episodeIcon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-light);
+  color: var(--accent);
+}
+
+.episodeIcon svg {
+  width: 9px;
+  height: 11px;
+  fill: currentColor;
+  margin-left: 2px;
+}
+
+.episodeTitle {
+  flex: 1;
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}
+
+.episodeRuntime {
+  flex: none;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.footnote {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+@media (min-width: 860px) {
+  .content {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+}

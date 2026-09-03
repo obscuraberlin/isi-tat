@@ -1,13 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ContentCard } from "@/data/landingPage";
+import type { Series } from "@/data/landingPage";
 import { insideTheClub } from "@/data/landingPage";
 import { useHasHover } from "@/lib/hooks";
 import { Media } from "@/components/Media/Media";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal/Reveal";
-import styles from "./ContentCarousel.module.css";
+import { SeriesModal } from "./SeriesModal";
+import styles from "./SeriesRow.module.css";
 
 const Arrow = ({ dir }: { dir: "left" | "right" }) => (
   <svg className={styles.arrowIcon} viewBox="0 0 16 16" aria-hidden="true">
@@ -19,13 +20,13 @@ const Arrow = ({ dir }: { dir: "left" | "right" }) => (
   </svg>
 );
 
-function Card({ card, index }: { card: ContentCard; index: number }) {
+function Card({ series, onOpen }: { series: Series; onOpen: () => void }) {
   const hasHover = useHasHover();
   const [previewOn, setPreviewOn] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* Preview nur, wenn ein echtes Asset vorliegt — nichts vortaeuschen. */
-  const canPreview = hasHover && !!card.preview?.src;
+  const canPreview = hasHover && !!series.preview?.src;
 
   const start = useCallback(() => {
     if (!canPreview) return;
@@ -38,21 +39,35 @@ function Card({ card, index }: { card: ContentCard; index: number }) {
     setPreviewOn(false);
   }, []);
 
-  useEffect(() => () => {
-    if (timer.current) clearTimeout(timer.current);
-  }, []);
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
 
-  const content = (
-    <>
-      <Media asset={card.thumbnail} tone="dark" radius="inherit" />
+  const count = series.episodes.length;
 
-      {canPreview && card.preview?.src ? (
+  return (
+    <button
+      type="button"
+      className={styles.card}
+      onClick={onOpen}
+      onMouseEnter={start}
+      onMouseLeave={stop}
+      onFocus={start}
+      onBlur={stop}
+      aria-label={`${series.label} öffnen`}
+    >
+      <Media asset={series.cover} tone="dark" radius="inherit" />
+
+      {canPreview && series.preview?.src ? (
         <video
           className={[styles.preview, previewOn ? styles.previewVisible : ""]
             .filter(Boolean)
             .join(" ")}
-          src={previewOn ? card.preview.src : undefined}
-          poster={card.preview.poster ?? undefined}
+          src={previewOn ? series.preview.src : undefined}
+          poster={series.preview.poster ?? undefined}
           muted
           loop
           playsInline
@@ -62,55 +77,33 @@ function Card({ card, index }: { card: ContentCard; index: number }) {
       ) : null}
 
       <span className={styles.scrim} aria-hidden="true" />
-      <span className={styles.index} aria-hidden="true">
-        {String(index + 1).padStart(2, "0")}
-      </span>
 
       <div className={styles.cardBody}>
-        <h3 className={styles.cardLabel}>{card.label}</h3>
+        <span className={styles.cardMeta}>
+          {count} {count === 1 ? "Folge" : "Folgen"}
+        </span>
+        <h3 className={styles.cardLabel}>{series.label}</h3>
         <div className={styles.cardCopyWrap}>
           <div>
-            <p className={styles.cardCopy}>{card.copy}</p>
+            <p className={styles.cardCopy}>{series.tagline}</p>
           </div>
         </div>
-        {card.href ? (
-          <span className={styles.cardPlay}>
-            <svg className={styles.cardPlayIcon} viewBox="0 0 9 11" aria-hidden="true">
-              <path d="M0 0v11l9-5.5z" />
-            </svg>
-            Ansehen
-          </span>
-        ) : null}
+        <span className={styles.cardOpen}>
+          <svg className={styles.playIcon} viewBox="0 0 9 11" aria-hidden="true">
+            <path d="M0 0v11l9-5.5z" />
+          </svg>
+          Ansehen
+        </span>
       </div>
-    </>
-  );
-
-  if (card.href) {
-    return (
-      <a
-        className={styles.card}
-        href={card.href}
-        onMouseEnter={start}
-        onMouseLeave={stop}
-        onFocus={start}
-        onBlur={stop}
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <article className={styles.card} onMouseEnter={start} onMouseLeave={stop}>
-      {content}
-    </article>
+    </button>
   );
 }
 
-export function ContentCarousel() {
+export function SeriesRow() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  const [active, setActive] = useState<Series | null>(null);
 
   const sync = useCallback(() => {
     const el = scrollerRef.current;
@@ -141,7 +134,7 @@ export function ContentCarousel() {
     <section className={styles.section} id="inside-the-club">
       <Reveal className={styles.head}>
         <div>
-          <Eyebrow rule>Inside</Eyebrow>
+          <Eyebrow rule>{insideTheClub.eyebrow}</Eyebrow>
           <h2 className={styles.headline}>{insideTheClub.headline}</h2>
         </div>
 
@@ -153,7 +146,7 @@ export function ContentCarousel() {
             className={styles.arrow}
             onClick={() => page(-1)}
             disabled={atStart}
-            aria-label="Vorherige Inhalte"
+            aria-label="Vorherige Serien"
           >
             <Arrow dir="left" />
           </button>
@@ -162,7 +155,7 @@ export function ContentCarousel() {
             className={styles.arrow}
             onClick={() => page(1)}
             disabled={atEnd}
-            aria-label="Weitere Inhalte"
+            aria-label="Weitere Serien"
           >
             <Arrow dir="right" />
           </button>
@@ -173,18 +166,23 @@ export function ContentCarousel() {
         ref={scrollerRef}
         className={styles.scroller}
         role="region"
-        aria-label={`${insideTheClub.headline} — Inhalte, horizontal scrollbar`}
+        aria-label={`${insideTheClub.headline} — Serien, horizontal scrollbar`}
         tabIndex={0}
       >
-        {insideTheClub.cards.map((card, index) => (
-          <Card key={card.label} card={card} index={index} />
+        {insideTheClub.series.map((series) => (
+          <Card
+            key={series.id}
+            series={series}
+            onOpen={() => setActive(series)}
+          />
         ))}
       </div>
 
-      <p className={styles.hint}>
-        Der Umfang der Inhalte wird im Gespräch besprochen — hier stehen nur die
-        Themenfelder.
-      </p>
+      <div className={styles.noteWrap}>
+        <p className={styles.note}>{insideTheClub.note}</p>
+      </div>
+
+      <SeriesModal series={active} onClose={() => setActive(null)} />
     </section>
   );
 }

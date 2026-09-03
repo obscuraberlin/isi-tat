@@ -1,7 +1,7 @@
 /* =============================================================================
    ISI TAT BUSINESS CLUB — Zentrale Content-Datei
    -----------------------------------------------------------------------------
-   Einzige Quelle fuer Texte, Zahlen, Medien, Karten, CTA-Ziele und Pricing.
+   Einzige Quelle fuer Texte, Zahlen, Medien, Serien, CTA-Ziele und Pricing.
    Komponenten enthalten KEINE fest verdrahteten Inhalte.
 
    KONVENTIONEN
@@ -9,7 +9,17 @@
    - `src: null`     = Asset fehlt. Es wird ein gestalteter Platzhalter mit
                        korrektem Seitenverhaeltnis gerendert (siehe <Media/>).
                        Zum Austausch nur `src` (und ggf. `poster`) setzen.
-   - Zahlen bleiben "[XX]+" bis sie bestaetigt sind.
+
+   ENTWURFSTEXTE
+   Serien-Beschreibungen, Folgentitel, Membership-Zeilen und FAQ-Antworten sind
+   als Entwurf gesetzt, damit die Seite vollstaendig lesbar ist. Sie sind
+   ersetzbar und beschreiben Themen — keine Zusicherungen, keine Zahlen,
+   keine Ergebnisse.
+
+   FERNUSG
+   Bewusst NICHT verwendet: Modulnummern, Lektionsnummern, vorgegebene
+   Reihenfolgen, Lernpfade, Lernkontrollen, Zertifikate. Die Inhalte sind als
+   Mediathek beschrieben, nicht als Lehrgang.
    ========================================================================== */
 
 export type MediaKind = "image" | "video";
@@ -62,7 +72,7 @@ export const cta = {
   primary: { label: "ZUGANG ANFRAGEN", href: "#zugang" },
   secondary: { label: "TRAILER ANSEHEN", href: "#trailer" },
   heroSecondary: { label: "90 SEKUNDEN TRAILER", href: "#trailer" },
-  login: { label: "LOGIN", href: "TODO_CONTENT" },
+  login: { label: "LOGIN", href: "/login" },
 } as const;
 
 export const nav = [
@@ -80,31 +90,20 @@ export const nav = [
 export const hero = {
   eyebrow: "ISI TAT BUSINESS CLUB",
   headline: {
-    line1: "20+ JAHRE ERFAHRUNG.",
+    lines: ["ERFAHRUNG LÄSST SICH", "NICHT ABKÜRZEN."],
     /** Wird im Champagne-Akzent gesetzt. */
-    accent: ["DAMIT DU NICHT JEDEN", "FEHLER SELBST MACHEN MUSST."],
+    accent: "ZUGANG SCHON.",
   },
   subheadline:
-    "Zugang zu Erfahrungen, Business-Perspektiven, Vertrieb, Austausch, Netzwerk und ausgewählten Möglichkeiten zur Zusammenarbeit.",
-  trustLine: [
-    "20+ JAHRE BUSINESS",
-    "VERTRIEB",
-    "UNTERNEHMERTUM",
-    "NETWORK",
-    "LIVE EXPERIENCE",
-  ],
+    "Zwanzig Jahre Vertrieb, Unternehmertum und Netzwerk — in einem Raum, der nicht für jeden offen ist.",
+  trustLine: ["20+ JAHRE", "VERTRIEB", "UNTERNEHMERTUM", "NETZWERK", "LIVE"],
   video: media(
     "[ISI_HERO_VIDEO]",
     "video",
     "ISI TAT im Portrait — Hero-Sequenz",
     "4 / 5",
   ),
-  image: media(
-    "[ISI_HERO_IMAGE]",
-    "image",
-    "ISI TAT — Hero-Portrait",
-    "4 / 5",
-  ),
+  image: media("[ISI_HERO_IMAGE]", "image", "ISI TAT — Hero-Portrait", "4 / 5"),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -127,12 +126,12 @@ export const trailer = {
    -------------------------------------------------------------------------- */
 
 export const trust = {
+  eyebrow: "Über ISI",
   headline: ["SEIN RUF", "IST SEIN KAPITAL."],
   body: [
-    "ISI muss heute nicht mehr mit jedem arbeiten. Und genau deshalb tut er es auch nicht.",
-    "Über mehr als zwei Jahrzehnte hat er Erfahrungen gesammelt, Beziehungen aufgebaut, verkauft, verhandelt, Entscheidungen getroffen und Fehler gemacht.",
-    "Sein Ruf basiert nicht auf einem Zertifikat. Sondern auf dem, was er über Jahre getan und aufgebaut hat.",
-    "Der ISI TAT BUSINESS CLUB gibt ausgewählten Menschen Zugang zu einem Teil dieser Erfahrungen und Perspektiven.",
+    "ISI muss heute nicht mehr mit jedem arbeiten. Genau deshalb tut er es nicht.",
+    "Dahinter stehen zwanzig Jahre verkaufen, verhandeln, entscheiden — und Fehler machen. Kein Zertifikat.",
+    "Der Club öffnet einen Teil davon.",
   ],
   video: media(
     "[ISI_REPUTATION_VIDEO]",
@@ -140,7 +139,7 @@ export const trust = {
     "ISI TAT über Ruf, Erfahrung und Zusammenarbeit",
     "3 / 4",
   ),
-  /* Vom Auftraggeber freigegeben (Stand: Uebernahme aus der Vorgaengerseite). */
+  /* Vom Auftraggeber freigegeben. */
   metrics: [
     { value: "20+", label: "JAHRE ERFAHRUNG" },
     { value: "7", label: "UNTERNEHMEN MITGEGRÜNDET" },
@@ -150,109 +149,466 @@ export const trust = {
 } as const;
 
 /* --------------------------------------------------------------------------
-   INSIDE THE CLUB — Netflix-artige Content Row
+   INSIDE THE CLUB — Serien (Netflix-Row + Detailansicht)
+   Bewusst ohne Nummerierung und ohne vorgegebene Reihenfolge.
    -------------------------------------------------------------------------- */
 
-export interface ContentCard {
+export interface Episode {
+  title: string;
+  /** Freie Laufzeitangabe, z. B. "18 MIN". null = noch offen. */
+  runtime: string | null;
+}
+
+export interface Series {
+  id: string;
   label: string;
-  copy: string;
-  thumbnail: MediaAsset;
-  /** Optionales stummes Hover-Preview (nur Desktop). null = kein Preview. */
+  /** Ein Satz auf der Karte. */
+  tagline: string;
+  /** Zwei bis drei Saetze in der Detailansicht. */
+  description: string;
+  cover: MediaAsset;
+  still: MediaAsset;
+  /** Stummes Hover-Preview (nur Desktop). null = kein Preview, keine Animation. */
   preview: MediaAsset | null;
-  /** Ziel der Karte. null = noch kein Ziel definiert -> Karte ist nicht klickbar. */
-  href: string | null;
+  episodes: Episode[];
 }
 
 export const insideTheClub = {
+  eyebrow: "Inside",
   headline: "INSIDE THE CLUB.",
-  subline: "Wissen. Einblicke. Erfahrungen.",
-  cards: [
+  subline: "Vier Welten. Kein Lehrplan.",
+  note: "Folgen kommen laufend dazu. Es gibt keine Reihenfolge — du steigst ein, wo es dich betrifft.",
+  /* Folgentitel sind Entwuerfe, bis die finalen Titel aus der Mediathek vorliegen.
+     Ausnahme: "Konsum vs Investieren" ist eine real existierende Folge. */
+  draftEpisodeNote:
+    "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
+  series: [
     {
-      label: "MINDSET",
-      copy: "Entscheidungen. Disziplin. Standards.",
-      thumbnail: media("[CONTENT_MINDSET]", "image", "Mindset", "2 / 3"),
+      /* interne Ablage: MINDSET:PERSÖNLICHKEIT */
+      id: "mindset",
+      label: "MINDSET & PERSÖNLICHKEIT",
+      tagline: "Entscheiden, wenn es unbequem wird.",
+      description:
+        "Wie ISI Entscheidungen trifft, wenn Informationen fehlen und Zeit knapp ist. Über Standards, die niemand kontrolliert — und was passiert, wenn man sie unterschreitet.",
+      cover: media("[SERIE_MINDSET_COVER]", "image", "Mindset & Persönlichkeit", "2 / 3"),
+      still: media("[SERIE_MINDSET_STILL]", "image", "Mindset & Persönlichkeit", "16 / 9"),
       preview: null,
-      href: null,
+      episodes: [
+        { title: "Standards, die niemand kontrolliert", runtime: null },
+        { title: "Entscheiden mit halber Information", runtime: null },
+        { title: "Was Rückschläge wirklich kosten", runtime: null },
+        { title: "Disziplin ohne Motivation", runtime: null },
+      ],
     },
     {
-      label: "SALES",
-      copy: "Kommunikation. Menschen verstehen. Vertrauen. Abschluss.",
-      thumbnail: media("[CONTENT_SALES]", "image", "Sales", "2 / 3"),
+      /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
+      id: "beruf",
+      label: "DER BERUF",
+      tagline: "Vom Job zum eigenen Unternehmen.",
+      description:
+        "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Über Verantwortung, Struktur, Menschen — und die Entscheidungen, die ISI heute anders treffen würde.",
+      cover: media("[SERIE_BERUF_COVER]", "image", "Der Beruf", "2 / 3"),
+      still: media("[SERIE_BERUF_STILL]", "image", "Der Beruf", "16 / 9"),
       preview: null,
-      href: null,
+      episodes: [
+        { title: "Vom Angestellten zum Unternehmer", runtime: null },
+        { title: "Verantwortung, die niemand abnimmt", runtime: null },
+        { title: "Die falschen Partner erkennen", runtime: null },
+        { title: "Wachsen, ohne die Kontrolle zu verlieren", runtime: null },
+      ],
+    },
+    {
+      /* interne Ablage: GELD */
+      id: "geld",
+      label: "GELD",
+      tagline: "Verdienen ist das eine. Behalten das andere.",
+      description:
+        "Der Umgang mit Geld, wenn es mehr wird. Konsum, Investition, Prioritäten — und warum die meisten Fehler nicht beim Verdienen passieren.",
+      cover: media("[SERIE_GELD_COVER]", "image", "Geld", "2 / 3"),
+      still: media("[SERIE_GELD_STILL]", "image", "Geld", "16 / 9"),
+      preview: null,
+      episodes: [
+        /* real existierende Folge */
+        { title: "Konsum vs Investieren", runtime: null },
+        { title: "Was Geld mit Entscheidungen macht", runtime: null },
+        { title: "Prioritäten statt Budgets", runtime: null },
+      ],
+    },
+    {
+      /* interne Ablage: FREUNDE WERBEN FREUNDE
+         Oeffentlich bewusst als NETZWERK gefuehrt — die interne Bezeichnung
+         beschreibt eine Vertriebsmechanik und faellt unter Punkt 7 des Briefings
+         (internes Geschaeftsmodell nicht oeffentlich kommunizieren). */
+      id: "netzwerk",
+      label: "NETZWERK",
+      tagline: "Wer dich kennt, entscheidet mit.",
+      description:
+        "Warum Zugang zu Menschen schwerer zu bekommen ist als Wissen. Wie Beziehungen entstehen, woran sie zerbrechen und was Verlässlichkeit über Jahre wert ist.",
+      cover: media("[SERIE_NETZWERK_COVER]", "image", "Netzwerk", "2 / 3"),
+      still: media("[SERIE_NETZWERK_STILL]", "image", "Netzwerk", "16 / 9"),
+      preview: null,
+      episodes: [
+        { title: "Der erste Eindruck ist der zweite", runtime: null },
+        { title: "Geben, bevor du brauchst", runtime: null },
+        { title: "Räume, in die man eingeladen wird", runtime: null },
+      ],
+    },
+    {
+      id: "live",
+      label: "LIVE",
+      tagline: "Roundtables, Gespräche, Begegnungen.",
+      description:
+        "Der Teil, der sich nicht aufzeichnen lässt. Live-Formate mit ISI und dem Umfeld des Clubs — Fragen, Fälle, echte Gespräche.",
+      cover: media("[SERIE_LIVE_COVER]", "image", "Live", "2 / 3"),
+      still: media("[SERIE_LIVE_STILL]", "image", "Live", "16 / 9"),
+      preview: null,
+      episodes: [
+        { title: "Roundtables", runtime: null },
+        { title: "Q&A mit ISI", runtime: null },
+        { title: "Member-Sessions", runtime: null },
+        { title: "Events vor Ort", runtime: null },
+      ],
+    },
+  ] satisfies Series[],
+} as const;
+
+/* --------------------------------------------------------------------------
+   TIMELINE — Jahre vom Auftraggeber freigegeben
+   -------------------------------------------------------------------------- */
+
+export const timeline = {
+  eyebrow: "Erfahrung",
+  headline: ["EIN WEG.", "ZWANZIG JAHRE."],
+  entries: [
+    {
+      year: "2003",
+      title: "ANFÄNGE",
+      text: "Erste Schritte im Verkauf. Kein Netzwerk, kein Kapital, kein Plan B.",
+    },
+    {
+      year: "2008",
+      title: "VERTRIEB",
+      text: "Vertrieb wird zum Handwerk. Struktur, Verantwortung, erste Teams.",
+    },
+    {
+      year: "2013",
+      title: "BUSINESS",
+      text: "Vom Verkaufen zum Aufbauen. Eigene Unternehmen, eigene Fehler.",
+    },
+    {
+      year: "2018",
+      title: "WACHSTUM",
+      text: "Skalierung, Partnerschaften, internationale Projekte.",
+    },
+    {
+      year: "2021",
+      title: "FREIHEIT",
+      text: "Entscheiden, mit wem und woran gearbeitet wird. Und mit wem nicht.",
+    },
+    {
+      year: "HEUTE",
+      title: "ISI TAT",
+      text: "Der Club öffnet einen Teil dieser zwanzig Jahre für ausgewählte Menschen.",
+    },
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
+   VIER BEREICHE — Sticky-Szene (Desktop) / Karten (Mobile)
+   -------------------------------------------------------------------------- */
+
+export const pillars = {
+  eyebrow: "Fundament",
+  headline: ["VIER BEREICHE.", "EIN FUNDAMENT."],
+  items: [
+    {
+      id: "mindset",
+      label: "MINDSET",
+      text: "Entscheidungen. Disziplin. Verantwortung. Der Umgang mit Rückschlägen.",
+      image: media("[PILLAR_MINDSET_IMAGE]", "image", "Mindset", "4 / 3"),
+    },
+    {
+      id: "beruf",
+      label: "DER BERUF",
+      text: "Vom Job zum Unternehmen. Verantwortung, Struktur, Entscheidungen.",
+      image: media("[PILLAR_BERUF_IMAGE]", "image", "Der Beruf", "4 / 3"),
+    },
+    {
+      id: "geld",
+      label: "GELD",
+      text: "Verdienen, behalten, investieren. Prioritäten statt Budgets.",
+      image: media("[PILLAR_GELD_IMAGE]", "image", "Geld", "4 / 3"),
+    },
+    {
+      id: "opportunity",
+      label: "OPPORTUNITY",
+      text: "Wer im Umfeld des Clubs durch Persönlichkeit, Zuverlässigkeit und Entwicklung auffällt, wird sichtbar. Daraus können sich weitere Möglichkeiten ergeben.",
+      note: "Keine Jobgarantie. Keine Einkommensgarantie. Keine zugesicherte Zusammenarbeit.",
+      image: media("[PILLAR_OPPORTUNITY_IMAGE]", "image", "Opportunity", "4 / 3"),
+    },
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
+   OPPORTUNITY MOMENT
+   -------------------------------------------------------------------------- */
+
+export const opportunity = {
+  first: ["DIE MITGLIEDSCHAFT", "KANNST DU KAUFEN."],
+  second: ["DIE CHANCE", "MUSST DU DIR"],
+  accent: "VERDIENEN.",
+  note: "Wer im Club durch Persönlichkeit, Leistung und Zuverlässigkeit auffällt, wird im Umfeld von ISI sichtbar. Eine Garantie ist das nicht.",
+} as const;
+
+/* --------------------------------------------------------------------------
+   FEHLER / FAILURE STORY
+   -------------------------------------------------------------------------- */
+
+export const failure = {
+  eyebrow: "Ehrlich",
+  headline: ["NICHT JEDE ENTSCHEIDUNG", "WAR RICHTIG."],
+  body: [
+    "Zwanzig Jahre Business heißen nicht zwanzig Jahre richtige Entscheidungen.",
+    "Sie heißen auch: falsches Timing, falsche Menschen, verpasste Chancen.",
+  ],
+  closing: ["SEINE ERFOLGE KANNST DU SEHEN.", "SEINE FEHLER SPAREN DIR ZEIT."],
+  image: media("[ISI_OLD_PHOTO_01]", "image", "ISI TAT — frühe Jahre", "3 / 4"),
+} as const;
+
+/* --------------------------------------------------------------------------
+   FREIHEIT / LIFESTYLE
+   -------------------------------------------------------------------------- */
+
+export const lifestyle = {
+  eyebrow: "Freiheit",
+  headline: ["ES GEHT NICHT UM", "DEN ROLLS-ROYCE."],
+  headlineAccent: ["ES GEHT UM", "DIE WAHL."],
+  body: [
+    "Zeit selbst einteilen. Menschen unterstützen. Der Familie Möglichkeiten geben.",
+    "Und unabhängig entscheiden, wie man leben und arbeiten möchte.",
+  ],
+  /* Slots entsprechen den vorhandenen Aufnahmen — nur `src` setzen. */
+  gallery: [
+    media("[ISI_PARIS_ROLLS_ROYCE]", "image", "Paris bei Nacht", "4 / 5"),
+    media("[ISI_PRIVATE_JET]", "image", "Unterwegs", "4 / 5"),
+    media("[ISI_PORSCHE_HUND]", "image", "Berlin", "4 / 5"),
+    media("[ISI_GARAGE_PARTNER]", "image", "Menschen", "4 / 5"),
+  ],
+  disclaimer:
+    "Der dargestellte Lebensstil zeigt persönliche Erfahrungen von ISI und stellt kein Versprechen über Ergebnisse von Mitgliedern dar.",
+} as const;
+
+/* --------------------------------------------------------------------------
+   NETWORK
+   -------------------------------------------------------------------------- */
+
+export const network = {
+  eyebrow: "Umfeld",
+  headline: ["DEIN UMFELD VERÄNDERT", "DEINE PERSPEKTIVE."],
+  body: ["Information ist heute überall verfügbar.", "Zugang zu Menschen nicht."],
+  center: "YOU",
+  nodes: [
+    "SALES",
+    "FOUNDERS",
+    "BUSINESS",
+    "ENTREPRENEURS",
+    "MARKETING",
+    "FINANCE",
+    "CREATORS",
+    "PARTNERS",
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS — keine erfundenen Aussagen, nur Platzhalter
+   -------------------------------------------------------------------------- */
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  statement: string;
+  video: MediaAsset;
+}
+
+export const testimonials = {
+  eyebrow: "Member",
+  headline: ["ECHTE MENSCHEN.", "ECHTE ERFAHRUNGEN."],
+  note: "Statements werden erst veröffentlicht, wenn sie vorliegen und freigegeben sind.",
+  items: [
+    {
+      name: "[NAME]",
+      role: "[BERUF]",
+      statement: "TODO_CONTENT",
+      video: media("[TESTIMONIAL_VIDEO_01]", "video", "Member-Statement", "3 / 4"),
+    },
+    {
+      name: "[NAME]",
+      role: "[BERUF]",
+      statement: "TODO_CONTENT",
+      video: media("[TESTIMONIAL_VIDEO_02]", "video", "Member-Statement", "3 / 4"),
+    },
+    {
+      name: "[NAME]",
+      role: "[BERUF]",
+      statement: "TODO_CONTENT",
+      video: media("[TESTIMONIAL_VIDEO_03]", "video", "Member-Statement", "3 / 4"),
+    },
+  ] satisfies Testimonial[],
+} as const;
+
+/* --------------------------------------------------------------------------
+   MEMBERSHIP
+   -------------------------------------------------------------------------- */
+
+export const membership = {
+  eyebrow: "Membership",
+  headline: ["DEINE", "MEMBERSHIP."],
+  rows: [
+    {
+      label: "PRIVATE CLUB ACCESS",
+      text: "Zugang zum geschlossenen Umfeld des ISI TAT BUSINESS CLUB.",
+    },
+    {
+      label: "BUSINESS INSIGHTS",
+      text: "Serien und Gespräche zu Vertrieb, Unternehmertum, Netzwerk und Entscheidungen.",
+    },
+    {
+      label: "LIVE ROUNDTABLES",
+      text: "Regelmäßige Live-Formate mit ISI und dem Umfeld des Clubs.",
+    },
+    {
+      label: "COMMUNITY",
+      text: "Austausch mit Menschen, die an vergleichbaren Fragen arbeiten.",
+    },
+    {
+      label: "MEMBER EXPERIENCES",
+      text: "Gemeinsame Formate und Begegnungen innerhalb des Clubs.",
     },
     {
       label: "NETWORK",
-      copy: "Beziehungen. Vertrauen. Chancen.",
-      thumbnail: media("[CONTENT_NETWORK]", "image", "Network", "2 / 3"),
-      preview: null,
-      href: null,
+      text: "Kontakte, die über den Club entstehen — nicht über eine Liste.",
     },
     {
-      label: "BUSINESS",
-      copy: "Erfahrungen. Entscheidungen. Umsetzung.",
-      thumbnail: media("[CONTENT_BUSINESS]", "image", "Business", "2 / 3"),
-      preview: null,
-      href: null,
+      label: "ISI ACCESS",
+      text: "TODO_CONTENT — exakten tatsächlichen Umfang eintragen.",
     },
-    {
-      label: "REAL STORIES",
-      copy: "Erfolge. Fehler. Learnings.",
-      thumbnail: media(
-        "[CONTENT_REAL_STORIES]",
-        "image",
-        "Real Stories",
-        "2 / 3",
-      ),
-      preview: null,
-      href: null,
-    },
-    {
-      label: "LIVE EXPERIENCE",
-      copy: "Roundtables. Gespräche. Events.",
-      thumbnail: media("[CONTENT_LIVE]", "image", "Live Experience", "2 / 3"),
-      preview: null,
-      href: null,
-    },
-  ] satisfies ContentCard[],
+  ],
 } as const;
 
 /* --------------------------------------------------------------------------
-   TIMELINE — vorbereitet fuer Phase 2
-   Jahre vom Auftraggeber freigegeben, Beschreibungstexte fehlen noch.
+   BEWERBUNGSPROZESS
    -------------------------------------------------------------------------- */
 
-export interface TimelineEntry {
-  year: string;
-  title: string;
-  text: string;
-}
-
-export const timeline = {
-  headline: ["EIN WEG.", "20+ JAHRE.", "ECHTE ERFAHRUNGEN."],
-  entries: [
-    { year: "2003", title: "ANFÄNGE", text: "TODO_CONTENT" },
-    { year: "2008", title: "VERTRIEB", text: "TODO_CONTENT" },
-    { year: "2013", title: "BUSINESS", text: "TODO_CONTENT" },
-    { year: "2018", title: "WACHSTUM", text: "TODO_CONTENT" },
-    { year: "2021", title: "FREIHEIT", text: "TODO_CONTENT" },
-    { year: "HEUTE", title: "ISI TAT", text: "TODO_CONTENT" },
-  ] satisfies TimelineEntry[],
+export const application = {
+  eyebrow: "Aufnahme",
+  headline: ["DEIN WEG", "IN DEN CLUB."],
+  steps: [
+    {
+      step: "01",
+      label: "ANFRAGE",
+      text: "Ein kurzes Formular. Fünf Minuten, keine Verpflichtung.",
+    },
+    {
+      step: "02",
+      label: "MATCH",
+      text: "Wir schauen, ob Club und Interessent grundsätzlich zueinander passen.",
+    },
+    {
+      step: "03",
+      label: "ACCESS",
+      text: "Wenn es passt, erhältst du alle Informationen zur Mitgliedschaft.",
+    },
+  ],
 } as const;
 
 /* --------------------------------------------------------------------------
-   RECHTLICHE HINWEISE
+   PRICING
    -------------------------------------------------------------------------- */
 
-export const disclaimers = {
-  lifestyle:
-    "Der dargestellte Lebensstil zeigt persönliche Erfahrungen von ISI und stellt kein Versprechen über Ergebnisse von Mitgliedern dar.",
-  opportunity:
-    "Keine Garantie auf eine Zusammenarbeit, ein Einkommen oder eine Position.",
+export const pricing = {
+  eyebrow: "Investment",
+  headline: "MEMBERSHIP.",
+  subline: "ISI TAT BUSINESS CLUB",
+  price: "4.900 €",
+  /* Noch offen — bitte eintragen. */
+  term: "TODO_CONTENT",
+  payment: "TODO_CONTENT",
+  facts: [
+    "Kein Streichpreis.",
+    "Kein Countdown.",
+    "Keine künstliche Verknappung.",
+  ],
+  note: "Der genaue Leistungsumfang wird vor Abschluss vollständig dargestellt.",
 } as const;
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+
+export const faq = {
+  eyebrow: "FAQ",
+  headline: ["HÄUFIGE", "FRAGEN."],
+  items: [
+    {
+      q: "Für wen ist der Club?",
+      a: "Für Menschen, die im Vertrieb, im Unternehmertum oder in der Selbstständigkeit arbeiten und ihr Umfeld verändern wollen. Nicht für alle — und das ist Absicht.",
+    },
+    {
+      q: "Was bekomme ich?",
+      a: "Zugang zum Club, zu Serien und Gesprächen aus zwanzig Jahren Erfahrung, zu Live-Formaten und zum Umfeld der Mitglieder.",
+    },
+    {
+      q: "Wie funktionieren die Live-Formate?",
+      a: "Regelmäßige Roundtables und Q&A-Sessions mit ISI und Mitgliedern. Termine und Frequenz werden im Club angekündigt.",
+    },
+    {
+      q: "Wie viel Kontakt gibt es zu ISI?",
+      a: "TODO_CONTENT — tatsächlichen Umfang eintragen (Live-Formate, Q&A, direkter Austausch).",
+    },
+    {
+      q: "Wie läuft die Aufnahme ab?",
+      a: "Anfrage über das Formular, danach ein kurzer Abgleich, ob Club und Interessent zueinander passen. Passt es, folgen alle Informationen zur Mitgliedschaft.",
+    },
+    {
+      q: "Wie lange läuft meine Mitgliedschaft?",
+      a: "TODO_CONTENT — Laufzeit eintragen.",
+    },
+    {
+      q: "Welche Zahlungsoptionen gibt es?",
+      a: "TODO_CONTENT — Zahlungsoptionen eintragen.",
+    },
+    {
+      q: "Kann sich daraus eine Zusammenarbeit ergeben?",
+      a: "Möglich, aber nicht zugesichert. Wer im Club durch Persönlichkeit, Leistung und Zuverlässigkeit auffällt, wird sichtbar. Einen Anspruch begründet das nicht.",
+    },
+    {
+      q: "Gibt es eine Erfolgsgarantie?",
+      a: "Nein. Der Club gibt Zugang zu Erfahrungen, Perspektiven und Menschen. Was daraus wird, hängt von dir ab.",
+    },
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
+   FINAL CTA
+   -------------------------------------------------------------------------- */
+
+export const finalCta = {
+  headline: ["DU BRAUCHST NICHT", "NOCH MEHR CONTENT."],
+  accent: ["DU BRAUCHST", "EIN ANDERES UMFELD."],
+  brand: "ISI TAT BUSINESS CLUB",
+  video: media(
+    "[FINAL_ISI_VIDEO]",
+    "video",
+    "ISI TAT — Abschluss",
+    "16 / 9",
+  ),
+} as const;
+
+/* --------------------------------------------------------------------------
+   RECHTLICHES / FOOTER
+   -------------------------------------------------------------------------- */
 
 export const footer = {
-  claim: "ISI TAT BUSINESS CLUB",
   links: [
     { label: "IMPRESSUM", href: "TODO_CONTENT" },
     { label: "DATENSCHUTZ", href: "TODO_CONTENT" },
@@ -264,7 +620,7 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB — 20+ Jahre Erfahrung.",
+  title: "ISI TAT BUSINESS CLUB — Erfahrung lässt sich nicht abkürzen.",
   description:
-    "Zugang zu Erfahrungen, Business-Perspektiven, Vertrieb, Austausch, Netzwerk und ausgewählten Möglichkeiten zur Zusammenarbeit.",
+    "Zwanzig Jahre Vertrieb, Unternehmertum und Netzwerk — in einem Raum, der nicht für jeden offen ist.",
 } as const;

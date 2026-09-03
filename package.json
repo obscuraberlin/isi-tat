@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "preview": "node tools/build-preview.mjs dist/isi-tat-preview.html"
   },
   "dependencies": {
     "next": "16.3.4",
@@ -16,6 +17,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "esbuild": "^0.28.2",
     "typescript": "^5"
   }
 }

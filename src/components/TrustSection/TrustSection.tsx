@@ -17,7 +17,7 @@ export function TrustSection() {
         <div className={styles.grid}>
           <div>
             <Reveal>
-              <Eyebrow rule>Über ISI</Eyebrow>
+              <Eyebrow rule>{trust.eyebrow}</Eyebrow>
             </Reveal>
 
             <Reveal variant="mask" delay={80}>
@@ -43,7 +43,7 @@ export function TrustSection() {
           <Reveal delay={120} className={styles.visual}>
             <Media asset={trust.video} tone="dark" />
             <PlayButton
-              onClick={() => openVideo(trust.video, "Über ISI")}
+              onClick={() => openVideo(trust.video, trust.eyebrow)}
               ariaLabel={`Video abspielen: ${trust.video.alt}`}
               caption="Ansehen"
             />

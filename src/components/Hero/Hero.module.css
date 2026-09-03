@@ -50,15 +50,6 @@
   margin-top: clamp(16px, 1.8vw, 24px);
 }
 
-/* Zweite Ebene: gleicher Charakter, ruhigere Groesse — Gold bleibt Akzent. */
-.accentBlock {
-  display: block;
-  margin-top: clamp(10px, 1vw, 16px);
-  font-size: var(--fs-hero-accent);
-  line-height: 1.08;
-  letter-spacing: var(--tr-head);
-}
-
 .line {
   display: block;
   overflow: hidden;

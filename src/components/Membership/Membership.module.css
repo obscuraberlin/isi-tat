@@ -1,0 +1,61 @@
+.section {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  padding-block: var(--section-y);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.rows {
+  margin-top: clamp(40px, 5vw, 72px);
+  border-top: 1px solid var(--line-light);
+}
+
+.row {
+  display: grid;
+  gap: 8px clamp(24px, 4vw, 64px);
+  padding-block: clamp(24px, 2.8vw, 38px);
+  border-bottom: 1px solid var(--line-light);
+  transition: background-color var(--d-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
+
+.index {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding-top: 6px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: var(--fs-card);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.16;
+}
+
+.text {
+  font-size: var(--fs-body);
+  line-height: 1.58;
+  color: var(--text-muted-light);
+  max-width: 52ch;
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: 60px minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: baseline;
+  }
+}

@@ -14,14 +14,14 @@
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 20px 32px;
-  margin-bottom: clamp(30px, 3.6vw, 52px);
+  gap: 18px 32px;
+  margin-bottom: clamp(28px, 3.4vw, 48px);
 }
 
 .headline {
   font-size: var(--fs-section);
   letter-spacing: var(--tr-tight);
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .subline {
@@ -95,6 +95,12 @@
     var(--gutter),
     calc((100vw - var(--max-page)) / 2 + var(--gutter))
   );
+  /* Ohne scroll-padding schnappt die erste Karte an den Innenrand und
+     der Zeilenanfang verliert die Ausrichtung zum Seitenraster. */
+  scroll-padding-inline: max(
+    var(--gutter),
+    calc((100vw - var(--max-page)) / 2 + var(--gutter))
+  );
 }
 
 .scroller::-webkit-scrollbar {
@@ -104,8 +110,7 @@
 /* ---------- Karte ---------- */
 
 .card {
-  flex: 0 0
-    calc((100% - (var(--cards) - 1) * var(--gap)) / var(--cards));
+  flex: 0 0 calc((100% - (var(--cards) - 1) * var(--gap)) / var(--cards));
   scroll-snap-align: start;
   position: relative;
   border-radius: var(--r-card);
@@ -113,6 +118,7 @@
   background: var(--card-dark);
   text-align: left;
   color: var(--text-light);
+  cursor: pointer;
   transition:
     transform var(--d-base) var(--ease-out),
     box-shadow var(--d-base) var(--ease-out);
@@ -144,12 +150,12 @@
   pointer-events: none;
   background: linear-gradient(
     to top,
-    rgba(6, 6, 6, 0.9) 0%,
-    rgba(6, 6, 6, 0.5) 34%,
+    rgba(6, 6, 6, 0.92) 0%,
+    rgba(6, 6, 6, 0.52) 34%,
     rgba(6, 6, 6, 0.08) 66%,
     rgba(6, 6, 6, 0) 100%
   );
-  transition: opacity var(--d-base) var(--ease-out);
+  transition: background var(--d-base) var(--ease-out);
 }
 
 .cardBody {
@@ -167,8 +173,16 @@
   font-family: var(--font-display);
   font-size: var(--fs-card);
   font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1.1;
+  letter-spacing: 0.01em;
+  line-height: 1.12;
+}
+
+.cardMeta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .cardCopyWrap {
@@ -185,32 +199,22 @@
   color: var(--text-muted-light);
 }
 
-.cardPlay {
+.cardOpen {
   display: none;
   align-items: center;
   gap: 8px;
-  margin-top: 2px;
+  margin-top: 4px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-light);
 }
 
-.cardPlayIcon {
+.playIcon {
   width: 9px;
   height: 11px;
   fill: currentColor;
-}
-
-.index {
-  position: absolute;
-  top: clamp(12px, 1.2vw, 18px);
-  left: clamp(14px, 1.3vw, 20px);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.62);
 }
 
 /* ---------- Desktop Hover ---------- */
@@ -219,18 +223,17 @@
   .card:hover,
   .card:focus-visible {
     transform: scale(1.035);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
     z-index: 2;
   }
 
   .card:hover .scrim,
   .card:focus-visible .scrim {
-    opacity: 1;
     background: linear-gradient(
       to top,
-      rgba(6, 6, 6, 0.95) 0%,
-      rgba(6, 6, 6, 0.66) 42%,
-      rgba(6, 6, 6, 0.2) 74%,
+      rgba(6, 6, 6, 0.96) 0%,
+      rgba(6, 6, 6, 0.68) 44%,
+      rgba(6, 6, 6, 0.22) 76%,
       rgba(6, 6, 6, 0.05) 100%
     );
   }
@@ -252,23 +255,26 @@
     opacity: 1;
   }
 
-  .card:hover .cardPlay,
-  .card:focus-visible .cardPlay {
+  .card:hover .cardOpen,
+  .card:focus-visible .cardOpen {
     display: inline-flex;
   }
 }
 
-.hint {
+.noteWrap {
   width: 100%;
   max-width: var(--max-page);
   margin-inline: auto;
   padding-inline: var(--gutter);
   margin-top: clamp(20px, 2vw, 30px);
-  font-size: var(--fs-small);
-  color: var(--text-muted);
 }
 
-/* ---------- Breakpoints ---------- */
+.note {
+  max-width: 62ch;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
 
 @media (min-width: 480px) {
   .scroller {
@@ -284,7 +290,7 @@
 
 @media (min-width: 1024px) {
   .scroller {
-    --cards: 4.4;
+    --cards: 4.3;
   }
   .arrows {
     display: flex;
@@ -293,7 +299,7 @@
 
 @media (min-width: 1280px) {
   .scroller {
-    --cards: 5.3;
+    --cards: 4.2;
   }
 }
 

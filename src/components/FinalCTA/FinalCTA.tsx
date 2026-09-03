@@ -1,0 +1,53 @@
+"use client";
+
+import { cta, finalCta } from "@/data/landingPage";
+import { Media } from "@/components/Media/Media";
+import { Button, ButtonLink } from "@/components/ui/Button";
+import { Reveal } from "@/components/Reveal/Reveal";
+import { useTrailer } from "@/components/TrailerModal/TrailerContext";
+import styles from "./FinalCTA.module.css";
+
+export function FinalCTA() {
+  const { openTrailer } = useTrailer();
+
+  return (
+    <section className={styles.section}>
+      <div className={styles.bg} aria-hidden="true">
+        <Media asset={finalCta.video} tone="dark" radius="0" />
+      </div>
+      <span className={styles.scrim} aria-hidden="true" />
+
+      <div className={styles.inner}>
+        <Reveal variant="mask">
+          <h2 className={styles.headline}>
+            {finalCta.headline.map((line) => (
+              <span key={line} className={styles.line}>
+                {line}
+              </span>
+            ))}
+            <span className={styles.accentBlock}>
+              {finalCta.accent.map((line) => (
+                <span key={line} className={styles.accent}>
+                  {line}
+                </span>
+              ))}
+            </span>
+          </h2>
+        </Reveal>
+
+        <Reveal delay={140}>
+          <p className={styles.brand}>{finalCta.brand}</p>
+        </Reveal>
+
+        <Reveal delay={180} className={styles.ctas}>
+          <ButtonLink href={cta.primary.href} variant="primaryOnDark">
+            {cta.primary.label}
+          </ButtonLink>
+          <Button variant="ghostOnDark" withPlayIcon onClick={openTrailer}>
+            {cta.secondary.label}
+          </Button>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

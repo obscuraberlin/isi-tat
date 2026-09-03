@@ -51,15 +51,14 @@ export function Hero() {
           </div>
 
           <h1 className={styles.headline}>
-            <Line delayMs={420}>{hero.headline.line1}</Line>
-            <span className={styles.accentBlock}>
-              <Line delayMs={560} accent>
-                {hero.headline.accent[0]}
+            {hero.headline.lines.map((line, index) => (
+              <Line key={line} delayMs={420 + index * 110}>
+                {line}
               </Line>
-              <Line delayMs={660} accent>
-                {hero.headline.accent[1]}
-              </Line>
-            </span>
+            ))}
+            <Line delayMs={420 + hero.headline.lines.length * 110} accent>
+              {hero.headline.accent}
+            </Line>
           </h1>
 
           <p className={`${styles.sub} ${styles.fadeUp}`} style={delay(880)}>

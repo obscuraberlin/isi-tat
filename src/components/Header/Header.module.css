@@ -94,6 +94,14 @@
   transition: transform var(--d-base) var(--ease-out);
 }
 
+.navLinkActive {
+  opacity: 1;
+}
+
+.navLinkActive::after {
+  transform: scaleX(1);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .navLink:hover {
     opacity: 1;

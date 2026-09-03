@@ -60,6 +60,11 @@
   color: #3a3a3a;
 }
 
+.statementPending {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
 .note {
   margin-top: clamp(28px, 3vw, 40px);
   max-width: 62ch;

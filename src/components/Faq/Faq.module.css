@@ -96,6 +96,10 @@
   color: #3a3a3a;
 }
 
+.answerPending {
+  color: var(--text-muted);
+}
+
 @media (min-width: 1024px) {
   .inner {
     grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);

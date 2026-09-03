@@ -2,7 +2,7 @@
   position: relative;
   background: var(--bg-dark);
   color: var(--text-light);
-  padding-block: clamp(110px, 18vw, 260px);
+  padding-block: clamp(88px, 12vw, 180px);
   overflow: hidden;
 }
 
@@ -54,7 +54,7 @@
 
 /* Der Abstand ist die Pause: das zweite Statement kommt erst beim Weiterscrollen. */
 .second {
-  margin-top: clamp(120px, 26vh, 300px);
+  margin-top: clamp(80px, 16vh, 180px);
 }
 
 .accent {
@@ -63,9 +63,18 @@
 }
 
 .note {
-  margin-top: clamp(32px, 4vw, 52px);
+  margin-top: clamp(28px, 3.2vw, 42px);
   max-width: 54ch;
   font-size: var(--fs-body);
   line-height: 1.6;
   color: var(--text-muted);
+}
+
+.disclaimer {
+  margin-top: 14px;
+  max-width: 54ch;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-muted);
+  opacity: 0.8;
 }

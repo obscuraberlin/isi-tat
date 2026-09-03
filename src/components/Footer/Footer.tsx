@@ -1,4 +1,4 @@
-import { brand, footer } from "@/data/landingPage";
+import { brand, footer, isPending } from "@/data/landingPage";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -15,11 +15,17 @@ export function Footer() {
           </div>
 
           <nav className={styles.links} aria-label="Rechtliches">
-            {footer.links.map((item) => (
-              <a key={item.label} href={item.href} className={styles.link}>
-                {item.label}
-              </a>
-            ))}
+            {footer.links.map((item) =>
+              isPending(item.href) ? (
+                <span key={item.label} className={styles.linkPending}>
+                  {item.label}
+                </span>
+              ) : (
+                <a key={item.label} href={item.href} className={styles.link}>
+                  {item.label}
+                </a>
+              ),
+            )}
           </nav>
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { faq } from "@/data/landingPage";
+import { faq, isPending } from "@/data/landingPage";
 import { SectionHead } from "@/components/ui/SectionHead";
 import styles from "./Faq.module.css";
 
@@ -47,7 +47,18 @@ export function Faq() {
                     .join(" ")}
                 >
                   <div className={styles.panelInner}>
-                    <p className={styles.answer}>{item.a}</p>
+                    <p
+                      className={[
+                        styles.answer,
+                        isPending(item.a) ? styles.answerPending : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                    >
+                      {isPending(item.a)
+                        ? "Diese Angabe wird ergänzt, sobald sie feststeht."
+                        : item.a}
+                    </p>
                   </div>
                 </div>
               </div>

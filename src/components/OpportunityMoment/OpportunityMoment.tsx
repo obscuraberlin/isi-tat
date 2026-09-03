@@ -29,6 +29,7 @@ export function OpportunityMoment() {
 
         <Reveal delay={160}>
           <p className={styles.note}>{opportunity.note}</p>
+          <p className={styles.disclaimer}>{opportunity.disclaimer}</p>
         </Reveal>
       </div>
     </section>

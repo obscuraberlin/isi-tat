@@ -2,9 +2,11 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { brand, cta, nav } from "@/data/landingPage";
-import { useScrollLock, useScrolledPast } from "@/lib/hooks";
+import { useActiveSection, useScrollLock, useScrolledPast } from "@/lib/hooks";
 import { ButtonLink } from "@/components/ui/Button";
 import styles from "./Header.module.css";
+
+const NAV_HREFS = nav.map((item) => item.href);
 
 function Logo() {
   return (
@@ -18,6 +20,7 @@ function Logo() {
 
 export function Header() {
   const scrolled = useScrolledPast(80);
+  const active = useActiveSection(NAV_HREFS);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useScrollLock(menuOpen);
@@ -45,7 +48,17 @@ export function Header() {
 
           <nav className={styles.nav} aria-label="Hauptnavigation">
             {nav.map((item) => (
-              <a key={item.href} href={item.href} className={styles.navLink}>
+              <a
+                key={item.href}
+                href={item.href}
+                className={[
+                  styles.navLink,
+                  active === item.href ? styles.navLinkActive : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                aria-current={active === item.href ? "true" : undefined}
+              >
                 {item.label}
               </a>
             ))}

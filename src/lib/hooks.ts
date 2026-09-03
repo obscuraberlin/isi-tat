@@ -141,3 +141,51 @@ export function useInView<T extends HTMLElement>(
 
   return { ref, inView };
 }
+
+/**
+ * Meldet, welcher der übergebenen Abschnitte gerade gelesen wird.
+ * Dient der Orientierung auf einer langen Seite — die aktive Marke
+ * steht in der Navigation.
+ */
+export function useActiveSection(hrefs: readonly string[]) {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    const ids = hrefs
+      .filter((href) => href.startsWith("#"))
+      .map((href) => href.slice(1));
+
+    const nodes = ids
+      .map((id) => document.getElementById(id))
+      .filter((node): node is HTMLElement => node !== null);
+
+    if (nodes.length === 0 || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const visible = new Map<string, number>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        }
+        let best: string | null = null;
+        let bestRatio = 0;
+        for (const [id, ratio] of visible) {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            best = id;
+          }
+        }
+        setActive(best ? `#${best}` : null);
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.15, 0.4, 0.8] },
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [hrefs]);
+
+  return active;
+}

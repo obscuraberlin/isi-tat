@@ -77,8 +77,8 @@
   --max-text-wide: 760px;
   --gutter: clamp(20px, 4.5vw, 72px);
 
-  --section-y: clamp(72px, 9.5vw, 180px);
-  --section-y-tight: clamp(56px, 6.5vw, 120px);
+  --section-y: clamp(64px, 7.5vw, 132px);
+  --section-y-tight: clamp(48px, 5vw, 88px);
 
   /* ---------- Radius ---------- */
   --r-card: 16px;

@@ -54,6 +54,17 @@
   transition: color var(--d-fast) var(--ease-out);
 }
 
+/* Noch nicht hinterlegt — bewusst kein toter Link. */
+.linkPending {
+  font-size: var(--fs-small);
+  letter-spacing: 0.09em;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
     color: var(--text-light);

@@ -2,24 +2,20 @@ import { Header } from "@/components/Header/Header";
 import { Hero } from "@/components/Hero/Hero";
 import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
 import { TrustSection } from "@/components/TrustSection/TrustSection";
-import { FourPillars } from "@/components/FourPillars/FourPillars";
-import { OpportunityMoment } from "@/components/OpportunityMoment/OpportunityMoment";
-import { Timeline } from "@/components/Timeline/Timeline";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
 import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
 import { Network } from "@/components/Network/Network";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
-import { Membership } from "@/components/Membership/Membership";
-import { ApplicationSteps } from "@/components/ApplicationSteps/ApplicationSteps";
-import { Pricing } from "@/components/Pricing/Pricing";
+import { OpportunityMoment } from "@/components/OpportunityMoment/OpportunityMoment";
+import { Access } from "@/components/Access/Access";
 import { Faq } from "@/components/Faq/Faq";
 import { FinalCTA } from "@/components/FinalCTA/FinalCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA/StickyMobileCTA";
 import { Footer } from "@/components/Footer/Footer";
 
 /**
- * Reihenfolge und Hell-/Dunkel-Rhythmus der Seite.
- * Der Besucher sieht zuerst, was drin ist (Serien) — dann, warum ausgerechnet ISI.
+ * Elf Abschnitte, hell und dunkel im Wechsel.
+ * Jeder beantwortet genau eine Frage — keine zwei dasselbe.
  */
 export default function Page() {
   return (
@@ -27,21 +23,17 @@ export default function Page() {
       <Header />
 
       <main id="inhalt">
-        <Hero />              {/* dunkel — Einstieg          */}
-        <SeriesRow />         {/* hell   — was drin ist       */}
-        <TrustSection />      {/* hell   — warum ISI          */}
-        <FourPillars />       {/* dunkel — vier Bereiche      */}
-        <OpportunityMoment /> {/* dunkel — die Chance         */}
-        <Timeline />          {/* hell   — zwanzig Jahre      */}
-        <FailureStory />      {/* dunkel — die Fehler         */}
-        <Lifestyle />         {/* hell   — die Wahl           */}
-        <Network />           {/* dunkel — das Umfeld         */}
-        <Testimonials />      {/* hell   — echte Menschen     */}
-        <Membership />        {/* dunkel — was du bekommst    */}
-        <ApplicationSteps />  {/* hell   — der Weg rein       */}
-        <Pricing />           {/* hell   — Investment         */}
-        <Faq />               {/* hell   — offene Fragen      */}
-        <FinalCTA />          {/* dunkel — Abschluss          */}
+        <Hero />              {/* dunkel · Worum geht es          */}
+        <SeriesRow />         {/* hell   · Was ist drin           */}
+        <TrustSection />      {/* hell   · Wer ist ISI            */}
+        <FailureStory />      {/* dunkel · Warum ehrlich          */}
+        <Lifestyle />         {/* hell   · Wofür das gut ist      */}
+        <Network />           {/* dunkel · Wer sonst dabei ist    */}
+        <Testimonials />      {/* hell   · Wer es bestätigt       */}
+        <OpportunityMoment /> {/* dunkel · Was daraus werden kann */}
+        <Access />            {/* hell   · Umfang, Preis, Aufnahme */}
+        <Faq />               {/* hell   · Offene Fragen          */}
+        <FinalCTA />          {/* dunkel · Entscheidung           */}
       </main>
 
       <Footer />

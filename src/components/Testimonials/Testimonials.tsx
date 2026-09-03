@@ -1,6 +1,6 @@
 "use client";
 
-import { testimonials } from "@/data/landingPage";
+import { isPending, testimonials } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { PlayButton } from "@/components/ui/PlayButton";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -12,7 +12,7 @@ export function Testimonials() {
   const { openVideo } = useTrailer();
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="member">
       <div className={styles.inner}>
         <SectionHead
           eyebrow={testimonials.eyebrow}
@@ -32,7 +32,18 @@ export function Testimonials() {
               <div className={styles.meta}>
                 <p className={styles.name}>{item.name}</p>
                 <p className={styles.role}>{item.role}</p>
-                <p className={styles.statement}>{item.statement}</p>
+                <p
+                  className={[
+                    styles.statement,
+                    isPending(item.statement) ? styles.statementPending : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {isPending(item.statement)
+                    ? "Statement folgt."
+                    : item.statement}
+                </p>
               </div>
             </Reveal>
           ))}

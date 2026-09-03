@@ -1,0 +1,205 @@
+.section {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding-block: var(--section-y);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Leistungen ---------- */
+
+.rows {
+  margin-top: clamp(34px, 4vw, 56px);
+  border-top: 1px solid var(--line-dark);
+}
+
+.row {
+  display: grid;
+  gap: 6px clamp(20px, 3vw, 48px);
+  padding-block: clamp(16px, 1.9vw, 24px);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.rowLabel {
+  font-family: var(--font-display);
+  font-size: var(--fs-card);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.16;
+}
+
+.rowText {
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: #3a3a3a;
+  max-width: 56ch;
+}
+
+/* Noch offene Angaben werden als offen gekennzeichnet, nicht ausgedacht. */
+.pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.pending::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--text-muted);
+}
+
+/* ---------- Preis ---------- */
+
+.price {
+  margin-top: clamp(48px, 6vw, 88px);
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: var(--r-visual);
+  background: var(--bg-dark);
+  color: var(--text-light);
+  display: grid;
+  gap: clamp(24px, 3vw, 44px);
+  align-items: center;
+}
+
+.priceLabel {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.priceValue {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 1.8rem + 4vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.priceMeta {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 7px 14px;
+  border: 1px solid var(--line-light);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-small);
+  color: var(--text-muted-light);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-body);
+  color: var(--text-muted-light);
+}
+
+.fact::before {
+  content: "";
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.priceCta {
+  margin-top: clamp(22px, 2.6vw, 30px);
+  width: 100%;
+  max-width: 320px;
+}
+
+.priceNote {
+  margin-top: 16px;
+  max-width: 46ch;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ---------- Schritte ---------- */
+
+.steps {
+  display: grid;
+  gap: clamp(20px, 2.6vw, 36px);
+  margin-top: clamp(18px, 2vw, 26px);
+}
+
+.stepsHead {
+  margin-top: clamp(48px, 6vw, 88px);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: clamp(20px, 2.4vw, 30px);
+}
+
+.step {
+  padding-top: clamp(18px, 2vw, 26px);
+  border-top: 1px solid var(--line-dark);
+}
+
+.stepNum {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-tight);
+  line-height: 1;
+  color: var(--accent);
+}
+
+.stepLabel {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: var(--fs-card);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+}
+
+.stepText {
+  margin-top: 8px;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: #3a3a3a;
+  max-width: 34ch;
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: baseline;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .price {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}

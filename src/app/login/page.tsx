@@ -93,9 +93,9 @@ export default function LoginPage() {
                 />
                 Angemeldet bleiben
               </label>
-              <a href="TODO_CONTENT" className={styles.link}>
+              <span className={styles.link} aria-disabled="true">
                 Passwort vergessen?
-              </a>
+              </span>
             </div>
 
             <Button

@@ -22,6 +22,9 @@
    Mediathek beschrieben, nicht als Lehrgang.
    ========================================================================== */
 
+/** true, wenn eine Angabe noch nicht bestaetigt vorliegt. */
+export const isPending = (value: string) => value.startsWith("TODO_CONTENT");
+
 export type MediaKind = "image" | "video";
 
 export interface MediaAsset {
@@ -76,10 +79,10 @@ export const cta = {
 } as const;
 
 export const nav = [
+  { label: "INHALTE", href: "#inside-the-club" },
   { label: "ÜBER ISI", href: "#ueber-isi" },
-  { label: "INSIDE THE CLUB", href: "#inside-the-club" },
-  { label: "ERFAHRUNG", href: "#erfahrung" },
-  { label: "FÜR WEN", href: "#fuer-wen" },
+  { label: "MEMBER", href: "#member" },
+  { label: "MEMBERSHIP", href: "#zugang" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
@@ -314,42 +317,6 @@ export const timeline = {
 } as const;
 
 /* --------------------------------------------------------------------------
-   VIER BEREICHE — Sticky-Szene (Desktop) / Karten (Mobile)
-   -------------------------------------------------------------------------- */
-
-export const pillars = {
-  eyebrow: "Fundament",
-  headline: ["VIER BEREICHE.", "EIN FUNDAMENT."],
-  items: [
-    {
-      id: "mindset",
-      label: "MINDSET",
-      text: "Entscheidungen. Disziplin. Verantwortung. Der Umgang mit Rückschlägen.",
-      image: media("[PILLAR_MINDSET_IMAGE]", "image", "Mindset", "4 / 3"),
-    },
-    {
-      id: "beruf",
-      label: "DER BERUF",
-      text: "Vom Job zum Unternehmen. Verantwortung, Struktur, Entscheidungen.",
-      image: media("[PILLAR_BERUF_IMAGE]", "image", "Der Beruf", "4 / 3"),
-    },
-    {
-      id: "geld",
-      label: "GELD",
-      text: "Verdienen, behalten, investieren. Prioritäten statt Budgets.",
-      image: media("[PILLAR_GELD_IMAGE]", "image", "Geld", "4 / 3"),
-    },
-    {
-      id: "opportunity",
-      label: "OPPORTUNITY",
-      text: "Wer im Umfeld des Clubs durch Persönlichkeit, Zuverlässigkeit und Entwicklung auffällt, wird sichtbar. Daraus können sich weitere Möglichkeiten ergeben.",
-      note: "Keine Jobgarantie. Keine Einkommensgarantie. Keine zugesicherte Zusammenarbeit.",
-      image: media("[PILLAR_OPPORTUNITY_IMAGE]", "image", "Opportunity", "4 / 3"),
-    },
-  ],
-} as const;
-
-/* --------------------------------------------------------------------------
    OPPORTUNITY MOMENT
    -------------------------------------------------------------------------- */
 
@@ -358,6 +325,8 @@ export const opportunity = {
   second: ["DIE CHANCE", "MUSST DU DIR"],
   accent: "VERDIENEN.",
   note: "Wer im Club durch Persönlichkeit, Leistung und Zuverlässigkeit auffällt, wird im Umfeld von ISI sichtbar. Eine Garantie ist das nicht.",
+  disclaimer:
+    "Keine Jobgarantie. Keine Einkommensgarantie. Keine zugesicherte Zusammenarbeit.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -551,7 +520,7 @@ export const faq = {
   items: [
     {
       q: "Für wen ist der Club?",
-      a: "Für Menschen, die im Vertrieb, im Unternehmertum oder in der Selbstständigkeit arbeiten und ihr Umfeld verändern wollen. Nicht für alle — und das ist Absicht.",
+      a: "Für ambitionierte Menschen, die verkaufen, aufbauen oder selbstständig arbeiten wollen und dafür ein anderes Umfeld brauchen. Nicht für alle — und das ist Absicht.",
     },
     {
       q: "Was bekomme ich?",

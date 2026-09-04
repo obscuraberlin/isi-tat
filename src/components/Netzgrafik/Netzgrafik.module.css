@@ -1,0 +1,36 @@
+.netz {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.kanten line {
+  stroke: var(--accent);
+  stroke-width: 0.25;
+  opacity: 0.34;
+}
+
+.knoten circle {
+  fill: var(--accent);
+  opacity: 0.6;
+  /* Versetzt, damit das Netz atmet statt zu blinken. */
+  animation: puls 5.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 420ms);
+}
+
+@keyframes puls {
+  0%,
+  100% {
+    opacity: 0.34;
+  }
+  50% {
+    opacity: 0.78;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knoten circle {
+    animation: none;
+  }
+}

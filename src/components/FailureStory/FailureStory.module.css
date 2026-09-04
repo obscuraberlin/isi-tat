@@ -68,6 +68,15 @@
   color: var(--accent);
 }
 
+/* Sitzt unter der Zeile, rechtsbuendig zum Bild darueber. Klein genug,
+   dass es die Sektion fuellt statt sie zu uebernehmen. */
+.netz {
+  display: block;
+  width: clamp(120px, 12vw, 168px);
+  margin-top: clamp(20px, 2.4vw, 30px);
+  margin-left: auto;
+}
+
 .body {
   max-width: var(--max-text);
   display: flex;

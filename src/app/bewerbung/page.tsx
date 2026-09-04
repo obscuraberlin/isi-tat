@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { backdrops, brand, screening } from "@/data/landingPage";
+import { backdrops, brand, screening, trailer } from "@/data/landingPage";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 import styles from "./page.module.css";
@@ -50,7 +50,8 @@ export default function BewerbungPage() {
         <Backdrop
           variant="glow"
           tone="dark"
-          image={backdrops.ctaNachInhalten.src}
+          image={trailer.video.poster ?? backdrops.ctaNachInhalten.src}
+          video={trailer.video.src}
           imageOpacity={0.2}
           imagePosition="50% 45%"
           drift={0}
@@ -93,11 +94,15 @@ export default function BewerbungPage() {
 
   return (
     <main className={styles.page}>
+      {/* Der Trailer laeuft hier stumm und ohne Bedienelemente im Grund —
+          dasselbe Bild, das der Besucher gerade gesehen hat, waehrend er
+          die Fragen beantwortet. Ohne Ton: hier wird gelesen. */}
       <Backdrop
         variant="grain"
         tone="dark"
-        image={backdrops.finalCta.src}
-        imageOpacity={0.12}
+        image={trailer.video.poster ?? backdrops.finalCta.src}
+        video={trailer.video.src}
+        imageOpacity={0.16}
         imagePosition="50% 40%"
       />
 

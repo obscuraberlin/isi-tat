@@ -7,6 +7,7 @@ import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./FailureStory.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 import { Collage } from "@/components/Collage/Collage";
+import { Netzgrafik } from "@/components/Netzgrafik/Netzgrafik";
 
 /**
  * "WAS BEI MIR" steht oben, die Gegenueberstellung ueber die volle Breite
@@ -78,6 +79,13 @@ export function FailureStory() {
                     {zeile}
                   </span>
                 ))}
+              </span>
+
+              {/* Ornament, kein Inhalt: unter der Zeile blieb eine leere
+                  Ecke stehen. Ein Netz passt inhaltlich zu dem, worum es
+                  auf der Seite geht, ohne etwas zu behaupten. */}
+              <span className={styles.netz}>
+                <Netzgrafik />
               </span>
             </span>
           </span>

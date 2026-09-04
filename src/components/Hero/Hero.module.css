@@ -308,6 +308,7 @@
   .copyBottom {
     position: relative;
     z-index: 1;
+    text-shadow: 0 1px 26px rgba(0, 0, 0, 0.62), 0 1px 4px rgba(0, 0, 0, 0.4);
     /* Der Text darf ins Bild hineinlaufen — deshalb breiter als die halbe
        Seite. Lesbar bleibt er durch den Verlauf auf dem Visual. */
     max-width: min(58%, 700px);
@@ -348,12 +349,12 @@
     --mask-x: linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.08) 7%,
-      rgba(0, 0, 0, 0.24) 14%,
-      rgba(0, 0, 0, 0.48) 21%,
-      rgba(0, 0, 0, 0.72) 28%,
-      rgba(0, 0, 0, 0.9) 35%,
-      #000 44%
+      rgba(0, 0, 0, 0.1) 4%,
+      rgba(0, 0, 0, 0.3) 8%,
+      rgba(0, 0, 0, 0.55) 12%,
+      rgba(0, 0, 0, 0.78) 17%,
+      rgba(0, 0, 0, 0.93) 21%,
+      #000 25%
     );
     --mask-y: linear-gradient(
       to bottom,
@@ -388,16 +389,19 @@
        Aufnahme ist ein helles Studio. Ohne das laeuft Weiss auf Weiss. */
     /* Der dunkle Teil endet frueher — links bleibt die Schrift auf
        ruhigem Grund, ab der Mitte sieht man den Clip fast unverdeckt. */
+    /* Der Schatten faengt etwa halb so weit rechts an wie vorher. Damit
+       die Schrift auf hellen Bildern trotzdem steht, traegt sie einen
+       eigenen Schatten — der kostet nichts und rettet die Stelle, an der
+       das Studio im Clip weiss ausbrennt. */
     background: linear-gradient(
       to right,
-      rgba(8, 8, 8, 0.92) 0%,
-      rgba(8, 8, 8, 0.84) 10%,
-      rgba(8, 8, 8, 0.64) 20%,
-      rgba(8, 8, 8, 0.42) 30%,
-      rgba(8, 8, 8, 0.24) 40%,
-      rgba(8, 8, 8, 0.1) 52%,
-      rgba(8, 8, 8, 0.03) 64%,
-      rgba(8, 8, 8, 0) 74%
+      rgba(8, 8, 8, 0.9) 0%,
+      rgba(8, 8, 8, 0.78) 8%,
+      rgba(8, 8, 8, 0.56) 16%,
+      rgba(8, 8, 8, 0.34) 25%,
+      rgba(8, 8, 8, 0.18) 33%,
+      rgba(8, 8, 8, 0.07) 41%,
+      rgba(8, 8, 8, 0) 50%
     );
   }
 }

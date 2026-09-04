@@ -102,6 +102,18 @@
     gap: 8px;
   }
 
+  /* Drei Bilder in zwei Spalten liessen unten rechts ein leeres Feld
+     stehen. Das dritte laeuft jetzt ueber beide Spalten und liegt quer —
+     zwei Hochformate, darunter ein Querformat. Das Loch ist weg, ohne
+     dass ein viertes Bild dazukommt, das es nicht gibt. */
+  .tile:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .tile:last-child > div {
+    --ratio: 16 / 10;
+  }
+
   .disclaimer {
     margin-top: 22px;
   }

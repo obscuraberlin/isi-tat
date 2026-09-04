@@ -20,6 +20,8 @@ export function Testimonials() {
         <SectionHead
           eyebrow={testimonials.eyebrow}
           lines={testimonials.headline}
+          accentLines={testimonials.headlineAccent}
+          subline={testimonials.subline}
         />
 
         <div className={styles.grid}>
@@ -34,7 +36,24 @@ export function Testimonials() {
               </div>
               <div className={styles.meta}>
                 <p className={styles.name}>{item.name}</p>
-                <p className={styles.role}>{item.role}</p>
+                <p className={styles.role}>
+                  {item.role}
+                  {isPending(item.since) ? null : ` · seit ${item.since}`}
+                </p>
+                {/* Wo die Person heute steht — der Satz, der den Sog macht.
+                    Fehlt er, bleibt die Stelle als Luecke markiert. */}
+                <p
+                  className={[
+                    styles.standing,
+                    isPending(item.standing) ? styles.standingPending : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {isPending(item.standing)
+                    ? "Wo diese Person heute steht, kommt hier hin."
+                    : item.standing}
+                </p>
                 <p
                   className={[
                     styles.statement,
@@ -54,6 +73,7 @@ export function Testimonials() {
 
         <Reveal>
           <p className={styles.note}>{testimonials.note}</p>
+          <p className={styles.disclaimer}>{testimonials.disclaimer}</p>
         </Reveal>
       </div>
     </section>

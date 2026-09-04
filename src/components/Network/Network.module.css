@@ -3,7 +3,7 @@
   position: relative;
   background: var(--bg-dark);
   color: var(--text-light);
-  padding-block: var(--section-y);
+  padding-block: var(--section-y-tight);
   overflow: hidden;
 }
 
@@ -32,10 +32,10 @@
 
 /* Kurze Zeilen, die nacheinander erscheinen. */
 .hints {
-  margin-top: clamp(22px, 2.6vw, 32px);
+  margin-top: clamp(16px, 2vw, 24px);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .hint {
@@ -64,8 +64,12 @@
 
 .graph {
   position: relative;
-  width: min(100%, 620px);
-  aspect-ratio: 1;
+  width: min(100%, 560px);
+  /* Quadratisch war die Grafik hoeher als der Text daneben — links und
+     unten blieb eine halbe Bildschirmhoehe leer. Flacher passt sie zur
+     Textspalte, die Knoten stehen dadurch weiter auseinander statt
+     uebereinander. */
+  aspect-ratio: 5 / 4;
   margin-inline: auto;
 }
 

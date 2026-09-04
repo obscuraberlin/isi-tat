@@ -223,11 +223,13 @@ export const trust = {
   ],
   /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
   claim: "Du musst nicht jede Situation zum ersten Mal alleine erleben.",
+  /* Quadratisch statt hochkant: das Hochformat war hoeher als der Text
+     daneben und liess links eine Luecke von einer halben Bildschirmhoehe. */
   video: media(
     "[ISI_REPUTATION_VIDEO]",
     "video",
     "ISI TAT über seinen Weg",
-    "3 / 4",
+    "1 / 1",
   ),
   /* Bildunterschrift am Portrait — wie eine Autorenzeile. */
   person: {
@@ -409,37 +411,15 @@ export const catalogue = {
 export const timeline = {
   eyebrow: "Erfahrung",
   headline: ["MEIN WEG."],
+  /* Nur Jahr und Stichwort. Sechs erklaerende Saetze daneben hat niemand
+     gelesen — sie haben nur eine Bildschirmhoehe gekostet. */
   entries: [
-    {
-      year: "2003",
-      title: "ANFÄNGE",
-      text: "Erste Schritte im Verkauf.",
-    },
-    {
-      year: "2008",
-      title: "VERTRIEB",
-      text: "Verkaufen wird zum Handwerk.",
-    },
-    {
-      year: "2013",
-      title: "BUSINESS",
-      text: "Vom Verkaufen zum Aufbauen.",
-    },
-    {
-      year: "2018",
-      title: "WACHSTUM",
-      text: "Partnerschaften, Projekte im Ausland.",
-    },
-    {
-      year: "2021",
-      title: "FREIHEIT",
-      text: "Ich entscheide, mit wem ich arbeite.",
-    },
-    {
-      year: "HEUTE",
-      title: "ISI TAT",
-      text: "Der Club öffnet einen Teil davon.",
-    },
+    { year: "2003", title: "ANFÄNGE" },
+    { year: "2008", title: "VERTRIEB" },
+    { year: "2013", title: "BUSINESS" },
+    { year: "2018", title: "WACHSTUM" },
+    { year: "2021", title: "FREIHEIT" },
+    { year: "HEUTE", title: "DER CLUB" },
   ],
 } as const;
 
@@ -563,30 +543,53 @@ export const live = {
 export interface Testimonial {
   name: string;
   role: string;
+  /** Seit wann im Club — macht aus einem Zitat einen Beleg. */
+  since: string;
+  /**
+   * Wo die Person heute steht. Der Satz, der beim Lesen den Gedanken
+   * ausloest "das will ich auch". Bewusst als Beschreibung der Person,
+   * nicht als Versprechen an den Leser — und niemals erfunden.
+   */
+  standing: string;
   statement: string;
   video: MediaAsset;
 }
 
 export const testimonials = {
   eyebrow: "Erfahrungen",
-  headline: ["MENSCHEN, DIE", "SCHON DRIN SIND."],
+  /* Zeigt auf die Menschen, nicht auf ein Ergebnis: wer hier liest, soll
+     sich mit ihnen vergleichen — ohne dass ihm etwas zugesagt wird. */
+  headline: ["MENSCHEN, DIE DA SIND,"],
+  headlineAccent: ["WO DU HIN WILLST."],
+  subline:
+    "Keine Nachher-Zahlen. Menschen, die dieselbe Entscheidung getroffen haben — und was seitdem anders läuft.",
   note: "Hier stehen erst Stimmen, wenn sie vorliegen und die Leute zugestimmt haben. Nichts Ausgedachtes.",
+  /* Einzelfaelle sind kein Massstab — das muss dabeistehen, sobald echte
+     Stimmen eingetragen werden. */
+  disclaimer:
+    "Einzelne Erfahrungen. Kein Massstab für dein Ergebnis und keine Zusage.",
   items: [
     {
       name: "[NAME]",
-      role: "[BERUF]",
+      role: "[BRANCHE]",
+      since: "TODO_CONTENT",
+      standing: "TODO_CONTENT",
       statement: "TODO_CONTENT",
       video: media("[TESTIMONIAL_VIDEO_01]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
     {
       name: "[NAME]",
-      role: "[BERUF]",
+      role: "[BRANCHE]",
+      since: "TODO_CONTENT",
+      standing: "TODO_CONTENT",
       statement: "TODO_CONTENT",
       video: media("[TESTIMONIAL_VIDEO_02]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
     {
       name: "[NAME]",
-      role: "[BERUF]",
+      role: "[BRANCHE]",
+      since: "TODO_CONTENT",
+      standing: "TODO_CONTENT",
       statement: "TODO_CONTENT",
       video: media("[TESTIMONIAL_VIDEO_03]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },

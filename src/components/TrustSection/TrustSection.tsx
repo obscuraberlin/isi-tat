@@ -151,7 +151,6 @@ export function TrustSection() {
                   />
                   <p className={styles.year}>{entry.year}</p>
                   <p className={styles.entryTitle}>{entry.title}</p>
-                  <p className={styles.entryText}>{entry.text}</p>
                 </Reveal>
               ))}
             </ol>

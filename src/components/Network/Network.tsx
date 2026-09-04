@@ -17,7 +17,9 @@ const points = network.nodes.map((label, index) => {
   return {
     label,
     x: 50 + Math.cos(angle) * radius,
-    y: 50 + Math.sin(angle) * radius * 0.9,
+    /* Der Rahmen ist jetzt breiter als hoch — ohne Ausgleich lagen die
+       Knoten oben und unten fast aufeinander. */
+    y: 50 + Math.sin(angle) * radius * 1.15,
   };
 });
 

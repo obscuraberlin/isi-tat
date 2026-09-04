@@ -18,7 +18,7 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **03** | Trailer (Overlay) | 90 Sekunden Trailer — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
 | **04** | Intro (Scrollytelling) | ISI TAT unterwegs | Video | 16 / 9 |
 | **05** | Intro (Scrollytelling) | ISI TAT in Bewegung | Video | 16 / 9 |
-| **06** | Über ISI | ISI TAT über seinen Weg | Video | 3 / 4 |
+| **06** | Über ISI | ISI TAT über seinen Weg | Video | 1 / 1 |
 | **07** | Serie: MINDSET & PERSÖNLICHKEIT | Mindset & Persönlichkeit | Bild | 2 / 3 |
 | **08** | Serie: MINDSET & PERSÖNLICHKEIT | Mindset & Persönlichkeit | Bild | 16 / 9 |
 | **09** | Serie: VERTRIEB | Vertrieb | Bild | 2 / 3 |

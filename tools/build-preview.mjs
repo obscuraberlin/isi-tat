@@ -10,8 +10,12 @@ import { dirname, join } from "node:path";
 /* --standalone erzeugt ein vollstaendiges HTML-Dokument, das sich per
    Doppelklick oder auf jedem Webspace oeffnen laesst. Ohne das Flag bleibt
    es ein Fragment fuer den Artifact-Host, der Kopf und Rumpf selbst mitbringt. */
-const args = process.argv.slice(2).filter((a) => a !== "--standalone");
-const standalone = process.argv.includes("--standalone");
+const flags = new Set(process.argv.slice(2).filter((a) => a.startsWith("--")));
+const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const standalone = flags.has("--standalone");
+/* Nur auf Vorschau-Domains setzen. Ein vergessenes noindex auf der echten
+   Seite faellt monatelang niemandem auf und kostet die komplette Sichtbarkeit. */
+const noindex = flags.has("--noindex");
 const target = args[0] ?? "dist/preview.html";
 const tmp = ".preview-build";
 
@@ -68,8 +72,7 @@ const doc = standalone
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="${description}">
-<meta name="robots" content="noindex, nofollow">
-<style>
+${noindex ? '<meta name="robots" content="noindex, nofollow">\n' : ""}<style>
   :root { color-scheme: light }
   body { margin: 0 }
   img { max-width: 100% }

@@ -1,0 +1,108 @@
+.page {
+  min-height: 100svh;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding-block: clamp(80px, 9vw, 140px);
+}
+
+.inner {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.logoMark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+
+.logoSuffix {
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  opacity: 0.65;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-section);
+  font-weight: 700;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.05;
+}
+
+.stand {
+  margin-top: 12px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.block {
+  margin-top: clamp(28px, 3.4vw, 44px);
+}
+
+.head {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-card);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+}
+
+.body {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85em;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: #3a3a3a;
+}
+
+.body a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Offene Angaben werden sichtbar als Luecke gezeigt, nicht erfunden. */
+.fehlt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.fehlt::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--text-muted);
+}
+
+.back {
+  display: inline-block;
+  margin-top: clamp(40px, 5vw, 64px);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.back:hover {
+  color: var(--text-dark);
+}

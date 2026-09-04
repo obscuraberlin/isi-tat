@@ -897,8 +897,10 @@ export const footer = {
     { label: "YouTube", handle: "@isitat", href: "https://www.youtube.com/@isitat" },
   ],
   links: [
-    { label: "IMPRESSUM", href: "TODO_CONTENT" },
-    { label: "DATENSCHUTZ", href: "TODO_CONTENT" },
+    { label: "IMPRESSUM", href: "/impressum" },
+    { label: "DATENSCHUTZ", href: "/datenschutz" },
+    /* AGB und Kontakt bleiben offen, bis es sie gibt. Ein Link auf eine
+       leere Seite ist schlechter als ein Hinweis, dass sie fehlt. */
     { label: "AGB", href: "TODO_CONTENT" },
     { label: "KONTAKT", href: "TODO_CONTENT" },
   ],
@@ -907,9 +909,40 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB — Du musst nicht alles selbst herausfinden.",
+  title: "ISI TAT BUSINESS CLUB — Von null auf hundert, ohne meine Umwege.",
   description:
-    "Über 20 Jahre Vertrieb, Business und Netzwerk. Inhalte, Live-Austausch und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst.",
+    "Über 20 Jahre Vertrieb, Business und Netzwerk. Serien, Live-Austausch und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst. Aufnahme nur über Bewerbung.",
+} as const;
+
+/* --------------------------------------------------------------------------
+   RECHTSSEITEN
+   -----------------------------------------------------------------------------
+   Impressum und Datenschutz stehen als eigene Seiten. Alles, was hier
+   `TODO_CONTENT` ist, muss der Auftraggeber liefern — erfundene Angaben
+   waeren in einem Impressum keine Luecke, sondern eine Falschangabe.
+   -------------------------------------------------------------------------- */
+
+export const impressum = {
+  title: "Impressum",
+  intro: "Angaben gemäß § 5 DDG.",
+  /* Anbieter: vollstaendiger Firmenname inkl. Rechtsform. */
+  anbieter: ["TODO_CONTENT — Firma inkl. Rechtsform", "TODO_CONTENT — Straße und Hausnummer", "TODO_CONTENT — PLZ und Ort"],
+  vertreten: "TODO_CONTENT — Geschäftsführer/in",
+  register: { gericht: "TODO_CONTENT — Registergericht", nummer: "TODO_CONTENT — HRB-Nummer" },
+  /* § 27a UStG. Die Steuernummer gehoert NICHT auf die Seite. */
+  ustId: "TODO_CONTENT — USt-IdNr. (DE…)",
+  kontakt: { mail: "TODO_CONTENT — E-Mail", telefon: "TODO_CONTENT — Telefon" },
+  /* § 18 Abs. 2 MStV — nur noetig bei journalistisch-redaktionellen Inhalten,
+     schadet aber nicht. */
+  verantwortlich: ["TODO_CONTENT — Name", "TODO_CONTENT — Anschrift"],
+  streit: {
+    head: "EU-Streitschlichtung",
+    text: "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit:",
+    href: "https://ec.europa.eu/consumers/odr/",
+    label: "ec.europa.eu/consumers/odr",
+    hinweis:
+      "Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+  },
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -1122,4 +1155,55 @@ export const screening = {
       cta: { label: "ZURÜCK ZUR STARTSEITE", href: "/" },
     },
   },
+} as const;
+
+export const datenschutz = {
+  title: "Datenschutzerklärung",
+  stand: "TODO_CONTENT — Stand (Monat und Jahr)",
+  /* Was hier steht, ist am 4. September 2026 im gebauten Quelltext
+     geprueft worden: keine Anfrage an einen fremden Server beim Laden,
+     kein Cookie, kein localStorage, keine Schriftart von Google. Wird
+     spaeter etwas eingebaut, das das aendert, muss dieser Text mit. */
+  abschnitte: [
+    {
+      head: "Verantwortlicher",
+      body: [
+        "Verantwortlich für die Datenverarbeitung auf dieser Website ist der im Impressum genannte Anbieter.",
+      ],
+    },
+    {
+      head: "Was beim Aufruf dieser Seite passiert",
+      body: [
+        "Beim Aufruf werden keine Cookies gesetzt und keine Daten im Browser gespeichert. Es werden keine Verbindungen zu Servern Dritter aufgebaut — Schriftarten, Bilder und Videos liegen auf demselben Server wie die Seite.",
+        "Der Hoster verarbeitet technisch notwendige Zugriffsdaten (IP-Adresse, Zeitpunkt, abgerufene Datei, Browsertyp) in Server-Logfiles. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO — das berechtigte Interesse am sicheren und stabilen Betrieb.",
+      ],
+    },
+    {
+      head: "Hosting",
+      body: ["TODO_CONTENT — Hoster mit Firma, Anschrift, Land und Hinweis auf den Auftragsverarbeitungsvertrag."],
+    },
+    {
+      head: "Schriftarten",
+      body: [
+        "Die verwendeten Schriften liegen auf dem Server dieser Website und werden von dort geladen. Es besteht keine Verbindung zu Google Fonts; es wird keine IP-Adresse an Google übertragen.",
+      ],
+    },
+    {
+      head: "Bewerbungsformular",
+      body: ["TODO_CONTENT — Formulardienst, Empfänger, Zweck, Rechtsgrundlage, Speicherdauer, Drittlandübermittlung."],
+    },
+    {
+      head: "Keine Analyse, kein Tracking",
+      body: [
+        "Diese Website nutzt keine Analyse- oder Trackingdienste, keine Werbe-Pixel und keine eingebetteten Inhalte fremder Anbieter. Es findet keine Profilbildung statt.",
+      ],
+    },
+    {
+      head: "Deine Rechte",
+      body: [
+        "Du hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Wende dich dafür an die im Impressum genannte Adresse.",
+        "Außerdem steht dir ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO).",
+      ],
+    },
+  ],
 } as const;

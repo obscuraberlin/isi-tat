@@ -15,16 +15,13 @@
 
 .preview {
   margin-top: clamp(34px, 4vw, 56px);
-}
-
-.preview > div {
-  border-radius: var(--r-visual);
-  overflow: hidden;
-  box-shadow: var(--sh-soft);
+  /* Als Geraet lesen, nicht als Vollbreitenblock. */
+  max-width: 1080px;
 }
 
 .previewCaption {
   margin-top: 14px;
+  max-width: 1080px;
   font-size: var(--fs-small);
   color: var(--text-muted);
 }

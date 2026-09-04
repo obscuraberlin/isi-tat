@@ -1,5 +1,5 @@
 import { application, cta, isPending, membership, pricing } from "@/data/landingPage";
-import { Media } from "@/components/Media/Media";
+import { MemberPreview } from "@/components/MemberPreview/MemberPreview";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -33,7 +33,7 @@ export function Access() {
         />
 
         <Reveal className={styles.preview}>
-          <Media asset={membership.preview} tone="dark" />
+          <MemberPreview />
           <p className={styles.previewCaption}>{membership.previewCaption}</p>
         </Reveal>
 

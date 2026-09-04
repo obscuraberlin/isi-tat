@@ -1,0 +1,243 @@
+/* Nachbau der Mitglieder-Oberflaeche. Kein Screenshot, sondern echtes
+   Markup — dadurch scharf auf jedem Display und sofort aenderbar. */
+
+.frame {
+  position: relative;
+  border-radius: clamp(10px, 1.2vw, 18px);
+  overflow: hidden;
+  background: var(--bg-dark);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4);
+  color: var(--text-light);
+  container-type: inline-size;
+}
+
+/* ---------- Kopfleiste ---------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.5cqw, 34px);
+  padding: clamp(10px, 1.6cqw, 18px) clamp(14px, 2.4cqw, 28px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: clamp(9px, 1.15cqw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  flex: none;
+}
+
+.barNav {
+  display: flex;
+  gap: clamp(10px, 1.8cqw, 24px);
+  font-size: clamp(8px, 1cqw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+}
+
+.barNavActive {
+  color: var(--text-light);
+}
+
+.avatar {
+  margin-left: auto;
+  width: clamp(16px, 2cqw, 24px);
+  height: clamp(16px, 2cqw, 24px);
+  border-radius: 50%;
+  background: linear-gradient(140deg, var(--accent), #6d5a37);
+  flex: none;
+}
+
+/* ---------- Buehne ---------- */
+
+.stage {
+  position: relative;
+  aspect-ratio: 2.35 / 1;
+  background: linear-gradient(145deg, #23211d 0%, #141414 55%, #1e1c19 100%);
+}
+
+.stageScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(8, 8, 8, 0.94) 0%,
+    rgba(8, 8, 8, 0.62) 48%,
+    rgba(8, 8, 8, 0.2) 100%
+  );
+}
+
+.stageBody {
+  position: absolute;
+  left: clamp(14px, 2.6cqw, 34px);
+  bottom: clamp(14px, 2.6cqw, 32px);
+  right: clamp(14px, 2.6cqw, 34px);
+}
+
+.stageTitle {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: clamp(15px, 3.4cqw, 40px);
+  font-weight: 700;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.02;
+}
+
+.stageMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(5px, 0.8cqw, 10px);
+  margin-top: clamp(6px, 1cqw, 12px);
+  font-size: clamp(7px, 0.95cqw, 11px);
+  letter-spacing: 0.08em;
+  color: var(--text-muted-light);
+}
+
+.tag {
+  padding: clamp(2px, 0.4cqw, 4px) clamp(5px, 0.8cqw, 9px);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.tagAccent {
+  border-color: rgba(200, 166, 106, 0.5);
+  color: var(--accent);
+}
+
+.stageButtons {
+  display: flex;
+  gap: clamp(5px, 0.9cqw, 10px);
+  margin-top: clamp(9px, 1.5cqw, 18px);
+}
+
+.play,
+.list {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(4px, 0.6cqw, 7px);
+  padding: clamp(5px, 0.9cqw, 10px) clamp(9px, 1.6cqw, 18px);
+  border-radius: 4px;
+  font-size: clamp(7px, 0.95cqw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.play {
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+
+.list {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-light);
+}
+
+.icon {
+  width: clamp(5px, 0.7cqw, 8px);
+  height: clamp(6px, 0.85cqw, 10px);
+  fill: currentColor;
+}
+
+/* ---------- Kachelraster ---------- */
+
+.shelf {
+  padding: clamp(14px, 2.4cqw, 30px) clamp(14px, 2.4cqw, 28px)
+    clamp(16px, 2.8cqw, 34px);
+}
+
+.shelfLabel {
+  font-size: clamp(8px, 1cqw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: clamp(8px, 1.4cqw, 16px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(6px, 1cqw, 12px);
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: clamp(4px, 0.6cqw, 8px);
+  overflow: hidden;
+  background: linear-gradient(150deg, #232120 0%, #141414 60%, #1d1b18 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Die erste Kachel ist doppelt breit — das gibt dem Raster Rhythmus. */
+.tileWide {
+  grid-column: span 2;
+  aspect-ratio: 32 / 10;
+}
+
+.tileScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 6, 0.92) 0%,
+    rgba(6, 6, 6, 0.25) 55%,
+    rgba(6, 6, 6, 0) 100%
+  );
+}
+
+.tileBody {
+  position: absolute;
+  left: clamp(6px, 1cqw, 12px);
+  right: clamp(6px, 1cqw, 12px);
+  bottom: clamp(5px, 0.9cqw, 11px);
+}
+
+.tileLabel {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: clamp(7px, 1.05cqw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.tileMeta {
+  margin-top: 2px;
+  font-size: clamp(6px, 0.8cqw, 9px);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* Fortschrittsbalken auf der ersten Kachel — signalisiert "schon dabei". */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.progressFill {
+  height: 100%;
+  width: 38%;
+  background: var(--accent);
+}
+
+@container (max-width: 620px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .barNav {
+    display: none;
+  }
+}

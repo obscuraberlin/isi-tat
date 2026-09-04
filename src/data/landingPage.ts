@@ -197,9 +197,8 @@ export const trust = {
   eyebrow: "Über mich",
   headline: ["KURZ", "ZU MIR."],
   body: [
-    "Ich verkaufe seit über zwanzig Jahren. Angefangen ohne Netzwerk, ohne Kapital, ohne Plan B.",
-    "Seitdem habe ich Unternehmen mitgegründet, Teams aufgebaut, viel richtig gemacht — und einiges falsch.",
-    "Ich kann dir Entscheidungen nicht abnehmen. Aber du musst sie auch nicht ohne Orientierung treffen.",
+    "Über zwanzig Jahre Vertrieb. Angefangen ohne Netzwerk, ohne Kapital, ohne Plan B.",
+    "Seitdem: eigene Unternehmen, eigene Teams, eigene Fehler.",
   ],
   /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
   claim: "Du musst nicht jede Situation zum ersten Mal alleine erleben.",
@@ -383,32 +382,32 @@ export const timeline = {
     {
       year: "2003",
       title: "ANFÄNGE",
-      text: "Erste Schritte im Verkauf. Kein Netzwerk, kein Kapital, kein Plan B.",
+      text: "Erste Schritte im Verkauf.",
     },
     {
       year: "2008",
       title: "VERTRIEB",
-      text: "Verkaufen wird zum Handwerk. Struktur, Verantwortung, erste Teams.",
+      text: "Verkaufen wird zum Handwerk.",
     },
     {
       year: "2013",
       title: "BUSINESS",
-      text: "Vom Verkaufen zum Aufbauen. Eigene Firmen, eigene Fehler.",
+      text: "Vom Verkaufen zum Aufbauen.",
     },
     {
       year: "2018",
       title: "WACHSTUM",
-      text: "Größer werden. Partnerschaften, Projekte im Ausland.",
+      text: "Partnerschaften, Projekte im Ausland.",
     },
     {
       year: "2021",
       title: "FREIHEIT",
-      text: "Ich entscheide, mit wem ich arbeite. Und mit wem nicht.",
+      text: "Ich entscheide, mit wem ich arbeite.",
     },
     {
       year: "HEUTE",
       title: "ISI TAT",
-      text: "Ich mache einen Teil davon zugänglich — für Leute, die es ernst meinen.",
+      text: "Der Club öffnet einen Teil davon.",
     },
   ],
 } as const;
@@ -435,9 +434,8 @@ export const failure = {
   eyebrow: "Ehrlich",
   headline: ["WAS BEI MIR", "SCHIEFGELAUFEN IST."],
   body: [
-    "Zwanzig Jahre Erfahrung sind nicht zwanzig Jahre richtige Entscheidungen.",
     "Falsches Timing. Falsche Menschen. Chancen zu spät erkannt.",
-    "Das gehört für mich genauso in den Club wie das, was funktioniert hat.",
+    "Das gehört genauso in den Club wie das, was funktioniert hat.",
   ],
   closing: [
     "MEINE ERFOLGE KANNST DU SEHEN.",
@@ -455,8 +453,8 @@ export const lifestyle = {
   headline: ["DER LUXUS IST", "NICHT DAS AUTO."],
   headlineAccent: ["DER LUXUS IST,", "ENTSCHEIDEN ZU KÖNNEN."],
   body: [
-    "Mit wem du arbeitest. Wann du arbeitest. Wo du bist.",
-    "Wem du helfen kannst. Welche Chancen du annimmst — und zu welchen du Nein sagst.",
+    "Mit wem du arbeitest. Wann. Wo.",
+    "Welche Chancen du annimmst — und zu welchen du Nein sagst.",
   ],
   /* Slots entsprechen den vorhandenen Aufnahmen — nur `src` setzen. */
   gallery: [
@@ -466,7 +464,7 @@ export const lifestyle = {
     media("[ISI_BUSINESS]", "image", "Bei der Arbeit", "4 / 5"),
   ],
   disclaimer:
-    "Das sind meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussehen wird.",
+    "Meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussieht.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -511,15 +509,15 @@ export const live = {
   items: [
     {
       label: "FRAGEN STELLEN",
-      text: "Was dich gerade beschäftigt, statt was als Nächstes im Plan steht.",
+      text: "Was dich gerade beschäftigt.",
     },
     {
       label: "SITUATIONEN EINORDNEN",
-      text: "Eine zweite Perspektive von jemandem, der die Lage schon kennt.",
+      text: "Eine zweite Perspektive von jemandem, der sie kennt.",
     },
     {
       label: "VON ANDEREN FÄLLEN PROFITIEREN",
-      text: "Die Frage eines anderen Mitglieds ist oft auch deine.",
+      text: "Die Frage eines anderen ist oft auch deine.",
     },
   ],
   /* Frequenz noch offen. */
@@ -572,31 +570,24 @@ export const membership = {
   eyebrow: "Deine Mitgliedschaft",
   headline: ["NICHT NUR CONTENT."],
   headlineAccent: ["EIN UMFELD,", "DAS MITDENKT."],
-  /* Echter Screenshot des Mitgliederbereichs — das ueberzeugendste Element
-     der Seite, sobald er da ist. Solange leer, steht ein Platzhalter. */
-  preview: media(
-    "[MEMBERBEREICH_SCREENSHOT]",
-    "image",
-    "Der Mitgliederbereich des ISI TAT BUSINESS CLUB",
-    "16 / 10",
-  ),
-  previewCaption: "So sieht es von innen aus.",
+  previewCaption:
+    "So sieht der Mitgliederbereich aus. Abbildung — die Inhalte wachsen laufend.",
   rows: [
     {
       label: "INHALTE & ERFAHRUNGEN",
-      text: "Perspektiven aus über 20 Jahren Vertrieb, Business und Entscheidungen.",
+      text: "Aus über 20 Jahren Vertrieb und Business.",
     },
     {
       label: "LIVE MIT ISI",
-      text: "Fragen, Situationen und Erfahrungen gemeinsam einordnen.",
+      text: "Fragen stellen. Situationen einordnen.",
     },
     {
       label: "DIE COMMUNITY",
-      text: "Menschen mit ähnlichen Ambitionen und Herausforderungen.",
+      text: "Menschen mit denselben Fragen.",
     },
     {
       label: "NETZWERK",
-      text: "Kontakte und Beziehungen, die über Zeit entstehen können.",
+      text: "Kontakte, die über Zeit entstehen.",
     },
     {
       label: "TREFFEN & EVENTS",
@@ -608,7 +599,7 @@ export const membership = {
     },
     {
       label: "WEITERE MÖGLICHKEITEN",
-      text: "Keine Garantie — aber die Chance, innerhalb des Umfelds sichtbar zu werden.",
+      text: "Keine Garantie. Aber die Chance, sichtbar zu werden.",
     },
   ],
 } as const;
@@ -624,17 +615,17 @@ export const application = {
     {
       step: "01",
       label: "ANFRAGE",
-      text: "Kurzes Formular. Fünf Minuten, unverbindlich.",
+      text: "Fünf Minuten. Unverbindlich.",
     },
     {
       step: "02",
       label: "GESPRÄCH",
-      text: "Wir schauen, ob das passt. Ehrlich, und in beide Richtungen.",
+      text: "Wir schauen, ob es passt. In beide Richtungen.",
     },
     {
       step: "03",
       label: "ZUGANG",
-      text: "Passt es, bekommst du alle Infos zur Mitgliedschaft und dein Login.",
+      text: "Passt es, bekommst du dein Login.",
     },
   ],
 } as const;
@@ -656,7 +647,7 @@ export const pricing = {
     "Kein Streichpreis, kein Countdown.",
     "Kein Upsell nach dem Kauf.",
   ],
-  note: "Was genau drin ist, steht vor dem Abschluss vollständig da. Keine Überraschungen danach.",
+  note: "Was drin ist, steht vor dem Abschluss vollständig da.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -677,31 +668,19 @@ export const faq = {
     },
     {
       q: "Ist das ein Kurs?",
-      a: "Nein. Es gibt keine Reihenfolge, keine Hausaufgaben, keine Prüfung und kein Zertifikat. Du schaust, was dich gerade betrifft, und fragst live nach, wenn etwas offen ist.",
-    },
-    {
-      q: "Wie oft sind die Live-Runden?",
-      a: "TODO_CONTENT — Frequenz und Format eintragen.",
+      a: "Nein. Keine Reihenfolge, keine Hausaufgaben, keine Prüfung, kein Zertifikat. Du schaust, was dich gerade betrifft, und fragst live nach.",
     },
     {
       q: "Wie viel Kontakt habe ich zu dir?",
-      a: "TODO_CONTENT — tatsächlichen Umfang des persönlichen Zugangs eintragen.",
+      a: "TODO_CONTENT — Live-Runden, Frequenz und Umfang des persönlichen Zugangs eintragen.",
     },
     {
-      q: "Wie läuft die Aufnahme?",
-      a: "Du füllst das Formular aus, danach sprechen wir kurz. Wenn es für beide Seiten passt, bekommst du alle Infos und deinen Zugang. Wenn nicht, sage ich das auch.",
-    },
-    {
-      q: "Wie lange läuft die Mitgliedschaft?",
-      a: "TODO_CONTENT — Laufzeit eintragen.",
-    },
-    {
-      q: "Wie kann ich bezahlen?",
-      a: "TODO_CONTENT — Zahlungsoptionen eintragen.",
+      q: "Laufzeit und Zahlung?",
+      a: "TODO_CONTENT — Laufzeit und Zahlungsoptionen eintragen.",
     },
     {
       q: "Kann daraus eine Zusammenarbeit werden?",
-      a: "Möglich, aber ich sichere es nicht zu. Mit einzelnen Mitgliedern arbeite ich irgendwann zusammen. Das entsteht über Zeit und dadurch, wie jemand auffällt — nicht durch den Kauf einer Mitgliedschaft.",
+      a: "Möglich, aber ich sichere es nicht zu. Das entsteht über Zeit und dadurch, wie jemand auffällt — nicht durch den Kauf.",
     },
     {
       q: "Bin ich nach dem Kauf auf mich allein gestellt?",

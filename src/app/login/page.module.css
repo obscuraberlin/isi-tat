@@ -1,8 +1,18 @@
 .page {
+  /* Bezugsrahmen fuer die Hintergrundebene. */
+  position: relative;
   min-height: 100svh;
   display: grid;
   background: var(--bg-dark);
   color: var(--text-light);
+  overflow: hidden;
+}
+
+/* Ueber der Hintergrundebene. */
+.formSide,
+.visual {
+  position: relative;
+  z-index: 1;
 }
 
 /* ---------- Formularseite ---------- */
@@ -49,6 +59,38 @@
 .form {
   width: 100%;
   max-width: 400px;
+}
+
+.kicker {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* Als Hinweis erkennbar, ohne wie eine Fehlermeldung auszusehen. */
+.preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 7px 13px;
+  border: 1px solid var(--line-light);
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.preview::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .headline {

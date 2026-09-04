@@ -4,6 +4,7 @@ import { useState } from "react";
 import { brand, cta, login } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { Button } from "@/components/ui/Button";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 import styles from "./page.module.css";
 
 /* Platzhalter-Visual — Austausch wie überall nur über `src`. */
@@ -18,6 +19,8 @@ export default function LoginPage() {
 
   return (
     <main className={styles.page}>
+      <Backdrop variant="grain" tone="dark" />
+
       <div className={styles.formSide}>
         <a href="/" className={styles.logo} aria-label={brand.fullName}>
           {/* [LOGO_ISI_TAT] */}
@@ -38,9 +41,16 @@ export default function LoginPage() {
               setPending(false);
             }}
           >
+            <p className={styles.kicker}>Du bist Mitglied?</p>
             <h1 className={styles.headline}>WILLKOMMEN ZURÜCK.</h1>
             <p className={styles.sub}>
-              Zugang zum Mitgliederbereich des {brand.fullName}.
+              Melde dich an und mach da weiter, wo du aufgehört hast.
+            </p>
+
+            {/* Offen sagen, dass hier noch nichts vergeben wird — sonst
+                probiert jemand minutenlang Zugangsdaten, die es nicht gibt. */}
+            <p className={styles.preview}>
+              Vorschau — Zugänge werden noch nicht vergeben.
             </p>
 
             <div className={styles.fields}>
@@ -108,7 +118,7 @@ export default function LoginPage() {
             <p className={styles.footer}>
               Noch kein Mitglied?{" "}
               <a href={`/${cta.primary.href}`} className={styles.footerLink}>
-                Zugang anfragen
+                {cta.primary.label}
               </a>
             </p>
           </form>

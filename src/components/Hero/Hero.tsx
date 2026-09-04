@@ -119,14 +119,6 @@ export function Hero() {
             </Button>
           </div>
 
-          <ul className={`${styles.trustLine} ${styles.fadeUp}`} style={delay(1260)}>
-            {hero.trustLine.map((item) => (
-              <li key={item} className={styles.trustItem}>
-                {item}
-              </li>
-            ))}
-          </ul>
-
         </div>
       </div>
     </section>

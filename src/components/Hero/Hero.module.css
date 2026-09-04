@@ -177,25 +177,6 @@
   flex: none;
 }
 
-.trustLine {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px clamp(16px, 2vw, 28px);
-  margin-top: clamp(24px, 2.8vw, 34px);
-  padding-top: clamp(18px, 2.2vw, 26px);
-  border-top: 1px solid var(--line-light);
-  width: 100%;
-}
-
-.trustItem {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
 /* ---------- Visual ---------- */
 
 .visual {
@@ -303,17 +284,7 @@
     gap: 8px;
   }
 
-  .trustLine {
-    margin-top: 20px;
-    padding-top: 16px;
-    gap: 6px 14px;
   }
-
-  .trustItem {
-    font-size: 0.6875rem;
-  }
-
-}
 
 /* ---------- Tablet / Desktop ---------- */
 
@@ -326,57 +297,72 @@
     padding-top: calc(var(--header-h) + clamp(40px, 6vh, 90px));
   }
 
+  /* Statisch, damit das Visual sich am Abschnitt ausrichtet und nicht an
+     dieser Spalte — nur so laeuft es bis an den Bildschirmrand. */
   .inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas:
-      "top visual"
-      "bottom visual";
-    /* Zeile eins haelt sich an ihren Inhalt, der Rest faellt in Zeile zwei.
-       Ohne das verteilt das Raster die Hoehe des Visuals auf beide Zeilen
-       und reisst den Text auseinander. */
-    grid-template-rows: min-content 1fr;
-    align-content: center;
-    row-gap: 0;
-    column-gap: clamp(32px, 5vw, 72px);
+    position: static;
+    display: block;
   }
 
-  /* Das Visual spannt beide Zeilen und waere sonst hoeher als der Text —
-     die Bloecke treffen sich deshalb in der Mitte, statt auseinanderzufallen. */
+  .copyTop,
   .copyBottom {
-    align-self: start;
-    padding-top: clamp(20px, 2.4vw, 32px);
+    position: relative;
+    z-index: 1;
+    /* Der Text bleibt in der linken Haelfte, das Bild bekommt den Rest. */
+    max-width: min(52%, 620px);
   }
 
-  /* Der Abstand kommt schon vom padding-top des Blocks — sonst addiert er sich. */
   .copyBottom .sub {
-    margin-top: 0;
+    margin-top: clamp(20px, 2.4vw, 30px);
   }
 
+  /* Randlos rechts, ueber die volle Hoehe — wie eine Titelseite bei einem
+     Streamingdienst. Nach links loest es sich im Hintergrund auf, damit der
+     Text darauf lesbar bleibt und keine Kante entsteht. */
   .visual {
-    align-self: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(66%, 1180px);
+    z-index: 0;
   }
 
-  /* Auf dem Desktop uebernimmt der Trailer-Button unter der Headline,
-     das Play-Overlay auf dem Visual waere dort doppelt. */
+  .visualFrame {
+    height: 100%;
+    border-radius: 0;
+    /* Zwei Verlaeufe: nach links weich raus, nach unten in die Sektion. */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 46%),
+      linear-gradient(to bottom, #000 62%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 46%),
+      linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  /* Ohne festes Seitenverhaeltnis fuellt das Medium die ganze Flaeche und
+     wird beschnitten statt gestaucht. */
+  .visualFrame > div {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+
+  /* Der Trailer-Button unter der Headline uebernimmt — das Play-Overlay
+     auf dem Bild waere doppelt und laege ausserdem im Anschnitt. */
   .visual button {
     display: none;
   }
 
-  .visualFrame {
-    max-height: min(74vh, 620px);
-  }
-
-  .visualFrame > div {
-    height: 100%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .inner {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    /* Nur horizontal — ein Zeilenabstand wuerde die beiden Textbloecke
-       auseinanderreissen, zwischen denen das Visual haengt. */
-    column-gap: clamp(56px, 6vw, 96px);
+  .visualOverlay {
+    background: linear-gradient(
+      to right,
+      rgba(8, 8, 8, 0.85) 0%,
+      rgba(8, 8, 8, 0.1) 52%,
+      rgba(8, 8, 8, 0) 100%
+    );
   }
 }
 

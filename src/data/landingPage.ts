@@ -144,14 +144,9 @@ export const hero = {
   /* Beantwortet ueber dem Fold die drei Fragen, mit denen jeder ankommt:
      wer bist du, was kannst du, was habe ich davon. */
   subheadline:
-    "Ich bin ISI TAT — über 20 Jahre Vertrieb, eigene Unternehmen, eigenes Netzwerk. Im Club bekommst du meine Erfahrung, den Live-Austausch und ein Umfeld, das dahin will, wo du hinwillst.",
-  trustLine: [
-    "20+ JAHRE ERFAHRUNG",
-    "VERTRIEB",
-    "BUSINESS",
-    "NETZWERK",
-    "LIVE-AUSTAUSCH",
-  ],
+    "Über 20 Jahre Vertrieb und eigene Unternehmen. Im Club bekommst du meine Erfahrung, den Live-Austausch und ein Umfeld, das dahin will, wo du hinwillst.",
+  /* Die Vertrauenszeile ist raus: sie hat aufgezaehlt, was die Subline
+     zwei Zeilen darueber schon sagt, und den Hero unten zugestellt. */
   /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die
      halbe Bildbreite weggeschnitten — und das Motiv wandert im Clip von
      links nach rechts, ein fester Bildausschnitt trifft es nie. */

@@ -50,12 +50,46 @@
   color: var(--accent);
 }
 
-.visual {
-  /* Sitzt in der Headline — als <span> braucht es den Blockfluss zurueck.
-     Ein Hochformat ueber 62% Spaltenbreite wuerde die Sektion sprengen. */
+/* Frueher und heute nebeneinander — der Abstand dazwischen ist das
+   Argument, deshalb stehen sie im selben Blick. */
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 24px);
+  /* Ueber die volle Breite wuerden zwei Hochformate 850 Pixel hoch und
+     draengen den Text aus dem Blick. Die Gegenueberstellung braucht keine
+     Groesse, nur den Vergleich. */
+  max-width: 620px;
+}
+
+.side {
   display: block;
-  max-width: 400px;
-  margin-left: auto;
+}
+
+.sideLabel {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: var(--tr-wide);
+  color: var(--accent);
+}
+
+.sideCaption {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.visual {
+  display: block;
   border-radius: var(--r-visual);
   overflow: hidden;
   border: 1px solid var(--line-light);
@@ -65,3 +99,14 @@
   border-radius: inherit;
 }
 
+
+
+/* Verbindet die Sektion mit dem Angebot, ohne zu versprechen, dass es bei
+   jemand anderem funktioniert. */
+.pass {
+  margin-top: clamp(22px, 2.6vw, 32px);
+  max-width: 54ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: var(--text-light);
+}

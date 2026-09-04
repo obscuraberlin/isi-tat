@@ -5,7 +5,6 @@ import { TrustSection } from "@/components/TrustSection/TrustSection";
 import { FitCheck } from "@/components/FitCheck/FitCheck";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
 import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
-import { LiveSection } from "@/components/LiveSection/LiveSection";
 import { Network } from "@/components/Network/Network";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
@@ -50,7 +49,6 @@ export default function Page() {
         {/* --- 3 · Inhalt -------------------------------------------- */}
         <SeriesRow />         {/* hell   · Die Serien              */}
         <CtaBand {...ctaBands.nachInhalten} tone="dark" />
-        <LiveSection />       {/* hell   · Live dabei              */}
         <Network />           {/* dunkel · Das Umfeld              */}
         <CtaBand {...ctaBands.nachUmfeld} tone="light" />
 

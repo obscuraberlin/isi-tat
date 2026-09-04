@@ -31,12 +31,12 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **16** | Serie: ECHTE GESCHICHTEN | Echte Geschichten | Bild | 16 / 9 |
 | **17** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 2 / 3 |
 | **18** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 16 / 9 |
-| **19** | Was bei mir schiefgelaufen ist | ISI TAT — frühe Jahre | Bild | 3 / 4 |
-| **20** | Freiheit | ISI TAT in der Garage | Video | 16 / 9 |
-| **21** | Freiheit (Galerie) | Auto — Aufnahme eins | Bild | 4 / 5 |
-| **22** | Freiheit (Galerie) | Auto — Aufnahme zwei | Bild | 4 / 5 |
-| **23** | Freiheit (Galerie) | Auto — Aufnahme drei | Bild | 4 / 5 |
-| **24** | Live mit ISI | Live-Runde mit ISI TAT | Video | 16 / 9 |
+| **19** | Was bei mir schiefgelaufen ist | ISI TAT als Jugendlicher | Bild | 3 / 4 |
+| **20** | Was bei mir schiefgelaufen ist | ISI TAT heute | Bild | 3 / 4 |
+| **21** | Freiheit | ISI TAT in der Garage | Video | 16 / 9 |
+| **22** | Freiheit (Galerie) | Auto — Aufnahme eins | Bild | 4 / 5 |
+| **23** | Freiheit (Galerie) | Auto — Aufnahme zwei | Bild | 4 / 5 |
+| **24** | Freiheit (Galerie) | Auto — Aufnahme drei | Bild | 4 / 5 |
 | **25** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
 | **26** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
 | **27** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |

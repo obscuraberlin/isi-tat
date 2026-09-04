@@ -460,14 +460,28 @@ export const failure = {
   eyebrow: "Ehrlich",
   headline: ["WAS BEI MIR", "SCHIEFGELAUFEN IST."],
   body: [
-    "Falsches Timing. Falsche Menschen. Chancen zu spät erkannt.",
-    "Das gehört genauso in den Club wie das, was funktioniert hat.",
+    "Als Jugendlicher habe ich Party gemacht wie alle anderen auch. Ernst genommen habe ich davon nichts.",
+    "Je älter meine Eltern wurden, desto klarer wurde mir: irgendwann zählt es wirklich. Also habe ich Vollgas gegeben — und bereue davon keinen Tag.",
+    "Das Schwerste war nicht die Arbeit. Es war, dass mir niemand etwas erklärt hat. Ich habe mir alles selbst beigebracht, und das hat Jahre gekostet, die ich nicht zurückbekomme.",
   ],
+  /* Zwei Bilder statt einem: der Abstand zwischen ihnen ist das Argument.
+     Bewusst ueber Wissen und Zeit erzaehlt, nicht ueber Besitz — sonst
+     kippt die Gegenueberstellung ins Angeberische. */
+  compare: {
+    beforeLabel: "FRÜHER",
+    beforeCaption: "Ohne Plan, ohne jemanden, der es erklärt.",
+    before: media("[ISI_FRUEHER]", "image", "ISI TAT als Jugendlicher", "3 / 4"),
+    afterLabel: "HEUTE",
+    afterCaption: "Derselbe Weg — nur habe ich ihn alleine gesucht.",
+    after: media("[ISI_HEUTE]", "image", "ISI TAT heute", "3 / 4"),
+  },
   closing: [
-    "MEINE ERFOLGE KANNST DU SEHEN.",
-    "VON MEINEN FEHLERN KANNST DU MEHR LERNEN.",
+    "MIT JEMANDEM AN MEINER SEITE",
+    "WÄRE ICH VIEL SCHNELLER GEWESEN.",
   ],
-  image: media("[ISI_OLD_PHOTO_01]", "image", "ISI TAT — frühe Jahre", "3 / 4"),
+  /* Der Satz, der die Sektion mit dem Angebot verbindet — ohne zu
+     versprechen, dass es bei jemand anderem funktioniert. */
+  pass: "Genau das gebe ich heute weiter: Schritt für Schritt, damit du meine Umwege nicht noch einmal gehen musst.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -531,13 +545,13 @@ export const network = {
    LIVE MIT ISI
    -------------------------------------------------------------------------- */
 
+/* Der Live-Teil hatte eine eigene Sektion mit grossem Videoplatz. Es gibt
+   dafuer kein Material und es soll auch keins gedreht werden — statt eine
+   Bildschirmhoehe mit einem Platzhalter zu fuellen, steht die Aussage jetzt
+   als schmale Zeile im Zugang-Abschnitt, wo sie ohnehin hingehoert. */
 export const live = {
-  eyebrow: "Live mit ISI",
-  headline: ["WENN EINE FRAGE NICHT BIS", "ZUM NÄCHSTEN VIDEO WARTEN KANN."],
-  body: [
-    "Business läuft selten exakt nach Plan.",
-    "Deshalb besteht der Club nicht nur aus Inhalten.",
-  ],
+  label: "LIVE DABEI",
+  line: "Der Club besteht nicht nur aus Aufnahmen.",
   items: [
     {
       label: "FRAGEN STELLEN",
@@ -554,7 +568,6 @@ export const live = {
   ],
   /* Frequenz noch offen. */
   frequency: "TODO_CONTENT",
-  visual: media("[ISI_LIVE_RUNDE]", "video", "Live-Runde mit ISI TAT", "16 / 9"),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -698,24 +711,34 @@ export const membership = {
 export const application = {
   eyebrow: "Der Weg rein",
   headline: ["SO KOMMEN WIR", "ZUSAMMEN."],
-  /* Drei Schritte in ISIs Worten: entscheiden, pruefen, loslegen. Vorher
-     waren es vier, aufgeteilt nach Ablauf statt nach dem, was jemand
-     tatsaechlich tut — die Praesentation steckt jetzt in Schritt zwei. */
+  /* Fuenf Schritte auf einer Linie — dieselbe Figur wie die Zeitleiste
+     weiter oben. Die Texte sind bewusst kurz: in fuenf Spalten hat ein
+     langer Satz keinen Platz, und ein Ablauf soll man ueberfliegen. */
   steps: [
     {
       step: "01",
       label: "DU ENTSCHEIDEST DICH",
-      text: "Überleg dir, was du wirklich erreichen willst. Bist du dir sicher, bewirbst du dich bei mir — fünf Minuten, unverbindlich.",
+      text: "Was willst du wirklich erreichen?",
     },
     {
       step: "02",
-      label: "ICH SCHAUE MIR DAS AN",
-      text: "Ich prüfe, ob es passt. Wenn ja, bekommst du die Präsentation mit allem, was drin ist — Umfang, Ablauf, Preis.",
+      label: "DU BEWIRBST DICH",
+      text: "Fünf Minuten. Unverbindlich.",
     },
     {
       step: "03",
+      label: "ICH SCHAUE ES MIR AN",
+      text: "Ich prüfe, ob es passt.",
+    },
+    {
+      step: "04",
+      label: "DIE PRÄSENTATION",
+      text: "Umfang, Ablauf, Preis — in Ruhe.",
+    },
+    {
+      step: "05",
       label: "WIR LEGEN LOS",
-      text: "Passt es für dich und bist du bereit, in dich selbst zu investieren, geht es los.",
+      text: "Bist du bereit, geht es los.",
     },
   ],
   /* Ehrlich halten: eine Bewerbung ist keine Zusage. */

@@ -20,12 +20,11 @@ const gruppen = [
   ["Trailer (Overlay)", [d.trailer.video]],
   ["Intro (Scrollytelling)", d.intro.scenes.map((s) => s.visual)],
   ["Über ISI", [d.trust.video]],
-  ["Was bei mir schiefgelaufen ist", [d.failure.image]],
+  ["Was bei mir schiefgelaufen ist", [d.failure.compare.before, d.failure.compare.after]],
   ...d.insideTheClub.series.map((s) => [
     `Serie: ${s.label}`,
     [s.cover, s.still, s.preview].filter(Boolean),
   ]),
-  ["Live mit ISI", [d.live.visual]],
   ["Erfahrungen", d.testimonials.items.map((t) => t.video)],
   ["Freiheit", [d.lifestyle.video]],
   ["Freiheit (Galerie)", d.lifestyle.gallery],

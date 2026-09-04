@@ -164,9 +164,25 @@
 /* ---------- Schritte ---------- */
 
 .steps {
+  position: relative;
   display: grid;
-  gap: clamp(20px, 2.6vw, 36px);
-  margin-top: clamp(18px, 2vw, 26px);
+  gap: clamp(18px, 2.2vw, 30px);
+  margin-top: clamp(26px, 3vw, 40px);
+}
+
+/* Die durchgehende Linie. Liegt hinter den Punkten und endet vor dem
+   letzten Schritt, damit sie nicht ins Leere laeuft. */
+.stepsLine {
+  position: absolute;
+  background: var(--line-dark);
+}
+
+.stepDot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .stepsHead {
@@ -180,14 +196,13 @@
 }
 
 .step {
-  padding-top: clamp(18px, 2vw, 26px);
-  border-top: 1px solid var(--line-dark);
+  position: relative;
 }
 
 .stepNum {
   font-family: var(--font-display);
   font-variation-settings: "wdth" var(--display-width);
-  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.625rem);
   font-weight: 700;
   letter-spacing: var(--tr-tight);
   line-height: 1;
@@ -218,7 +233,21 @@
   }
 
   .steps {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(14px, 1.8vw, 26px);
+    padding-top: 30px;
+  }
+
+  .stepsLine {
+    left: 0;
+    right: 0;
+    top: 5px;
+    height: 1px;
+  }
+
+  .stepDot {
+    left: 0;
+    top: -29px;
   }
 }
 
@@ -252,4 +281,82 @@
   font-size: var(--fs-small);
   line-height: 1.55;
   color: var(--text-muted);
+}
+
+/* ---------- Live in einer Zeile ---------- */
+
+.live {
+  margin-top: clamp(30px, 3.4vw, 48px);
+  padding-top: clamp(20px, 2.4vw, 28px);
+  border-top: 1px solid var(--line-dark);
+}
+
+.liveHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  font-size: var(--fs-body);
+  color: var(--text-dark);
+}
+
+.liveLabel {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: var(--tr-wide);
+  color: var(--accent-deep);
+}
+
+.liveItems {
+  display: grid;
+  gap: clamp(12px, 1.6vw, 22px);
+  margin-top: clamp(14px, 1.8vw, 22px);
+}
+
+.liveItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.liveItemLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.liveItemText {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: #3a3a3a;
+}
+
+@media (min-width: 768px) {
+  .liveItems {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+/* Auf dem Telefon steht die Linie senkrecht — fuenf Spalten waeren dort
+   fuenf Woerter breit. */
+@media (max-width: 767px) {
+  .steps {
+    padding-left: 30px;
+  }
+
+  .stepsLine {
+    left: 4px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+  }
+
+  .stepDot {
+    left: -30px;
+    top: 5px;
+  }
 }

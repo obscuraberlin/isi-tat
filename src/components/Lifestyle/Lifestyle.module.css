@@ -12,13 +12,8 @@
   padding-inline: var(--gutter);
 }
 
-.headWrap {
-  display: grid;
-  gap: clamp(24px, 3vw, 56px);
-  align-items: end;
-}
-
 .body {
+  margin-top: clamp(28px, 3.2vw, 44px);
   max-width: 46ch;
   display: flex;
   flex-direction: column;
@@ -34,10 +29,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(10px, 1.2vw, 18px);
-  margin-top: clamp(40px, 5vw, 72px);
 }
 
 .tile {
+  display: block;
   border-radius: var(--r-card);
   overflow: hidden;
   box-shadow: var(--sh-soft);
@@ -74,8 +69,3 @@
   color: var(--text-muted);
 }
 
-@media (min-width: 1024px) {
-  .headWrap {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
-  }
-}

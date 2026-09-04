@@ -11,15 +11,12 @@
   padding-inline: var(--gutter);
 }
 
-.grid {
-  display: grid;
-  gap: clamp(36px, 4.5vw, 80px);
-  align-items: center;
+.after {
+  margin-top: clamp(30px, 3.4vw, 48px);
 }
 
 .body {
   max-width: var(--max-text);
-  margin-top: clamp(22px, 2.4vw, 30px);
   display: flex;
   flex-direction: column;
   gap: 0.9em;
@@ -49,6 +46,11 @@
 }
 
 .visual {
+  /* Sitzt in der Headline — als <span> braucht es den Blockfluss zurueck.
+     Ein Hochformat ueber 62% Spaltenbreite wuerde die Sektion sprengen. */
+  display: block;
+  max-width: 400px;
+  margin-left: auto;
   border-radius: var(--r-visual);
   overflow: hidden;
   border: 1px solid var(--line-light);
@@ -58,9 +60,3 @@
   border-radius: inherit;
 }
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.68fr);
-    gap: clamp(56px, 6vw, 110px);
-  }
-}

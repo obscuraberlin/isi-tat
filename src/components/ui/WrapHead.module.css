@@ -1,0 +1,114 @@
+/* Headline, die ein Medium umschliesst. Drei Anordnungen, damit nicht drei
+   Sektionen dieselbe Figur wiederholen. */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.headline {
+  display: block;
+  width: 100%;
+  font-size: var(--fs-section);
+  letter-spacing: var(--tr-tight);
+  margin-top: clamp(14px, 1.6vw, 22px);
+}
+
+.long {
+  font-size: clamp(1.875rem, 1.2rem + 2.6vw, 3.5rem);
+}
+
+.line {
+  display: block;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.media {
+  display: block;
+  margin-block: clamp(20px, 2.6vw, 40px);
+}
+
+/* Die Reveals sind im h2 als <span> gesetzt (ein <div> waere dort
+   ungueltig) — sie brauchen den Blockfluss zurueck. */
+.above,
+.below,
+.media {
+  display: block;
+}
+
+/* Das Medium ist Bild, kein Text — es erbt sonst Zeilenhoehe und Sperrung
+   der Headline und sitzt schief im Satz. */
+.media * {
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+/* ---------- center: Medium schmal in der Mitte ---------- */
+
+/* Die Zeilen rahmen das Medium oben und unten, es steht schmaler als der
+   Satz — dadurch liest man ueber das Bild hinweg weiter. */
+.center .media {
+  max-width: 74%;
+  margin-inline: auto;
+}
+
+.center .below {
+  display: block;
+  text-align: right;
+}
+
+/* ---------- offset: untere Zeile eingerueckt ---------- */
+
+.offset .media {
+  max-width: 62%;
+  margin-left: auto;
+  /* Die zweite Haelfte steigt neben das Bild, statt unter ihm zu warten —
+     sonst steht links davon eine halbe Bildhoehe Leere. Die Zeile bleibt
+     durch den Einzug rechts links vom Bild und kollidiert nicht. */
+  margin-bottom: clamp(-200px, -12vw, -56px);
+}
+
+/* Die zweite Haelfte schiebt sich unter das Bild und faengt es auf, statt
+   linksbuendig darunter neu anzusetzen. */
+.offset .below {
+  display: block;
+  padding-left: clamp(0px, 8vw, 140px);
+}
+
+/* ---------- band: Medium ueber die volle Breite ---------- */
+
+.band .media {
+  max-width: none;
+}
+
+.band .below {
+  display: block;
+}
+
+/* ---------- Mobile ---------- */
+
+/* Eingerueckte und mittige Figuren brauchen Breite. Auf dem Telefon steht
+   alles linksbuendig untereinander — sonst wird aus der Komposition ein
+   Textblock mit zufaelligen Einzuegen. */
+@media (max-width: 767px) {
+  .center .media,
+  .offset .media {
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .center .below,
+  .offset .below {
+    text-align: left;
+    padding-left: 0;
+  }
+
+  /* Ohne den Einzug wuerde die aufsteigende Zeile ins Bild laufen. */
+  .offset .media {
+    margin-bottom: clamp(20px, 2.6vw, 40px);
+  }
+}

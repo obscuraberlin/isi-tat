@@ -1,36 +1,41 @@
 import { lifestyle } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
-import { SectionHead } from "@/components/ui/SectionHead";
+import { WrapHead } from "@/components/ui/WrapHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./Lifestyle.module.css";
 
+/**
+ * Die Galerie liegt zwischen Aussage und Gegenaussage: oben steht, was
+ * Luxus nicht ist, unten in Champagne, was er ist. Die Bilder dazwischen
+ * sind das Argument — nicht Dekoration daneben.
+ */
 export function Lifestyle() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <div className={styles.headWrap}>
-          <SectionHead
-            eyebrow={lifestyle.eyebrow}
-            lines={lifestyle.headline}
-            accentLines={lifestyle.headlineAccent}
-          />
+        <WrapHead
+          eyebrow={lifestyle.eyebrow}
+          above={lifestyle.headline}
+          below={lifestyle.headlineAccent}
+          belowAccent
+          variant="band"
+        >
+          <span className={styles.gallery}>
+            {lifestyle.gallery.map((asset) => (
+              <span key={asset.id} className={styles.tile}>
+                <Media asset={asset} />
+              </span>
+            ))}
+          </span>
+        </WrapHead>
 
-          <Reveal delay={140}>
-            <div className={styles.body}>
-              {lifestyle.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-
-        <div className={styles.gallery}>
-          {lifestyle.gallery.map((asset, index) => (
-            <Reveal key={asset.id} className={styles.tile} delay={index * 80}>
-              <Media asset={asset} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={140}>
+          <div className={styles.body}>
+            {lifestyle.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </Reveal>
 
         <Reveal>
           <p className={styles.disclaimer}>{lifestyle.disclaimer}</p>

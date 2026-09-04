@@ -1,7 +1,7 @@
 /* =============================================================================
    ISI TAT BUSINESS CLUB — Zentrale Content-Datei
    -----------------------------------------------------------------------------
-   Einzige Quelle fuer Texte, Zahlen, Medien, Serien, CTA-Ziele und Pricing.
+   Einzige Quelle fuer Texte, Zahlen, Medien, Kurse, CTA-Ziele und Pricing.
    Komponenten enthalten KEINE fest verdrahteten Inhalte.
 
    KONVENTIONEN
@@ -11,15 +11,19 @@
                        Zum Austausch nur `src` (und ggf. `poster`) setzen.
 
    ENTWURFSTEXTE
-   Serien-Beschreibungen, Folgentitel, Membership-Zeilen und FAQ-Antworten sind
+   Kursbeschreibungen, Folgentitel, Mitgliedschafts-Zeilen und FAQ-Antworten sind
    als Entwurf gesetzt, damit die Seite vollstaendig lesbar ist. Sie sind
    ersetzbar und beschreiben Themen — keine Zusicherungen, keine Zahlen,
    keine Ergebnisse.
 
-   FERNUSG
-   Bewusst NICHT verwendet: Modulnummern, Lektionsnummern, vorgegebene
-   Reihenfolgen, Lernpfade, Lernkontrollen, Zertifikate. Die Inhalte sind als
-   Mediathek beschrieben, nicht als Lehrgang.
+   [FERNUSG CHECK] — Begriff "Kurs"
+   Die Inhalte heissen auf Wunsch des Auftraggebers "Kurse". Das ist der
+   Begriff, den das FernUSG-Umfeld am deutlichsten anspricht. Weiterhin
+   bewusst NICHT verwendet: Modulnummern, Lektionsnummern, vorgegebene
+   Reihenfolgen, Lernpfade, Lernkontrollen, Hausaufgaben, Pruefungen,
+   Zertifikate. Diese Abgrenzung steht ausdruecklich in der FAQ und traegt
+   die rechtliche Argumentation — sie darf nicht stillschweigend entfallen.
+   Eine anwaltliche Pruefung ersetzt das nicht.
    ========================================================================== */
 
 /** true, wenn eine Angabe noch nicht bestaetigt vorliegt. */
@@ -95,7 +99,7 @@ export const hero = {
   /* Metazeile im Stil einer Streaming-Titelseite.
      `edition` und `quality` sind Angaben ueber das Material — `quality`
      nur stehen lassen, wenn tatsaechlich in 4K produziert wird.
-     Serien- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
+     Kurs- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
   meta: {
     by: "VON ISI TAT",
     edition: "2026",
@@ -208,6 +212,15 @@ export const trust = {
     "ISI TAT über seinen Weg",
     "3 / 4",
   ),
+  /* Bildunterschrift am Portrait — wie eine Autorenzeile. */
+  person: {
+    name: "ISI TAT",
+    role: "Unternehmer · Vertrieb · Netzwerk",
+  },
+  /* Die eigentliche Biografie. Drei bis vier Saetze in ISIs Worten:
+     Herkunft, Wendepunkt, was heute daraus geworden ist. Solange leer,
+     zeigt die Seite die Stelle als gekennzeichnete Luecke. */
+  bio: "TODO_CONTENT",
   /* Vom Auftraggeber freigegeben. */
   metrics: [
     { value: "20+", label: "JAHRE ERFAHRUNG" },
@@ -230,8 +243,8 @@ export interface Episode {
 
 export interface Series {
   id: string;
-  /** "serie" zaehlt in die Serien-Zahl, "live" ist ein Format. */
-  format: "serie" | "live";
+  /** "kurs" zaehlt in die Kurs-Zahl, "live" ist ein Format. */
+  format: "kurs" | "live";
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
@@ -247,7 +260,7 @@ export interface Series {
 export const insideTheClub = {
   eyebrow: "Im Club",
   headline: "WAS DICH DRINNEN ERWARTET.",
-  subline: "Sechs Bereiche. Keine Reihenfolge.",
+  subline: "Fünf Kurse. Plus live. Keine Reihenfolge.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
   draftEpisodeNote:
     "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
@@ -255,13 +268,13 @@ export const insideTheClub = {
     {
       /* interne Ablage: MINDSET:PERSÖNLICHKEIT */
       id: "mindset",
-      format: "serie",
+      format: "kurs",
       label: "MINDSET & PERSÖNLICHKEIT",
       tagline: "Entscheiden, wenn es unbequem wird.",
       description:
         "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Über Standards, die niemand kontrolliert — und was passiert, wenn ich sie unterschreite.",
-      cover: media("[SERIE_MINDSET_COVER]", "image", "Mindset & Persönlichkeit", "2 / 3"),
-      still: media("[SERIE_MINDSET_STILL]", "image", "Mindset & Persönlichkeit", "16 / 9"),
+      cover: media("[KURS_MINDSET_COVER]", "image", "Mindset & Persönlichkeit", "2 / 3"),
+      still: media("[KURS_MINDSET_STILL]", "image", "Mindset & Persönlichkeit", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Standards, die niemand kontrolliert", runtime: null },
@@ -272,13 +285,13 @@ export const insideTheClub = {
     },
     {
       id: "vertrieb",
-      format: "serie",
+      format: "kurs",
       label: "VERTRIEB",
       tagline: "Menschen verstehen, bevor du verkaufst.",
       description:
         "Zwanzig Jahre Gespräche, Einwände und Verhandlungen. Warum Menschen kaufen, bevor sie überzeugt sind — und woran es liegt, wenn sie es nicht tun.",
-      cover: media("[SERIE_VERTRIEB_COVER]", "image", "Vertrieb", "2 / 3"),
-      still: media("[SERIE_VERTRIEB_STILL]", "image", "Vertrieb", "16 / 9"),
+      cover: media("[KURS_VERTRIEB_COVER]", "image", "Vertrieb", "2 / 3"),
+      still: media("[KURS_VERTRIEB_STILL]", "image", "Vertrieb", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Das Gespräch vor dem Gespräch", runtime: null },
@@ -290,13 +303,13 @@ export const insideTheClub = {
     {
       /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
       id: "business",
-      format: "serie",
+      format: "kurs",
       label: "BUSINESS",
       tagline: "Vom Job zum eigenen Unternehmen.",
       description:
         "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Verantwortung, Struktur, Leute — und die Entscheidungen, die ich heute anders treffen würde.",
-      cover: media("[SERIE_BUSINESS_COVER]", "image", "Business", "2 / 3"),
-      still: media("[SERIE_BUSINESS_STILL]", "image", "Business", "16 / 9"),
+      cover: media("[KURS_BUSINESS_COVER]", "image", "Business", "2 / 3"),
+      still: media("[KURS_BUSINESS_STILL]", "image", "Business", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Vom Angestellten zum Unternehmer", runtime: null },
@@ -312,13 +325,13 @@ export const insideTheClub = {
          Oeffentlich als NETZWERK gefuehrt: die interne Bezeichnung beschreibt
          eine Vertriebsmechanik und gehoert nicht auf die Verkaufsseite. */
       id: "netzwerk",
-      format: "serie",
+      format: "kurs",
       label: "NETZWERK",
       tagline: "Wer dich kennt, entscheidet mit.",
       description:
         "Warum man an Menschen schwerer rankommt als an Wissen. Wie Beziehungen entstehen, woran sie kaputtgehen und was Verlässlichkeit über Jahre wert ist.",
-      cover: media("[SERIE_NETZWERK_COVER]", "image", "Netzwerk", "2 / 3"),
-      still: media("[SERIE_NETZWERK_STILL]", "image", "Netzwerk", "16 / 9"),
+      cover: media("[KURS_NETZWERK_COVER]", "image", "Netzwerk", "2 / 3"),
+      still: media("[KURS_NETZWERK_STILL]", "image", "Netzwerk", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Der erste Eindruck ist der zweite", runtime: null },
@@ -328,13 +341,13 @@ export const insideTheClub = {
     },
     {
       id: "geschichten",
-      format: "serie",
+      format: "kurs",
       label: "ECHTE GESCHICHTEN",
       tagline: "Was gelaufen ist. Und was nicht.",
       description:
         "Erzählte Fälle aus zwanzig Jahren, ohne Politur. Die Sachen, die funktioniert haben. Die, die schiefgingen. Und was jeweils den Unterschied gemacht hat.",
-      cover: media("[SERIE_GESCHICHTEN_COVER]", "image", "Echte Geschichten", "2 / 3"),
-      still: media("[SERIE_GESCHICHTEN_STILL]", "image", "Echte Geschichten", "16 / 9"),
+      cover: media("[KURS_GESCHICHTEN_COVER]", "image", "Echte Geschichten", "2 / 3"),
+      still: media("[KURS_GESCHICHTEN_STILL]", "image", "Echte Geschichten", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Der Deal, der zu gut aussah", runtime: null },
@@ -349,8 +362,8 @@ export const insideTheClub = {
       tagline: "Fragen stellen, statt nur zuschauen.",
       description:
         "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Situationen einordne und Leute miteinander bekannt mache.",
-      cover: media("[SERIE_LIVE_COVER]", "image", "Live mit ISI", "2 / 3"),
-      still: media("[SERIE_LIVE_STILL]", "image", "Live mit ISI", "16 / 9"),
+      cover: media("[KURS_LIVE_COVER]", "image", "Live mit ISI", "2 / 3"),
+      still: media("[KURS_LIVE_STILL]", "image", "Live mit ISI", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Offene Fragerunden", runtime: null },
@@ -364,7 +377,7 @@ export const insideTheClub = {
 
 /** Aus den Daten abgeleitet — waechst automatisch mit der Mediathek. */
 export const catalogue = {
-  seriesCount: insideTheClub.series.filter((s) => s.format === "serie").length,
+  courseCount: insideTheClub.series.filter((s) => s.format === "kurs").length,
   episodeCount: insideTheClub.series.reduce(
     (total, s) => total + s.episodes.length,
     0,
@@ -563,6 +576,38 @@ export const testimonials = {
 } as const;
 
 /* --------------------------------------------------------------------------
+   FÜR WEN
+   Steht frueh: wer sich hier nicht wiederfindet, liest gar nicht weiter —
+   und wer bleibt, liest den Rest ueberzeugter. Beide Seiten sind Aussagen
+   ueber Haltung, keine Versprechen ueber Ergebnisse.
+   -------------------------------------------------------------------------- */
+
+export const fit = {
+  eyebrow: "Kurz vorab",
+  headline: ["FÜR WEN DAS IST."],
+  headlineAccent: ["UND FÜR WEN NICHT."],
+  yes: {
+    label: "Das passt, wenn du",
+    items: [
+      "verkaufst, aufbaust oder selbstständig arbeitest",
+      "Entscheidungen triffst, für die du niemanden zum Fragen hast",
+      "bereit bist, an deinem Können zu arbeiten",
+      "ein Umfeld willst, das weiter ist als deins",
+    ],
+  },
+  no: {
+    label: "Das passt nicht, wenn du",
+    items: [
+      "von heute auf morgen reich werden willst",
+      "denkst, es geht um Zufall statt um dein Können",
+      "eine Garantie erwartest, dass es funktioniert",
+      "Inhalte sammelst und nichts davon umsetzt",
+    ],
+  },
+  closing: "Ich baue mit dir etwas auf, das kein schneller Gewinn ist.",
+} as const;
+
+/* --------------------------------------------------------------------------
    MITGLIEDSCHAFT
    -------------------------------------------------------------------------- */
 
@@ -664,11 +709,11 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Zugang zum Club mit vier Serien zu Mindset, Beruf, Geld und Netzwerk, Live-Runden mit mir, und den Austausch mit den anderen Mitgliedern. Alles über ein Login.",
+      a: "Zugang zum Club mit allen Kursen, den Live-Runden und dem Austausch mit den anderen Mitgliedern. Alles über ein Login.",
     },
     {
-      q: "Ist das ein Kurs?",
-      a: "Nein. Keine Reihenfolge, keine Hausaufgaben, keine Prüfung, kein Zertifikat. Du schaust, was dich gerade betrifft, und fragst live nach.",
+      q: "Wie sind die Kurse aufgebaut?",
+      a: "Es gibt keine feste Reihenfolge, keine Hausaufgaben, keine Prüfung und kein Zertifikat. Du schaust, was dich gerade betrifft, und fragst in den Live-Runden nach.",
     },
     {
       q: "Wie viel Kontakt habe ich zu dir?",

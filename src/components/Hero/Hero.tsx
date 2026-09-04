@@ -79,7 +79,7 @@ export function Hero() {
             </span>
             <span className={styles.metaCounts}>
               <span className={styles.metaPlain}>
-                {catalogue.seriesCount} Serien
+                {catalogue.courseCount} Kurse
               </span>
               <span className={styles.metaDot} aria-hidden="true" />
               <span className={styles.metaPlain}>

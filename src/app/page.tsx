@@ -2,6 +2,7 @@ import { Header } from "@/components/Header/Header";
 import { Hero } from "@/components/Hero/Hero";
 import { Intro } from "@/components/Intro/Intro";
 import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
+import { FitCheck } from "@/components/FitCheck/FitCheck";
 import { TrustSection } from "@/components/TrustSection/TrustSection";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
 import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
@@ -28,6 +29,7 @@ export default function Page() {
         <Hero />              {/* dunkel · Worum geht es          */}
         <Intro />             {/* dunkel · Der Weg dahin          */}
         <SeriesRow />         {/* hell   · Was ist drin           */}
+        <FitCheck />          {/* dunkel · Passt das zu dir       */}
         <TrustSection />      {/* hell   · Wer ist ISI            */}
         <FailureStory />      {/* dunkel · Warum ehrlich          */}
         <LiveSection />       {/* hell   · Du bist nicht allein   */}

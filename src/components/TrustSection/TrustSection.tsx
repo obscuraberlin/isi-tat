@@ -2,7 +2,7 @@
 
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import { timeline, trust } from "@/data/landingPage";
+import { isPending, timeline, trust } from "@/data/landingPage";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import { Media } from "@/components/Media/Media";
 import { PlayButton } from "@/components/ui/PlayButton";
@@ -78,6 +78,14 @@ export function TrustSection() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {isPending(trust.bio) ? (
+                <p className={styles.bioPending}>
+                  Ausführliche Biografie folgt.
+                </p>
+              ) : (
+                <p className={styles.bio}>{trust.bio}</p>
+              )}
+
               <p className={styles.claim}>{trust.claim}</p>
             </Reveal>
           </div>
@@ -87,8 +95,12 @@ export function TrustSection() {
             <PlayButton
               onClick={() => openVideo(trust.video, trust.eyebrow)}
               ariaLabel={`Video abspielen: ${trust.video.alt}`}
-              caption="Ansehen"
             />
+          </Reveal>
+
+          <Reveal delay={140} className={styles.person}>
+            <p className={styles.personName}>{trust.person.name}</p>
+            <p className={styles.personRole}>{trust.person.role}</p>
           </Reveal>
         </div>
 

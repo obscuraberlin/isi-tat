@@ -20,30 +20,52 @@
   margin-top: clamp(30px, 3.4vw, 48px);
 }
 
-/* Text links, das Bild rechts daneben: der Absatz ueber die Eltern und das
-   Bild dazu stehen im selben Blick. Auf schmalen Schirmen untereinander. */
-.story {
+/* Gegenueberstellung links, das Bild der Mutter rechts — vorher stand
+   rechts nichts und das Bild unten neben dem Text. */
+.band {
   display: grid;
-  gap: clamp(24px, 3vw, 48px);
-  align-items: start;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: end;
 }
 
 @media (min-width: 900px) {
-  .story {
-    grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
-    gap: clamp(32px, 4vw, 72px);
+  .band {
+    grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 90px);
   }
 }
 
 .motive {
   display: block;
+  max-width: 380px;
 }
 
-.motiveCaption {
-  margin-top: 12px;
-  font-size: var(--fs-small);
-  line-height: 1.5;
-  color: var(--text-muted);
+@media (min-width: 900px) {
+  .motive {
+    justify-self: end;
+    max-width: 340px;
+  }
+}
+
+/* Drei kurze Zeilen statt einer Bildunterschrift: sie sollen wie ein Satz
+   klingen, den jemand leise sagt, nicht wie eine Erklaerung zum Bild. */
+.motiveLine {
+  display: block;
+  margin-top: clamp(14px, 1.6vw, 20px);
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-card);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.24;
+}
+
+.motiveLineItem {
+  display: block;
+}
+
+.motiveLineItem:last-child {
+  color: var(--accent);
 }
 
 .body {
@@ -82,6 +104,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 1.6vw, 24px);
+  align-content: end;
   /* Ueber die volle Breite wuerden zwei Hochformate 850 Pixel hoch und
      draengen den Text aus dem Blick. Die Gegenueberstellung braucht keine
      Groesse, nur den Vergleich. */

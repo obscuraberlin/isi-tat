@@ -1,0 +1,334 @@
+.page {
+  /* Bezugsrahmen fuer die Hintergrundebene. */
+  position: relative;
+  min-height: 100svh;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.inner {
+  /* Ueber der Hintergrundebene. */
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 5vw, 64px);
+  padding-bottom: calc(clamp(28px, 5vw, 64px) + env(safe-area-inset-bottom, 0px));
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  align-self: flex-start;
+}
+
+.logoMark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+
+.logoSuffix {
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  opacity: 0.65;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(24px, 4vh, 56px);
+}
+
+.card {
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+/* Das Ergebnis darf breiter stehen als die Fragen: hier traegt eine grosse
+   Zeile die Aussage, waehrend die Fragen schmal bleiben, damit die
+   Antwortliste nicht auseinanderlaeuft. */
+.result {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+/* ---------- Kopf mit Fortschritt ---------- */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: clamp(22px, 3vw, 32px);
+}
+
+.kicker {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.progressText {
+  margin-left: auto;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress {
+  flex: 1 0 100%;
+  height: 2px;
+  background: var(--line-light);
+  overflow: hidden;
+}
+
+.progressBar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  /* Der Balken springt nicht, er faehrt — sonst wirkt jeder Schritt hart. */
+  transition: width 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro {
+  margin-bottom: clamp(22px, 3vw, 32px);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+}
+
+/* ---------- Frage ---------- */
+
+.step {
+  animation: einblenden 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes einblenden {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    animation: none;
+  }
+  .progressBar {
+    transition: none;
+  }
+}
+
+.question {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.2;
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.options {
+  margin-top: clamp(20px, 2.6vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: clamp(14px, 1.8vw, 18px) clamp(16px, 2vw, 20px);
+  text-align: left;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line-light);
+  border-radius: var(--r-visual);
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.option:active {
+  transform: scale(0.995);
+}
+
+.optionActive {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.optionLabel {
+  flex: 1;
+  font-size: var(--fs-body);
+  line-height: 1.45;
+}
+
+/* Der Kreis rechts ist der einzige Hinweis, dass hier eine Wahl getroffen
+   wird — ohne ihn liest sich die Liste wie eine Aufzaehlung. */
+.optionMark {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--line-light);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.option:hover .optionMark {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.optionActive .optionMark {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 4px var(--accent);
+}
+
+/* ---------- Kontakt ---------- */
+
+.fields {
+  margin-top: clamp(20px, 2.6vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.label {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+}
+
+.optional {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-muted);
+}
+
+.input {
+  width: 100%;
+  padding: 13px 15px;
+  font: inherit;
+  font-size: var(--fs-body);
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line-light);
+  border-radius: var(--r-visual);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.note {
+  margin-top: 16px;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.submit {
+  margin-top: 18px;
+}
+
+.preview {
+  margin-top: 14px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+/* ---------- Zurueck ---------- */
+
+.back {
+  display: inline-block;
+  margin-top: clamp(24px, 3vw, 34px);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.back:hover {
+  color: var(--text-light);
+}
+
+/* ---------- Ergebnis ---------- */
+
+.headline {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-section);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.08;
+}
+
+.headlineLine {
+  display: block;
+}
+
+.headlineLine:last-child {
+  color: var(--accent);
+}
+
+.body {
+  margin-top: clamp(16px, 2vw, 22px);
+  max-width: 52ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+}
+
+.resultCta {
+  margin-top: clamp(24px, 3vw, 32px);
+}

@@ -108,27 +108,36 @@ export function TrustSection() {
             </Reveal>
           </div>
 
-          <Reveal delay={100} className={styles.visual}>
+          {/* Video und Namenszeile stehen in derselben Zelle. Als eigene
+              Rasterzeile rutschte die Zeile unter die hohe Textspalte und
+              stand dann 300 Pixel unter dem Bild, zu dem sie gehoert. */}
+          <div className={styles.side}>
+            <Reveal delay={100} className={styles.visual}>
             {/* Liegt das Video vor, laeuft es stumm als Vorschau und startet
                 auf Klick mit Ton von vorn. Ohne Datei bleibt der gestaltete
                 Platzhalter samt Trailer-Overlay. */}
-            {trust.video.src ? (
-              <VideoTeaser asset={trust.video} label="Kurz zu mir" />
-            ) : (
-              <>
-                <Media asset={trust.video} tone="dark" />
-                <PlayButton
-                  onClick={() => openVideo(trust.video, trust.eyebrow)}
-                  ariaLabel={`Video abspielen: ${trust.video.alt}`}
+              {trust.video.src ? (
+                <VideoTeaser
+                  asset={trust.video}
+                  label="Kurz zu mir"
+                  note="Zwei Minuten, mit Ton — wer ich bin und woher das kommt."
                 />
-              </>
-            )}
-          </Reveal>
+              ) : (
+                <>
+                  <Media asset={trust.video} tone="dark" />
+                  <PlayButton
+                    onClick={() => openVideo(trust.video, trust.eyebrow)}
+                    ariaLabel={`Video abspielen: ${trust.video.alt}`}
+                  />
+                </>
+              )}
+            </Reveal>
 
-          <Reveal delay={140} className={styles.person}>
-            <p className={styles.personName}>{trust.person.name}</p>
-            <p className={styles.personRole}>{trust.person.role}</p>
-          </Reveal>
+            <Reveal delay={140} className={styles.person}>
+              <p className={styles.personName}>{trust.person.name}</p>
+              <p className={styles.personRole}>{trust.person.role}</p>
+            </Reveal>
+          </div>
         </div>
 
         <div className={styles.timeline} id="erfahrung">

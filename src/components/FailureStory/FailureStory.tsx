@@ -35,41 +35,48 @@ export function FailureStory() {
           variant="band"
           tone="dark"
         >
-          <span className={styles.compare}>
-            {[
-              { label: c.beforeLabel, caption: c.beforeCaption, asset: c.before },
-              { label: c.afterLabel, caption: c.afterCaption, asset: c.after },
-            ].map((side) => (
-              <span key={side.label} className={styles.side}>
-                <span className={styles.visual}>
-                  <Media asset={side.asset} tone="dark" />
+          <span className={styles.band}>
+            <span className={styles.compare}>
+              {[
+                { label: c.beforeLabel, caption: c.beforeCaption, asset: c.before },
+                { label: c.afterLabel, caption: c.afterCaption, asset: c.after },
+              ].map((side) => (
+                <span key={side.label} className={styles.side}>
+                  <span className={styles.visual}>
+                    <Media asset={side.asset} tone="dark" />
+                  </span>
+                  <span className={styles.sideLabel}>{side.label}</span>
+                  <span className={styles.sideCaption}>{side.caption}</span>
                 </span>
-                <span className={styles.sideLabel}>{side.label}</span>
-                <span className={styles.sideCaption}>{side.caption}</span>
+              ))}
+            </span>
+
+            {/* Steht oben rechts, nicht unten neben dem Text: dort war eine
+                leere halbe Bildschirmbreite, und das Bild gehoert zu dem,
+                was die Gegenueberstellung ausloest. Kein Aufruf daneben. */}
+            <span className={styles.motive}>
+              <span className={styles.visual}>
+                <Media asset={failure.motive.asset} tone="dark" />
               </span>
-            ))}
+              <span className={styles.motiveLine}>
+                {failure.motive.line.map((zeile) => (
+                  <span key={zeile} className={styles.motiveLineItem}>
+                    {zeile}
+                  </span>
+                ))}
+              </span>
+            </span>
           </span>
         </WrapHead>
 
         <div className={styles.after}>
-          <div className={styles.story}>
-            <Reveal delay={120}>
-              <div className={styles.body}>
-                {failure.body.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </Reveal>
-
-            {/* Das einzige Bild der Seite, das nichts beweisen will. Es steht
-                neben dem Absatz ueber die Eltern und traegt den Grund. */}
-            <Reveal delay={200} className={styles.motive}>
-              <span className={styles.visual}>
-                <Media asset={failure.motive.asset} tone="dark" />
-              </span>
-              <p className={styles.motiveCaption}>{failure.motive.caption}</p>
-            </Reveal>
-          </div>
+          <Reveal delay={120}>
+            <div className={styles.body}>
+              {failure.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </Reveal>
 
           <Reveal delay={160} className={styles.closing}>
             {failure.closing.map((line) => (

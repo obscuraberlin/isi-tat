@@ -62,12 +62,20 @@ const media = (
   alt: string,
   ratio: string,
   extra: Partial<MediaAsset> = {},
+  /**
+   * Nummer eines vorhandenen Motivs, das einspringt, solange die eigene
+   * Datei fehlt. Ein grauer Kasten auf einer Verkaufsseite kostet mehr,
+   * als ein zweites Mal gezeigtes Bild. Die eigene Nummer bleibt bestehen:
+   * sobald die richtige Datei im Ordner liegt, gewinnt sie.
+   */
+  ersatzNr?: number,
 ): MediaAsset => {
   const no = ++assetCounter;
   /* Liegt in public/media eine Datei mit dieser Nummer, wird sie
      automatisch eingesetzt. Der Scan laeuft vor jedem Build — dadurch
      genuegt es, 03.mp4 dort abzulegen, ohne hier etwas zu aendern. */
-  const datei = mediaFiles[no];
+  const datei =
+    mediaFiles[no] ?? (ersatzNr ? mediaFiles[ersatzNr] : undefined);
 
   return {
     id,
@@ -97,7 +105,7 @@ export const brand = {
 } as const;
 
 export const cta = {
-  primary: { label: "JETZT BEWERBEN", href: "#zugang" },
+  primary: { label: "JETZT BEWERBEN", href: "/bewerbung" },
   secondary: { label: "TRAILER ANSEHEN", href: "#trailer" },
   heroSecondary: { label: "TRAILER", href: "#trailer" },
   login: { label: "LOGIN", href: "/login" },
@@ -159,7 +167,7 @@ export const hero = {
     "ISI TAT im Portrait — Hero-Sequenz",
     "16 / 9",
   ),
-  image: media("[ISI_HERO_IMAGE]", "image", "ISI TAT — Hero-Portrait", "4 / 5"),
+  image: media("[ISI_HERO_IMAGE]", "image", "ISI TAT — Hero-Portrait", "4 / 5", {}, 4),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -178,7 +186,8 @@ export const trailer = {
     "video",
     "Trailer — ISI TAT BUSINESS CLUB",
     "16 / 9",
-    mediaFiles[3] ? {} : { src: hero.video.src, poster: hero.video.poster },
+    {},
+    1,
   ),
 } as const;
 
@@ -236,7 +245,7 @@ export const intro = {
 
 export const trust = {
   eyebrow: "Über mich",
-  headline: ["KURZ", "ZU MIR."],
+  headline: ["WER IST", "ISI TAT?"],
   body: [
     "Über zwanzig Jahre Vertrieb. Angefangen ohne Netzwerk, ohne Kapital, ohne Plan B.",
     "Seitdem: eigene Unternehmen, eigene Teams, eigene Fehler.",
@@ -313,7 +322,7 @@ export const insideTheClub = {
       description:
         "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Über Standards, die niemand kontrolliert — und was passiert, wenn ich sie unterschreite.",
       cover: media("[KURS_MINDSET_COVER]", "image", "Mindset & Persönlichkeit", "2 / 3"),
-      still: media("[KURS_MINDSET_STILL]", "image", "Mindset & Persönlichkeit", "16 / 9"),
+      still: media("[KURS_MINDSET_STILL]", "image", "Mindset & Persönlichkeit", "16 / 9", {}, 7),
       preview: null,
       episodes: [
         { title: "Standards, die niemand kontrolliert", runtime: null },
@@ -330,7 +339,7 @@ export const insideTheClub = {
       description:
         "Zwanzig Jahre Gespräche, Einwände und Verhandlungen. Warum Menschen kaufen, bevor sie überzeugt sind — und woran es liegt, wenn sie es nicht tun.",
       cover: media("[KURS_VERTRIEB_COVER]", "image", "Vertrieb", "2 / 3"),
-      still: media("[KURS_VERTRIEB_STILL]", "image", "Vertrieb", "16 / 9"),
+      still: media("[KURS_VERTRIEB_STILL]", "image", "Vertrieb", "16 / 9", {}, 9),
       preview: null,
       episodes: [
         { title: "Das Gespräch vor dem Gespräch", runtime: null },
@@ -348,7 +357,7 @@ export const insideTheClub = {
       description:
         "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Verantwortung, Struktur, Leute — und die Entscheidungen, die ich heute anders treffen würde.",
       cover: media("[KURS_BUSINESS_COVER]", "image", "Business", "2 / 3"),
-      still: media("[KURS_BUSINESS_STILL]", "image", "Business", "16 / 9"),
+      still: media("[KURS_BUSINESS_STILL]", "image", "Business", "16 / 9", {}, 11),
       preview: null,
       episodes: [
         { title: "Vom Angestellten zum Unternehmer", runtime: null },
@@ -370,7 +379,7 @@ export const insideTheClub = {
       description:
         "Warum man an Menschen schwerer rankommt als an Wissen. Wie Beziehungen entstehen, woran sie kaputtgehen und was Verlässlichkeit über Jahre wert ist.",
       cover: media("[KURS_NETZWERK_COVER]", "image", "Netzwerk", "2 / 3"),
-      still: media("[KURS_NETZWERK_STILL]", "image", "Netzwerk", "16 / 9"),
+      still: media("[KURS_NETZWERK_STILL]", "image", "Netzwerk", "16 / 9", {}, 13),
       preview: null,
       episodes: [
         { title: "Der erste Eindruck ist der zweite", runtime: null },
@@ -386,7 +395,7 @@ export const insideTheClub = {
       description:
         "Erzählte Fälle aus zwanzig Jahren, ohne Politur. Die Sachen, die funktioniert haben. Die, die schiefgingen. Und was jeweils den Unterschied gemacht hat.",
       cover: media("[KURS_GESCHICHTEN_COVER]", "image", "Echte Geschichten", "2 / 3"),
-      still: media("[KURS_GESCHICHTEN_STILL]", "image", "Echte Geschichten", "16 / 9"),
+      still: media("[KURS_GESCHICHTEN_STILL]", "image", "Echte Geschichten", "16 / 9", {}, 15),
       preview: null,
       episodes: [
         { title: "Der Deal, der zu gut aussah", runtime: null },
@@ -402,7 +411,7 @@ export const insideTheClub = {
       description:
         "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Situationen einordne und Leute miteinander bekannt mache.",
       cover: media("[KURS_LIVE_COVER]", "image", "Live mit ISI", "2 / 3"),
-      still: media("[KURS_LIVE_STILL]", "image", "Live mit ISI", "16 / 9"),
+      still: media("[KURS_LIVE_STILL]", "image", "Live mit ISI", "16 / 9", {}, 17),
       preview: null,
       episodes: [
         { title: "Offene Fragerunden", runtime: null },
@@ -483,6 +492,8 @@ export const failure = {
   /* Kein Erfolgsbild. Es steht neben dem Absatz ueber die Eltern und
      traegt den Grund, aus dem ueberhaupt jemand Vollgas gibt. */
   motive: {
+    /* Kein Aufruf, kein Argument — nur der Grund. */
+    line: ["MEINE ENERGIE.", "MEINE HOFFNUNG.", "MEINE MAMA."],
     caption: "Der Grund, warum ich angefangen habe, es ernst zu nehmen.",
     asset: media(
       "[ISI_MUTTER]",
@@ -847,12 +858,7 @@ export const finalCta = {
     "Und Menschen, die nicht nur darüber reden.",
   ],
   brand: "ISI TAT BUSINESS CLUB",
-  video: media(
-    "[FINAL_ISI_VIDEO]",
-    "video",
-    "ISI TAT — Abschluss",
-    "16 / 9",
-  ),
+  video: media("[FINAL_ISI_VIDEO]", "video", "ISI TAT — Abschluss", "16 / 9", {}, 1),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -887,7 +893,7 @@ export const meta = {
    -------------------------------------------------------------------------- */
 
 export const login = {
-  visual: media("[LOGIN_VISUAL]", "image", "ISI TAT BUSINESS CLUB", "3 / 4"),
+  visual: media("[LOGIN_VISUAL]", "image", "ISI TAT BUSINESS CLUB", "3 / 4", {}, 5),
   /* Folgt der Hero-Aussage — vorher stand hier noch die abgeloeste Headline. */
   quote: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
 } as const;
@@ -900,12 +906,14 @@ export const presentation = {
   eyebrow: "Für dich freigeschaltet",
   headline: ["DIE PRÄSENTATION."],
   intro:
-    "Zwanzig Minuten. Was der Club ist, wie er läuft, was er kostet. Ohne Countdown und ohne Verkaufsdruck — schau sie an, wann es dir passt.",
+    "Was der Club ist, wie er läuft, was er kostet. Ohne Countdown und ohne Verkaufsdruck — schau sie an, wann es dir passt.",
   video: media(
     "[PRAESENTATION_VIDEO]",
     "video",
     "Die Präsentation — ISI TAT BUSINESS CLUB",
     "16 / 9",
+    {},
+    1,
   ),
   afterHead: ["WENN ES", "FÜR DICH PASST."],
   afterBody:
@@ -956,4 +964,123 @@ export const backdrops = {
     "Hintergrund: im Showroom neben dem Ferrari",
     "16 / 9",
   ),
+} as const;
+
+/* --------------------------------------------------------------------------
+   BEWERBUNG / VORQUALIFIZIERUNG
+   -----------------------------------------------------------------------------
+   Zweck: vor dem Gespraech herausfinden, ob es ueberhaupt passt — Ziel,
+   Zeit, Ernst und die Frage, ob jemand ueberhaupt investieren kann.
+
+   Zur Geldfrage: sie steht offen drin, statt sie ueber Umwege zu erraten.
+   Ein verdeckter Test aus Beruf oder Wohnort trifft schlechter (ein
+   Angestellter kann liquide sein, ein Selbstaendiger klamm) und faellt
+   unangenehm auf, sobald jemand ihn bemerkt. Eine klare, hoeflich
+   gestellte Frage liefert das bessere Signal — und nennt trotzdem keinen
+   Preis, der erst in der Praesentation kommt.
+
+   Der Punktestand wird im Browser gerechnet. Das reicht, um jemanden zu
+   fuehren, nicht um ihn auszuschliessen: wer den Quelltext liest, sieht
+   die Gewichtung. Eine echte Sperre braucht einen Server.
+   -------------------------------------------------------------------------- */
+
+export const screening = {
+  eyebrow: "Bewerbung",
+  headline: ["BEVOR WIR", "MITEINANDER REDEN."],
+  intro:
+    "Fünf Fragen, keine drei Minuten. Ich lese jede Bewerbung selbst — deshalb lohnt es sich, ehrlich zu antworten und nicht das, was gut klingt.",
+  /* Vorschau: die Antworten gehen noch nirgendwohin. Offen sagen, sonst
+     wartet jemand auf eine Rueckmeldung, die niemand bekommt. */
+  preview: "Vorschau — die Bewerbung wird noch nicht verschickt.",
+  progressLabel: "Frage",
+  backLabel: "Zurück",
+  nextLabel: "WEITER",
+  submitLabel: "BEWERBUNG ABSCHICKEN",
+  questions: [
+    {
+      id: "ziel",
+      question: "Was willst du in den nächsten zwölf Monaten erreichen?",
+      options: [
+        { label: "Etwas Eigenes aufbauen", score: 2 },
+        { label: "Das, was ich mache, deutlich größer machen", score: 3 },
+        { label: "Raus aus dem Angestelltenverhältnis", score: 2 },
+        { label: "Weiß ich noch nicht genau", score: 0 },
+      ],
+    },
+    {
+      id: "stand",
+      question: "Wo stehst du gerade?",
+      hint: "Es gibt keine falsche Antwort. Ich will nur wissen, worauf wir aufbauen.",
+      options: [
+        { label: "Selbstständig — ich lebe davon", score: 3 },
+        { label: "Selbstständig — es trägt noch nicht", score: 1 },
+        { label: "Angestellt — ich baue nebenbei etwas auf", score: 2 },
+        { label: "Ich fange gerade bei null an", score: 0 },
+      ],
+    },
+    {
+      id: "zeit",
+      question: "Wie viel Zeit steckst du in den nächsten Monaten rein?",
+      options: [
+        { label: "Unter 5 Stunden die Woche", score: 0 },
+        { label: "5 bis 10 Stunden", score: 1 },
+        { label: "10 bis 20 Stunden", score: 2 },
+        { label: "So viel, wie nötig ist", score: 3 },
+      ],
+    },
+    {
+      id: "invest",
+      question: "Ein Platz im Club kostet Geld. Was trifft auf dich zu?",
+      hint: "Die Zahl bekommst du in der Präsentation. Hier geht es nur darum, ob es zeitlich für dich überhaupt aufgeht.",
+      options: [
+        { label: "Ich habe Mittel dafür bereit", score: 3 },
+        { label: "Geht — wenn ich es auf zwei bis drei Zahlungen verteile", score: 3 },
+        { label: "Ich müsste es erst verdienen", score: 0 },
+        { label: "Aktuell nicht", score: -6 },
+      ],
+    },
+    {
+      id: "start",
+      question: "Wann willst du anfangen?",
+      options: [
+        { label: "Sofort", score: 3 },
+        { label: "In den nächsten Wochen", score: 2 },
+        { label: "Irgendwann dieses Jahr", score: 1 },
+        { label: "Ich schaue mich erst mal um", score: 0 },
+      ],
+    },
+  ],
+  contact: {
+    headline: "WOHIN DARF ICH ANTWORTEN?",
+    fields: [
+      { name: "name", label: "Name", type: "text", autoComplete: "name", required: true, placeholder: "Vor- und Nachname" },
+      { name: "email", label: "E-Mail", type: "email", autoComplete: "email", required: true, placeholder: "name@beispiel.de" },
+      { name: "telefon", label: "Telefon", type: "tel", autoComplete: "tel", required: false, placeholder: "Optional" },
+      { name: "instagram", label: "Instagram", type: "text", autoComplete: "off", required: false, placeholder: "Optional — @deinname" },
+    ],
+    note: "Deine Angaben gehen an mich und an niemanden sonst.",
+  },
+  /* Ab hier faellt die Entscheidung. Die Schwellen sind bewusst weich:
+     bestehen ist die Regel, die Absage die Ausnahme. */
+  thresholds: { direkt: 11, pruefen: 7 },
+  results: {
+    direkt: {
+      eyebrow: "Passt",
+      headline: ["DAS KLINGT NACH", "JEMANDEM, DER LOSLEGT."],
+      body: "Schau dir die Präsentation an — Umfang, Ablauf, Preis. In Ruhe, ohne Countdown. Danach entscheidest du.",
+      cta: { label: "ZUR PRÄSENTATION", href: "/praesentation" },
+    },
+    pruefen: {
+      eyebrow: "Angekommen",
+      headline: ["ICH SCHAUE", "MIR DAS AN."],
+      body: "Deine Bewerbung liegt bei mir. Ich melde mich — und sage dir ehrlich, ob es gerade passt oder nicht.",
+      cta: null,
+    },
+    warten: {
+      eyebrow: "Ehrlich gesagt",
+      headline: ["GERADE PASST", "ES NOCH NICHT."],
+      body: "Das ist kein Urteil über dich. Der Club setzt voraus, dass du Zeit und Mittel gerade wirklich hast — sonst kostet er dich mehr, als er dir bringt. Wenn sich das ändert, bewirb dich wieder. Die Tür bleibt offen.",
+      cta: { label: "ZURÜCK ZUR STARTSEITE", href: "/" },
+    },
+  },
 } as const;

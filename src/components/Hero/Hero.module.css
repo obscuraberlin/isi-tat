@@ -311,6 +311,11 @@
     /* Der Text darf ins Bild hineinlaufen — deshalb breiter als die halbe
        Seite. Lesbar bleibt er durch den Verlauf auf dem Visual. */
     max-width: min(58%, 700px);
+    /* Naeher an den Bildschirmrand als der Rest der Seite: der Hero ist
+       randlos, ein Text auf Spaltenmass wirkt darin eingerueckt. Der
+       negative Rand zieht ihn zurueck, ohne den Rand der Sektion zu
+       veraendern — auf schmaleren Schirmen bleibt er, wo er war. */
+    margin-left: clamp(-96px, calc((var(--gutter) - 100vw / 16) * 1), 0px);
   }
 
   .copyBottom .sub {
@@ -327,7 +332,7 @@
     bottom: 0;
     /* Deutlich breiter als die freie Haelfte: das Bild schiebt sich unter
        den Text, statt neben ihm aufzuhoeren. */
-    width: min(80%, 1500px);
+    width: min(84%, 1620px);
     z-index: 0;
   }
 
@@ -335,13 +340,30 @@
     height: 100%;
     border-radius: 0;
     /* Zwei Verlaeufe: nach links weich raus, nach unten in die Sektion. */
-    -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, #000 38%),
-      linear-gradient(to bottom, #000 66%, transparent 100%);
+    /* Weiche Rampe statt einer Kante: viele Stufen, damit der Verlauf nicht
+       als Linie sichtbar wird. Zwei, drei Stopps reichen dafuer nicht — man
+       sieht die Stelle, an der er ansetzt. */
+    --mask-x: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 12%,
+      rgba(0, 0, 0, 0.2) 24%,
+      rgba(0, 0, 0, 0.42) 35%,
+      rgba(0, 0, 0, 0.66) 45%,
+      rgba(0, 0, 0, 0.86) 55%,
+      #000 66%
+    );
+    --mask-y: linear-gradient(
+      to bottom,
+      #000 46%,
+      rgba(0, 0, 0, 0.92) 62%,
+      rgba(0, 0, 0, 0.66) 76%,
+      rgba(0, 0, 0, 0.3) 89%,
+      transparent 100%
+    );
+    -webkit-mask-image: var(--mask-x), var(--mask-y);
     -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to right, transparent 0%, #000 38%),
-      linear-gradient(to bottom, #000 66%, transparent 100%);
+    mask-image: var(--mask-x), var(--mask-y);
     mask-composite: intersect;
   }
 
@@ -364,10 +386,14 @@
        Aufnahme ist ein helles Studio. Ohne das laeuft Weiss auf Weiss. */
     background: linear-gradient(
       to right,
-      rgba(8, 8, 8, 0.94) 0%,
-      rgba(8, 8, 8, 0.78) 26%,
-      rgba(8, 8, 8, 0.22) 55%,
-      rgba(8, 8, 8, 0) 78%
+      rgba(8, 8, 8, 0.93) 0%,
+      rgba(8, 8, 8, 0.88) 14%,
+      rgba(8, 8, 8, 0.72) 28%,
+      rgba(8, 8, 8, 0.5) 41%,
+      rgba(8, 8, 8, 0.29) 54%,
+      rgba(8, 8, 8, 0.13) 68%,
+      rgba(8, 8, 8, 0.04) 82%,
+      rgba(8, 8, 8, 0) 94%
     );
   }
 }

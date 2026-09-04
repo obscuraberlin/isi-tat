@@ -12,6 +12,17 @@ import { Backdrop } from "@/components/Backdrop/Backdrop";
 export function Testimonials() {
   const { openVideo } = useTrailer();
 
+  /* Solange keine echte Stimme vorliegt, faellt die Sektion ganz weg.
+     Ein Raster aus leeren Kacheln unter der Ueberschrift "Menschen, die da
+     sind, wo du hin willst" arbeitet gegen die Seite — und ISIs eigenes
+     Material hier einzusetzen waere eine erfundene Kundenstimme.
+     Sobald ein Video oder ein freigegebenes Zitat vorliegt, erscheint die
+     Sektion von selbst wieder. */
+  const hatStimmen = testimonials.items.some(
+    (item) => item.video.src || !isPending(item.statement),
+  );
+  if (!hatStimmen) return null;
+
   return (
     <section className={styles.section} id="erfahrungen">
       <Backdrop variant="grid" tone="light" drift={30} />

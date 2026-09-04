@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 /** Zeigt einen Wert an — oder sichtbar, dass er noch fehlt. */
 function Wert({ text }: { text: string }) {
   if (isPending(text)) {
-    return <span className={styles.fehlt}>{text.replace("TODO_CONTENT — ", "")}</span>;
+    return <span className={styles.fehlt}>{text.replace("OFFEN — ", "")}</span>;
   }
   return <>{text}</>;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { backdrops, brand, screening, trailer } from "@/data/landingPage";
+import { backdrops, brand, isPending, screening, trailer } from "@/data/landingPage";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 import styles from "./page.module.css";
@@ -26,6 +26,11 @@ export default function BewerbungPage() {
   const [schritt, setSchritt] = useState(0);
   const [antworten, setAntworten] = useState<Antworten>({});
   const [abgeschickt, setAbgeschickt] = useState(false);
+  const [sendet, setSendet] = useState(false);
+  const [meldung, setMeldung] = useState<string | null>(null);
+  /* Bei einem Fehler bekommt der Besucher die Adresse zum direkten
+     Schreiben — aber nur, wenn sie hinterlegt ist. */
+  const [zeigeMail, setZeigeMail] = useState(false);
 
   const fragen = screening.questions;
   /* Ein Schritt mehr als Fragen: der letzte ist das Kontaktformular. */
@@ -83,7 +88,6 @@ export default function BewerbungPage() {
                 </ButtonLink>
               ) : null}
 
-              <p className={styles.preview}>{screening.preview}</p>
             </div>
           </div>
         </div>
@@ -172,12 +176,71 @@ export default function BewerbungPage() {
             ) : (
               <form
                 className={styles.step}
-                onSubmit={(event) => {
+                onSubmit={async (event) => {
                   event.preventDefault();
-                  /* TODO_CONTENT: Ziel für die Bewerbung eintragen —
-                     Postfach, Formulardienst oder CRM. Bis dahin bleibt
-                     die Eingabe im Browser und wird nirgendwohin gesendet. */
-                  setAbgeschickt(true);
+                  if (sendet) return;
+
+                  const formular = event.currentTarget;
+                  const eingaben = Object.fromEntries(
+                    new FormData(formular).entries(),
+                  );
+
+                  setSendet(true);
+                  setMeldung(null);
+                  setZeigeMail(false);
+
+                  try {
+                    /* Mit Schrägstrich am Ende: die Seite laeuft mit
+                       trailingSlash, ohne ihn antwortet der Server erst
+                       mit einer Weiterleitung. */
+                    const antwort = await fetch("/api/bewerbung/", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        ...eingaben,
+                        /* Die Antworten gehoeren dazu — sie sind der Grund,
+                           warum die Bewerbung ueberhaupt etwas aussagt. */
+                        ...Object.fromEntries(
+                          fragen.map((f) => [
+                            f.question,
+                            f.options.find((o) => o.score === antworten[f.id])
+                              ?.label ?? "—",
+                          ]),
+                        ),
+                      }),
+                    });
+
+                    if (antwort.ok) {
+                      setAbgeschickt(true);
+                      return;
+                    }
+
+                    const { grund } = (await antwort
+                      .json()
+                      .catch(() => ({ grund: "versand" }))) as {
+                      grund?: string;
+                    };
+                    const texte = screening.status;
+                    if (grund === "unvollstaendig") {
+                      setMeldung(texte.unvollstaendig);
+                    } else if (grund === "email") {
+                      setMeldung(texte.email);
+                    } else if (grund === "zuschnell") {
+                      setMeldung(texte.zuschnell);
+                    } else if (grund === "nicht_eingerichtet") {
+                      setMeldung(texte.nichtEingerichtet);
+                      setZeigeMail(true);
+                    } else {
+                      setMeldung(texte.versand);
+                      setZeigeMail(true);
+                    }
+                  } catch {
+                    /* Netz weg, Server nicht erreichbar. */
+                    setMeldung(screening.status.versand);
+                    setZeigeMail(true);
+                  } finally {
+                    setSendet(false);
+                  }
                 }}
               >
                 <h1 className={styles.question}>
@@ -206,18 +269,52 @@ export default function BewerbungPage() {
                   ))}
                 </div>
 
-                <p className={styles.note}>{screening.contact.note}</p>
+                {/* Fuer Menschen unsichtbar, fuer Automaten verlockend.
+                    Nicht display:none — manche Automaten ueberspringen
+                    genau das. Aus dem Tabulator-Lauf und aus dem
+                    Vorlesen ist es trotzdem raus. */}
+                <div className={styles.honigtopf} aria-hidden="true">
+                  <label htmlFor={screening.contact.honigtopf}>
+                    Dieses Feld bitte leer lassen
+                  </label>
+                  <input
+                    id={screening.contact.honigtopf}
+                    name={screening.contact.honigtopf}
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
+                <p className={styles.note}>{screening.hinweis}</p>
 
                 <Button
                   type="submit"
                   variant="primaryOnDark"
                   full
                   className={styles.submit}
+                  disabled={sendet}
                 >
-                  {screening.submitLabel}
+                  {sendet ? screening.status.sendet : screening.submitLabel}
                 </Button>
 
-                <p className={styles.preview}>{screening.preview}</p>
+                {meldung ? (
+                  <p className={styles.meldung} role="status">
+                    {meldung}
+                    {zeigeMail && !isPending(screening.fallbackMail) ? (
+                      <>
+                        {" "}
+                        {screening.status.direktSchreiben}{" "}
+                        <a
+                          className={styles.meldungLink}
+                          href={`mailto:${screening.fallbackMail}`}
+                        >
+                          {screening.fallbackMail}
+                        </a>
+                      </>
+                    ) : null}
+                  </p>
+                ) : null}
               </form>
             )}
 

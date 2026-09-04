@@ -29,7 +29,7 @@ export default function DatenschutzSeite() {
                 isPending(absatz) ? (
                   <p key={absatz}>
                     <span className={styles.fehlt}>
-                      {absatz.replace("TODO_CONTENT — ", "")}
+                      {absatz.replace("OFFEN — ", "")}
                     </span>
                   </p>
                 ) : (

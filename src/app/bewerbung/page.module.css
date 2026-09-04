@@ -332,3 +332,27 @@
 .resultCta {
   margin-top: clamp(24px, 3vw, 32px);
 }
+
+/* Der Honigtopf muss im Baum stehen und ausfuellbar sein — sonst faellt
+   kein Automat darauf herein. Aus dem Blick, aus dem Tabulator-Lauf und
+   aus dem Vorlesen ist er trotzdem. */
+.honigtopf {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.meldung {
+  margin-top: 14px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--accent);
+}
+
+.meldungLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

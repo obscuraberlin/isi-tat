@@ -5,7 +5,11 @@
    Komponenten enthalten KEINE fest verdrahteten Inhalte.
 
    KONVENTIONEN
-   - `TODO_CONTENT`  = Inhalt liegt noch nicht bestaetigt vor. Nichts erfinden.
+   - `OFFEN`         = Angabe liegt noch nicht bestaetigt vor. Nichts
+                       erfinden. Der Marker heisst bewusst nicht "TODO":
+                       er landet im ausgelieferten Skript, und dort soll
+                       nichts stehen, was wie unfertige Entwicklerarbeit
+                       aussieht.
    - `src: null`     = Asset fehlt. Es wird ein gestalteter Platzhalter mit
                        korrektem Seitenverhaeltnis gerendert (siehe <Media/>).
                        Zum Austausch nur `src` (und ggf. `poster`) setzen.
@@ -29,12 +33,12 @@
 import { mediaFiles } from "./mediaFiles";
 
 /** true, wenn eine Angabe noch nicht bestaetigt vorliegt. */
-export const isPending = (value: string) => value.startsWith("TODO_CONTENT");
+export const isPending = (value: string) => value.startsWith("OFFEN");
 
 export type MediaKind = "image" | "video";
 
 export interface MediaAsset {
-  /** Internes Label, z. B. "[ISI_HERO_VIDEO]" */
+  /** Internes Label, z. B. "isi-hero-video" */
   id: string;
   /**
    * Laufende Nummer, im Platzhalter gross sichtbar. Der Auftraggeber
@@ -105,7 +109,7 @@ export const assetNo = (asset: MediaAsset) => String(asset.no).padStart(2, "0");
 
 export const brand = {
   /** Platzhalter — echtes Logo wird spaeter ausgetauscht. */
-  logoPlaceholder: "[LOGO_ISI_TAT]",
+  logoPlaceholder: "logo-isi-tat",
   name: "ISI TAT",
   suffix: "BUSINESS CLUB",
   fullName: "ISI TAT BUSINESS CLUB",
@@ -173,12 +177,12 @@ export const hero = {
      halbe Bildbreite weggeschnitten — und das Motiv wandert im Clip von
      links nach rechts, ein fester Bildausschnitt trifft es nie. */
   video: media(
-    "[ISI_HERO_VIDEO]",
+    "isi-hero-video",
     "video",
     "ISI TAT im Portrait — Hero-Sequenz",
     "16 / 9",
   ),
-  image: media("[ISI_HERO_IMAGE]", "image", "ISI TAT — Hero-Portrait", "4 / 5", {}, 4),
+  image: media("isi-hero-image", "image", "ISI TAT — Hero-Portrait", "4 / 5", {}, 4),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -193,7 +197,7 @@ export const trailer = {
      schlechter als einer, der das zeigt, was schon da ist. Sobald 03.mp4
      im Ordner liegt, gewinnt die Datei. */
   video: media(
-    "[ISI_TRAILER_VIDEO]",
+    "isi-trailer-video",
     "video",
     "Trailer — ISI TAT BUSINESS CLUB",
     "16 / 9",
@@ -221,7 +225,7 @@ export const intro = {
          weil es so fotografiert ist — der Ausschnitt wird per
          object-position auf das Gesicht gelegt, siehe Intro.module.css. */
       visual: media(
-        "[ISI_PORTRAIT_ROLLS]",
+        "isi-portrait-rolls",
         "image",
         "ISI TAT im Anzug vor einem Rolls-Royce",
         "4 / 5",
@@ -241,7 +245,7 @@ export const intro = {
       /* Zweites Ergebnisbild — Hochformat wie das erste, damit die beiden
          Szenen im selben Ausschnitt liegen. */
       visual: media(
-        "[ISI_JET]",
+        "isi-jet",
         "image",
         "ISI TAT vor einem Jet",
         "4 / 5",
@@ -266,7 +270,7 @@ export const trust = {
   /* 16:9, so ist das Material gedreht. Ein quadratischer Ausschnitt haette
      ein Viertel der Bildbreite gekostet. */
   video: media(
-    "[ISI_REPUTATION_VIDEO]",
+    "isi-reputation-video",
     "video",
     "ISI TAT über seinen Weg",
     "16 / 9",
@@ -279,7 +283,7 @@ export const trust = {
   /* Die eigentliche Biografie. Drei bis vier Saetze in ISIs Worten:
      Herkunft, Wendepunkt, was heute daraus geworden ist. Solange leer,
      zeigt die Seite die Stelle als gekennzeichnete Luecke. */
-  bio: "TODO_CONTENT",
+  bio: "OFFEN",
   /* Vom Auftraggeber freigegeben. "20+ JAHRE ERFAHRUNG" ist raus — das
      steht schon im Hero ueber der Headline und war hier eine Wiederholung. */
   metrics: [
@@ -332,8 +336,8 @@ export const insideTheClub = {
       tagline: "Entscheiden, wenn es unbequem wird.",
       description:
         "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Über Standards, die niemand kontrolliert — und was passiert, wenn ich sie unterschreite.",
-      cover: media("[KURS_MINDSET_COVER]", "image", "Mindset & Persönlichkeit", "2 / 3"),
-      still: media("[KURS_MINDSET_STILL]", "image", "Mindset & Persönlichkeit", "16 / 9", {}, 7),
+      cover: media("kurs-mindset-cover", "image", "Mindset & Persönlichkeit", "2 / 3"),
+      still: media("kurs-mindset-still", "image", "Mindset & Persönlichkeit", "16 / 9", {}, 7),
       preview: null,
       episodes: [
         { title: "Standards, die niemand kontrolliert", runtime: null },
@@ -349,8 +353,8 @@ export const insideTheClub = {
       tagline: "Menschen verstehen, bevor du verkaufst.",
       description:
         "Zwanzig Jahre Gespräche, Einwände und Verhandlungen. Warum Menschen kaufen, bevor sie überzeugt sind — und woran es liegt, wenn sie es nicht tun.",
-      cover: media("[KURS_VERTRIEB_COVER]", "image", "Vertrieb", "2 / 3"),
-      still: media("[KURS_VERTRIEB_STILL]", "image", "Vertrieb", "16 / 9", {}, 9),
+      cover: media("kurs-vertrieb-cover", "image", "Vertrieb", "2 / 3"),
+      still: media("kurs-vertrieb-still", "image", "Vertrieb", "16 / 9", {}, 9),
       preview: null,
       episodes: [
         { title: "Das Gespräch vor dem Gespräch", runtime: null },
@@ -367,8 +371,8 @@ export const insideTheClub = {
       tagline: "Vom Job zum eigenen Unternehmen.",
       description:
         "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Verantwortung, Struktur, Leute — und die Entscheidungen, die ich heute anders treffen würde.",
-      cover: media("[KURS_BUSINESS_COVER]", "image", "Business", "2 / 3"),
-      still: media("[KURS_BUSINESS_STILL]", "image", "Business", "16 / 9", {}, 11),
+      cover: media("kurs-business-cover", "image", "Business", "2 / 3"),
+      still: media("kurs-business-still", "image", "Business", "16 / 9", {}, 11),
       preview: null,
       episodes: [
         { title: "Vom Angestellten zum Unternehmer", runtime: null },
@@ -389,8 +393,8 @@ export const insideTheClub = {
       tagline: "Wer dich kennt, entscheidet mit.",
       description:
         "Warum man an Menschen schwerer rankommt als an Wissen. Wie Beziehungen entstehen, woran sie kaputtgehen und was Verlässlichkeit über Jahre wert ist.",
-      cover: media("[KURS_NETZWERK_COVER]", "image", "Netzwerk", "2 / 3"),
-      still: media("[KURS_NETZWERK_STILL]", "image", "Netzwerk", "16 / 9", {}, 13),
+      cover: media("kurs-netzwerk-cover", "image", "Netzwerk", "2 / 3"),
+      still: media("kurs-netzwerk-still", "image", "Netzwerk", "16 / 9", {}, 13),
       preview: null,
       episodes: [
         { title: "Der erste Eindruck ist der zweite", runtime: null },
@@ -405,8 +409,8 @@ export const insideTheClub = {
       tagline: "Was gelaufen ist. Und was nicht.",
       description:
         "Erzählte Fälle aus zwanzig Jahren, ohne Politur. Die Sachen, die funktioniert haben. Die, die schiefgingen. Und was jeweils den Unterschied gemacht hat.",
-      cover: media("[KURS_GESCHICHTEN_COVER]", "image", "Echte Geschichten", "2 / 3"),
-      still: media("[KURS_GESCHICHTEN_STILL]", "image", "Echte Geschichten", "16 / 9", {}, 15),
+      cover: media("kurs-geschichten-cover", "image", "Echte Geschichten", "2 / 3"),
+      still: media("kurs-geschichten-still", "image", "Echte Geschichten", "16 / 9", {}, 15),
       preview: null,
       episodes: [
         { title: "Der Deal, der zu gut aussah", runtime: null },
@@ -421,8 +425,8 @@ export const insideTheClub = {
       tagline: "Fragen stellen, statt nur zuschauen.",
       description:
         "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Situationen einordne und Leute miteinander bekannt mache.",
-      cover: media("[KURS_LIVE_COVER]", "image", "Live mit ISI", "2 / 3"),
-      still: media("[KURS_LIVE_STILL]", "image", "Live mit ISI", "16 / 9", {}, 17),
+      cover: media("kurs-live-cover", "image", "Live mit ISI", "2 / 3"),
+      still: media("kurs-live-still", "image", "Live mit ISI", "16 / 9", {}, 17),
       preview: null,
       episodes: [
         { title: "Offene Fragerunden", runtime: null },
@@ -495,10 +499,10 @@ export const failure = {
   compare: {
     beforeLabel: "FRÜHER",
     beforeCaption: "Ohne Plan, ohne jemanden, der es erklärt.",
-    before: media("[ISI_FRUEHER]", "image", "ISI TAT als Jugendlicher", "3 / 4"),
+    before: media("isi-frueher", "image", "ISI TAT als Jugendlicher", "3 / 4"),
     afterLabel: "HEUTE",
     afterCaption: "Derselbe Weg — nur habe ich ihn alleine gesucht.",
-    after: media("[ISI_HEUTE]", "image", "ISI TAT heute", "3 / 4"),
+    after: media("isi-heute", "image", "ISI TAT heute", "3 / 4"),
   },
   /* Kein Erfolgsbild. Es steht neben dem Absatz ueber die Eltern und
      traegt den Grund, aus dem ueberhaupt jemand Vollgas gibt. */
@@ -507,7 +511,7 @@ export const failure = {
     line: ["MEINE ENERGIE.", "MEINE HOFFNUNG.", "MEINE MAMA."],
     caption: "Der Grund, warum ich angefangen habe, es ernst zu nehmen.",
     asset: media(
-      "[ISI_MUTTER]",
+      "isi-mutter",
       "image",
       "ISI TAT mit seiner Mutter",
       "4 / 5",
@@ -537,15 +541,15 @@ export const lifestyle = {
   /* Slots entsprechen den vorhandenen Aufnahmen — nur `src` setzen. */
   /* Steht ueber der Galerie und traegt die Sektion — bewegtes Bild wirkt
      hier staerker als vier Standbilder nebeneinander. */
-  video: media("[ISI_GARAGE]", "video", "ISI TAT in der Garage", "16 / 9"),
+  video: media("isi-garage", "video", "ISI TAT in der Garage", "16 / 9"),
   /* Drei statt vier: die vierte Kachel war eine Kachel zu viel, und der
      Auftraggeber liefert drei Autoaufnahmen. */
   gallery: [
     /* Alt-Text beschreibt, was zu sehen ist — er wird vorgelesen,
        wenn das Bild nicht laedt oder jemand es nicht sehen kann. */
-    media("[ISI_FREIHEIT_01]", "image", "Nachts in Paris, vor dem Rolls-Royce", "4 / 5"),
-    media("[ISI_FREIHEIT_02]", "image", "Im Showroom, neben einem roten Ferrari", "4 / 5"),
-    media("[ISI_FREIHEIT_03]", "image", "Vor einem Privatjet", "4 / 5"),
+    media("isi-freiheit-01", "image", "Nachts in Paris, vor dem Rolls-Royce", "4 / 5"),
+    media("isi-freiheit-02", "image", "Im Showroom, neben einem roten Ferrari", "4 / 5"),
+    media("isi-freiheit-03", "image", "Vor einem Privatjet", "4 / 5"),
   ],
   disclaimer:
     "Meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussieht.",
@@ -605,7 +609,7 @@ export const live = {
     },
   ],
   /* Frequenz noch offen. */
-  frequency: "TODO_CONTENT",
+  frequency: "OFFEN",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -642,28 +646,28 @@ export const testimonials = {
     "Einzelne Erfahrungen. Kein Massstab für dein Ergebnis und keine Zusage.",
   items: [
     {
-      name: "[NAME]",
-      role: "[BRANCHE]",
-      since: "TODO_CONTENT",
-      standing: "TODO_CONTENT",
-      statement: "TODO_CONTENT",
-      video: media("[TESTIMONIAL_VIDEO_01]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
+      name: "OFFEN — Name",
+      role: "OFFEN — Branche",
+      since: "OFFEN",
+      standing: "OFFEN",
+      statement: "OFFEN",
+      video: media("testimonial-video-01", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
     {
-      name: "[NAME]",
-      role: "[BRANCHE]",
-      since: "TODO_CONTENT",
-      standing: "TODO_CONTENT",
-      statement: "TODO_CONTENT",
-      video: media("[TESTIMONIAL_VIDEO_02]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
+      name: "OFFEN — Name",
+      role: "OFFEN — Branche",
+      since: "OFFEN",
+      standing: "OFFEN",
+      statement: "OFFEN",
+      video: media("testimonial-video-02", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
     {
-      name: "[NAME]",
-      role: "[BRANCHE]",
-      since: "TODO_CONTENT",
-      standing: "TODO_CONTENT",
-      statement: "TODO_CONTENT",
-      video: media("[TESTIMONIAL_VIDEO_03]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
+      name: "OFFEN — Name",
+      role: "OFFEN — Branche",
+      since: "OFFEN",
+      standing: "OFFEN",
+      statement: "OFFEN",
+      video: media("testimonial-video-03", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
   ] satisfies Testimonial[],
 } as const;
@@ -725,7 +729,7 @@ export const membership = {
      liefert das Mockup, damit die Oberflaeche so aussieht, wie sie
      tatsaechlich gedacht ist. */
   mockup: media(
-    "[MITGLIEDERBEREICH_MOCKUP]",
+    "mitgliederbereich-mockup",
     "image",
     "Der Mitgliederbereich auf Laptop, Tablet und Telefon",
     "16 / 10",
@@ -749,11 +753,11 @@ export const membership = {
     },
     {
       label: "TREFFEN & EVENTS",
-      text: "TODO_CONTENT — tatsächlichen Umfang eintragen.",
+      text: "OFFEN — tatsächlichen Umfang eintragen.",
     },
     {
       label: "ZUGANG ZU ISI",
-      text: "TODO_CONTENT — tatsächlichen Umfang des persönlichen Zugangs eintragen.",
+      text: "OFFEN — tatsächlichen Umfang des persönlichen Zugangs eintragen.",
     },
     {
       label: "WEITERE MÖGLICHKEITEN",
@@ -811,8 +815,8 @@ export const spots = {
      ist irrefuehrende Werbung (UWG) und steht auf der Verbotsliste des
      Auftraggebers. Bis zur Bestaetigung wird die Zeile als offen gerendert,
      nicht geraten. */
-  count: "TODO_CONTENT",
-  period: "TODO_CONTENT",
+  count: "OFFEN",
+  period: "OFFEN",
   facts: [
     "Kein Streichpreis, kein Countdown.",
     "Kein Upsell nach der Aufnahme.",
@@ -847,7 +851,7 @@ export const faq = {
     },
     {
       q: "Wie viel Kontakt habe ich zu dir?",
-      a: "TODO_CONTENT — Live-Runden, Frequenz und Umfang des persönlichen Zugangs eintragen.",
+      a: "OFFEN — Live-Runden, Frequenz und Umfang des persönlichen Zugangs eintragen.",
     },
     {
       q: "Laufzeit und Zahlung?",
@@ -882,7 +886,7 @@ export const finalCta = {
      ihn ein zweites Mal auszuliefern, verweist die Flaeche auf Nummer 22.
      Hier laeuft er unscharf im Hintergrund, dort scharf im Vordergrund;
      eine eigene 30.mp4 wuerde jederzeit gewinnen. */
-  video: media("[FINAL_ISI_VIDEO]", "video", "ISI TAT — Abschluss", "16 / 9", {}, 22),
+  video: media("final-isi-video", "video", "ISI TAT — Abschluss", "16 / 9", {}, 22),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -901,8 +905,8 @@ export const footer = {
     { label: "DATENSCHUTZ", href: "/datenschutz" },
     /* AGB und Kontakt bleiben offen, bis es sie gibt. Ein Link auf eine
        leere Seite ist schlechter als ein Hinweis, dass sie fehlt. */
-    { label: "AGB", href: "TODO_CONTENT" },
-    { label: "KONTAKT", href: "TODO_CONTENT" },
+    { label: "AGB", href: "OFFEN" },
+    { label: "KONTAKT", href: "OFFEN" },
   ],
   legalNote:
     "Ich teile hier Erfahrungen, keine Rezepte. Es gibt keine Zusicherung auf Ergebnisse, Einkommen oder eine Zusammenarbeit.",
@@ -918,7 +922,7 @@ export const meta = {
    RECHTSSEITEN
    -----------------------------------------------------------------------------
    Impressum und Datenschutz stehen als eigene Seiten. Alles, was hier
-   `TODO_CONTENT` ist, muss der Auftraggeber liefern — erfundene Angaben
+   `OFFEN` ist, muss der Auftraggeber liefern — erfundene Angaben
    waeren in einem Impressum keine Luecke, sondern eine Falschangabe.
    -------------------------------------------------------------------------- */
 
@@ -926,15 +930,15 @@ export const impressum = {
   title: "Impressum",
   intro: "Angaben gemäß § 5 DDG.",
   /* Anbieter: vollstaendiger Firmenname inkl. Rechtsform. */
-  anbieter: ["TODO_CONTENT — Firma inkl. Rechtsform", "TODO_CONTENT — Straße und Hausnummer", "TODO_CONTENT — PLZ und Ort"],
-  vertreten: "TODO_CONTENT — Geschäftsführer/in",
-  register: { gericht: "TODO_CONTENT — Registergericht", nummer: "TODO_CONTENT — HRB-Nummer" },
+  anbieter: ["OFFEN — Firma inkl. Rechtsform", "OFFEN — Straße und Hausnummer", "OFFEN — PLZ und Ort"],
+  vertreten: "OFFEN — Geschäftsführer/in",
+  register: { gericht: "OFFEN — Registergericht", nummer: "OFFEN — HRB-Nummer" },
   /* § 27a UStG. Die Steuernummer gehoert NICHT auf die Seite. */
-  ustId: "TODO_CONTENT — USt-IdNr. (DE…)",
-  kontakt: { mail: "TODO_CONTENT — E-Mail", telefon: "TODO_CONTENT — Telefon" },
+  ustId: "OFFEN — USt-IdNr. (DE…)",
+  kontakt: { mail: "OFFEN — E-Mail", telefon: "OFFEN — Telefon" },
   /* § 18 Abs. 2 MStV — nur noetig bei journalistisch-redaktionellen Inhalten,
      schadet aber nicht. */
-  verantwortlich: ["TODO_CONTENT — Name", "TODO_CONTENT — Anschrift"],
+  verantwortlich: ["OFFEN — Name", "OFFEN — Anschrift"],
   streit: {
     head: "EU-Streitschlichtung",
     text: "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit:",
@@ -950,7 +954,7 @@ export const impressum = {
    -------------------------------------------------------------------------- */
 
 export const login = {
-  visual: media("[LOGIN_VISUAL]", "image", "ISI TAT BUSINESS CLUB", "3 / 4", {}, 5),
+  visual: media("login-visual", "image", "ISI TAT BUSINESS CLUB", "3 / 4", {}, 5),
   /* Folgt der Hero-Aussage — vorher stand hier noch die abgeloeste Headline. */
   quote: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
 } as const;
@@ -965,7 +969,7 @@ export const presentation = {
   intro:
     "Was der Club ist, wie er läuft, was er kostet. Ohne Countdown und ohne Verkaufsdruck — schau sie an, wann es dir passt.",
   video: media(
-    "[PRAESENTATION_VIDEO]",
+    "praesentation-video",
     "video",
     "Die Präsentation — ISI TAT BUSINESS CLUB",
     "16 / 9",
@@ -975,7 +979,7 @@ export const presentation = {
   afterHead: ["WENN ES", "FÜR DICH PASST."],
   afterBody:
     "Dann musst du nicht auf ein Gespräch warten. Du füllst die Vorqualifizierung aus, ich schaue sie mir an und melde mich.",
-  cta: { label: "JETZT VORQUALIFIZIEREN", href: "TODO_CONTENT" },
+  cta: { label: "JETZT VORQUALIFIZIEREN", href: "OFFEN" },
   /* Ehrlich halten: eine Bewerbung ist keine Zusage. */
   note: "Die Vorqualifizierung ist noch keine Aufnahme. Passt es nicht, bekommst du eine Absage — das ist kein schlechtes Ergebnis, sondern ein ehrliches.",
 } as const;
@@ -1012,13 +1016,13 @@ export const ctaBands = {
 export const backdrops = {
   /* Weites Bild, viel leere Flaeche — vertraegt grosse Schrift darueber. */
   ctaNachInhalten: media(
-    "[BACKDROP_CTA_INHALTE]",
+    "backdrop-cta-inhalte",
     "image",
     "Hintergrund: die Halle mit dem Rolls-Royce",
     "16 / 9",
   ),
   finalCta: media(
-    "[BACKDROP_ABSCHLUSS]",
+    "backdrop-abschluss",
     "image",
     "Hintergrund: im Showroom neben dem Ferrari",
     "16 / 9",
@@ -1029,7 +1033,7 @@ export const backdrops = {
      die Flaeche auf Nummer 22. Eine eigene 35.mp4 wuerde jederzeit
      gewinnen; liegt keine da, bleibt das Standbild darunter stehen. */
   ctaClip: media(
-    "[BACKDROP_CTA_CLIP]",
+    "backdrop-cta-clip",
     "video",
     "Hintergrund-Clip: in der Garage",
     "16 / 9",
@@ -1061,9 +1065,25 @@ export const screening = {
   headline: ["BEVOR WIR", "MITEINANDER REDEN."],
   intro:
     "Fünf Fragen, keine drei Minuten. Ich lese jede Bewerbung selbst — deshalb lohnt es sich, ehrlich zu antworten und nicht das, was gut klingt.",
-  /* Vorschau: die Antworten gehen noch nirgendwohin. Offen sagen, sonst
-     wartet jemand auf eine Rueckmeldung, die niemand bekommt. */
-  preview: "Vorschau — die Bewerbung wird noch nicht verschickt.",
+  /* Rueckmeldungen zum Absenden. Sie sagen, was passiert ist, ohne dem
+     Besucher Serverinterna zu erklaeren. */
+  status: {
+    sendet: "Wird gesendet …",
+    unvollstaendig: "Bitte Name und eine gültige E-Mail angeben.",
+    email: "Diese E-Mail-Adresse sieht nicht richtig aus.",
+    zuschnell: "Das war zu schnell hintereinander. Bitte kurz warten.",
+    nichtEingerichtet: "Der Versand ist gerade nicht erreichbar.",
+    versand: "Das Senden hat nicht geklappt.",
+    /* Wird nur angehaengt, wenn eine Adresse hinterlegt ist — sonst
+       endete der Satz mit einem Doppelpunkt ins Leere. */
+    direktSchreiben: "Schreib mir bitte direkt:",
+  },
+  /* Wohin, wenn der Versand scheitert. Erst eintragen, dann anzeigen —
+     ein Mailto ins Leere ist schlimmer als keins. */
+  fallbackMail: "OFFEN",
+  /* Der Satz unter dem Knopf. Sagt, was mit den Angaben passiert. */
+  hinweis:
+    "Deine Angaben gehen als E-Mail an mich und werden nicht an Dritte weitergegeben.",
   progressLabel: "Frage",
   backLabel: "Zurück",
   nextLabel: "WEITER",
@@ -1131,6 +1151,10 @@ export const screening = {
       { name: "instagram", label: "Instagram", type: "text", autoComplete: "off", required: false, placeholder: "Optional — @deinname" },
     ],
     note: "Deine Angaben gehen an mich und an niemanden sonst.",
+    /* Unsichtbares Feld. Menschen sehen es nicht, Automaten fuellen es —
+       daran erkennt der Server sie, ohne dass jemand ein Raetsel loesen
+       muss. */
+    honigtopf: "_honey",
   },
   /* Ab hier faellt die Entscheidung. Die Schwellen sind bewusst weich:
      bestehen ist die Regel, die Absage die Ausnahme. */
@@ -1159,7 +1183,7 @@ export const screening = {
 
 export const datenschutz = {
   title: "Datenschutzerklärung",
-  stand: "TODO_CONTENT — Stand (Monat und Jahr)",
+  stand: "OFFEN — Stand (Monat und Jahr)",
   /* Was hier steht, ist am 4. September 2026 im gebauten Quelltext
      geprueft worden: keine Anfrage an einen fremden Server beim Laden,
      kein Cookie, kein localStorage, keine Schriftart von Google. Wird
@@ -1180,7 +1204,7 @@ export const datenschutz = {
     },
     {
       head: "Hosting",
-      body: ["TODO_CONTENT — Hoster mit Firma, Anschrift, Land und Hinweis auf den Auftragsverarbeitungsvertrag."],
+      body: ["OFFEN — Hoster mit Firma, Anschrift, Land und Hinweis auf den Auftragsverarbeitungsvertrag."],
     },
     {
       head: "Schriftarten",
@@ -1190,7 +1214,12 @@ export const datenschutz = {
     },
     {
       head: "Bewerbungsformular",
-      body: ["TODO_CONTENT — Formulardienst, Empfänger, Zweck, Rechtsgrundlage, Speicherdauer, Drittlandübermittlung."],
+      body: [
+        "Wenn du dich bewirbst, werden die von dir eingegebenen Angaben — Name, E-Mail-Adresse, optional Telefonnummer und Instagram-Name sowie deine Antworten auf die Fragen — an den Server dieser Website übermittelt und von dort als E-Mail an das Postfach des Anbieters weitergeleitet.",
+        "Es ist kein Formular- oder Marketingdienst eingebunden. Die Daten verlassen den Server nur auf dem Weg zu diesem Postfach; eine Übermittlung in ein Drittland findet nicht statt.",
+        "Zweck ist die Bearbeitung deiner Bewerbung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Maßnahmen auf deine Anfrage hin). Die Angaben werden gelöscht, sobald sie für die Bearbeitung nicht mehr nötig sind und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.",
+        "Zur Abwehr automatisierter Massenanfragen wird beim Absenden für kurze Zeit vermerkt, von welcher IP-Adresse eine Bewerbung eingegangen ist. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.",
+      ],
     },
     {
       head: "Keine Analyse, kein Tracking",

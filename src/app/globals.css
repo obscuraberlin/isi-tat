@@ -116,7 +116,8 @@
 
 @media (max-width: 767px) {
   :root {
-    --display-width: 82;
+    --display-width: 78;
+    --fs-hero: clamp(2.375rem, 1.4rem + 3.2vw, 2.75rem);
   }
 }
 

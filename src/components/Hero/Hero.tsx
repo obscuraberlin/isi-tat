@@ -5,6 +5,7 @@ import { catalogue, cta, hero } from "@/data/landingPage";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import { Media } from "@/components/Media/Media";
 import { Button, ButtonLink } from "@/components/ui/Button";
+import { PlayButton } from "@/components/ui/PlayButton";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import styles from "./Hero.module.css";
 
@@ -44,7 +45,7 @@ export function Hero() {
   return (
     <section className={styles.hero} id="top" aria-label="Einstieg">
       <div className={styles.inner}>
-        <div className={styles.copy}>
+        <div className={`${styles.copy} ${styles.copyTop}`}>
           <div className={styles.fadeUp} style={delay(260)}>
             <Eyebrow tone="accent" rule>
               {hero.eyebrow}
@@ -88,6 +89,20 @@ export function Hero() {
             </span>
           </div>
 
+        </div>
+
+        <div className={styles.visual}>
+          <div className={styles.visualFrame}>
+            <Media asset={asset} tone="dark" priority autoPlay={!!asset.src} />
+            <span className={styles.visualOverlay} aria-hidden="true" />
+            <PlayButton
+              onClick={openTrailer}
+              ariaLabel={`${cta.heroSecondary.label} abspielen`}
+            />
+          </div>
+        </div>
+
+        <div className={`${styles.copy} ${styles.copyBottom}`}>
           <p className={`${styles.sub} ${styles.fadeUp}`} style={delay(1000)}>
             {hero.subheadline}
           </p>
@@ -109,13 +124,6 @@ export function Hero() {
             ))}
           </ul>
 
-        </div>
-
-        <div className={styles.visual}>
-          <div className={styles.visualFrame}>
-            <Media asset={asset} tone="dark" priority autoPlay={!!asset.src} />
-            <span className={styles.visualOverlay} aria-hidden="true" />
-          </div>
         </div>
       </div>
     </section>

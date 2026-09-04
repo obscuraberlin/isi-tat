@@ -36,8 +36,11 @@ export function Media({
   controls = false,
   style,
 }: MediaProps) {
+  /* Das Asset-Verhaeltnis liegt auf --asset-ratio, nicht auf --ratio.
+     Dadurch kann eine Regel oder ein Breakpoint --ratio setzen und gewinnt,
+     obwohl der Inline-Wert hier steht. */
   const frameStyle: CSSProperties = {
-    aspectRatio: ratio ?? asset.ratio,
+    ["--asset-ratio" as string]: ratio ?? asset.ratio,
     ...(radius ? ({ "--radius": radius } as CSSProperties) : null),
     ...style,
   };

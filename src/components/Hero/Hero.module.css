@@ -32,6 +32,22 @@
   padding-inline: var(--gutter);
   display: grid;
   gap: clamp(32px, 5vw, 72px);
+  grid-template-areas:
+    "top"
+    "visual"
+    "bottom";
+}
+
+.copyTop {
+  grid-area: top;
+}
+
+.copyBottom {
+  grid-area: bottom;
+}
+
+.visual {
+  grid-area: visual;
 }
 
 /* ---------- Text ---------- */
@@ -243,35 +259,24 @@
   /* Visual laeuft randlos unter den transparenten Header — cinematischer
      Einstieg, ohne dass der Text unter den Fold rutscht. */
   .hero {
-    padding-top: 0;
+    padding-top: calc(var(--header-h) + 12px);
     padding-bottom: clamp(44px, 8vw, 64px);
   }
 
   .inner {
-    gap: 0;
-    padding-inline: 0;
+    gap: clamp(20px, 4vw, 28px);
+    padding-inline: var(--gutter);
   }
 
-  .visual {
-    order: -1;
-  }
-
+  /* Wie auf einer Titelseite: erst die Aussage, dann das Bild. */
   .visualFrame {
-    border-radius: 0;
-    height: 44svh;
-    min-height: 280px;
-    max-height: 420px;
+    border-radius: var(--r-card);
+    height: auto;
   }
 
   .visualFrame > div {
-    height: 100%;
-  }
-
-  .copy {
-    padding-inline: var(--gutter);
-    margin-top: -34px;
-    position: relative;
-    z-index: 1;
+    --ratio: 16 / 9;
+    height: auto;
   }
 
   .headline {
@@ -281,11 +286,6 @@
   .sub {
     margin-top: 16px;
     font-size: var(--fs-body);
-  }
-
-  .visualFrame {
-    height: 34svh;
-    min-height: 240px;
   }
 
   .ctas {
@@ -310,9 +310,6 @@
     font-size: 0.6875rem;
   }
 
-  .visualFrame {
-    height: 40svh;
-  }
 }
 
 /* ---------- Tablet / Desktop ---------- */
@@ -328,7 +325,38 @@
 
   .inner {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    align-items: center;
+    grid-template-areas:
+      "top visual"
+      "bottom visual";
+    /* Zeile eins haelt sich an ihren Inhalt, der Rest faellt in Zeile zwei.
+       Ohne das verteilt das Raster die Hoehe des Visuals auf beide Zeilen
+       und reisst den Text auseinander. */
+    grid-template-rows: min-content 1fr;
+    align-content: center;
+    row-gap: 0;
+    column-gap: clamp(32px, 5vw, 72px);
+  }
+
+  /* Das Visual spannt beide Zeilen und waere sonst hoeher als der Text —
+     die Bloecke treffen sich deshalb in der Mitte, statt auseinanderzufallen. */
+  .copyBottom {
+    align-self: start;
+    padding-top: clamp(20px, 2.4vw, 32px);
+  }
+
+  /* Der Abstand kommt schon vom padding-top des Blocks — sonst addiert er sich. */
+  .copyBottom .sub {
+    margin-top: 0;
+  }
+
+  .visual {
+    align-self: center;
+  }
+
+  /* Auf dem Desktop uebernimmt der Trailer-Button unter der Headline,
+     das Play-Overlay auf dem Visual waere dort doppelt. */
+  .visual button {
+    display: none;
   }
 
   .visualFrame {
@@ -343,7 +371,9 @@
 @media (min-width: 1200px) {
   .inner {
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-    gap: clamp(56px, 6vw, 96px);
+    /* Nur horizontal — ein Zeilenabstand wuerde die beiden Textbloecke
+       auseinanderreissen, zwischen denen das Visual haengt. */
+    column-gap: clamp(56px, 6vw, 96px);
   }
 }
 

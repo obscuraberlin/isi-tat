@@ -9,6 +9,7 @@ import { PlayButton } from "@/components/ui/PlayButton";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import styles from "./Hero.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
+import { useMediaQuery } from "@/lib/hooks";
 
 const delay = (ms: number) => ({ ["--delay"]: `${ms}ms` }) as CSSProperties;
 
@@ -42,6 +43,7 @@ export function Hero() {
   /* Hero-Video bevorzugt, Bild als Fallback solange kein Video hinterlegt ist. */
   const asset = hero.video.src ? hero.video : hero.image;
   const headline = hero.headlines[hero.headlineVariant];
+  const mobil = useMediaQuery("(max-width: 767px)");
 
   return (
     <section className={styles.hero} id="top" aria-label="Einstieg">
@@ -51,7 +53,7 @@ export function Hero() {
         <div className={`${styles.copy} ${styles.copyTop}`}>
           <div className={styles.fadeUp} style={delay(260)}>
             <Eyebrow tone="accent" rule>
-              {hero.eyebrow}
+              {mobil ? hero.eyebrowMobil : hero.eyebrow}
             </Eyebrow>
           </div>
 
@@ -78,24 +80,27 @@ export function Hero() {
             ) : null}
           </h1>
 
-          {/* Metazeile: was das Ganze ist, in einer Zeile. */}
-          <div className={`${styles.meta} ${styles.fadeUp}`} style={delay(880)}>
-            <span className={styles.metaBy}>{hero.meta.by}</span>
-            <span className={styles.badge}>{hero.meta.edition}</span>
-            <span className={`${styles.badge} ${styles.badgeAccent}`}>
-              {hero.meta.quality}
-            </span>
-            <span className={styles.metaCounts}>
-              <span className={styles.metaPlain}>
-                {catalogue.seriesCount} Serien
-              </span>
-              <span className={styles.metaDot} aria-hidden="true" />
-              <span className={styles.metaPlain}>
-                {catalogue.episodeCount} Folgen
-              </span>
-            </span>
-          </div>
+        </div>
 
+        {/* Metazeile: was das Ganze ist, in einer Zeile. Steht als eigener
+            Block im Raster, damit sie auf dem Telefon unter das Video
+            rutschen kann — dort liest sie sich als Beschriftung dazu,
+            ueber dem Video war sie eine Huerde vor dem Bild. */}
+        <div className={`${styles.meta} ${styles.fadeUp}`} style={delay(880)}>
+          <span className={styles.metaBy}>{hero.meta.by}</span>
+          <span className={styles.badge}>{hero.meta.edition}</span>
+          <span className={`${styles.badge} ${styles.badgeAccent}`}>
+            {hero.meta.quality}
+          </span>
+          <span className={styles.metaCounts}>
+            <span className={styles.metaPlain}>
+              {catalogue.seriesCount} Serien
+            </span>
+            <span className={styles.metaDot} aria-hidden="true" />
+            <span className={styles.metaPlain}>
+              {catalogue.episodeCount} Folgen
+            </span>
+          </span>
         </div>
 
         <div className={styles.visual}>

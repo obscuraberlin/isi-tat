@@ -143,6 +143,9 @@ export const hero = {
   /* Die Erfahrung steht jetzt hier oben statt als zweite Headline-Ebene —
      sie qualifiziert die Aussage, bevor man sie liest. */
   eyebrow: "20+ JAHRE ERFAHRUNG AN DEINER SEITE",
+  /* Auf dem Telefon dieselbe Aussage in drei Woertern — die lange Zeile
+     brach dort um und stand als zweizeilige Vorzeile ueber der Headline. */
+  eyebrowMobil: "20+ JAHRE ERFAHRUNG",
   /* Metazeile im Stil einer Streaming-Titelseite.
      `edition` und `quality` sind Angaben ueber das Material — `quality`
      nur stehen lassen, wenn tatsaechlich in 4K produziert wird.

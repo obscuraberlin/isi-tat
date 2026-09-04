@@ -858,7 +858,12 @@ export const finalCta = {
     "Und Menschen, die nicht nur darüber reden.",
   ],
   brand: "ISI TAT BUSINESS CLUB",
-  video: media("[FINAL_ISI_VIDEO]", "video", "ISI TAT — Abschluss", "16 / 9", {}, 1),
+  /* Der Auftraggeber hat fuer diese Flaeche denselben Garagen-Clip
+     geliefert, der oben in "Freiheit" laeuft — byte-gleiche Datei. Statt
+     ihn ein zweites Mal auszuliefern, verweist die Flaeche auf Nummer 22.
+     Hier laeuft er unscharf im Hintergrund, dort scharf im Vordergrund;
+     eine eigene 30.mp4 wuerde jederzeit gewinnen. */
+  video: media("[FINAL_ISI_VIDEO]", "video", "ISI TAT — Abschluss", "16 / 9", {}, 22),
 } as const;
 
 /* --------------------------------------------------------------------------

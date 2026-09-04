@@ -16,7 +16,7 @@ export function FinalCTA() {
       <Backdrop variant="grain" tone="dark" />
 
       <div className={styles.bg} aria-hidden="true">
-        <Media asset={finalCta.video} tone="dark" radius="0" />
+        <Media asset={finalCta.video} tone="dark" radius="0" autoPlay />
       </div>
       <span className={styles.scrim} aria-hidden="true" />
 

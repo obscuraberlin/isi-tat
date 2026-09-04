@@ -35,11 +35,19 @@ export function FinalCTA() {
           </h2>
         </Reveal>
 
-        <Reveal delay={140}>
+        <Reveal delay={130} className={styles.body}>
+          {finalCta.body.map((line) => (
+            <span key={line} className={styles.bodyLine}>
+              {line}
+            </span>
+          ))}
+        </Reveal>
+
+        <Reveal delay={170}>
           <p className={styles.brand}>{finalCta.brand}</p>
         </Reveal>
 
-        <Reveal delay={180} className={styles.ctas}>
+        <Reveal delay={210} className={styles.ctas}>
           <ButtonLink href={cta.primary.href} variant="primaryOnDark">
             {cta.primary.label}
           </ButtonLink>

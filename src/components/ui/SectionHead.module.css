@@ -17,6 +17,12 @@
   margin-top: clamp(14px, 1.6vw, 22px);
 }
 
+/* Lange Headlines laufen eine Stufe kleiner, sonst kippt das Verhaeltnis
+   zur restlichen Sektion und der Text nimmt den halben Bildschirm ein. */
+.headlineLong {
+  font-size: clamp(1.875rem, 1.2rem + 2.6vw, 3.5rem);
+}
+
 .line {
   display: block;
 }

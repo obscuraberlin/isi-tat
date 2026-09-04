@@ -128,7 +128,7 @@ export function Intro() {
     <section
       ref={sectionRef}
       className={styles.section}
-      style={{ height: `${SCENES.length * 110}vh` }}
+      style={{ height: `${SCENES.length * 90}vh` }}
       aria-label="Intro"
     >
       <div className={styles.stage}>

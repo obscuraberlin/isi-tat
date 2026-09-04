@@ -5,6 +5,7 @@ import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
 import { TrustSection } from "@/components/TrustSection/TrustSection";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
 import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
+import { LiveSection } from "@/components/LiveSection/LiveSection";
 import { Network } from "@/components/Network/Network";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { OpportunityMoment } from "@/components/OpportunityMoment/OpportunityMoment";
@@ -29,6 +30,7 @@ export default function Page() {
         <SeriesRow />         {/* hell   · Was ist drin           */}
         <TrustSection />      {/* hell   · Wer ist ISI            */}
         <FailureStory />      {/* dunkel · Warum ehrlich          */}
+        <LiveSection />       {/* hell   · Du bist nicht allein   */}
         <Lifestyle />         {/* hell   · Wofür das gut ist      */}
         <Network />           {/* dunkel · Wer sonst dabei ist    */}
         <Testimonials />      {/* hell   · Wer es bestätigt       */}

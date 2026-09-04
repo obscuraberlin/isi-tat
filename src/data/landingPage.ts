@@ -79,10 +79,10 @@ export const cta = {
 } as const;
 
 export const nav = [
-  { label: "INHALTE", href: "#inside-the-club" },
+  { label: "INHALTE", href: "#im-club" },
   { label: "ÜBER ISI", href: "#ueber-isi" },
-  { label: "MEMBER", href: "#member" },
-  { label: "MEMBERSHIP", href: "#zugang" },
+  { label: "ERFAHRUNGEN", href: "#erfahrungen" },
+  { label: "MITGLIEDSCHAFT", href: "#zugang" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
@@ -97,17 +97,32 @@ export const hero = {
      nur stehen lassen, wenn tatsaechlich in 4K produziert wird.
      Serien- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
   meta: {
-    by: "BY ISI TAT",
+    by: "VON ISI TAT",
     edition: "2026",
     quality: "4K",
   },
-  headline: {
-    lines: ["ICH ZEIGE DIR,", "WIE ICH ARBEITE."],
-    /** Wird im Champagne-Akzent gesetzt. */
-    accent: "NICHT, WIE DU ARBEITEN SOLLST.",
+  /* Zwei Headline-Varianten. Umschalten ueber `headlineVariant` — beide
+     sind im Layout geprueft, die Wahl ist reine Geschmackssache. */
+  headlineVariant: "a" as "a" | "b",
+  headlines: {
+    a: {
+      lines: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
+      accent: ["20+ JAHRE ERFAHRUNG", "AN DEINER SEITE."],
+    },
+    b: {
+      lines: ["20+ JAHRE ERFAHRUNG."],
+      accent: ["DAMIT DU NICHT JEDEN", "FEHLER SELBST MACHEN MUSST."],
+    },
   },
   subheadline:
-    "Vier Serien über Mindset, Beruf, Geld und Netzwerk. Dazu Live-Runden, in denen ich Fragen beantworte. Was du daraus machst, ist deine Sache.",
+    "Erfahrung. Orientierung. Austausch. Netzwerk. Und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst.",
+  trustLine: [
+    "20+ JAHRE ERFAHRUNG",
+    "VERTRIEB",
+    "BUSINESS",
+    "NETZWERK",
+    "LIVE-AUSTAUSCH",
+  ],
   video: media(
     "[ISI_HERO_VIDEO]",
     "video",
@@ -184,8 +199,10 @@ export const trust = {
   body: [
     "Ich verkaufe seit über zwanzig Jahren. Angefangen ohne Netzwerk, ohne Kapital, ohne Plan B.",
     "Seitdem habe ich Unternehmen mitgegründet, Teams aufgebaut, viel richtig gemacht — und einiges falsch.",
-    "Im Club zeige ich beides.",
+    "Ich kann dir Entscheidungen nicht abnehmen. Aber du musst sie auch nicht ohne Orientierung treffen.",
   ],
+  /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
+  claim: "Du musst nicht jede Situation zum ersten Mal alleine erleben.",
   video: media(
     "[ISI_REPUTATION_VIDEO]",
     "video",
@@ -202,7 +219,7 @@ export const trust = {
 } as const;
 
 /* --------------------------------------------------------------------------
-   INSIDE THE CLUB — Serien (Netflix-Row + Detailansicht)
+   IM CLUB — Bereiche (Netflix-Row + Detailansicht)
    Bewusst ohne Nummerierung und ohne vorgegebene Reihenfolge.
    -------------------------------------------------------------------------- */
 
@@ -229,13 +246,10 @@ export interface Series {
 }
 
 export const insideTheClub = {
-  eyebrow: "Inside",
-  headline: "INSIDE THE CLUB.",
-  subline: "Vier Themen. Keine Reihenfolge.",
-  /* Wird aus `catalogue` zusammengesetzt — siehe unten. */
+  eyebrow: "Im Club",
+  headline: "WAS DICH DRINNEN ERWARTET.",
+  subline: "Sechs Bereiche. Keine Reihenfolge.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
-  /* Folgentitel sind Entwuerfe, bis die finalen Titel aus der Mediathek vorliegen.
-     Ausnahme: "Konsum vs Investieren" ist eine real existierende Folge. */
   draftEpisodeNote:
     "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
   series: [
@@ -258,46 +272,46 @@ export const insideTheClub = {
       ],
     },
     {
-      /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
-      id: "beruf",
+      id: "vertrieb",
       format: "serie",
-      label: "DER BERUF",
+      label: "VERTRIEB",
+      tagline: "Menschen verstehen, bevor du verkaufst.",
+      description:
+        "Zwanzig Jahre Gespräche, Einwände und Verhandlungen. Warum Menschen kaufen, bevor sie überzeugt sind — und woran es liegt, wenn sie es nicht tun.",
+      cover: media("[SERIE_VERTRIEB_COVER]", "image", "Vertrieb", "2 / 3"),
+      still: media("[SERIE_VERTRIEB_STILL]", "image", "Vertrieb", "16 / 9"),
+      preview: null,
+      episodes: [
+        { title: "Das Gespräch vor dem Gespräch", runtime: null },
+        { title: "Einwände sind Informationen", runtime: null },
+        { title: "Verhandeln, ohne zu verlieren", runtime: null },
+        { title: "Der Abschluss ist kein Moment", runtime: null },
+      ],
+    },
+    {
+      /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
+      id: "business",
+      format: "serie",
+      label: "BUSINESS",
       tagline: "Vom Job zum eigenen Unternehmen.",
       description:
         "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Verantwortung, Struktur, Leute — und die Entscheidungen, die ich heute anders treffen würde.",
-      cover: media("[SERIE_BERUF_COVER]", "image", "Der Beruf", "2 / 3"),
-      still: media("[SERIE_BERUF_STILL]", "image", "Der Beruf", "16 / 9"),
+      cover: media("[SERIE_BUSINESS_COVER]", "image", "Business", "2 / 3"),
+      still: media("[SERIE_BUSINESS_STILL]", "image", "Business", "16 / 9"),
       preview: null,
       episodes: [
         { title: "Vom Angestellten zum Unternehmer", runtime: null },
         { title: "Verantwortung, die niemand abnimmt", runtime: null },
         { title: "Die falschen Partner erkennen", runtime: null },
         { title: "Wachsen, ohne die Kontrolle zu verlieren", runtime: null },
-      ],
-    },
-    {
-      /* interne Ablage: GELD */
-      id: "geld",
-      format: "serie",
-      label: "GELD",
-      tagline: "Verdienen ist das eine. Behalten das andere.",
-      description:
-        "Was passiert, wenn mehr reinkommt. Konsum, Investition, Prioritäten — und warum meine teuersten Fehler nie beim Verdienen passiert sind.",
-      cover: media("[SERIE_GELD_COVER]", "image", "Geld", "2 / 3"),
-      still: media("[SERIE_GELD_STILL]", "image", "Geld", "16 / 9"),
-      preview: null,
-      episodes: [
-        /* real existierende Folge */
+        /* aus der Ablage GELD — real existierende Folge */
         { title: "Konsum vs Investieren", runtime: null },
-        { title: "Was Geld mit Entscheidungen macht", runtime: null },
-        { title: "Prioritäten statt Budgets", runtime: null },
       ],
     },
     {
       /* interne Ablage: FREUNDE WERBEN FREUNDE
-         Oeffentlich bewusst als NETZWERK gefuehrt — die interne Bezeichnung
-         beschreibt eine Vertriebsmechanik und faellt unter Punkt 7 des Briefings
-         (internes Geschaeftsmodell nicht oeffentlich kommunizieren). */
+         Oeffentlich als NETZWERK gefuehrt: die interne Bezeichnung beschreibt
+         eine Vertriebsmechanik und gehoert nicht auf die Verkaufsseite. */
       id: "netzwerk",
       format: "serie",
       label: "NETZWERK",
@@ -314,20 +328,36 @@ export const insideTheClub = {
       ],
     },
     {
-      id: "live",
-      format: "live",
-      label: "LIVE",
-      tagline: "Live dabei statt nur zuschauen.",
+      id: "geschichten",
+      format: "serie",
+      label: "ECHTE GESCHICHTEN",
+      tagline: "Was gelaufen ist. Und was nicht.",
       description:
-        "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Fälle durchgehe und Leute miteinander bekannt mache.",
-      cover: media("[SERIE_LIVE_COVER]", "image", "Live", "2 / 3"),
-      still: media("[SERIE_LIVE_STILL]", "image", "Live", "16 / 9"),
+        "Erzählte Fälle aus zwanzig Jahren, ohne Politur. Die Sachen, die funktioniert haben. Die, die schiefgingen. Und was jeweils den Unterschied gemacht hat.",
+      cover: media("[SERIE_GESCHICHTEN_COVER]", "image", "Echte Geschichten", "2 / 3"),
+      still: media("[SERIE_GESCHICHTEN_STILL]", "image", "Echte Geschichten", "16 / 9"),
       preview: null,
       episodes: [
-        { title: "Roundtables", runtime: null },
-        { title: "Q&A mit ISI", runtime: null },
-        { title: "Member-Sessions", runtime: null },
-        { title: "Events vor Ort", runtime: null },
+        { title: "Der Deal, der zu gut aussah", runtime: null },
+        { title: "Zwei Jahre auf die falsche Karte", runtime: null },
+        { title: "Wieder aufstehen ist keine Metapher", runtime: null },
+      ],
+    },
+    {
+      id: "live",
+      format: "live",
+      label: "LIVE MIT ISI",
+      tagline: "Fragen stellen, statt nur zuschauen.",
+      description:
+        "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Situationen einordne und Leute miteinander bekannt mache.",
+      cover: media("[SERIE_LIVE_COVER]", "image", "Live mit ISI", "2 / 3"),
+      still: media("[SERIE_LIVE_STILL]", "image", "Live mit ISI", "16 / 9"),
+      preview: null,
+      episodes: [
+        { title: "Offene Fragerunden", runtime: null },
+        { title: "Fälle aus dem Alltag", runtime: null },
+        { title: "Austausch unter Mitgliedern", runtime: null },
+        { title: "Treffen vor Ort", runtime: null },
       ],
     },
   ] satisfies Series[],
@@ -384,16 +414,17 @@ export const timeline = {
 } as const;
 
 /* --------------------------------------------------------------------------
-   OPPORTUNITY MOMENT
+   ZUSAMMENARBEIT
    -------------------------------------------------------------------------- */
 
 export const opportunity = {
-  first: ["MANCHMAL WIRD", "MEHR DARAUS."],
-  second: ["ABER NUR,", "WENN ES WIRKLICH"],
-  accent: "PASST.",
-  note: "Mit einzelnen Mitgliedern arbeite ich irgendwann zusammen, oder Leute aus meinem Umfeld tun es. Das entsteht über Zeit — nicht dadurch, dass jemand eine Mitgliedschaft gekauft hat.",
+  first: ["MANCHMAL", "ENTSTEHT MEHR DARAUS."],
+  second: ["NICHT WEIL DU BEZAHLT HAST.", "SONDERN WEIL DU"],
+  accent: "AUFFÄLLST.",
+  note: "Wer im Club durch Zuverlässigkeit, Persönlichkeit und den Umgang mit anderen auffällt, wird in meinem Umfeld sichtbar.",
+  closing: ["ZUGANG KANNST DU ANFRAGEN.", "VERTRAUEN MUSST DU DIR ERARBEITEN."],
   disclaimer:
-    "Daraus entsteht kein Anspruch: keine Zusage auf Zusammenarbeit, keine Position, kein Einkommen.",
+    "Daraus entsteht kein Anspruch: keine Jobgarantie, keine Einkommensgarantie, keine automatische Zusammenarbeit.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -404,10 +435,14 @@ export const failure = {
   eyebrow: "Ehrlich",
   headline: ["WAS BEI MIR", "SCHIEFGELAUFEN IST."],
   body: [
-    "Zwanzig Jahre heißen nicht zwanzig Jahre richtige Entscheidungen.",
-    "Falsches Timing, die falschen Leute, Chancen nicht gesehen. Das gehört dazu und ich rede darüber.",
+    "Zwanzig Jahre Erfahrung sind nicht zwanzig Jahre richtige Entscheidungen.",
+    "Falsches Timing. Falsche Menschen. Chancen zu spät erkannt.",
+    "Das gehört für mich genauso in den Club wie das, was funktioniert hat.",
   ],
-  closing: ["MEINE ERFOLGE KANNST DU SEHEN.", "MEINE FEHLER KOSTEN DICH NICHTS."],
+  closing: [
+    "MEINE ERFOLGE KANNST DU SEHEN.",
+    "VON MEINEN FEHLERN KANNST DU MEHR LERNEN.",
+  ],
   image: media("[ISI_OLD_PHOTO_01]", "image", "ISI TAT — frühe Jahre", "3 / 4"),
 } as const;
 
@@ -417,18 +452,18 @@ export const failure = {
 
 export const lifestyle = {
   eyebrow: "Freiheit",
-  headline: ["ES GEHT NICHT", "UMS AUTO."],
-  headlineAccent: ["ES GEHT DARUM,", "NEIN SAGEN ZU KÖNNEN."],
+  headline: ["DER LUXUS IST", "NICHT DAS AUTO."],
+  headlineAccent: ["DER LUXUS IST,", "ENTSCHEIDEN ZU KÖNNEN."],
   body: [
-    "Ich teile mir meine Zeit selbst ein und entscheide, mit wem ich arbeite.",
-    "Das ist der Unterschied, den man auf Fotos nicht sieht.",
+    "Mit wem du arbeitest. Wann du arbeitest. Wo du bist.",
+    "Wem du helfen kannst. Welche Chancen du annimmst — und zu welchen du Nein sagst.",
   ],
   /* Slots entsprechen den vorhandenen Aufnahmen — nur `src` setzen. */
   gallery: [
-    media("[ISI_PARIS_ROLLS_ROYCE]", "image", "Paris bei Nacht", "4 / 5"),
-    media("[ISI_PRIVATE_JET]", "image", "Unterwegs", "4 / 5"),
-    media("[ISI_PORSCHE_HUND]", "image", "Berlin", "4 / 5"),
-    media("[ISI_GARAGE_PARTNER]", "image", "Menschen", "4 / 5"),
+    media("[ISI_ROLLS_ROYCE]", "image", "Paris bei Nacht", "4 / 5"),
+    media("[ISI_REISE]", "image", "Unterwegs", "4 / 5"),
+    media("[ISI_FAMILIE]", "image", "Zuhause", "4 / 5"),
+    media("[ISI_BUSINESS]", "image", "Bei der Arbeit", "4 / 5"),
   ],
   disclaimer:
     "Das sind meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussehen wird.",
@@ -439,20 +474,57 @@ export const lifestyle = {
    -------------------------------------------------------------------------- */
 
 export const network = {
-  eyebrow: "Umfeld",
-  headline: ["MIT WEM DU REDEST,", "ÄNDERT ALLES."],
-  body: ["Wissen findest du überall.", "An Menschen kommst du schwerer ran."],
-  center: "YOU",
-  nodes: [
-    "SALES",
-    "FOUNDERS",
-    "BUSINESS",
-    "ENTREPRENEURS",
-    "MARKETING",
-    "FINANCE",
-    "CREATORS",
-    "PARTNERS",
+  eyebrow: "Dein Umfeld",
+  headline: ["WISSEN FINDEST", "DU ÜBERALL."],
+  headlineAccent: ["DIE RICHTIGEN", "MENSCHEN NICHT."],
+  body: [
+    "Manchmal fehlt nicht die nächste Information.",
+    "Sondern jemand, der die Situation schon kennt.",
   ],
+  /* Erscheinen nacheinander, waehrend die Grafik in den Blick kommt. */
+  hints: ["Ein Kontakt.", "Eine Perspektive.", "Ein ehrlicher Hinweis.", "Ein Gespräch zur richtigen Zeit."],
+  center: "DU",
+  nodes: [
+    "VERTRIEB",
+    "UNTERNEHMER",
+    "SELBSTSTÄNDIGE",
+    "BUSINESS",
+    "MARKETING",
+    "FINANZEN",
+    "KREATIVBRANCHE",
+    "PARTNER",
+    "EXPERTEN",
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
+   LIVE MIT ISI
+   -------------------------------------------------------------------------- */
+
+export const live = {
+  eyebrow: "Live mit ISI",
+  headline: ["WENN EINE FRAGE NICHT BIS", "ZUM NÄCHSTEN VIDEO WARTEN KANN."],
+  body: [
+    "Business läuft selten exakt nach Plan.",
+    "Deshalb besteht der Club nicht nur aus Inhalten.",
+  ],
+  items: [
+    {
+      label: "FRAGEN STELLEN",
+      text: "Was dich gerade beschäftigt, statt was als Nächstes im Plan steht.",
+    },
+    {
+      label: "SITUATIONEN EINORDNEN",
+      text: "Eine zweite Perspektive von jemandem, der die Lage schon kennt.",
+    },
+    {
+      label: "VON ANDEREN FÄLLEN PROFITIEREN",
+      text: "Die Frage eines anderen Mitglieds ist oft auch deine.",
+    },
+  ],
+  /* Frequenz noch offen. */
+  frequency: "TODO_CONTENT",
+  visual: media("[ISI_LIVE_RUNDE]", "video", "Live-Runde mit ISI TAT", "16 / 9"),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -467,38 +539,39 @@ export interface Testimonial {
 }
 
 export const testimonials = {
-  eyebrow: "Mitglieder",
-  headline: ["LEUTE, DIE", "SCHON DRIN SIND."],
+  eyebrow: "Erfahrungen",
+  headline: ["MENSCHEN, DIE", "SCHON DRIN SIND."],
   note: "Hier stehen erst Stimmen, wenn sie vorliegen und die Leute zugestimmt haben. Nichts Ausgedachtes.",
   items: [
     {
       name: "[NAME]",
       role: "[BERUF]",
       statement: "TODO_CONTENT",
-      video: media("[TESTIMONIAL_VIDEO_01]", "video", "Member-Statement", "3 / 4"),
+      video: media("[TESTIMONIAL_VIDEO_01]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
     {
       name: "[NAME]",
       role: "[BERUF]",
       statement: "TODO_CONTENT",
-      video: media("[TESTIMONIAL_VIDEO_02]", "video", "Member-Statement", "3 / 4"),
+      video: media("[TESTIMONIAL_VIDEO_02]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
     {
       name: "[NAME]",
       role: "[BERUF]",
       statement: "TODO_CONTENT",
-      video: media("[TESTIMONIAL_VIDEO_03]", "video", "Member-Statement", "3 / 4"),
+      video: media("[TESTIMONIAL_VIDEO_03]", "video", "Erfahrungsbericht eines Mitglieds", "3 / 4"),
     },
   ] satisfies Testimonial[],
 } as const;
 
 /* --------------------------------------------------------------------------
-   MEMBERSHIP
+   MITGLIEDSCHAFT
    -------------------------------------------------------------------------- */
 
 export const membership = {
-  eyebrow: "Mitgliedschaft",
-  headline: ["WAS DU", "BEKOMMST."],
+  eyebrow: "Deine Mitgliedschaft",
+  headline: ["NICHT NUR CONTENT."],
+  headlineAccent: ["EIN UMFELD,", "DAS MITDENKT."],
   /* Echter Screenshot des Mitgliederbereichs — das ueberzeugendste Element
      der Seite, sobald er da ist. Solange leer, steht ein Platzhalter. */
   preview: media(
@@ -510,32 +583,32 @@ export const membership = {
   previewCaption: "So sieht es von innen aus.",
   rows: [
     {
-      label: "DER CLUB",
-      text: "Der geschlossene Bereich. Alle Inhalte, alle Mitglieder, ein Login.",
+      label: "INHALTE & ERFAHRUNGEN",
+      text: "Perspektiven aus über 20 Jahren Vertrieb, Business und Entscheidungen.",
     },
     {
-      label: "DIE SERIEN",
-      text: "Vier Serien zu Mindset, Beruf, Geld und Netzwerk. Es kommt laufend etwas dazu.",
+      label: "LIVE MIT ISI",
+      text: "Fragen, Situationen und Erfahrungen gemeinsam einordnen.",
     },
     {
-      label: "LIVE MIT MIR",
-      text: "Regelmäßige Runden, in denen ich Fragen beantworte und Fälle durchgehe.",
+      label: "DIE COMMUNITY",
+      text: "Menschen mit ähnlichen Ambitionen und Herausforderungen.",
     },
     {
-      label: "DIE LEUTE",
-      text: "Austausch mit Mitgliedern, die an denselben Fragen sitzen wie du.",
+      label: "NETZWERK",
+      text: "Kontakte und Beziehungen, die über Zeit entstehen können.",
     },
     {
-      label: "TREFFEN",
-      text: "Gemeinsame Formate und Events innerhalb des Clubs.",
+      label: "TREFFEN & EVENTS",
+      text: "TODO_CONTENT — tatsächlichen Umfang eintragen.",
     },
     {
-      label: "KONTAKTE",
-      text: "Verbindungen, die im Club entstehen. Keine Liste, die du bekommst.",
+      label: "ZUGANG ZU ISI",
+      text: "TODO_CONTENT — tatsächlichen Umfang des persönlichen Zugangs eintragen.",
     },
     {
-      label: "ZUGANG ZU MIR",
-      text: "TODO_CONTENT — exakten tatsächlichen Umfang eintragen.",
+      label: "WEITERE MÖGLICHKEITEN",
+      text: "Keine Garantie — aber die Chance, innerhalb des Umfelds sichtbar zu werden.",
     },
   ],
 } as const;
@@ -572,7 +645,7 @@ export const application = {
 
 export const pricing = {
   eyebrow: "Preis",
-  headline: "MEMBERSHIP.",
+  headline: "MITGLIEDSCHAFT.",
   subline: "ISI TAT BUSINESS CLUB",
   price: "4.900 €",
   /* Noch offen — bitte eintragen. */
@@ -612,7 +685,7 @@ export const faq = {
     },
     {
       q: "Wie viel Kontakt habe ich zu dir?",
-      a: "TODO_CONTENT — tatsächlichen Umfang eintragen (Live-Runden, Fragen, direkter Austausch).",
+      a: "TODO_CONTENT — tatsächlichen Umfang des persönlichen Zugangs eintragen.",
     },
     {
       q: "Wie läuft die Aufnahme?",
@@ -628,11 +701,15 @@ export const faq = {
     },
     {
       q: "Kann daraus eine Zusammenarbeit werden?",
-      a: "Möglich, aber ich sichere es nicht zu. Mit einzelnen Mitgliedern arbeite ich irgendwann zusammen. Das entsteht über Zeit und nicht durch den Kauf einer Mitgliedschaft.",
+      a: "Möglich, aber ich sichere es nicht zu. Mit einzelnen Mitgliedern arbeite ich irgendwann zusammen. Das entsteht über Zeit und dadurch, wie jemand auffällt — nicht durch den Kauf einer Mitgliedschaft.",
+    },
+    {
+      q: "Bin ich nach dem Kauf auf mich allein gestellt?",
+      a: "Nein. Genau das soll der Club nicht sein. Du bekommst Zugang zu den verfügbaren Inhalten, den Live-Formaten und dem Austausch innerhalb des Clubs. Du triffst deine Entscheidungen weiterhin selbst — aber du musst nicht jede Frage alleine mit dir ausmachen.",
     },
     {
       q: "Gibt es eine Erfolgsgarantie?",
-      a: "Nein. Ich zeige dir, wie ich arbeite und was ich gelernt habe. Was du damit machst, kann ich dir nicht abnehmen.",
+      a: "Nein. Kein seriöser Mensch kann dir ein bestimmtes geschäftliches oder finanzielles Ergebnis garantieren. Was wir dir geben können, sind Erfahrungen, Perspektiven, Austausch und ein Umfeld, das dich bei deinen nächsten Entscheidungen unterstützen kann.",
     },
   ],
 } as const;
@@ -643,7 +720,12 @@ export const faq = {
 
 export const finalCta = {
   headline: ["CONTENT HAST", "DU GENUG."],
-  accent: ["LEUTE, DIE ES GEMACHT", "HABEN, NICHT."],
+  accent: ["DIE FRAGE IST, MIT WEM DU", "DEINE NÄCHSTEN ENTSCHEIDUNGEN TRIFFST."],
+  body: [
+    "20+ Jahre Erfahrung.",
+    "Ein starkes Umfeld.",
+    "Und Menschen, die nicht nur darüber reden.",
+  ],
   brand: "ISI TAT BUSINESS CLUB",
   video: media(
     "[FINAL_ISI_VIDEO]",
@@ -675,7 +757,7 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB — Ich zeige dir, wie ich arbeite.",
+  title: "ISI TAT BUSINESS CLUB — Du musst nicht alles selbst herausfinden.",
   description:
-    "Vier Serien über Mindset, Beruf, Geld und Netzwerk. Dazu Live-Runden mit ISI. Kein Kurs, kein Lehrplan.",
+    "Über 20 Jahre Vertrieb, Business und Netzwerk. Inhalte, Live-Austausch und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst.",
 } as const;

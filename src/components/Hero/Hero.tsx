@@ -39,6 +39,7 @@ export function Hero() {
 
   /* Hero-Video bevorzugt, Bild als Fallback solange kein Video hinterlegt ist. */
   const asset = hero.video.src ? hero.video : hero.image;
+  const headline = hero.headlines[hero.headlineVariant];
 
   return (
     <section className={styles.hero} id="top" aria-label="Einstieg">
@@ -51,14 +52,22 @@ export function Hero() {
           </div>
 
           <h1 className={styles.headline}>
-            {hero.headline.lines.map((line, index) => (
+            {headline.lines.map((line, index) => (
               <Line key={line} delayMs={420 + index * 110}>
                 {line}
               </Line>
             ))}
-            <Line delayMs={420 + hero.headline.lines.length * 110} accent>
-              {hero.headline.accent}
-            </Line>
+            <span className={styles.accentBlock}>
+              {headline.accent.map((line, index) => (
+                <Line
+                  key={line}
+                  delayMs={420 + (headline.lines.length + index) * 110}
+                  accent
+                >
+                  {line}
+                </Line>
+              ))}
+            </span>
           </h1>
 
           {/* Metazeile: was das Ganze ist, in einer Zeile. */}
@@ -91,6 +100,14 @@ export function Hero() {
               {cta.heroSecondary.label}
             </Button>
           </div>
+
+          <ul className={`${styles.trustLine} ${styles.fadeUp}`} style={delay(1260)}>
+            {hero.trustLine.map((item) => (
+              <li key={item} className={styles.trustItem}>
+                {item}
+              </li>
+            ))}
+          </ul>
 
         </div>
 

@@ -55,9 +55,11 @@
   --display-width: 88;
 
   /* Hero 44 -> 92 | Section 36 -> 72 | Sub 24 -> 36 | Card 20 -> 26 */
-  --fs-hero: clamp(2.75rem, 1.2rem + 5.2vw, 4.5rem);
-  /* Zweite, ruhigere Ebene der Hero-Headline (Champagne-Teil) */
-  --fs-hero-accent: clamp(1.75rem, 1rem + 2.3vw, 2.625rem);
+  /* Die Hero-Headline ist zweistufig: die Aussage gross, die Einloesung
+     darunter ruhiger. Beide Groessen sind so gewaehlt, dass die im Text
+     gesetzten Zeilenumbrueche halten und nicht zusaetzlich umbrechen. */
+  --fs-hero: clamp(2.75rem, 1.2rem + 4.3vw, 3.875rem);
+  --fs-hero-accent: clamp(1.875rem, 0.9rem + 2.9vw, 2.75rem);
   --fs-section: clamp(2.25rem, 1.45rem + 3.4vw, 4.5rem);
   --fs-sub: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
   --fs-card: clamp(1.25rem, 1.13rem + 0.5vw, 1.625rem);

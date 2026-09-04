@@ -15,6 +15,9 @@ interface SectionHeadProps {
   className?: string;
 }
 
+/** Ab dieser Zeichenzahl wird die Headline eine Stufe kleiner gesetzt. */
+const LONG_HEADLINE = 44;
+
 export function SectionHead({
   eyebrow,
   lines,
@@ -24,6 +27,8 @@ export function SectionHead({
   align = "start",
   className,
 }: SectionHeadProps) {
+  const length = [...lines, ...(accentLines ?? [])].join("").length;
+
   return (
     <div
       className={[
@@ -44,7 +49,14 @@ export function SectionHead({
       ) : null}
 
       <Reveal variant="mask" delay={60}>
-        <h2 className={styles.headline}>
+        <h2
+          className={[
+            styles.headline,
+            length > LONG_HEADLINE ? styles.headlineLong : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           {lines.map((line) => (
             <span key={line} className={styles.line}>
               {line}

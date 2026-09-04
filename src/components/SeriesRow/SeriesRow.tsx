@@ -132,7 +132,7 @@ export function SeriesRow() {
   };
 
   return (
-    <section className={styles.section} id="inside-the-club">
+    <section className={styles.section} id="im-club">
       <Reveal className={styles.head}>
         <div>
           <Eyebrow rule>{insideTheClub.eyebrow}</Eyebrow>
@@ -147,7 +147,7 @@ export function SeriesRow() {
             className={styles.arrow}
             onClick={() => page(-1)}
             disabled={atStart}
-            aria-label="Vorherige Serien"
+            aria-label="Vorherige Bereiche"
           >
             <Arrow dir="left" />
           </button>
@@ -156,7 +156,7 @@ export function SeriesRow() {
             className={styles.arrow}
             onClick={() => page(1)}
             disabled={atEnd}
-            aria-label="Weitere Serien"
+            aria-label="Weitere Bereiche"
           >
             <Arrow dir="right" />
           </button>

@@ -28,7 +28,8 @@ export function Access() {
         <SectionHead
           eyebrow={membership.eyebrow}
           lines={membership.headline}
-          subline="Alles, was drin ist. Was es kostet. Und wie du reinkommst."
+          accentLines={membership.headlineAccent}
+          subline="Was drin ist, was es kostet, wie du reinkommst."
         />
 
         <Reveal className={styles.preview}>

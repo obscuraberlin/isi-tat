@@ -7,15 +7,16 @@ import { Reveal } from "@/components/Reveal/Reveal";
 import { useInView } from "@/lib/hooks";
 import styles from "./Network.module.css";
 
-const RADIUS = 37; // Prozent der halben Kantenlaenge
+/* Zwei Ringe statt einem — das nimmt der Grafik das Mindmap-Schema. */
+const RING = [32, 44];
 
-/** Knotenpositionen auf einem Kreis, beginnend oben. */
 const points = network.nodes.map((label, index) => {
   const angle = (index / network.nodes.length) * Math.PI * 2 - Math.PI / 2;
+  const radius = RING[index % RING.length];
   return {
     label,
-    x: 50 + Math.cos(angle) * RADIUS,
-    y: 50 + Math.sin(angle) * RADIUS,
+    x: 50 + Math.cos(angle) * radius,
+    y: 50 + Math.sin(angle) * radius * 0.9,
   };
 });
 
@@ -23,21 +24,37 @@ export function Network() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
   const delay = (index: number, base: number): CSSProperties =>
-    ({ "--delay": `${base + index * 80}ms` }) as CSSProperties;
+    ({ "--delay": inView ? `${base + index * 110}ms` : "0ms" }) as CSSProperties;
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="netzwerk">
       <div className={styles.inner}>
         <div>
           <SectionHead
             eyebrow={network.eyebrow}
             lines={network.headline}
+            accentLines={network.headlineAccent}
             tone="dark"
           />
+
           <Reveal delay={140}>
             <div className={styles.body}>
               {network.body.map((line) => (
                 <p key={line}>{line}</p>
+              ))}
+            </div>
+
+            <div className={styles.hints}>
+              {network.hints.map((hint, index) => (
+                <span
+                  key={hint}
+                  className={[styles.hint, inView ? styles.hintOn : ""]
+                    .filter(Boolean)
+                    .join(" ")}
+                  style={delay(index, 700)}
+                >
+                  {hint}
+                </span>
               ))}
             </div>
           </Reveal>
@@ -50,10 +67,6 @@ export function Network() {
             aria-hidden="true"
             focusable="false"
           >
-            {[22, 30, 37].map((r) => (
-              <circle key={r} className={styles.ring} cx="50" cy="50" r={r} />
-            ))}
-
             {points.map((point, index) => (
               <line
                 key={`l-${point.label}`}
@@ -71,12 +84,16 @@ export function Network() {
             {points.map((point, index) => (
               <circle
                 key={`p-${point.label}`}
-                className={[styles.point, inView ? styles.pointOn : ""]
+                className={[
+                  styles.node,
+                  inView ? styles.nodeOn : "",
+                  index === 0 ? styles.nodeAccent : "",
+                ]
                   .filter(Boolean)
                   .join(" ")}
                 cx={point.x}
                 cy={point.y}
-                r="0.9"
+                r={index === 0 ? 0.85 : 0.55}
                 style={delay(index, 320)}
               />
             ))}
@@ -87,14 +104,15 @@ export function Network() {
           {points.map((point, index) => (
             <span
               key={point.label}
-              className={[styles.node, inView ? styles.nodeOn : ""]
+              className={[styles.label, inView ? styles.labelOn : ""]
                 .filter(Boolean)
                 .join(" ")}
               style={
                 {
                   "--x": `${point.x}%`,
-                  "--y": `${point.y}%`,
-                  ...delay(index, 380),
+                  /* Etwas oberhalb des Punktes, damit die Linie frei bleibt. */
+                  "--y": `${point.y - 4}%`,
+                  ...delay(index, 420),
                 } as CSSProperties
               }
             >

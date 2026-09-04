@@ -12,7 +12,7 @@ export function Testimonials() {
   const { openVideo } = useTrailer();
 
   return (
-    <section className={styles.section} id="member">
+    <section className={styles.section} id="erfahrungen">
       <div className={styles.inner}>
         <SectionHead
           eyebrow={testimonials.eyebrow}
@@ -25,7 +25,7 @@ export function Testimonials() {
               <div className={styles.visual}>
                 <Media asset={item.video} tone="dark" />
                 <PlayButton
-                  onClick={() => openVideo(item.video, "Member-Statement")}
+                  onClick={() => openVideo(item.video, "Erfahrungsbericht")}
                   ariaLabel={`Video abspielen: ${item.video.alt}`}
                 />
               </div>

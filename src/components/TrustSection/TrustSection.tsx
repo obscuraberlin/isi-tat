@@ -78,6 +78,7 @@ export function TrustSection() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              <p className={styles.claim}>{trust.claim}</p>
             </Reveal>
           </div>
 

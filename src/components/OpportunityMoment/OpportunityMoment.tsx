@@ -27,7 +27,23 @@ export function OpportunityMoment() {
           </p>
         </Reveal>
 
-        <Reveal delay={160}>
+        <Reveal delay={140} className={styles.closing}>
+          {opportunity.closing.map((line, index) => (
+            <span
+              key={line}
+              className={[
+                styles.closingLine,
+                index === opportunity.closing.length - 1 ? styles.accent : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              {line}
+            </span>
+          ))}
+        </Reveal>
+
+        <Reveal delay={180}>
           <p className={styles.note}>{opportunity.note}</p>
           <p className={styles.disclaimer}>{opportunity.disclaimer}</p>
         </Reveal>

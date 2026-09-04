@@ -47,6 +47,12 @@ export interface MediaAsset {
   src: string | null;
   /** Poster/Fallback fuer Videos */
   poster?: string | null;
+  /**
+   * Kleine, stumme Fassung (1280 px). Fuer Handys und fuer Videos, die als
+   * Hintergrund laufen — dort sieht niemand den Unterschied, spart aber
+   * ein Vielfaches an Daten. Fehlt sie, wird die grosse Datei benutzt.
+   */
+  klein?: string | null;
   /** Aussagekraeftiger Alt-Text bzw. Videobeschreibung */
   alt: string;
   /** CSS aspect-ratio, z. B. "16 / 9" */
@@ -83,6 +89,7 @@ const media = (
     kind,
     src: datei?.src ?? null,
     poster: datei?.poster ?? null,
+    klein: datei?.klein ?? null,
     alt,
     ratio,
     ...extra,

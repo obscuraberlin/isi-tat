@@ -10,10 +10,12 @@
  * Erkannt werden:
  *   03.mp4          das Asset selbst
  *   03-poster.jpg   Standbild fuer ein Video
+ *   03-klein.mp4    kleine, stumme Fassung fuer Handy und Hintergrund
  *
- * Eine getrennte Handy-Fassung gibt es bewusst nicht: <video> wertet das
- * media-Attribut an <source> nicht aus, eine zweite Quelle waere wirkungslos.
- * Stattdessen eine gut komprimierte Datei fuer alle.
+ * Die kleine Fassung wird NICHT ueber <source media> ausgewaehlt — das
+ * Attribut wertet in <video> kein Browser aus, gemessen: auf 390 px laedt
+ * Chromium trotzdem die grosse Datei. Die Auswahl trifft deshalb die
+ * Media-Komponente im Browser, bevor eine Quelle gesetzt wird.
  */
 import { readdirSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 
@@ -27,7 +29,7 @@ const dateien = existsSync(DIR) ? readdirSync(DIR) : [];
 const treffer = {};
 
 for (const name of dateien) {
-  const m = /^(\d{2})(-poster)?\.[a-z0-9]+$/i.exec(name);
+  const m = /^(\d{2})(-poster|-klein)?\.[a-z0-9]+$/i.exec(name);
   if (!m) continue;
   if (!BILD.test(name) && !VIDEO.test(name)) continue;
 
@@ -36,6 +38,7 @@ for (const name of dateien) {
   treffer[no] ??= {};
 
   if (rolle === "-poster") treffer[no].poster = `/media/${name}`;
+  else if (rolle === "-klein") treffer[no].klein = `/media/${name}`;
   else treffer[no].src = `/media/${name}`;
 }
 
@@ -44,7 +47,7 @@ for (const name of dateien) {
 for (const [no, eintrag] of Object.entries(treffer)) {
   if (!eintrag.src) {
     console.warn(
-      `Warnung: zu Nummer ${no} liegt nur ein Poster — die Hauptdatei fehlt.`,
+      `Warnung: zu Nummer ${no} liegt nur ein Poster oder eine kleine Fassung — die Hauptdatei fehlt.`,
     );
     delete treffer[no];
   }
@@ -63,6 +66,7 @@ writeFileSync(
 export interface MediaFile {
   src?: string;
   poster?: string;
+  klein?: string;
 }
 
 export const mediaFiles: Record<number, MediaFile> = {

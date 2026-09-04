@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { MediaAsset } from "@/data/landingPage";
+import { useLoopImBild } from "@/lib/videoLoop";
 import styles from "./VideoTeaser.module.css";
 
 interface VideoTeaserProps {
@@ -35,18 +36,31 @@ export function VideoTeaser({ asset, label, note, className }: VideoTeaserProps)
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
+  /* Die Vorschau laeuft in der kleinen Fassung — sie ist stumm, laeuft
+     nebenbei und wird niemandem als Film verkauft. Auf Klick uebernimmt
+     die volle Datei; dann schaut jemand wirklich zu. */
+  const quelle = playing ? asset.src : (asset.klein ?? asset.src);
+
+  /* Ausserhalb des Bildes steht die Vorschau still. Laeuft sie mit Ton,
+     bleibt sie an — wer sie gestartet hat, will sie hoeren. */
+  useLoopImBild(ref, !playing && Boolean(asset.src));
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     if (playing) {
-      /* Von vorn, sonst liefe es dort weiter, wo die Vorschau gerade stand. */
-      el.currentTime = 0;
-      el.play().catch(() => {
-        /* Bleibt der Ton blockiert, zurueck in die Vorschau statt in einen
-           Zustand mit Bedienelementen und stehendem Bild. */
-        setPlaying(false);
-      });
+      /* Die Quelle hat gewechselt — ohne load() spielt der Browser die
+         Vorschaudatei weiter. load() setzt auch die Abspielposition auf
+         null zurueck; ein eigenes currentTime = 0 direkt danach waere
+         nicht nur ueberfluessig, es kann werfen, weil das Element in dem
+         Moment noch keine Daten hat. */
+      el.load();
+      /* Scheitert das Abspielen, bleibt der Zustand trotzdem "spielt":
+         das Video steht dann mit Bedienelementen da, und ein Druck auf
+         Play startet es. Zurueck in die Vorschau zu fallen hiesse, den
+         Klick stillschweigend zu verschlucken. */
+      el.play().catch(() => {});
       return;
     }
 
@@ -60,7 +74,7 @@ export function VideoTeaser({ asset, label, note, className }: VideoTeaserProps)
       <video
         ref={ref}
         className={styles.video}
-        src={asset.src ?? undefined}
+        src={quelle ?? undefined}
         poster={asset.poster ?? undefined}
         aria-label={asset.alt}
         muted={!playing}

@@ -12,6 +12,7 @@ interface CtaBandProps {
   image?: string | null;
   /** Clip hinter dem Band — stumm in Schleife, gewinnt gegen `image`. */
   video?: string | null;
+  videoKlein?: string | null;
   imageOpacity?: number;
   imagePosition?: string;
 }
@@ -31,6 +32,7 @@ export function CtaBand({
   tone = "dark",
   image,
   video,
+  videoKlein,
   imageOpacity,
   imagePosition,
 }: CtaBandProps) {
@@ -47,6 +49,7 @@ export function CtaBand({
         tone={tone}
         image={image}
         video={video}
+        videoKlein={videoKlein}
         imageOpacity={imageOpacity ?? (tone === "light" ? 0.16 : 0.3)}
         imagePosition={imagePosition}
         drift={40}

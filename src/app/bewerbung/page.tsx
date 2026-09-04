@@ -52,6 +52,7 @@ export default function BewerbungPage() {
           tone="dark"
           image={trailer.video.poster ?? backdrops.ctaNachInhalten.src}
           video={trailer.video.src}
+          videoKlein={trailer.video.klein}
           imageOpacity={0.2}
           imagePosition="50% 45%"
           drift={0}
@@ -102,6 +103,7 @@ export default function BewerbungPage() {
         tone="dark"
         image={trailer.video.poster ?? backdrops.finalCta.src}
         video={trailer.video.src}
+        videoKlein={trailer.video.klein}
         imageOpacity={0.16}
         imagePosition="50% 40%"
       />

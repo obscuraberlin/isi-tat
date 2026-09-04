@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLoopImBild, useLoopQuelle } from "@/lib/videoLoop";
 import styles from "./Backdrop.module.css";
 
 export type BackdropVariant = "grain" | "grid" | "glow" | "horizon" | "beam";
@@ -22,6 +23,8 @@ interface BackdropProps {
    * `image`, das dann als Standbild darunter liegt, bis der Clip laedt.
    */
   video?: string | null;
+  /** Kleine Fassung des Clips. Im Hintergrund wird immer sie genommen. */
+  videoKlein?: string | null;
   /** Deckkraft des Fotos. Bewusst niedrig: es traegt keine Aussage. */
   imageOpacity?: number;
   /** Bildausschnitt, z. B. "50% 30%". */
@@ -46,10 +49,19 @@ export function Backdrop({
   drift = 0,
   image,
   video,
+  videoKlein,
   imageOpacity = 0.22,
   imagePosition = "50% 50%",
 }: BackdropProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const clipRef = useRef<HTMLVideoElement>(null);
+
+  /* Im Hintergrund immer die kleine Fassung: die Ebene liegt bei 20
+     Prozent Deckkraft hinter Schrift, dort sieht niemand den Unterschied
+     zwischen 1280 und 1920 Pixeln — die Datei ist aber ein Vielfaches
+     kleiner. */
+  const clipQuelle = useLoopQuelle(video, videoKlein, true);
+  useLoopImBild(clipRef, Boolean(clipQuelle));
 
   useEffect(() => {
     const el = ref.current;
@@ -93,7 +105,7 @@ export function Backdrop({
       ].join(" ")}
       style={{ ["--drift" as string]: drift }}
     >
-      {image || video ? (
+      {image || clipQuelle ? (
         <span
           className={styles.photo}
           style={{
@@ -102,10 +114,11 @@ export function Backdrop({
             opacity: imageOpacity,
           }}
         >
-          {video ? (
+          {clipQuelle ? (
             <video
+              ref={clipRef}
               className={styles.clip}
-              src={video}
+              src={clipQuelle}
               poster={image ?? undefined}
               autoPlay
               muted

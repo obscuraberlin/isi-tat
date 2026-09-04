@@ -45,7 +45,10 @@ export default function PresentationPage() {
         </header>
 
         <div className={styles.stage}>
-          <Media asset={presentation.video} tone="dark" controls priority />
+          {/* Ohne priority: das Video ist zwar der Inhalt der Seite, aber
+              es soll erst laden, wenn jemand auf Play drueckt. Vorher
+              traegt das Standbild. */}
+          <Media asset={presentation.video} tone="dark" controls />
         </div>
 
         <section className={styles.after}>

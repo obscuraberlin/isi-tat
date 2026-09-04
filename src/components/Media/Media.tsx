@@ -1,4 +1,8 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { useRef } from "react";
+import { useLoopImBild, useLoopQuelle } from "@/lib/videoLoop";
 import { assetNo, type MediaAsset } from "@/data/landingPage";
 import styles from "./Media.module.css";
 
@@ -15,6 +19,13 @@ interface MediaProps {
   priority?: boolean;
   /** Video autoplay (playsInline) — z. B. Hero-Loop. */
   autoPlay?: boolean;
+  /**
+   * Das Video ist Dekoration — unscharf, abgedunkelt, hinter Schrift.
+   * Dann immer die kleine Fassung: dort sieht niemand den Unterschied
+   * zwischen 1280 und 1920 Pixeln, die Datei ist aber ein Vielfaches
+   * kleiner.
+   */
+  decoration?: boolean;
   /**
    * Ton beim Start. Ohne Angabe stumm, sobald autoPlay gesetzt ist —
    * unaufgefordert startende Videos mit Ton blockieren Browser ohnehin.
@@ -41,6 +52,7 @@ export function Media({
   className,
   priority = false,
   autoPlay = false,
+  decoration = false,
   muted,
   loop,
   controls = false,
@@ -57,12 +69,22 @@ export function Media({
 
   const frameClass = [styles.frame, className].filter(Boolean).join(" ");
 
+  /* Nur fuer Videos, die von selbst laufen: auf schmalen Schirmen die
+     kleine Fassung, und angehalten, solange sie ausserhalb des Bildes
+     stehen. Ein Video, das erst auf Klick startet, bleibt unberuehrt —
+     dort will jemand das gute Bild sehen. */
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const loopQuelle = useLoopQuelle(asset.src, asset.klein, decoration);
+  useLoopImBild(videoRef, autoPlay && asset.kind === "video");
+
   if (asset.src) {
     if (asset.kind === "video") {
       return (
         <div className={frameClass} style={frameStyle}>
           <video
+            ref={videoRef}
             className={styles.media}
+            src={autoPlay ? (loopQuelle ?? undefined) : asset.src}
             poster={asset.poster ?? undefined}
             aria-label={asset.alt}
             autoPlay={autoPlay}
@@ -70,14 +92,17 @@ export function Media({
             loop={loop ?? autoPlay}
             playsInline
             controls={controls}
-            preload={priority ? "auto" : "metadata"}
+            /* Ohne Autoplay laedt nichts, bis jemand auf Play drueckt —
+               das Posterbild traegt die Flaeche so lange. Gemessen: mit
+               "metadata" hat Chromium die ganze Datei geholt, 1,2 MB fuer
+               ein Video, das vielleicht nie laeuft. */
+            preload={priority ? "auto" : autoPlay ? "metadata" : "none"}
           >
-            {/* Bewusst nur eine Quelle. Das media-Attribut wird an <source>
-                nur innerhalb von <picture> ausgewertet, in <video> ignorieren
-                es alle Browser — gemessen: auf 390px Breite laedt Chromium
-                trotzdem die Desktop-Datei. Eine zweite Quelle haette also
-                nur so ausgesehen, als wuerde sie etwas bewirken. */}
-            <source src={asset.src} type="video/mp4" />
+            {/* Die Quelle steht als Attribut am <video>, nicht als <source>:
+                das media-Attribut wird an <source> nur innerhalb von
+                <picture> ausgewertet, in <video> ignorieren es alle
+                Browser. Welche Fassung geladen wird, entscheidet deshalb
+                useLoopQuelle im Browser. */}
           </video>
         </div>
       );

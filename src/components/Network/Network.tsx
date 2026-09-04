@@ -31,6 +31,10 @@ export function Network() {
 
   return (
     <section className={styles.section} id="netzwerk">
+      {/* Bewusst ohne Foto: von den vorhandenen Aufnahmen zeigt keine
+          Menschen, und ein einzelner Mann vor einem Auto unter der Zeile
+          "die richtigen Menschen" behauptet das Gegenteil. Der Abschnitt
+          ist mit 35 Woertern ohnehin der kuerzeste der Seite. */}
       <Backdrop variant="grain" tone="dark" />
 
       <div className={styles.inner}>

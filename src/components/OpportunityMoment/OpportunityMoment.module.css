@@ -57,6 +57,20 @@
 }
 
 /* Der Abstand ist die Pause: das zweite Statement kommt erst beim Weiterscrollen. */
+/* Volle Spaltenbreite, damit das Bild traegt statt zu illustrieren. */
+.bild {
+  width: 100%;
+  max-width: 900px;
+  margin-top: clamp(34px, 4.5vw, 64px);
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  box-shadow: var(--sh-soft);
+}
+
+.bild > div {
+  border-radius: inherit;
+}
+
 .second {
   margin-top: clamp(80px, 16vh, 180px);
 }
@@ -113,9 +127,13 @@
   /* Zwischen den Bloecken lagen bis zu 130 Pixel Leere. Bei drei
      typografischen Bloecken hintereinander wird daraus ein halber
      Bildschirm ohne Inhalt. */
+  .bild {
+    margin-top: 30px;
+  }
+
   .second,
   .closing {
-    margin-top: 40px;
+    margin-top: 34px;
   }
 
   .disclaimer {

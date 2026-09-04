@@ -133,6 +133,48 @@ export const trailer = {
 } as const;
 
 /* --------------------------------------------------------------------------
+   SCROLLYTELLING INTRO
+   Zwei Szenen zwischen Hero und Trust-Section. Szene drei aus dem Briefing
+   ist die Trust-Section selbst — sie traegt dieselbe Headline, deshalb steht
+   sie hier nicht doppelt.
+   -------------------------------------------------------------------------- */
+
+export const intro = {
+  scenes: [
+    {
+      id: "weg",
+      lines: ["ERFOLG SIEHT MAN AM ENDE.", "DEN WEG DAHIN NICHT."],
+      /** Wird nacheinander eingeblendet. Leer = nur die Headline. */
+      words: [] as string[],
+      visual: media(
+        "[ISI_INTRO_FAHRZEUG]",
+        "video",
+        "ISI TAT unterwegs",
+        "16 / 9",
+      ),
+    },
+    {
+      id: "worte",
+      lines: [] as string[],
+      words: [
+        "VERTRIEB.",
+        "ENTSCHEIDUNGEN.",
+        "MENSCHEN.",
+        "FEHLER.",
+        "NETZWERK.",
+        "20+ JAHRE.",
+      ],
+      visual: media(
+        "[ISI_INTRO_BEWEGUNG]",
+        "video",
+        "ISI TAT in Bewegung",
+        "16 / 9",
+      ),
+    },
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
    TRUST / REPUTATION
    -------------------------------------------------------------------------- */
 

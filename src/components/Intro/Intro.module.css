@@ -1,0 +1,180 @@
+.section {
+  position: relative;
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* ---------- Buehne ---------- */
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-soft);
+}
+
+.layer > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.layerActive {
+  opacity: 1;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to right,
+      rgba(8, 8, 8, 0.92) 0%,
+      rgba(8, 8, 8, 0.6) 46%,
+      rgba(8, 8, 8, 0.35) 100%
+    ),
+    linear-gradient(to top, rgba(8, 8, 8, 0.75) 0%, rgba(8, 8, 8, 0) 45%);
+}
+
+.copy {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Textszenen ---------- */
+
+.scene {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition:
+    opacity 600ms var(--ease-out),
+    transform 700ms var(--ease-out);
+  pointer-events: none;
+}
+
+.sceneActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.headline {
+  max-width: 18ch;
+  font-size: var(--fs-section);
+  letter-spacing: var(--tr-tight);
+}
+
+.line {
+  display: block;
+}
+
+.line:last-child {
+  color: var(--text-muted-light);
+}
+
+/* ---------- Wortfolge ---------- */
+
+.words {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.4vw, 8px);
+}
+
+.word {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: clamp(1.75rem, 1rem + 3.2vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.12;
+  opacity: 0.18;
+  transform: translateY(6px);
+  transition:
+    opacity 480ms var(--ease-out),
+    transform 480ms var(--ease-out),
+    color 480ms var(--ease-out);
+}
+
+.wordOn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wordOn:last-child {
+  color: var(--accent);
+}
+
+/* ---------- Fortschritt ---------- */
+
+.progress {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(28px, 5vh, 56px);
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background-color 400ms var(--ease-out);
+}
+
+.dotOn {
+  background: var(--accent);
+}
+
+/* ---------- Mobile: keine Sticky-Komplexitaet ---------- */
+
+@media (max-width: 767px) {
+  .stage {
+    position: static;
+    height: auto;
+    display: block;
+  }
+
+  .mobileScene {
+    position: relative;
+    min-height: 70svh;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--gutter);
+    padding-bottom: clamp(36px, 8vw, 56px);
+  }
+
+  .mobileScene + .mobileScene {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .headline {
+    font-size: clamp(2.125rem, 1.4rem + 3.4vw, 2.75rem);
+  }
+
+  .word {
+    font-size: clamp(1.5rem, 1.1rem + 2.2vw, 2.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    opacity: 1;
+    transform: none;
+  }
+}

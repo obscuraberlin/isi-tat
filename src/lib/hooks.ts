@@ -189,3 +189,59 @@ export function useActiveSection(hrefs: readonly string[]) {
 
   return active;
 }
+
+/**
+ * Liest die Helligkeit der Flaeche direkt unter dem Header und meldet
+ * "dark" oder "light". So kann sich der Header dem Abschnitt anpassen,
+ * ueber dem er gerade liegt — ohne dass Sektionen etwas markieren muessen.
+ */
+export function useBackdropTone(offset: number) {
+  const [tone, setTone] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    let frame = 0;
+
+    /** Naechster Vorfahr mit deckender Hintergrundfarbe. */
+    const opaqueBackground = (node: Element | null): string | null => {
+      let current: Element | null = node;
+      while (current && current !== document.documentElement) {
+        const value = getComputedStyle(current).backgroundColor;
+        const alpha = value.startsWith("rgba")
+          ? Number(value.split(",")[3]?.replace(")", "").trim())
+          : 1;
+        if (value && value !== "transparent" && alpha > 0.5) return value;
+        current = current.parentElement;
+      }
+      return null;
+    };
+
+    const read = () => {
+      frame = 0;
+      const x = Math.round(window.innerWidth / 2);
+      const node = document.elementFromPoint(x, offset + 8);
+      const background = opaqueBackground(node);
+      if (!background) return;
+
+      const [r, g, b] = background.match(/\d+(\.\d+)?/g)?.map(Number) ?? [0, 0, 0];
+      /* Wahrgenommene Helligkeit, nicht der reine Mittelwert. */
+      const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+      setTone(luminance < 0.45 ? "dark" : "light");
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(read);
+    };
+
+    read();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [offset]);
+
+  return tone;
+}

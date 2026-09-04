@@ -2,11 +2,19 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { brand, cta, nav } from "@/data/landingPage";
-import { useActiveSection, useScrollLock, useScrolledPast } from "@/lib/hooks";
+import {
+  useActiveSection,
+  useBackdropTone,
+  useScrollLock,
+  useScrolledPast,
+} from "@/lib/hooks";
 import { ButtonLink } from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
 const NAV_HREFS = nav.map((item) => item.href);
+
+/** Grober Wert — dient nur als Messpunkt fuer die Untergrundfarbe. */
+const HEADER_HEIGHT = 84;
 
 function Logo() {
   return (
@@ -20,6 +28,7 @@ function Logo() {
 
 export function Header() {
   const scrolled = useScrolledPast(80);
+  const tone = useBackdropTone(HEADER_HEIGHT);
   const active = useActiveSection(NAV_HREFS);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -39,7 +48,11 @@ export function Header() {
   return (
     <>
       <header
-        className={[styles.header, scrolled && !menuOpen ? styles.scrolled : ""]
+        className={[
+          styles.header,
+          scrolled && !menuOpen ? styles.scrolled : "",
+          scrolled && !menuOpen && tone === "dark" ? styles.scrolledDark : "",
+        ]
           .filter(Boolean)
           .join(" ")}
       >

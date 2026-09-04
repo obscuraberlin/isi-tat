@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header/Header";
 import { Hero } from "@/components/Hero/Hero";
+import { Intro } from "@/components/Intro/Intro";
 import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
 import { TrustSection } from "@/components/TrustSection/TrustSection";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
@@ -24,6 +25,7 @@ export default function Page() {
 
       <main id="inhalt">
         <Hero />              {/* dunkel · Worum geht es          */}
+        <Intro />             {/* dunkel · Der Weg dahin          */}
         <SeriesRow />         {/* hell   · Was ist drin           */}
         <TrustSection />      {/* hell   · Wer ist ISI            */}
         <FailureStory />      {/* dunkel · Warum ehrlich          */}

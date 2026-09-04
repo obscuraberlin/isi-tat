@@ -27,6 +27,19 @@
   color: var(--text-dark);
 }
 
+/* Ueber dunklen Abschnitten legt sich dunkles Glas statt hellem. */
+.scrolledDark {
+  background: rgba(10, 10, 10, 0.72);
+  border-bottom-color: var(--line-light);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.4);
+  color: var(--text-light);
+}
+
+.scrolledDark .headerCta {
+  background: var(--text-light);
+  color: var(--text-dark);
+}
+
 .inner {
   width: 100%;
   max-width: var(--max-page);

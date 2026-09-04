@@ -12,7 +12,7 @@ export function FinalCTA() {
   const { openTrailer } = useTrailer();
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="abschluss">
       <Backdrop variant="grain" tone="dark" />
 
       <div className={styles.bg} aria-hidden="true">

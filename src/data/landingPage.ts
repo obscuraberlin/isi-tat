@@ -120,6 +120,9 @@ export const cta = {
   secondary: { label: "TRAILER ANSEHEN", href: "#trailer" },
   heroSecondary: { label: "TRAILER", href: "#trailer" },
   login: { label: "LOGIN", href: "/login" },
+  /* Eigene Beschriftung fuer die Leiste unten am Handy: kuerzer als
+     "Jetzt bewerben" und weniger fordernd, weil sie dauerhaft steht. */
+  sticky: { label: "ZUGANG ANFRAGEN", href: "/bewerbung" },
 } as const;
 
 /* Die Reihenfolge folgt der Seite von oben nach unten — sonst springt die
@@ -473,7 +476,7 @@ export const timeline = {
 
 export const opportunity = {
   first: ["MANCHMAL", "ENTSTEHT MEHR DARAUS."],
-  second: ["NICHT WEIL DU BEZAHLT HAST.", "SONDERN WEIL DU"],
+  second: ["NICHT WEIL DU INVESTIERT HAST.", "SONDERN WEIL DU"],
   accent: "AUFFÄLLST.",
   note: "Wer im Club durch Zuverlässigkeit, Persönlichkeit und den Umgang mit anderen auffällt, wird in meinem Umfeld sichtbar.",
   closing: ["ZUGANG KANNST DU ANFRAGEN.", "VERTRAUEN MUSST DU DIR ERARBEITEN."],
@@ -492,6 +495,13 @@ export const failure = {
     "Als Jugendlicher habe ich Party gemacht wie alle anderen auch. Ernst genommen habe ich davon nichts.",
     "Je älter meine Eltern wurden, desto klarer wurde mir: irgendwann zählt es wirklich. Also habe ich Vollgas gegeben — und bereue davon keinen Tag.",
     "Das Schwerste war nicht die Arbeit. Es war, dass mir niemand etwas erklärt hat. Ich habe mir alles selbst beigebracht, und das hat Jahre gekostet, die ich nicht zurückbekomme.",
+  ],
+  /* Auf dem Handy dieselbe Aussage in vier Zeilen statt in drei Absaetzen.
+     Wer auf einer Spalte liest, steigt bei der dritten Erklaerung aus. */
+  /* Nur ein Absatz: der zweite Gedanke steht direkt darunter gross als
+     Schlusszeile — zweimal derselbe Satz ist einer zu viel. */
+  bodyMobil: [
+    "Falsches Timing. Falsche Menschen. Entscheidungen, die ich heute anders treffen würde.",
   ],
   /* Zwei Bilder statt einem: der Abstand zwischen ihnen ist das Argument.
      Bewusst ueber Wissen und Zeit erzaehlt, nicht ueber Besitz — sonst
@@ -701,6 +711,20 @@ export const fit = {
       "Inhalte sammelst und nichts davon umsetzt",
     ],
   },
+  /* Auf dem Handy je vier kurze Zeilen. Eine Zeile, ein Gedanke —
+     umgebrochene Aufzaehlungen liest niemand zu Ende. */
+  jaMobil: [
+    "du verkaufst, aufbaust oder selbstständig arbeitest",
+    "du Entscheidungen nicht immer alleine treffen willst",
+    "du an deinen Fähigkeiten arbeiten willst",
+    "du ein stärkeres Umfeld suchst",
+  ],
+  neinMobil: [
+    "du schnellen Reichtum erwartest",
+    "du Garantien suchst",
+    "du Verantwortung abgeben willst",
+    "du nur Content sammeln willst",
+  ],
   closing: "Ich baue mit dir etwas auf, das kein schneller Gewinn ist.",
 } as const;
 

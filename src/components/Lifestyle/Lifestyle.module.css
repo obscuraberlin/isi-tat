@@ -89,3 +89,20 @@
   color: var(--text-muted);
 }
 
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 767px) {
+  .stack {
+    gap: 12px;
+  }
+
+  .gallery {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .disclaimer {
+    margin-top: 22px;
+  }
+}

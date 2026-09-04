@@ -96,3 +96,12 @@
     max-width: 32ch;
   }
 }
+
+/* Auf dem Handy steht der Aufruf im Hero, nach den Serien, bei der
+   Mitgliedschaft, am Ende — und dauerhaft in der Leiste unten. Ein
+   weiteres Band mitten im Text ist einer zu viel. */
+@media (max-width: 767px) {
+  .verstecktMobil {
+    display: none;
+  }
+}

@@ -181,3 +181,15 @@
     transform: none;
   }
 }
+
+/* ---------- Mobil ---------- */
+
+/* Die Mindmap fliegt raus. Sie zeigt Begriffe, die im Text daneben
+   ohnehin stehen, und braucht auf einer Spalte einen halben Bildschirm
+   dafuer. Die Aussage der Sektion steht in der Headline — die Grafik
+   wiederholt sie nur mit Punkten und Linien. */
+@media (max-width: 767px) {
+  .graph {
+    display: none;
+  }
+}

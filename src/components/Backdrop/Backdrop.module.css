@@ -234,3 +234,18 @@
     transform: rotate(-14deg);
   }
 }
+
+/* ---------- Mobil: ruhige Flaechen ---------- */
+
+/* Am Desktop traegt jede Sektion ihren eigenen Grund. Auf einer Spalte
+   liegen sie direkt uebereinander, und aus Abwechslung wird Unruhe.
+   Raster, Horizont und Lichtkegel fallen weg; es bleiben die Vignette
+   auf dunklen Flaechen und — wo gesetzt — das Foto. */
+@media (max-width: 767px) {
+  .grid::before,
+  .horizon::before,
+  .beam::before,
+  .glow::before {
+    display: none;
+  }
+}

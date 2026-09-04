@@ -170,9 +170,12 @@
     display: block;
   }
 
+  /* Zwei Szenen zu je 70 % Bildschirmhoehe ergaben zusammen fast
+     anderthalb Bildschirme fuer zwei Saetze. Knapp ueber die halbe Hoehe
+     traegt dieselbe Wirkung. */
   .mobileScene {
     position: relative;
-    min-height: 70svh;
+    min-height: 56svh;
     display: flex;
     align-items: flex-end;
     padding: var(--gutter);

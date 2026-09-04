@@ -295,3 +295,70 @@
     top: -29px;
   }
 }
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 767px) {
+  /* Die Zeitleiste stand untereinander mit voller Jahreszahl je Eintrag —
+     sechs Punkte auf einem halben Bildschirm pro Punkt. Kleiner gesetzt
+     und enger gestellt passt sie in einen Blick, ohne dass man die Jahre
+     schlechter liest. */
+  .entries {
+    gap: 14px;
+    padding-left: 22px;
+  }
+
+  .dot {
+    left: -22px;
+    top: 5px;
+  }
+
+  .year {
+    font-size: 1.125rem;
+  }
+
+  .entryTitle {
+    margin-top: 2px;
+  }
+
+  .timeline {
+    margin-top: 34px;
+  }
+
+  .track {
+    margin-top: 16px;
+  }
+
+  .metrics {
+    margin-top: 30px;
+    padding-top: 22px;
+    /* Drei Zahlen nebeneinander wurden auf 375 px zu Stapeln aus je drei
+       Zeilen. Untereinander liest sich jede in einer. */
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .metric {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .metricLabel {
+    margin-top: 0;
+  }
+
+  /* Ein Hinweis auf eine fehlende Biografie ist kein Inhalt. */
+  .bioPending {
+    display: none;
+  }
+
+  .body,
+  .claim {
+    margin-top: 20px;
+  }
+
+  .person {
+    margin-top: 12px;
+  }
+}

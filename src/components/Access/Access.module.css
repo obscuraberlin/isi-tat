@@ -456,3 +456,72 @@
     top: 5px;
   }
 }
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 767px) {
+  /* Sieben Zeilen zu je 87 Pixeln waren ein Bildschirm allein fuer die
+     Aufzaehlung. Enger gesetzt bleibt sie lesbar und kostet die Haelfte. */
+  .row {
+    padding-block: 12px;
+    gap: 3px;
+  }
+
+  /* Zeilen ohne Inhalt fallen weg, statt "Umfang wird ergaenzt" zu
+     zeigen — ein Platzhalter ist schlechter als eine Zeile weniger. */
+  .row:has(.pending) {
+    display: none;
+  }
+
+  .preview {
+    margin-top: 28px;
+    padding: 20px;
+  }
+
+  /* Drei Zeilen unter der Ueberschrift des Banners reichen; die
+     Bildunterschrift darunter sagt nichts, was das Bild nicht zeigt. */
+  .previewNote {
+    display: none;
+  }
+
+  .previewList {
+    margin-top: 14px;
+    gap: 7px;
+  }
+
+  .previewVisual {
+    margin-right: -20px;
+  }
+
+  .rows {
+    margin-top: 34px;
+  }
+
+  /* Der Block wiederholt die Zeile "LIVE MIT ISI" aus der Aufzaehlung
+     direkt darueber. Auf einer Spalte stehen beide untereinander, und
+     die Doppelung faellt sofort auf. */
+  .live {
+    display: none;
+  }
+
+  .price {
+    margin-top: 30px;
+  }
+
+  /* Solange die Platzzahl nicht feststeht, steht dort nichts. */
+  .spotsPending {
+    display: none;
+  }
+
+  .steps {
+    margin-top: 26px;
+  }
+
+  .step {
+    padding-bottom: 18px;
+  }
+
+  .stepsHead {
+    margin-top: 34px;
+  }
+}

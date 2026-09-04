@@ -67,3 +67,12 @@
   mask-image: var(--weg);
   mask-composite: intersect;
 }
+
+/* Auf dem Handy weg: dort steht alles untereinander, es gibt keine leere
+   Flaeche, die einen Grund braucht — und dreizehn zusaetzliche Bilder in
+   der Ebene kosten Ladezeit fuer nichts. */
+@media (max-width: 767px) {
+  .collage {
+    display: none;
+  }
+}

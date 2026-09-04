@@ -61,6 +61,7 @@ export default function Page() {
         <CtaBand
           {...ctaBands.nachUmfeld}
           tone="light"
+          nurDesktop
           image={backdrops.finalCta.src}
           imagePosition="50% 38%"
         />

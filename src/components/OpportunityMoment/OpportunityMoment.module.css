@@ -99,3 +99,26 @@
   color: var(--text-muted);
   opacity: 0.8;
 }
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 767px) {
+  /* Der Erklaersatz sagt mit anderen Worten, was die Zeile darueber schon
+     sagt: dass Auffallen zaehlt. Auf einer Spalte steht beides
+     untereinander, und die Wiederholung faellt auf. */
+  .note {
+    display: none;
+  }
+
+  /* Zwischen den Bloecken lagen bis zu 130 Pixel Leere. Bei drei
+     typografischen Bloecken hintereinander wird daraus ein halber
+     Bildschirm ohne Inhalt. */
+  .second,
+  .closing {
+    margin-top: 40px;
+  }
+
+  .disclaimer {
+    margin-top: 26px;
+  }
+}

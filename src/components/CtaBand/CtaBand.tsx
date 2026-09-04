@@ -8,6 +8,8 @@ interface CtaBandProps {
   lines: readonly string[];
   note: string;
   tone?: "light" | "dark";
+  /** Auf dem Handy ausblenden — dort ist ein Aufruf weniger mehr wert. */
+  nurDesktop?: boolean;
   /** Foto hinter dem Band. Fehlt es, bleibt das Band einfarbig. */
   image?: string | null;
   /** Clip hinter dem Band — stumm in Schleife, gewinnt gegen `image`. */
@@ -30,6 +32,7 @@ export function CtaBand({
   lines,
   note,
   tone = "dark",
+  nurDesktop = false,
   image,
   video,
   videoKlein,
@@ -38,7 +41,12 @@ export function CtaBand({
 }: CtaBandProps) {
   return (
     <section
-      className={[styles.band, tone === "light" ? styles.onLight : styles.onDark]
+      className={[
+        styles.band,
+        tone === "light" ? styles.onLight : styles.onDark,
+        nurDesktop ? styles.verstecktMobil : "",
+      ]
+        .filter(Boolean)
         .join(" ")}
       aria-label="Aufnahme anfragen"
     >

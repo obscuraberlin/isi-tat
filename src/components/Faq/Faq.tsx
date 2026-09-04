@@ -2,10 +2,19 @@
 
 import { useState } from "react";
 import { faq, isPending } from "@/data/landingPage";
+import { useMediaQuery } from "@/lib/hooks";
 import { SectionHead } from "@/components/ui/SectionHead";
 import styles from "./Faq.module.css";
 
 export function Faq() {
+  /* Eine Frage ohne Antwort ist auf dem Handy nur eine Zeile, die man
+     antippt und die nichts hergibt. Solange die Antwort fehlt, steht die
+     Frage dort nicht. */
+  const mobil = useMediaQuery("(max-width: 767px)");
+  const eintraege = mobil
+    ? faq.items.filter((item) => !isPending(item.a))
+    : faq.items;
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -18,7 +27,7 @@ export function Faq() {
         />
 
         <div className={styles.list}>
-          {faq.items.map((item, index) => {
+          {eintraege.map((item, index) => {
             const open = openIndex === index;
             return (
               <div key={item.q} className={styles.item}>

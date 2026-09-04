@@ -4,6 +4,7 @@ import { failure, intro, lifestyle } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { WrapHead } from "@/components/ui/WrapHead";
 import { Reveal } from "@/components/Reveal/Reveal";
+import { useMediaQuery } from "@/lib/hooks";
 import styles from "./FailureStory.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 import { Collage } from "@/components/Collage/Collage";
@@ -24,6 +25,10 @@ import { Netzgrafik } from "@/components/Netzgrafik/Netzgrafik";
 export function FailureStory() {
   const [first, ...rest] = failure.headline;
   const c = failure.compare;
+  /* Auf dem Handy die kurze Fassung: drei Absaetze auf einer Spalte sind
+     zwei zu viel, und der Schluss steht danach ohnehin gross da. */
+  const mobil = useMediaQuery("(max-width: 767px)");
+  const absaetze = mobil ? failure.bodyMobil : failure.body;
 
   return (
     <section className={styles.section}>
@@ -94,7 +99,7 @@ export function FailureStory() {
         <div className={styles.after}>
           <Reveal delay={120}>
             <div className={styles.body}>
-              {failure.body.map((paragraph) => (
+              {absaetze.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -108,9 +113,13 @@ export function FailureStory() {
             ))}
           </Reveal>
 
-          <Reveal delay={200}>
-            <p className={styles.pass}>{failure.pass}</p>
-          </Reveal>
+          {/* Der Satz wiederholt auf dem Handy die Zeile darueber —
+              "mit jemandem an meiner Seite" steht schon im Absatz. */}
+          {mobil ? null : (
+            <Reveal delay={200}>
+              <p className={styles.pass}>{failure.pass}</p>
+            </Reveal>
+          )}
         </div>
       </div>
     </section>

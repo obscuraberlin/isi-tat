@@ -34,3 +34,11 @@
     animation: none;
   }
 }
+
+/* Auf dem Handy weg. Die Grafik traegt keine Information — sie fuellt am
+   Desktop eine Ecke, die es auf einer Spalte gar nicht gibt. */
+@media (max-width: 767px) {
+  .netz {
+    display: none;
+  }
+}

@@ -8,6 +8,7 @@ export interface MediaFile {
 
 export const mediaFiles: Record<number, MediaFile> = {
   1: {"poster":"/media/01-poster.jpg","src":"/media/01.mp4"},
+  3: {"poster":"/media/03-poster.jpg","src":"/media/03.mp4"},
   4: {"src":"/media/04.jpg"},
   5: {"src":"/media/05.jpg"},
   6: {"poster":"/media/06-poster.jpg","src":"/media/06.mp4"},

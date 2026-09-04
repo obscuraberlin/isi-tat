@@ -80,6 +80,11 @@ export function TrailerModal({ request, onClose }: TrailerModalProps) {
         </button>
       </div>
 
+      {/* Wer auf "Trailer" klickt, hat den Start schon ausgeloest — ein
+          zweiter Klick auf Play waere eine Zumutung. Der Klick gilt dem
+          Browser als Geste, deshalb darf der Ton an sein. Blockt er
+          trotzdem, steht das Video mit Bedienelementen da; schlimmer als
+          vorher wird es nicht. */}
       <div className={styles.stage}>
         <Media
           asset={request.asset}
@@ -88,6 +93,9 @@ export function TrailerModal({ request, onClose }: TrailerModalProps) {
           radius="14px"
           controls
           priority
+          autoPlay
+          muted={false}
+          loop={false}
         />
       </div>
 

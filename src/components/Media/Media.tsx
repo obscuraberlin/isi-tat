@@ -13,8 +13,16 @@ interface MediaProps {
   className?: string;
   /** Hero/Above-the-fold: Bild sofort laden. */
   priority?: boolean;
-  /** Video autoplay (muted, playsInline, loop) — z. B. Hero-Loop. */
+  /** Video autoplay (playsInline) — z. B. Hero-Loop. */
   autoPlay?: boolean;
+  /**
+   * Ton beim Start. Ohne Angabe stumm, sobald autoPlay gesetzt ist —
+   * unaufgefordert startende Videos mit Ton blockieren Browser ohnehin.
+   * Nach einem Klick des Besuchers (Trailer-Overlay) darf der Ton an sein.
+   */
+  muted?: boolean;
+  /** Endlosschleife. Ohne Angabe wie autoPlay — ein Trailer laeuft einmal. */
+  loop?: boolean;
   /** Video-Controls einblenden — z. B. im Trailer-Overlay. */
   controls?: boolean;
   style?: CSSProperties;
@@ -33,6 +41,8 @@ export function Media({
   className,
   priority = false,
   autoPlay = false,
+  muted,
+  loop,
   controls = false,
   style,
 }: MediaProps) {
@@ -56,8 +66,8 @@ export function Media({
             poster={asset.poster ?? undefined}
             aria-label={asset.alt}
             autoPlay={autoPlay}
-            muted={autoPlay}
-            loop={autoPlay}
+            muted={muted ?? autoPlay}
+            loop={loop ?? autoPlay}
             playsInline
             controls={controls}
             preload={priority ? "auto" : "metadata"}

@@ -11,10 +11,28 @@
   padding-inline: var(--gutter);
 }
 
+/* ---------- Blick in den Mitgliederbereich ---------- */
+
+.preview {
+  margin-top: clamp(34px, 4vw, 56px);
+}
+
+.preview > div {
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  box-shadow: var(--sh-soft);
+}
+
+.previewCaption {
+  margin-top: 14px;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
 /* ---------- Leistungen ---------- */
 
 .rows {
-  margin-top: clamp(34px, 4vw, 56px);
+  margin-top: clamp(44px, 5vw, 72px);
   border-top: 1px solid var(--line-dark);
 }
 

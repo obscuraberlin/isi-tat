@@ -1,4 +1,5 @@
 import { application, cta, isPending, membership, pricing } from "@/data/landingPage";
+import { Media } from "@/components/Media/Media";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -27,8 +28,13 @@ export function Access() {
         <SectionHead
           eyebrow={membership.eyebrow}
           lines={membership.headline}
-          subline="Was der Zugang umfasst, was er kostet und wie die Aufnahme läuft."
+          subline="Alles, was drin ist. Was es kostet. Und wie du reinkommst."
         />
+
+        <Reveal className={styles.preview}>
+          <Media asset={membership.preview} tone="dark" />
+          <p className={styles.previewCaption}>{membership.previewCaption}</p>
+        </Reveal>
 
         <div className={styles.rows}>
           {membership.rows.map((row, index) => (

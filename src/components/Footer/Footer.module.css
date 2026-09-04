@@ -19,7 +19,13 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 28px;
+  gap: 28px 40px;
+}
+
+@media (min-width: 768px) {
+  .navs {
+    align-items: flex-end;
+  }
 }
 
 .logoMark {
@@ -38,6 +44,42 @@
   font-size: 8.5px;
   letter-spacing: 0.34em;
   opacity: 0.6;
+}
+
+.navs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-height: 44px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+.handle {
+  color: var(--text-muted);
+  letter-spacing: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .socialLink:hover {
+    color: var(--accent);
+  }
 }
 
 .links {

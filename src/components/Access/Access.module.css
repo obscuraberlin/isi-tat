@@ -18,17 +18,113 @@
 
 /* ---------- Blick in den Mitgliederbereich ---------- */
 
+/* Dunkles Banner in einer hellen Sektion: der Mitgliederbereich ist
+   dunkel, also darf die Flaeche, die ihn zeigt, es auch sein. */
 .preview {
   margin-top: clamp(34px, 4vw, 56px);
-  /* Als Geraet lesen, nicht als Vollbreitenblock. */
-  max-width: 1080px;
+  display: grid;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: center;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  padding: clamp(26px, 3.4vw, 48px);
+  box-shadow: var(--sh-soft);
 }
 
-.previewCaption {
-  margin-top: 14px;
-  max-width: 1080px;
+@media (min-width: 900px) {
+  .preview {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 64px);
+    /* Rechts kein Innenrand: das Mockup laeuft aus dem Rahmen. */
+    padding-right: 0;
+  }
+}
+
+.previewEyebrow {
   font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.previewHead {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.14;
+}
+
+.previewHeadLine {
+  display: block;
+}
+
+.previewHeadLine:last-child {
+  color: var(--accent);
+}
+
+.previewList {
+  margin-top: clamp(16px, 2vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  list-style: none;
+  padding: 0;
+}
+
+.previewItem {
+  position: relative;
+  padding-left: 18px;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--text-muted-light);
+}
+
+.previewItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.previewNote {
+  margin-top: clamp(16px, 2vw, 22px);
+  font-size: var(--fs-small);
+  line-height: 1.5;
   color: var(--text-muted);
+}
+
+.previewVisual {
+  /* Aus dem Rahmen laufen lassen — das Bild endet nicht, es geht weiter. */
+  margin-right: calc(clamp(26px, 3.4vw, 48px) * -1);
+  /* Das Mockup hat einen eigenen dunklen Grund, der eine Spur heller ist
+     als das Banner. Ohne die Maske sieht man das Rechteck. */
+  --fade-x: linear-gradient(to right, transparent 0%, #000 16%);
+  --fade-y: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: var(--fade-x), var(--fade-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--fade-x), var(--fade-y);
+  mask-composite: intersect;
+}
+
+@media (min-width: 900px) {
+  .previewVisual {
+    margin-right: clamp(-120px, -4vw, -40px);
+  }
 }
 
 /* ---------- Leistungen ---------- */

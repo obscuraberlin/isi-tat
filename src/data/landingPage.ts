@@ -143,19 +143,23 @@ export const hero = {
   headlineVariant: "a" as "a" | "b",
   headlines: {
     a: {
-      lines: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
-      /* Leer: die Erfahrung ist in die Zeile darueber gewandert. */
+      /* Zwei kurze Zeilen, gleiche Laenge wie vorher — nur haerter.
+         Bewusst ueber MEINEN Weg, nicht ueber ein Ergebnis fuer dich:
+         "von nichts zur Million" waere eine Ergebniszusage. */
+      lines: ["VON NULL AUF HUNDERT.", "OHNE MEINE UMWEGE."],
       accent: [] as string[],
     },
     b: {
-      lines: ["20+ JAHRE ERFAHRUNG."],
-      accent: ["DAMIT DU NICHT JEDEN", "FEHLER SELBST MACHEN MUSST."],
+      lines: ["ICH HABE 20 JAHRE GEBRAUCHT."],
+      accent: ["DU MUSST NICHT BEI NULL", "ANFANGEN WIE ICH."],
     },
   },
   /* Beantwortet ueber dem Fold die drei Fragen, mit denen jeder ankommt:
      wer bist du, was kannst du, was habe ich davon. */
+  /* Drei Punkte, drei Sekunden. Der lange Satz vorher hat erklaert,
+     dieser behauptet — und der letzte Teil ist der, der sitzt. */
   subheadline:
-    "Meine Erfahrung, der Live-Austausch und ein Umfeld, das dahin will, wo du hinwillst.",
+    "Meine Erfahrung. Mein Netzwerk. Meine Fehler — damit du sie nicht auch machst.",
   /* Die Vertrauenszeile ist raus: sie hat aufgezaehlt, was die Subline
      zwei Zeilen darueber schon sagt, und den Hero unten zugestellt. */
   /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die
@@ -307,7 +311,7 @@ export interface Series {
 
 export const insideTheClub = {
   eyebrow: "Im Club",
-  headline: "WAS DICH DRINNEN ERWARTET.",
+  headline: "WAS DICH IM MENTORING ERWARTET.",
   subline: "Fünf Serien. Plus live. Keine Reihenfolge.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
   draftEpisodeNote:
@@ -697,8 +701,19 @@ export const membership = {
   eyebrow: "Deine Mitgliedschaft",
   headline: ["NICHT NUR CONTENT."],
   headlineAccent: ["EIN UMFELD,", "DAS MITDENKT."],
-  previewCaption:
-    "So sieht der Mitgliederbereich aus — am Laptop, auf dem Tablet, auf dem Telefon. Abbildung; die Inhalte wachsen laufend.",
+  /* Das Mockup steht nicht nackt auf der Seite, sondern in einem Banner:
+     links, was der Bereich ist, rechts das Bild, das aus dem Rahmen
+     laeuft. Ein Screenshot allein erklaert sich nicht. */
+  preview: {
+    eyebrow: "Der Mitgliederbereich",
+    headline: ["ALLES AN EINEM ORT.", "EIN LOGIN."],
+    lines: [
+      "Am Laptop, auf dem Tablet, auf dem Telefon.",
+      "Jede Serie, jede Aufzeichnung, der ganze Austausch.",
+      "Kommt etwas dazu, liegt es am nächsten Tag drin.",
+    ],
+    note: "Abbildung des Mitgliederbereichs. Die Inhalte wachsen laufend.",
+  },
   /* Gestaltete Abbildung statt nachgebauter Geraete: der Auftraggeber
      liefert das Mockup, damit die Oberflaeche so aussieht, wie sie
      tatsaechlich gedacht ist. */
@@ -750,6 +765,8 @@ export const application = {
   /* Fuenf Schritte auf einer Linie — dieselbe Figur wie die Zeitleiste
      weiter oben. Die Texte sind bewusst kurz: in fuenf Spalten hat ein
      langer Satz keinen Platz, und ein Ablauf soll man ueberfliegen. */
+  /* Vier statt fuenf: "Ich schaue es mir an" war kein Schritt, den der
+     Besucher geht — der letzte Schritt gehoert ihm, nicht mir. */
   steps: [
     {
       step: "01",
@@ -759,22 +776,17 @@ export const application = {
     {
       step: "02",
       label: "DU BEWIRBST DICH",
-      text: "Fünf Minuten. Unverbindlich.",
+      text: "Fünf Fragen. Unverbindlich.",
     },
     {
       step: "03",
-      label: "ICH SCHAUE ES MIR AN",
-      text: "Ich prüfe, ob es passt.",
-    },
-    {
-      step: "04",
-      label: "DIE PRÄSENTATION",
+      label: "DU SIEHST DIE PRÄSENTATION",
       text: "Umfang, Ablauf, Preis — in Ruhe.",
     },
     {
-      step: "05",
-      label: "WIR LEGEN LOS",
-      text: "Bist du bereit, geht es los.",
+      step: "04",
+      label: "DU ENTSCHEIDEST, OB WIR LOSLEGEN",
+      text: "Passt es für dich, geht es los.",
     },
   ],
   /* Ehrlich halten: eine Bewerbung ist keine Zusage. */
@@ -839,7 +851,7 @@ export const faq = {
       a: "Genau das ist die Idee dahinter. Wenn jemand mitmacht, dranbleibt und auffällt, wird es interessant — dann reden wir darüber. Zusichern kann ich es dir vorab nicht, das entsteht über Zeit.",
     },
     {
-      q: "Bin ich nach dem Kauf auf mich allein gestellt?",
+      q: "Bin ich nach der Aufnahme auf mich allein gestellt?",
       a: "Nein. Du profitierst vom Netzwerk, von der Erfahrung und von den Fragen, die dort beantwortet werden — auch von denen, die du selbst nie gestellt hättest. Entscheiden musst du weiter selbst, aber du machst es nicht mehr mit dir allein aus.",
     },
   ],
@@ -850,12 +862,12 @@ export const faq = {
    -------------------------------------------------------------------------- */
 
 export const finalCta = {
-  headline: ["CONTENT HAST", "DU GENUG."],
+  headline: ["JETZT KENNST", "DU MICH BESSER."],
   accent: ["DIE FRAGE IST, MIT WEM DU", "DEINE NÄCHSTEN ENTSCHEIDUNGEN TRIFFST."],
   body: [
-    "20+ Jahre Erfahrung.",
-    "Ein starkes Umfeld.",
-    "Und Menschen, die nicht nur darüber reden.",
+    "Kein Fake. Alles echt.",
+    "Mein Wort ist mein Stil.",
+    "Mein Name ist meine Marke.",
   ],
   brand: "ISI TAT BUSINESS CLUB",
   /* Der Auftraggeber hat fuer diese Flaeche denselben Garagen-Clip
@@ -933,8 +945,10 @@ export const presentation = {
    -------------------------------------------------------------------------- */
 
 export const ctaBands = {
+  /* Zeigt auf die Menschen, nicht auf das Material: das Band steht nach
+     den Serien, und ab da ist der Unterschied nicht mehr der Inhalt. */
   nachInhalten: {
-    lines: ["DAS ALLES LIEGT DRIN.", "AB DEM ERSTEN TAG."],
+    lines: ["INHALTE SIND DER ANFANG.", "DIE MENSCHEN SIND DER REST."],
     note: "Die Plätze sind begrenzt — wer rein will, zeigt es zuerst.",
   },
   nachUmfeld: {

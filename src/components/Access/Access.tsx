@@ -29,9 +29,32 @@ export function Access() {
           subline="Was drin ist, wie viele Plätze es gibt, wie du reinkommst."
         />
 
+        {/* Banner statt Bild: links steht, was der Bereich ist, rechts
+            laeuft das Mockup aus dem Rahmen. Ein hingelegter Screenshot
+            erklaert sich nicht von selbst. */}
         <Reveal className={styles.preview}>
-          <Media asset={membership.mockup} radius="var(--r-visual)" />
-          <p className={styles.previewCaption}>{membership.previewCaption}</p>
+          <div className={styles.previewText}>
+            <p className={styles.previewEyebrow}>{membership.preview.eyebrow}</p>
+            <h3 className={styles.previewHead}>
+              {membership.preview.headline.map((line) => (
+                <span key={line} className={styles.previewHeadLine}>
+                  {line}
+                </span>
+              ))}
+            </h3>
+            <ul className={styles.previewList}>
+              {membership.preview.lines.map((line) => (
+                <li key={line} className={styles.previewItem}>
+                  {line}
+                </li>
+              ))}
+            </ul>
+            <p className={styles.previewNote}>{membership.preview.note}</p>
+          </div>
+
+          <div className={styles.previewVisual}>
+            <Media asset={membership.mockup} radius="0" />
+          </div>
         </Reveal>
 
         <div className={styles.rows}>

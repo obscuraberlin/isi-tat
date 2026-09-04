@@ -28,6 +28,13 @@
   border-radius: 0;
 }
 
+/* Ein Hochformat in einer Querformat-Flaeche wird oben und unten
+   beschnitten. Der Ausschnitt liegt deshalb im oberen Drittel, damit das
+   Gesicht im Bild bleibt und nicht die Fuesse. */
+.layer img {
+  object-position: center 28%;
+}
+
 .layerActive {
   opacity: 1;
 }

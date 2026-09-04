@@ -191,11 +191,15 @@ export const intro = {
       lines: ["ERFOLG SIEHT MAN AM ENDE.", "DEN WEG DAHIN NICHT."],
       /** Wird nacheinander eingeblendet. Leer = nur die Headline. */
       words: [] as string[],
+      /* Das Portrait traegt diese Szene: die Aussage "den Weg dahin sieht
+         man nicht" braucht ein Ergebnisbild, kein Bewegtbild. Hochformat,
+         weil es so fotografiert ist — der Ausschnitt wird per
+         object-position auf das Gesicht gelegt, siehe Intro.module.css. */
       visual: media(
-        "[ISI_INTRO_FAHRZEUG]",
-        "video",
-        "ISI TAT unterwegs",
-        "16 / 9",
+        "[ISI_PORTRAIT_ROLLS]",
+        "image",
+        "ISI TAT im Anzug vor einem Rolls-Royce",
+        "4 / 5",
       ),
     },
     {
@@ -209,11 +213,13 @@ export const intro = {
         "NETZWERK.",
         "20+ JAHRE.",
       ],
+      /* Zweites Ergebnisbild — Hochformat wie das erste, damit die beiden
+         Szenen im selben Ausschnitt liegen. */
       visual: media(
-        "[ISI_INTRO_BEWEGUNG]",
-        "video",
-        "ISI TAT in Bewegung",
-        "16 / 9",
+        "[ISI_JET]",
+        "image",
+        "ISI TAT vor einem Jet",
+        "4 / 5",
       ),
     },
   ],

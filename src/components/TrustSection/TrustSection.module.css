@@ -299,26 +299,40 @@
 /* ---------- Mobil ---------- */
 
 @media (max-width: 767px) {
-  /* Die Zeitleiste stand untereinander mit voller Jahreszahl je Eintrag —
-     sechs Punkte auf einem halben Bildschirm pro Punkt. Kleiner gesetzt
-     und enger gestellt passt sie in einen Blick, ohne dass man die Jahre
-     schlechter liest. */
+  /* Jahr und Station standen untereinander — sechs Eintraege zu je zwei
+     Zeilen, dazwischen viel Luft. Nebeneinander auf einer Grundlinie
+     liest sich dieselbe Reihe halb so hoch und ruhiger: links das Jahr in
+     fester Spalte, rechts die Station, dazwischen eine Haarlinie. */
   .entries {
+    gap: 0;
+    padding-left: 20px;
+  }
+
+  .entry {
+    display: flex;
+    align-items: baseline;
     gap: 14px;
-    padding-left: 22px;
+    padding-block: 11px;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .entry:last-child {
+    border-bottom: 1px solid var(--line-dark);
   }
 
   .dot {
-    left: -22px;
-    top: 5px;
+    left: -20px;
+    top: 18px;
   }
 
   .year {
-    font-size: 1.125rem;
+    flex: 0 0 58px;
+    font-size: 1rem;
   }
 
   .entryTitle {
-    margin-top: 2px;
+    margin-top: 0;
+    font-size: 0.75rem;
   }
 
   .timeline {
@@ -329,23 +343,45 @@
     margin-top: 16px;
   }
 
+  /* Drei Zahlen nebeneinander wurden auf 375 px zu Stapeln aus je drei
+     Zeilen. Untereinander gelesen wie ein Datenblatt: Zahl links in einer
+     festen Spalte, damit alle drei auf einer Kante stehen, Beschriftung
+     daneben, eine Haarlinie dazwischen. */
   .metrics {
-    margin-top: 30px;
-    padding-top: 22px;
-    /* Drei Zahlen nebeneinander wurden auf 375 px zu Stapeln aus je drei
-       Zeilen. Untereinander liest sich jede in einer. */
+    margin-top: 28px;
+    padding-top: 0;
+    border-top: 0;
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 0;
   }
 
   .metric {
-    flex-direction: row;
+    /* row-reverse dreht die Achse: die Zahl steht im Markup hinter der
+       Beschriftung, soll aber davor stehen. flex-end packt beide dadurch
+       an den linken Rand. */
+    flex-direction: row-reverse;
+    justify-content: flex-end;
     align-items: baseline;
-    gap: 12px;
+    gap: 16px;
+    padding-block: 13px;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .metric:last-child {
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .metricValue {
+    /* Feste Breite: sonst haengt jede Beschriftung an einer anderen
+       Stelle, je nachdem wie lang die Zahl davor ist. */
+    flex: 0 0 62px;
+    font-size: 1.625rem;
   }
 
   .metricLabel {
     margin-top: 0;
+    font-size: 0.8125rem;
+    line-height: 1.35;
   }
 
   /* Ein Hinweis auf eine fehlende Biografie ist kein Inhalt. */

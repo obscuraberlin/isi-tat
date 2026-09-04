@@ -308,8 +308,9 @@
   .copyBottom {
     position: relative;
     z-index: 1;
-    /* Der Text bleibt in der linken Haelfte, das Bild bekommt den Rest. */
-    max-width: min(52%, 620px);
+    /* Der Text darf ins Bild hineinlaufen — deshalb breiter als die halbe
+       Seite. Lesbar bleibt er durch den Verlauf auf dem Visual. */
+    max-width: min(58%, 700px);
   }
 
   .copyBottom .sub {
@@ -324,7 +325,9 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: min(66%, 1180px);
+    /* Deutlich breiter als die freie Haelfte: das Bild schiebt sich unter
+       den Text, statt neben ihm aufzuhoeren. */
+    width: min(80%, 1500px);
     z-index: 0;
   }
 
@@ -333,12 +336,12 @@
     border-radius: 0;
     /* Zwei Verlaeufe: nach links weich raus, nach unten in die Sektion. */
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, #000 46%),
-      linear-gradient(to bottom, #000 62%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 38%),
+      linear-gradient(to bottom, #000 66%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to right, transparent 0%, #000 46%),
-      linear-gradient(to bottom, #000 62%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 38%),
+      linear-gradient(to bottom, #000 66%, transparent 100%);
     mask-composite: intersect;
   }
 
@@ -357,11 +360,14 @@
   }
 
   .visualOverlay {
+    /* Kraeftiger als vorher: unter dem Text liegt jetzt Bild, und die
+       Aufnahme ist ein helles Studio. Ohne das laeuft Weiss auf Weiss. */
     background: linear-gradient(
       to right,
-      rgba(8, 8, 8, 0.85) 0%,
-      rgba(8, 8, 8, 0.1) 52%,
-      rgba(8, 8, 8, 0) 100%
+      rgba(8, 8, 8, 0.94) 0%,
+      rgba(8, 8, 8, 0.78) 26%,
+      rgba(8, 8, 8, 0.22) 55%,
+      rgba(8, 8, 8, 0) 78%
     );
   }
 }

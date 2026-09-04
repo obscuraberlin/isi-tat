@@ -1,6 +1,8 @@
 .eyebrow {
   display: inline-flex;
-  align-items: center;
+  /* Oben ausrichten: bricht das Label um, stuende der Strich sonst auf
+     halber Hoehe neben zwei Zeilen. */
+  align-items: flex-start;
   gap: 12px;
   font-size: var(--fs-eyebrow);
   font-weight: 600;
@@ -19,7 +21,10 @@
 
 .rule::before {
   content: "";
+  flex: none;
   width: 28px;
+  /* Auf die Mitte der ersten Zeile setzen. */
+  margin-top: 0.62em;
   height: 1px;
   background: currentColor;
   opacity: 0.5;

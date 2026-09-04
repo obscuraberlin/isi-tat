@@ -118,7 +118,9 @@ export const nav = [
    -------------------------------------------------------------------------- */
 
 export const hero = {
-  eyebrow: "ISI TAT BUSINESS CLUB",
+  /* Die Erfahrung steht jetzt hier oben statt als zweite Headline-Ebene —
+     sie qualifiziert die Aussage, bevor man sie liest. */
+  eyebrow: "20+ JAHRE ERFAHRUNG AN DEINER SEITE",
   /* Metazeile im Stil einer Streaming-Titelseite.
      `edition` und `quality` sind Angaben ueber das Material — `quality`
      nur stehen lassen, wenn tatsaechlich in 4K produziert wird.
@@ -134,7 +136,8 @@ export const hero = {
   headlines: {
     a: {
       lines: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
-      accent: ["20+ JAHRE ERFAHRUNG", "AN DEINER SEITE."],
+      /* Leer: die Erfahrung ist in die Zeile darueber gewandert. */
+      accent: [] as string[],
     },
     b: {
       lines: ["20+ JAHRE ERFAHRUNG."],
@@ -144,7 +147,7 @@ export const hero = {
   /* Beantwortet ueber dem Fold die drei Fragen, mit denen jeder ankommt:
      wer bist du, was kannst du, was habe ich davon. */
   subheadline:
-    "Über 20 Jahre Vertrieb und eigene Unternehmen. Im Club bekommst du meine Erfahrung, den Live-Austausch und ein Umfeld, das dahin will, wo du hinwillst.",
+    "Meine Erfahrung, der Live-Austausch und ein Umfeld, das dahin will, wo du hinwillst.",
   /* Die Vertrauenszeile ist raus: sie hat aufgezaehlt, was die Subline
      zwei Zeilen darueber schon sagt, und den Hero unten zugestellt. */
   /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die

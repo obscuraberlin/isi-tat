@@ -61,17 +61,21 @@ export function Hero() {
                 {line}
               </Line>
             ))}
-            <span className={styles.accentBlock}>
-              {headline.accent.map((line, index) => (
-                <Line
-                  key={line}
-                  delayMs={420 + (headline.lines.length + index) * 110}
-                  accent
-                >
-                  {line}
-                </Line>
-              ))}
-            </span>
+            {/* Nur setzen, wenn es die zweite Ebene ueberhaupt gibt — ein
+                leerer Block wuerde Abstand erzeugen, den niemand sieht. */}
+            {headline.accent.length ? (
+              <span className={styles.accentBlock}>
+                {headline.accent.map((line, index) => (
+                  <Line
+                    key={line}
+                    delayMs={420 + (headline.lines.length + index) * 110}
+                    accent
+                  >
+                    {line}
+                  </Line>
+                ))}
+              </span>
+            ) : null}
           </h1>
 
           {/* Metazeile: was das Ganze ist, in einer Zeile. */}

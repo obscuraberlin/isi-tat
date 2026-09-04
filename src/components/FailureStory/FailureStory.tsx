@@ -1,8 +1,11 @@
+"use client";
+
 import { failure } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { WrapHead } from "@/components/ui/WrapHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./FailureStory.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /**
  * "WAS BEI MIR" steht oben, das Bild darunter, "SCHIEFGELAUFEN IST."
@@ -14,6 +17,8 @@ export function FailureStory() {
 
   return (
     <section className={styles.section}>
+      <Backdrop variant="horizon" tone="dark" drift={50} />
+
       <div className={styles.inner}>
         <WrapHead
           eyebrow={failure.eyebrow}

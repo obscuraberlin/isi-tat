@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal/Reveal";
 import { SeriesModal } from "./SeriesModal";
 import styles from "./SeriesRow.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 const Arrow = ({ dir }: { dir: "left" | "right" }) => (
   <svg className={styles.arrowIcon} viewBox="0 0 16 16" aria-hidden="true">
@@ -133,6 +134,8 @@ export function SeriesRow() {
 
   return (
     <section className={styles.section} id="im-club">
+      <Backdrop variant="glow" tone="light" drift={60} />
+
       <Reveal className={styles.head}>
         <div>
           <Eyebrow rule>{insideTheClub.eyebrow}</Eyebrow>

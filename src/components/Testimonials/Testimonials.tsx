@@ -7,12 +7,15 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import styles from "./Testimonials.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 export function Testimonials() {
   const { openVideo } = useTrailer();
 
   return (
     <section className={styles.section} id="erfahrungen">
+      <Backdrop variant="grid" tone="light" drift={30} />
+
       <div className={styles.inner}>
         <SectionHead
           eyebrow={testimonials.eyebrow}

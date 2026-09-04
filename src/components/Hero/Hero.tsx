@@ -8,6 +8,7 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { PlayButton } from "@/components/ui/PlayButton";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import styles from "./Hero.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 const delay = (ms: number) => ({ ["--delay"]: `${ms}ms` }) as CSSProperties;
 
@@ -44,6 +45,8 @@ export function Hero() {
 
   return (
     <section className={styles.hero} id="top" aria-label="Einstieg">
+      <Backdrop variant="grain" tone="dark" />
+
       <div className={styles.inner}>
         <div className={`${styles.copy} ${styles.copyTop}`}>
           <div className={styles.fadeUp} style={delay(260)}>

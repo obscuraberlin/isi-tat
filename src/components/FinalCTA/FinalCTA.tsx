@@ -6,12 +6,15 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/Reveal/Reveal";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import styles from "./FinalCTA.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 export function FinalCTA() {
   const { openTrailer } = useTrailer();
 
   return (
     <section className={styles.section}>
+      <Backdrop variant="grain" tone="dark" />
+
       <div className={styles.bg} aria-hidden="true">
         <Media asset={finalCta.video} tone="dark" radius="0" />
       </div>

@@ -1,8 +1,11 @@
+"use client";
+
 import { lifestyle } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { WrapHead } from "@/components/ui/WrapHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./Lifestyle.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /**
  * Die Galerie liegt zwischen Aussage und Gegenaussage: oben steht, was
@@ -12,6 +15,8 @@ import styles from "./Lifestyle.module.css";
 export function Lifestyle() {
   return (
     <section className={styles.section}>
+      <Backdrop variant="beam" tone="light" drift={30} />
+
       <div className={styles.inner}>
         <WrapHead
           eyebrow={lifestyle.eyebrow}

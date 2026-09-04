@@ -1,10 +1,15 @@
 .section {
+  /* Bezugsrahmen fuer die Hintergrundebene. */
+  position: relative;
   background: var(--bg-dark-alt);
   color: var(--text-light);
   padding-block: clamp(72px, 9vw, 132px);
 }
 
 .inner {
+  /* Ueber der Hintergrundebene. */
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: var(--max-page);
   margin-inline: auto;

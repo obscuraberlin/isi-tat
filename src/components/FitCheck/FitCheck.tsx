@@ -1,7 +1,10 @@
+"use client";
+
 import { fit } from "@/data/landingPage";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./FitCheck.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /** Frueher Filter: zwei Spalten, vier Zeilen je Seite, kein Fliesstext. */
 export function FitCheck() {
@@ -12,6 +15,8 @@ export function FitCheck() {
 
   return (
     <section className={styles.section} id="fuer-wen">
+      <Backdrop variant="beam" tone="dark" drift={30} />
+
       <div className={styles.inner}>
         <SectionHead
           eyebrow={fit.eyebrow}

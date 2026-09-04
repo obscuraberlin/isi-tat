@@ -7,6 +7,7 @@ import { WrapHead } from "@/components/ui/WrapHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import styles from "./LiveSection.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /**
  * Der Live-Teil ist das, was den Club vom Videoarchiv unterscheidet —
@@ -21,6 +22,8 @@ export function LiveSection() {
 
   return (
     <section className={styles.section} id="live">
+      <Backdrop variant="horizon" tone="light" drift={40} />
+
       <div className={styles.inner}>
         <WrapHead
           eyebrow={live.eyebrow}

@@ -1,10 +1,15 @@
+"use client";
+
 import { opportunity } from "@/data/landingPage";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./OpportunityMoment.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 export function OpportunityMoment() {
   return (
     <section className={styles.section}>
+      <Backdrop variant="grain" tone="dark" />
+
       <div className={styles.inner}>
         <Reveal variant="mask">
           <p className={`${styles.block} ${styles.muted}`}>

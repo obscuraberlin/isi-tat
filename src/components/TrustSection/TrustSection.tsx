@@ -9,6 +9,7 @@ import { PlayButton } from "@/components/ui/PlayButton";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./TrustSection.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /** Scrollfortschritt über der Timeline-Linie, 0–1. */
 function useTrackProgress(ref: React.RefObject<HTMLDivElement | null>) {
@@ -55,6 +56,8 @@ export function TrustSection() {
 
   return (
     <section className={styles.section} id="ueber-isi">
+      <Backdrop variant="grid" tone="light" drift={40} />
+
       <div className={styles.inner}>
         <div className={styles.grid}>
           <div>

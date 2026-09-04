@@ -1,9 +1,12 @@
+"use client";
+
 import { application, cta, isPending, membership, pricing } from "@/data/landingPage";
 import { DeviceCluster } from "@/components/DeviceCluster/DeviceCluster";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./Access.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /**
  * Ein Block für die gesamte Kaufentscheidung: Leistungen, Preis, Aufnahme.
@@ -24,6 +27,8 @@ export function Access() {
 
   return (
     <section className={styles.section} id="zugang">
+      <Backdrop variant="glow" tone="light" drift={50} />
+
       <div className={styles.inner}>
         <SectionHead
           eyebrow={membership.eyebrow}

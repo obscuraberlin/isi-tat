@@ -1,0 +1,208 @@
+/* Hintergrundebenen. Alles liegt hinter dem Inhalt und faengt nichts ab. */
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Startwert, bis der Scroll-Handler das erste Mal gelaufen ist. */
+  --p: 0;
+}
+
+/* Der Inhalt der Sektion muss darueber liegen. Die Sektionen setzen dafuer
+   position: relative und ihr .inner auf z-index: 1. */
+
+/* ---------- Vignette auf allen dunklen Flaechen ---------- */
+
+/* Zu den Raendern hin leicht abdunkeln. Das buendelt den Blick in der Mitte
+   und nimmt der Kante zur naechsten Sektion die Haerte — dunkle Flaechen
+   ohne das wirken wie aufeinandergestapelte Rechtecke. */
+.onDark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 85% at 50% 45%,
+    transparent 42%,
+    rgba(0, 0, 0, 0.34) 100%
+  );
+}
+
+/* ---------- grain: Filmkorn ---------- */
+
+/* Ein Rauschen aus SVG statt einer Bilddatei — kostet keinen Request und
+   skaliert auf jede Aufloesung. Bewusst schwach: man soll es spueren,
+   nicht sehen. */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'>\
+<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='160' height='160' filter='url(%23n)' opacity='0.55'/></svg>");
+  background-size: 160px 160px;
+  animation: grainShift 620ms steps(2) infinite;
+}
+
+.onDark.grain::before {
+  opacity: 0.075;
+  mix-blend-mode: screen;
+}
+
+.onLight.grain::before {
+  opacity: 0.062;
+  mix-blend-mode: multiply;
+}
+
+/* Zwei Positionen reichen — mehr Schritte sieht man nicht, kostet aber. */
+@keyframes grainShift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-3%, 2%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ---------- grid: Papierraster ---------- */
+
+/* Feine Linien wie auf Briefpapier. Nach aussen ausgeblendet, sonst
+   schneidet das Raster hart an der Sektionskante ab. */
+.grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--rule) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: clamp(64px, 7vw, 104px) clamp(64px, 7vw, 104px);
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 0%, transparent 78%);
+  transform: translate3d(0, calc(var(--p) * var(--drift) * -1px), 0);
+}
+
+.onLight.grid {
+  --rule: rgba(17, 17, 17, 0.055);
+}
+
+.onDark.grid {
+  --rule: rgba(255, 255, 255, 0.045);
+}
+
+/* ---------- glow: driftendes Licht ---------- */
+
+.glow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 110vw;
+  height: 110vw;
+  max-width: 1400px;
+  max-height: 1400px;
+  border-radius: 50%;
+  /* Der Kegel wandert gegen die Scrollrichtung — das erzeugt Tiefe,
+     ohne dass irgendetwas sichtbar "animiert" wirkt. */
+  transform: translate3d(-50%, calc(-50% + var(--p) * var(--drift) * 1px), 0);
+  background: radial-gradient(
+    circle,
+    var(--halo) 0%,
+    transparent 62%
+  );
+}
+
+.onDark.glow {
+  --halo: rgba(200, 166, 106, 0.13);
+}
+
+.onLight.glow {
+  --halo: rgba(200, 166, 106, 0.14);
+}
+
+/* ---------- horizon: Lichtkante am oberen Rand ---------- */
+
+/* Ein flacher Schein an der Sektionsoberkante — die Naht zwischen zwei
+   Flaechen liest sich dadurch als Uebergang, nicht als Schnitt. */
+.horizon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 150%;
+  height: clamp(220px, 30vw, 460px);
+  transform: translate3d(-50%, calc(var(--p) * var(--drift) * -1px), 0);
+  background: radial-gradient(
+    60% 100% at 50% 0%,
+    var(--halo) 0%,
+    transparent 72%
+  );
+}
+
+.onDark.horizon {
+  --halo: rgba(200, 166, 106, 0.1);
+}
+
+.onLight.horizon {
+  --halo: rgba(17, 17, 17, 0.05);
+}
+
+/* ---------- beam: schraeger Lichtstreifen ---------- */
+
+/* Wie Licht, das seitlich in einen dunklen Raum faellt. Sehr flach
+   gehalten — ein harter Streifen kippt sofort ins Effekthafte. */
+.beam::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10%;
+  transform: rotate(-14deg)
+    translate3d(0, calc(var(--p) * var(--drift) * 1px), 0);
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    var(--sheen) 38%,
+    var(--sheen) 52%,
+    transparent 88%
+  );
+}
+
+.onDark.beam {
+  --sheen: rgba(255, 255, 255, 0.032);
+}
+
+.onLight.beam {
+  --sheen: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Ruhe ---------- */
+
+/* Auf dem Telefon steht das Korn still. Eine Dauer-Animation auf mehreren
+   Flaechen kostet dort Akku, und bei der Pixeldichte sieht man die
+   Bewegung ohnehin nicht. */
+@media (max-width: 767px) {
+  .grain::before {
+    animation: none;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::before {
+    animation: none;
+  }
+
+  .grid::before,
+  .glow::before,
+  .horizon::before,
+  .beam::before {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .beam::before {
+    transform: rotate(-14deg);
+  }
+}

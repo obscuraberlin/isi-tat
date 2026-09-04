@@ -6,6 +6,7 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import { useInView } from "@/lib/hooks";
 import styles from "./Network.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /* Zwei Ringe statt einem — das nimmt der Grafik das Mindmap-Schema. */
 const RING = [32, 44];
@@ -28,6 +29,8 @@ export function Network() {
 
   return (
     <section className={styles.section} id="netzwerk">
+      <Backdrop variant="grain" tone="dark" />
+
       <div className={styles.inner}>
         <div>
           <SectionHead

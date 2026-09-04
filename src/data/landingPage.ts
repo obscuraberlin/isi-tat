@@ -82,9 +82,11 @@ export const cta = {
   login: { label: "LOGIN", href: "/login" },
 } as const;
 
+/* Die Reihenfolge folgt der Seite von oben nach unten — sonst springt die
+   aktive Markierung im Header beim Scrollen vor und zurueck. */
 export const nav = [
-  { label: "INHALTE", href: "#im-club" },
   { label: "ÜBER ISI", href: "#ueber-isi" },
+  { label: "INHALTE", href: "#im-club" },
   { label: "ERFAHRUNGEN", href: "#erfahrungen" },
   { label: "MITGLIEDSCHAFT", href: "#zugang" },
   { label: "FAQ", href: "#faq" },

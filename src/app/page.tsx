@@ -1,14 +1,14 @@
 import { Header } from "@/components/Header/Header";
 import { Hero } from "@/components/Hero/Hero";
 import { Intro } from "@/components/Intro/Intro";
-import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
-import { FitCheck } from "@/components/FitCheck/FitCheck";
 import { TrustSection } from "@/components/TrustSection/TrustSection";
+import { FitCheck } from "@/components/FitCheck/FitCheck";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
-import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
+import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
 import { LiveSection } from "@/components/LiveSection/LiveSection";
 import { Network } from "@/components/Network/Network";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
+import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
 import { OpportunityMoment } from "@/components/OpportunityMoment/OpportunityMoment";
 import { Access } from "@/components/Access/Access";
 import { Faq } from "@/components/Faq/Faq";
@@ -17,8 +17,18 @@ import { StickyMobileCTA } from "@/components/StickyMobileCTA/StickyMobileCTA";
 import { Footer } from "@/components/Footer/Footer";
 
 /**
- * Elf Abschnitte, hell und dunkel im Wechsel.
- * Jeder beantwortet genau eine Frage — keine zwei dasselbe.
+ * Vierzehn Abschnitte in vier Bloecken, hell und dunkel im Wechsel.
+ *
+ * Die Reihenfolge folgt der Frage, die ein Besucher an dieser Stelle wirklich
+ * hat — nicht der Reihenfolge, in der wir etwas erzaehlen wollen:
+ *
+ *   1 Aufmerksamkeit   Worum geht es, und warum sollte ich zuhoeren?
+ *   2 Vertrauen        Wer bist du, passt das zu mir, bist du ehrlich?
+ *   3 Inhalt           Was bekomme ich konkret?
+ *   4 Entscheidung     Bestaetigt das jemand, was kostet es, wie komme ich rein?
+ *
+ * Der Katalog steht bewusst NACH der Person. Ein Kursverzeichnis ueberzeugt
+ * niemanden, der noch nicht weiss, wessen Erfahrung darin steckt.
  */
 export default function Page() {
   return (
@@ -26,20 +36,27 @@ export default function Page() {
       <Header />
 
       <main id="inhalt">
-        <Hero />              {/* dunkel · Worum geht es          */}
-        <Intro />             {/* dunkel · Der Weg dahin          */}
-        <SeriesRow />         {/* hell   · Was ist drin           */}
-        <FitCheck />          {/* dunkel · Passt das zu dir       */}
-        <TrustSection />      {/* hell   · Wer ist ISI            */}
-        <FailureStory />      {/* dunkel · Warum ehrlich          */}
-        <LiveSection />       {/* hell   · Du bist nicht allein   */}
-        <Lifestyle />         {/* hell   · Wofür das gut ist      */}
-        <Network />           {/* dunkel · Wer sonst dabei ist    */}
-        <Testimonials />      {/* hell   · Wer es bestätigt       */}
-        <OpportunityMoment /> {/* dunkel · Was daraus werden kann */}
+        {/* --- 1 · Aufmerksamkeit ------------------------------------ */}
+        <Hero />              {/* dunkel · Worum geht es           */}
+        <Intro />             {/* dunkel · Den Weg sieht man nicht */}
+
+        {/* --- 2 · Vertrauen ----------------------------------------- */}
+        <TrustSection />      {/* hell   · Wer ist ISI             */}
+        <FitCheck />          {/* dunkel · Passt das zu dir        */}
+        <FailureStory />      {/* dunkel · Auch die Fehler         */}
+
+        {/* --- 3 · Inhalt -------------------------------------------- */}
+        <SeriesRow />         {/* hell   · Die Kurse               */}
+        <LiveSection />       {/* hell   · Live dabei              */}
+        <Network />           {/* dunkel · Das Umfeld              */}
+
+        {/* --- 4 · Entscheidung -------------------------------------- */}
+        <Testimonials />      {/* hell   · Wer es bestaetigt       */}
+        <Lifestyle />         {/* hell   · Wofuer das gut ist      */}
+        <OpportunityMoment /> {/* dunkel · Was daraus werden kann  */}
         <Access />            {/* hell   · Umfang, Preis, Aufnahme */}
-        <Faq />               {/* hell   · Offene Fragen          */}
-        <FinalCTA />          {/* dunkel · Entscheidung           */}
+        <Faq />               {/* hell   · Offene Fragen           */}
+        <FinalCTA />          {/* dunkel · Entscheidung            */}
       </main>
 
       <Footer />

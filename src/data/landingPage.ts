@@ -687,29 +687,29 @@ export const membership = {
 
 export const application = {
   eyebrow: "Der Weg rein",
-  headline: ["SO KOMMST", "DU REIN."],
+  headline: ["SO KOMMEN WIR", "ZUSAMMEN."],
+  /* Drei Schritte in ISIs Worten: entscheiden, pruefen, loslegen. Vorher
+     waren es vier, aufgeteilt nach Ablauf statt nach dem, was jemand
+     tatsaechlich tut — die Praesentation steckt jetzt in Schritt zwei. */
   steps: [
     {
       step: "01",
-      label: "INTERESSE ZEIGEN",
-      text: "Kurzes Formular. Fünf Minuten, unverbindlich.",
+      label: "DU ENTSCHEIDEST DICH",
+      text: "Überleg dir, was du wirklich erreichen willst. Bist du dir sicher, bewirbst du dich bei mir — fünf Minuten, unverbindlich.",
     },
     {
       step: "02",
-      label: "PRÄSENTATION",
-      text: "Du bekommst sie zugeschickt und schaust sie in Ruhe an. Dort steht alles: Umfang, Ablauf, Preis.",
+      label: "ICH SCHAUE MIR DAS AN",
+      text: "Ich prüfe, ob es passt. Wenn ja, bekommst du die Präsentation mit allem, was drin ist — Umfang, Ablauf, Preis.",
     },
     {
       step: "03",
-      label: "VORQUALIFIZIEREN",
-      text: "Passt es für dich, legst du direkt los und füllst die Vorqualifizierung aus.",
-    },
-    {
-      step: "04",
-      label: "ZUGANG",
-      text: "Passt es in beide Richtungen, bekommst du dein Login.",
+      label: "WIR LEGEN LOS",
+      text: "Passt es für dich und bist du bereit, in dich selbst zu investieren, geht es los.",
     },
   ],
+  /* Ehrlich halten: eine Bewerbung ist keine Zusage. */
+  note: "Es passt nicht mit jedem. Wenn ich absage, ist das kein schlechtes Ergebnis — nur ein ehrliches.",
 } as const;
 
 /* --------------------------------------------------------------------------

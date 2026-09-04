@@ -107,6 +107,10 @@ export function Access() {
               </Reveal>
             ))}
           </ol>
+
+          <Reveal delay={280}>
+            <p className={styles.stepsNote}>{application.note}</p>
+          </Reveal>
         </div>
       </div>
     </section>

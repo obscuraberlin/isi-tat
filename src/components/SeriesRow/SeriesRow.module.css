@@ -39,86 +39,82 @@
 
 /* ---------- Pfeile ---------- */
 
-.arrows {
-  display: none;
-  gap: 8px;
-}
+/* ---------- Laufband ---------- */
 
-.arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--line-dark);
-  color: var(--text-dark);
-  transition:
-    background-color var(--d-fast) var(--ease-out),
-    border-color var(--d-fast) var(--ease-out),
-    opacity var(--d-fast) var(--ease-out);
-}
-
-.arrow:disabled {
-  opacity: 0.28;
-  cursor: default;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .arrow:not(:disabled):hover {
-    background: var(--text-dark);
-    border-color: var(--text-dark);
-    color: var(--text-light);
-  }
-}
-
-.arrowIcon {
-  width: 15px;
-  height: 15px;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  fill: none;
-}
-
-/* ---------- Scroller ---------- */
-
-.scroller {
+/* Ueber die volle Breite, links wie rechts ohne Rand: die Reihe steht nie
+   angeschnitten still, sie laeuft an beiden Seiten aus dem Bild. */
+.marquee {
   position: relative;
   z-index: 1;
   --gap: clamp(12px, 1.2vw, 20px);
-  --cards: 1.14;
+  --karte: clamp(210px, 19vw, 300px);
+  --dauer: 52s;
 
-  display: flex;
-  gap: var(--gap);
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow: hidden;
   padding-block: 18px;
-  padding-inline: max(
-    var(--gutter),
-    calc((100vw - var(--max-page)) / 2 + var(--gutter))
+  /* An beiden Raendern weich auslaufen — sonst schneidet die Kante die
+     Karten hart ab und der Lauf sieht aus wie ein Fehler. */
+  --rand: linear-gradient(
+    to right,
+    transparent 0,
+    #000 clamp(40px, 7vw, 140px),
+    #000 calc(100% - clamp(40px, 7vw, 140px)),
+    transparent 100%
   );
-  /* Ohne scroll-padding schnappt die erste Karte an den Innenrand und
-     der Zeilenanfang verliert die Ausrichtung zum Seitenraster. */
-  scroll-padding-inline: max(
-    var(--gutter),
-    calc((100vw - var(--max-page)) / 2 + var(--gutter))
-  );
+  -webkit-mask-image: var(--rand);
+  mask-image: var(--rand);
 }
 
-.scroller::-webkit-scrollbar {
-  display: none;
+.track {
+  display: flex;
+  width: max-content;
+  /* Der Abstand haengt an der Karte, nicht am Flex-Container: nur dann
+     ist eine Kopie exakt ein Drittel der Bahn und der Sprung faellt auf
+     ein identisches Bild. Mit flex-gap fehlte pro Runde ein halber
+     Abstand — und genau das sieht man als Ruckler. */
+  animation: lauf var(--dauer) linear infinite;
+  will-change: transform;
+}
+
+/* Von links nach rechts: die Bahn startet um eine Kopie nach links
+   versetzt und schiebt sich auf null. */
+@keyframes lauf {
+  from {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Anhalten, sobald jemand hineingeht — ein Ziel, das sich wegbewegt,
+   klickt niemand gern. */
+.marquee:hover .track,
+.marquee:focus-within .track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+
+  /* Ohne Lauf muss man selbst schieben koennen. */
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .marquee::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* ---------- Karte ---------- */
 
 .card {
-  flex: 0 0 calc((100% - (var(--cards) - 1) * var(--gap)) / var(--cards));
-  scroll-snap-align: start;
+  flex: 0 0 var(--karte);
+  margin-right: var(--gap);
   position: relative;
   border-radius: var(--r-card);
   overflow: hidden;
@@ -286,35 +282,7 @@
   color: var(--text-muted);
 }
 
-@media (min-width: 480px) {
-  .scroller {
-    --cards: 1.6;
-  }
-}
 
-@media (min-width: 768px) {
-  .scroller {
-    --cards: 3.3;
-  }
-}
 
 @media (min-width: 1024px) {
-  .scroller {
-    --cards: 4.3;
-  }
-  .arrows {
-    display: flex;
-  }
-}
-
-@media (min-width: 1280px) {
-  .scroller {
-    --cards: 4.2;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroller {
-    scroll-behavior: auto;
-  }
 }

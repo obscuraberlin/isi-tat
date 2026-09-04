@@ -1,11 +1,12 @@
 "use client";
 
-import { failure } from "@/data/landingPage";
+import { failure, intro, lifestyle } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { WrapHead } from "@/components/ui/WrapHead";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./FailureStory.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
+import { Collage } from "@/components/Collage/Collage";
 
 /**
  * "WAS BEI MIR" steht oben, die Gegenueberstellung ueber die volle Breite
@@ -26,6 +27,19 @@ export function FailureStory() {
   return (
     <section className={styles.section}>
       <Backdrop variant="horizon" tone="dark" drift={50} />
+
+      {/* Die drei Bilder standen auf blankem Schwarz und wirkten dadurch
+          wie hingelegt. Die Collage gibt der Flaeche einen Grund — aus
+          Motiven, die ohnehin schon geladen sind. */}
+      <Collage
+        assets={[
+          ...lifestyle.gallery,
+          ...intro.scenes.map((scene) => scene.visual),
+          failure.compare.before,
+          failure.compare.after,
+          failure.motive.asset,
+        ]}
+      />
 
       <div className={styles.inner}>
         <WrapHead

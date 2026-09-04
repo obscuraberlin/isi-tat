@@ -343,15 +343,17 @@
     /* Weiche Rampe statt einer Kante: viele Stufen, damit der Verlauf nicht
        als Linie sichtbar wird. Zwei, drei Stopps reichen dafuer nicht — man
        sieht die Stelle, an der er ansetzt. */
+    /* Die Rampe endet frueher als vorher: das Bild ist damit schon auf
+       halber Textbreite voll da, statt erst hinter der Headline. */
     --mask-x: linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.06) 12%,
-      rgba(0, 0, 0, 0.2) 24%,
-      rgba(0, 0, 0, 0.42) 35%,
-      rgba(0, 0, 0, 0.66) 45%,
-      rgba(0, 0, 0, 0.86) 55%,
-      #000 66%
+      rgba(0, 0, 0, 0.08) 7%,
+      rgba(0, 0, 0, 0.24) 14%,
+      rgba(0, 0, 0, 0.48) 21%,
+      rgba(0, 0, 0, 0.72) 28%,
+      rgba(0, 0, 0, 0.9) 35%,
+      #000 44%
     );
     --mask-y: linear-gradient(
       to bottom,
@@ -384,16 +386,18 @@
   .visualOverlay {
     /* Kraeftiger als vorher: unter dem Text liegt jetzt Bild, und die
        Aufnahme ist ein helles Studio. Ohne das laeuft Weiss auf Weiss. */
+    /* Der dunkle Teil endet frueher — links bleibt die Schrift auf
+       ruhigem Grund, ab der Mitte sieht man den Clip fast unverdeckt. */
     background: linear-gradient(
       to right,
-      rgba(8, 8, 8, 0.93) 0%,
-      rgba(8, 8, 8, 0.88) 14%,
-      rgba(8, 8, 8, 0.72) 28%,
-      rgba(8, 8, 8, 0.5) 41%,
-      rgba(8, 8, 8, 0.29) 54%,
-      rgba(8, 8, 8, 0.13) 68%,
-      rgba(8, 8, 8, 0.04) 82%,
-      rgba(8, 8, 8, 0) 94%
+      rgba(8, 8, 8, 0.92) 0%,
+      rgba(8, 8, 8, 0.84) 10%,
+      rgba(8, 8, 8, 0.64) 20%,
+      rgba(8, 8, 8, 0.42) 30%,
+      rgba(8, 8, 8, 0.24) 40%,
+      rgba(8, 8, 8, 0.1) 52%,
+      rgba(8, 8, 8, 0.03) 64%,
+      rgba(8, 8, 8, 0) 74%
     );
   }
 }

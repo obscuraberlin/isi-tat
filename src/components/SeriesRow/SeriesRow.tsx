@@ -11,17 +11,16 @@ import { SeriesModal } from "./SeriesModal";
 import styles from "./SeriesRow.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 
-const Arrow = ({ dir }: { dir: "left" | "right" }) => (
-  <svg className={styles.arrowIcon} viewBox="0 0 16 16" aria-hidden="true">
-    <path
-      d={dir === "left" ? "M10 2 4 8l6 6" : "M6 2l6 6-6 6"}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-function Card({ series, onOpen }: { series: Series; onOpen: () => void }) {
+function Card({
+  series,
+  onOpen,
+  /** Kopie fuer den Endlos-Lauf: dekorativ, nicht anspringbar, nicht vorgelesen. */
+  kopie = false,
+}: {
+  series: Series;
+  onOpen: () => void;
+  kopie?: boolean;
+}) {
   const hasHover = useHasHover();
   const [previewOn, setPreviewOn] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -59,6 +58,8 @@ function Card({ series, onOpen }: { series: Series; onOpen: () => void }) {
       onFocus={start}
       onBlur={stop}
       aria-label={`${series.label} öffnen`}
+      aria-hidden={kopie || undefined}
+      tabIndex={kopie ? -1 : undefined}
     >
       <Media asset={series.cover} tone="dark" radius="inherit" />
 
@@ -101,36 +102,13 @@ function Card({ series, onOpen }: { series: Series; onOpen: () => void }) {
   );
 }
 
+/* Drei Kopien: eine reicht nicht ueber die Breite eines grossen Schirms,
+   zwei liessen beim Sprung eine Luecke. Verschoben wird um genau eine
+   Kopie — dadurch sitzt der Sprung auf einem identischen Bild. */
+const KOPIEN = 3;
+
 export function SeriesRow() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
   const [active, setActive] = useState<Series | null>(null);
-
-  const sync = useCallback(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    setAtStart(el.scrollLeft <= 2);
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
-  }, []);
-
-  useEffect(() => {
-    sync();
-    const el = scrollerRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", sync, { passive: true });
-    window.addEventListener("resize", sync);
-    return () => {
-      el.removeEventListener("scroll", sync);
-      window.removeEventListener("resize", sync);
-    };
-  }, [sync]);
-
-  const page = (dir: -1 | 1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth * 0.82, behavior: "smooth" });
-  };
 
   return (
     <section className={styles.section} id="im-club">
@@ -143,43 +121,30 @@ export function SeriesRow() {
         </div>
 
         <p className={styles.subline}>{insideTheClub.subline}</p>
-
-        <div className={styles.arrows}>
-          <button
-            type="button"
-            className={styles.arrow}
-            onClick={() => page(-1)}
-            disabled={atStart}
-            aria-label="Vorherige Bereiche"
-          >
-            <Arrow dir="left" />
-          </button>
-          <button
-            type="button"
-            className={styles.arrow}
-            onClick={() => page(1)}
-            disabled={atEnd}
-            aria-label="Weitere Bereiche"
-          >
-            <Arrow dir="right" />
-          </button>
-        </div>
       </Reveal>
 
+      {/* Laufband ueber die volle Breite statt einer Spalte mit Pfeilen:
+          links wie rechts laeuft es aus dem Bild, die Reihe steht nie
+          angeschnitten still. Haelt an, sobald jemand mit der Maus oder
+          der Tastatur hineingeht — sonst klickt man auf ein Ziel, das
+          sich wegbewegt. */}
       <div
-        ref={scrollerRef}
-        className={styles.scroller}
+        className={styles.marquee}
         role="region"
-        aria-label={`${insideTheClub.headline} — Serien, horizontal scrollbar`}
-        tabIndex={0}
+        aria-label={`${insideTheClub.headline} — Serien`}
       >
-        {insideTheClub.series.map((series) => (
-          <Card
-            key={series.id}
-            series={series}
-            onOpen={() => setActive(series)}
-          />
-        ))}
+        <div className={styles.track}>
+          {Array.from({ length: KOPIEN }, (_, kopie) =>
+            insideTheClub.series.map((series) => (
+              <Card
+                key={`${kopie}-${series.id}`}
+                series={series}
+                kopie={kopie > 0}
+                onOpen={() => setActive(series)}
+              />
+            )),
+          )}
+        </div>
       </div>
 
       <div className={styles.noteWrap}>

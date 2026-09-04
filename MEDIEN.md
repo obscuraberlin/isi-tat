@@ -47,4 +47,4 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **32** | Präsentationsseite | Die Präsentation — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
 | **33** | Hintergrundebene | Hintergrund: die Halle mit dem Rolls-Royce | Bild | 16 / 9 |
 | **34** | Hintergrundebene | Hintergrund: im Showroom neben dem Ferrari | Bild | 16 / 9 |
-| **35** | Hintergrundebene | Hintergrund-Clip: Menschen im Umfeld | Video | 16 / 9 |
+| **35** | Hintergrundebene | Hintergrund-Clip: in der Garage | Video | 16 / 9 |

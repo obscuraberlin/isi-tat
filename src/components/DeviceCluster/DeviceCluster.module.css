@@ -1,0 +1,282 @@
+/* Geraete-Cluster fuer den Mitgliederbereich.
+   Alle Groessen haengen an der Clusterbreite (cqw), damit die Anordnung in
+   jeder Spaltenbreite dieselbe bleibt und nichts einzeln nachjustiert werden
+   muss. */
+
+.cluster {
+  position: relative;
+  container-type: inline-size;
+  /* Tablet und Telefon ragen unten heraus — der Platz dafuer steht hier. */
+  padding-bottom: 15cqw;
+}
+
+/* ---------- Laptop ---------- */
+
+.laptop {
+  position: relative;
+  width: 76%;
+  margin-inline: auto;
+}
+
+.laptopScreen {
+  position: relative;
+  /* Ein Laptop hat ein Bildschirmformat, keine Seitenhoehe. Die Oberflaeche
+     wird darin beschnitten wie in einem echten Fenster — genau so sieht man
+     sie spaeter auch. */
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  --stage-ratio: 3.4 / 1;
+  border: 1.2cqw solid #1c1c1c;
+  border-bottom-width: 0.9cqw;
+  border-radius: 1.6cqw 1.6cqw 0 0;
+  background: #1c1c1c;
+  box-shadow: 0 3cqw 6cqw rgba(0, 0, 0, 0.32);
+}
+
+/* Der Nachbau bringt eigene Ecken und einen eigenen Schatten mit — im
+   Geraet waere beides doppelt. */
+.laptopScreen > div {
+  border-radius: 0.4cqw;
+  box-shadow: none;
+}
+
+/* Deckel und Unterteil sind ein Koerper, deshalb keine Fuge dazwischen. */
+.laptopBase {
+  position: relative;
+  height: 1.1cqw;
+  border-radius: 0 0 0.9cqw 0.9cqw;
+  background: linear-gradient(to bottom, #1c1c1c, #141414);
+}
+
+.laptopNotch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 11%;
+  height: 0.32cqw;
+  border-radius: 0 0 0.3cqw 0.3cqw;
+  background: rgba(255, 255, 255, 0.13);
+}
+
+/* ---------- Tablet ---------- */
+
+.tablet {
+  position: absolute;
+  left: 0;
+  bottom: 2cqw;
+  width: 21cqw;
+  border: 0.8cqw solid #1c1c1c;
+  border-radius: 1.8cqw;
+  background: #1c1c1c;
+  box-shadow: 0 2.4cqw 5cqw rgba(0, 0, 0, 0.42);
+}
+
+.tabletScreen {
+  aspect-ratio: 3 / 4;
+  padding: 1.6cqw;
+  border-radius: 0.9cqw;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.miniLabel {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: 1.5cqw;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.miniCount {
+  margin-top: 0.4cqw;
+  font-size: 1.1cqw;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.tabletGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1cqw;
+  margin-top: 1.4cqw;
+}
+
+.miniTile {
+  position: relative;
+  /* Flacher als 4:3, damit alle drei Reihen ganz auf den Schirm passen —
+     ein Schnitt mitten durch eine Beschriftung sieht nach Fehler aus. */
+  aspect-ratio: 16 / 10;
+  border-radius: 0.5cqw;
+  overflow: hidden;
+  background: linear-gradient(150deg, #232120 0%, #141414 60%, #1d1b18 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.miniTileScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 6, 0.92) 0%,
+    rgba(6, 6, 6, 0.2) 60%,
+    rgba(6, 6, 6, 0) 100%
+  );
+}
+
+.miniTileLabel {
+  position: absolute;
+  left: 0.5cqw;
+  right: 0.5cqw;
+  bottom: 0.4cqw;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: 0.68cqw;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  /* Zweizeilig abschneiden — der Kurzname reicht auf dieser Groesse. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Telefon ---------- */
+
+.phone {
+  position: absolute;
+  right: 3cqw;
+  bottom: 2cqw;
+  width: 12cqw;
+  border: 0.7cqw solid #1c1c1c;
+  border-radius: 2cqw;
+  background: #1c1c1c;
+  box-shadow: 0 2.4cqw 5cqw rgba(0, 0, 0, 0.48);
+}
+
+.phoneScreen {
+  aspect-ratio: 9 / 19;
+  padding: 0.9cqw;
+  border-radius: 1.4cqw;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.phonePlayer {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 0.5cqw;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.04)
+  );
+}
+
+.phonePlay {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 2.6cqw;
+  height: 2.6cqw;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.phonePlayIcon {
+  width: 0.9cqw;
+  fill: #101010;
+}
+
+.phoneKicker {
+  margin-top: 0.9cqw;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: 0.95cqw;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  /* Lange Kursnamen duerfen den Telefonrand nicht sprengen. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phoneList {
+  list-style: none;
+  margin-top: 0.9cqw;
+  display: grid;
+  gap: 0.7cqw;
+}
+
+.phoneItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6cqw;
+}
+
+.phoneDot {
+  flex: none;
+  width: 1.1cqw;
+  height: 1.1cqw;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.phoneDotActive {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+/* Statt Blindtext eine angedeutete Zeile — lesbar wird sie ohnehin nie. */
+.phoneItemBar {
+  height: 0.45cqw;
+  flex: 1;
+  border-radius: 0.3cqw;
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.phoneItem:nth-child(2) .phoneItemBar { max-width: 76%; }
+.phoneItem:nth-child(3) .phoneItemBar { max-width: 88%; }
+.phoneItem:nth-child(4) .phoneItemBar { max-width: 64%; }
+
+/* ---------- Schmale Spalten ---------- */
+
+/* Unter dieser Breite waere das Telefon 60 Pixel breit und das Tablet eine
+   Briefmarke — man saehe drei Geraete und erkennte auf keinem etwas. Dann
+   faellt das Geraete-Chrome ganz weg und die Oberflaeche steht fuer sich,
+   ueber die volle Breite und in voller Hoehe. Dass es sie auch auf Tablet
+   und Telefon gibt, sagt die Bildunterschrift. */
+@container (max-width: 560px) {
+  .cluster {
+    padding-bottom: 0;
+  }
+
+  .laptop {
+    width: 100%;
+  }
+
+  .laptopScreen {
+    aspect-ratio: auto;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    --stage-ratio: 2.35 / 1;
+  }
+
+  .laptopScreen > div {
+    border-radius: var(--r-card);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+  }
+
+  .laptopBase,
+  .tablet,
+  .phone {
+    display: none;
+  }
+}

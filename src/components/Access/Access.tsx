@@ -1,5 +1,5 @@
 import { application, cta, isPending, membership, pricing } from "@/data/landingPage";
-import { MemberPreview } from "@/components/MemberPreview/MemberPreview";
+import { DeviceCluster } from "@/components/DeviceCluster/DeviceCluster";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -33,7 +33,7 @@ export function Access() {
         />
 
         <Reveal className={styles.preview}>
-          <MemberPreview />
+          <DeviceCluster />
           <p className={styles.previewCaption}>{membership.previewCaption}</p>
         </Reveal>
 

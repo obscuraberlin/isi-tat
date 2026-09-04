@@ -618,7 +618,7 @@ export const membership = {
   headline: ["NICHT NUR CONTENT."],
   headlineAccent: ["EIN UMFELD,", "DAS MITDENKT."],
   previewCaption:
-    "So sieht der Mitgliederbereich aus. Abbildung — die Inhalte wachsen laufend.",
+    "So sieht der Mitgliederbereich aus — am Laptop, auf dem Tablet, auf dem Telefon. Abbildung; die Inhalte wachsen laufend.",
   rows: [
     {
       label: "INHALTE & ERFAHRUNGEN",

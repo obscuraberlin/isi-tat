@@ -58,7 +58,9 @@
 
 .stage {
   position: relative;
-  aspect-ratio: 2.35 / 1;
+  /* Wird flacher, wenn der Nachbau in einem Geraet steckt — auf einem
+     Laptopbildschirm frisst eine 2.35:1-Buehne sonst alles andere weg. */
+  aspect-ratio: var(--stage-ratio, 2.35 / 1);
   background: linear-gradient(145deg, #23211d 0%, #141414 55%, #1e1c19 100%);
 }
 

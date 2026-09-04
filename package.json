@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run medien && next dev",
     "build": "next build",
+    "prebuild": "npm run medien",
     "start": "next start",
+    "medien": "node tools/medien-scan.mjs && node tools/media-liste.mjs",
     "preview": "node tools/build-preview.mjs dist/isi-tat-preview.html",
     "build:static": "STATIC_EXPORT=1 next build"
   },

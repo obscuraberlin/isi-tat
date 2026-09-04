@@ -26,6 +26,8 @@
    Eine anwaltliche Pruefung ersetzt das nicht.
    ========================================================================== */
 
+import { mediaFiles } from "./mediaFiles";
+
 /** true, wenn eine Angabe noch nicht bestaetigt vorliegt. */
 export const isPending = (value: string) => value.startsWith("TODO_CONTENT");
 
@@ -62,16 +64,25 @@ const media = (
   alt: string,
   ratio: string,
   extra: Partial<MediaAsset> = {},
-): MediaAsset => ({
-  id,
-  no: ++assetCounter,
-  kind,
-  src: null,
-  poster: null,
-  alt,
-  ratio,
-  ...extra,
-});
+): MediaAsset => {
+  const no = ++assetCounter;
+  /* Liegt in public/media eine Datei mit dieser Nummer, wird sie
+     automatisch eingesetzt. Der Scan laeuft vor jedem Build — dadurch
+     genuegt es, 03.mp4 dort abzulegen, ohne hier etwas zu aendern. */
+  const datei = mediaFiles[no];
+
+  return {
+    id,
+    no,
+    kind,
+    src: datei?.src ?? null,
+    poster: datei?.poster ?? null,
+    srcMobile: datei?.srcMobile ?? null,
+    alt,
+    ratio,
+    ...extra,
+  };
+};
 
 /** Zweistellig, damit die Nummern in einer Dateiliste sortiert bleiben. */
 export const assetNo = (asset: MediaAsset) => String(asset.no).padStart(2, "0");

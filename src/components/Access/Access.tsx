@@ -1,7 +1,7 @@
 "use client";
 
 import { application, cta, isPending, live, membership, spots } from "@/data/landingPage";
-import { DeviceCluster } from "@/components/DeviceCluster/DeviceCluster";
+import { Media } from "@/components/Media/Media";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -30,7 +30,7 @@ export function Access() {
         />
 
         <Reveal className={styles.preview}>
-          <DeviceCluster />
+          <Media asset={membership.mockup} radius="var(--r-visual)" />
           <p className={styles.previewCaption}>{membership.previewCaption}</p>
         </Reveal>
 

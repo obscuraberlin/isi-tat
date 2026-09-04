@@ -1,6 +1,6 @@
 # Material für die ISI TAT Landingpage
 
-30 Flächen. Auf der Seite steht in jedem Platzhalter die Nummer.
+32 Flächen. Auf der Seite steht in jedem Platzhalter die Nummer.
 Benenne deine Dateien danach — `01.jpg`, `07.mp4` — dann ist eindeutig,
 was wohin gehört.
 
@@ -33,13 +33,15 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **18** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 16 / 9 |
 | **19** | Was bei mir schiefgelaufen ist | ISI TAT als Jugendlicher | Bild | 3 / 4 |
 | **20** | Was bei mir schiefgelaufen ist | ISI TAT heute | Bild | 3 / 4 |
-| **21** | Freiheit | ISI TAT in der Garage | Video | 16 / 9 |
-| **22** | Freiheit (Galerie) | Auto — Aufnahme eins | Bild | 4 / 5 |
-| **23** | Freiheit (Galerie) | Auto — Aufnahme zwei | Bild | 4 / 5 |
-| **24** | Freiheit (Galerie) | Auto — Aufnahme drei | Bild | 4 / 5 |
-| **25** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
+| **21** | Was bei mir schiefgelaufen ist | ISI TAT mit seiner Mutter | Bild | 4 / 5 |
+| **22** | Freiheit | ISI TAT in der Garage | Video | 16 / 9 |
+| **23** | Freiheit (Galerie) | Nachts in Paris, vor dem Rolls-Royce | Bild | 4 / 5 |
+| **24** | Freiheit (Galerie) | Im Showroom, neben einem roten Ferrari | Bild | 4 / 5 |
+| **25** | Freiheit (Galerie) | Vor einem Privatjet | Bild | 4 / 5 |
 | **26** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
 | **27** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
-| **28** | Abschluss | ISI TAT — Abschluss | Video | 16 / 9 |
-| **29** | Login-Seite | ISI TAT BUSINESS CLUB | Bild | 3 / 4 |
-| **30** | Präsentationsseite | Die Präsentation — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
+| **28** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
+| **29** | Mitgliedschaft | Der Mitgliederbereich auf Laptop, Tablet und Telefon | Bild | 16 / 10 |
+| **30** | Abschluss | ISI TAT — Abschluss | Video | 16 / 9 |
+| **31** | Login-Seite | ISI TAT BUSINESS CLUB | Bild | 3 / 4 |
+| **32** | Präsentationsseite | Die Präsentation — ISI TAT BUSINESS CLUB | Video | 16 / 9 |

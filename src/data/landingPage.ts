@@ -475,6 +475,17 @@ export const failure = {
     afterCaption: "Derselbe Weg — nur habe ich ihn alleine gesucht.",
     after: media("[ISI_HEUTE]", "image", "ISI TAT heute", "3 / 4"),
   },
+  /* Kein Erfolgsbild. Es steht neben dem Absatz ueber die Eltern und
+     traegt den Grund, aus dem ueberhaupt jemand Vollgas gibt. */
+  motive: {
+    caption: "Der Grund, warum ich angefangen habe, es ernst zu nehmen.",
+    asset: media(
+      "[ISI_MUTTER]",
+      "image",
+      "ISI TAT mit seiner Mutter",
+      "4 / 5",
+    ),
+  },
   closing: [
     "MIT JEMANDEM AN MEINER SEITE",
     "WÄRE ICH VIEL SCHNELLER GEWESEN.",
@@ -505,9 +516,9 @@ export const lifestyle = {
   gallery: [
     /* Alt-Text beschreibt, was zu sehen ist — er wird vorgelesen,
        wenn das Bild nicht laedt oder jemand es nicht sehen kann. */
-    media("[ISI_AUTO_01]", "image", "Auto — Aufnahme eins", "4 / 5"),
-    media("[ISI_AUTO_02]", "image", "Auto — Aufnahme zwei", "4 / 5"),
-    media("[ISI_AUTO_03]", "image", "Auto — Aufnahme drei", "4 / 5"),
+    media("[ISI_FREIHEIT_01]", "image", "Nachts in Paris, vor dem Rolls-Royce", "4 / 5"),
+    media("[ISI_FREIHEIT_02]", "image", "Im Showroom, neben einem roten Ferrari", "4 / 5"),
+    media("[ISI_FREIHEIT_03]", "image", "Vor einem Privatjet", "4 / 5"),
   ],
   disclaimer:
     "Meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussieht.",
@@ -672,6 +683,15 @@ export const membership = {
   headlineAccent: ["EIN UMFELD,", "DAS MITDENKT."],
   previewCaption:
     "So sieht der Mitgliederbereich aus — am Laptop, auf dem Tablet, auf dem Telefon. Abbildung; die Inhalte wachsen laufend.",
+  /* Gestaltete Abbildung statt nachgebauter Geraete: der Auftraggeber
+     liefert das Mockup, damit die Oberflaeche so aussieht, wie sie
+     tatsaechlich gedacht ist. */
+  mockup: media(
+    "[MITGLIEDERBEREICH_MOCKUP]",
+    "image",
+    "Der Mitgliederbereich auf Laptop, Tablet und Telefon",
+    "16 / 10",
+  ),
   rows: [
     {
       label: "INHALTE & ERFAHRUNGEN",
@@ -780,15 +800,15 @@ export const faq = {
   items: [
     {
       q: "Für wen ist der Club?",
-      a: "Für Leute, die verkaufen, aufbauen oder selbstständig arbeiten wollen und dafür ein anderes Umfeld brauchen. Nicht für alle — das ist keine Verknappung, das ist einfach so.",
+      a: "Für Quereinsteiger, die neu anfangen — und genauso für Leute, die längst dabei sind und auf ein ganz anderes Level wollen. Entscheidend ist nicht, wo du heute stehst, sondern wohin du willst.",
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Zugang zum Club mit allen Serien, den Live-Runden und dem Austausch mit den anderen Mitgliedern. Alles über ein Login.",
+      a: "Die Erfahrung aus über 20 Jahren Vertrieb, Business und Aufbau — und ein Netzwerk, das funktioniert. Beides an einem Ort, über ein Login.",
     },
     {
       q: "Wie sind die Serien aufgebaut?",
-      a: "Es gibt keine feste Reihenfolge, keine Hausaufgaben, keine Prüfung und kein Zertifikat. Du schaust, was dich gerade betrifft, und fragst in den Live-Runden nach.",
+      a: "So, dass jeder auf seiner Ebene einsteigen kann. Es gibt keine feste Reihenfolge, keine Hausaufgaben, keine Prüfung und kein Zertifikat. Du gehst dahin, wo du gerade stehst, und fragst im Austausch nach, was offen bleibt.",
     },
     {
       q: "Wie viel Kontakt habe ich zu dir?",
@@ -796,19 +816,15 @@ export const faq = {
     },
     {
       q: "Laufzeit und Zahlung?",
-      a: "TODO_CONTENT — Laufzeit und Zahlungsoptionen eintragen.",
+      a: "Ja, es kostet etwas. Wer das nicht als Investment sieht, ist hier ohnehin falsch. Einen Weg findet man: komplett auf einmal oder in zwei bis drei Zahlungen. Die eigentliche Frage ist nicht das Wie, sondern ob du überhaupt teilnehmen kannst — es ist ein Bewerbungsverfahren mit einer begrenzten Zahl an Plätzen.",
     },
     {
       q: "Kann daraus eine Zusammenarbeit werden?",
-      a: "Möglich, aber ich sichere es nicht zu. Das entsteht über Zeit und dadurch, wie jemand auffällt — nicht durch den Kauf.",
+      a: "Genau das ist die Idee dahinter. Wenn jemand mitmacht, dranbleibt und auffällt, wird es interessant — dann reden wir darüber. Zusichern kann ich es dir vorab nicht, das entsteht über Zeit.",
     },
     {
       q: "Bin ich nach dem Kauf auf mich allein gestellt?",
-      a: "Nein. Genau das soll der Club nicht sein. Du bekommst Zugang zu den verfügbaren Inhalten, den Live-Formaten und dem Austausch innerhalb des Clubs. Du triffst deine Entscheidungen weiterhin selbst — aber du musst nicht jede Frage alleine mit dir ausmachen.",
-    },
-    {
-      q: "Gibt es eine Erfolgsgarantie?",
-      a: "Nein. Kein seriöser Mensch kann dir ein bestimmtes geschäftliches oder finanzielles Ergebnis garantieren. Was wir dir geben können, sind Erfahrungen, Perspektiven, Austausch und ein Umfeld, das dich bei deinen nächsten Entscheidungen unterstützen kann.",
+      a: "Nein. Du profitierst vom Netzwerk, von der Erfahrung und von den Fragen, die dort beantwortet werden — auch von denen, die du selbst nie gestellt hättest. Entscheiden musst du weiter selbst, aber du machst es nicht mehr mit dir allein aus.",
     },
   ],
 } as const;

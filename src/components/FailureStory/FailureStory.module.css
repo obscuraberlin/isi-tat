@@ -20,6 +20,32 @@
   margin-top: clamp(30px, 3.4vw, 48px);
 }
 
+/* Text links, das Bild rechts daneben: der Absatz ueber die Eltern und das
+   Bild dazu stehen im selben Blick. Auf schmalen Schirmen untereinander. */
+.story {
+  display: grid;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .story {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+    gap: clamp(32px, 4vw, 72px);
+  }
+}
+
+.motive {
+  display: block;
+}
+
+.motiveCaption {
+  margin-top: 12px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 .body {
   max-width: var(--max-text);
   display: flex;

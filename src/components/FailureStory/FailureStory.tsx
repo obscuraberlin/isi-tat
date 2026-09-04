@@ -52,13 +52,24 @@ export function FailureStory() {
         </WrapHead>
 
         <div className={styles.after}>
-          <Reveal delay={120}>
-            <div className={styles.body}>
-              {failure.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </Reveal>
+          <div className={styles.story}>
+            <Reveal delay={120}>
+              <div className={styles.body}>
+                {failure.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </Reveal>
+
+            {/* Das einzige Bild der Seite, das nichts beweisen will. Es steht
+                neben dem Absatz ueber die Eltern und traegt den Grund. */}
+            <Reveal delay={200} className={styles.motive}>
+              <span className={styles.visual}>
+                <Media asset={failure.motive.asset} tone="dark" />
+              </span>
+              <p className={styles.motiveCaption}>{failure.motive.caption}</p>
+            </Reveal>
+          </div>
 
           <Reveal delay={160} className={styles.closing}>
             {failure.closing.map((line) => (

@@ -4,9 +4,9 @@
 export interface MediaFile {
   src?: string;
   poster?: string;
-  srcMobile?: string;
 }
 
 export const mediaFiles: Record<number, MediaFile> = {
-
+  1: {"poster":"/media/01-poster.jpg","src":"/media/01.mp4"},
+  20: {"src":"/media/20.jpg"},
 };

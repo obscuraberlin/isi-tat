@@ -13,7 +13,7 @@ bleibt als Platzhalter stehen; nichts bricht.
 
 | Nr. | Wo auf der Seite | Was | Art | Format |
 |---|---|---|---|---|
-| **01** | Hero | ISI TAT im Portrait — Hero-Sequenz | Video | 4 / 5 |
+| **01** | Hero | ISI TAT im Portrait — Hero-Sequenz | Video | 16 / 9 |
 | **02** | Hero | ISI TAT — Hero-Portrait | Bild | 4 / 5 |
 | **03** | Trailer (Overlay) | 90 Sekunden Trailer — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
 | **04** | Intro (Scrollytelling) | ISI TAT unterwegs | Video | 16 / 9 |
@@ -32,7 +32,7 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **17** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 2 / 3 |
 | **18** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 16 / 9 |
 | **19** | Was bei mir schiefgelaufen ist | ISI TAT — frühe Jahre | Bild | 3 / 4 |
-| **20** | Freiheit (Galerie) | Paris bei Nacht | Bild | 4 / 5 |
+| **20** | Freiheit (Galerie) | ISI TAT im Anzug vor einem Rolls-Royce | Bild | 4 / 5 |
 | **21** | Freiheit (Galerie) | Unterwegs | Bild | 4 / 5 |
 | **22** | Freiheit (Galerie) | Zuhause | Bild | 4 / 5 |
 | **23** | Freiheit (Galerie) | Bei der Arbeit | Bild | 4 / 5 |

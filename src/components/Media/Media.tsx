@@ -62,13 +62,11 @@ export function Media({
             controls={controls}
             preload={priority ? "auto" : "metadata"}
           >
-            {asset.srcMobile ? (
-              <source
-                src={asset.srcMobile}
-                media="(max-width: 767px)"
-                type="video/mp4"
-              />
-            ) : null}
+            {/* Bewusst nur eine Quelle. Das media-Attribut wird an <source>
+                nur innerhalb von <picture> ausgewertet, in <video> ignorieren
+                es alle Browser — gemessen: auf 390px Breite laedt Chromium
+                trotzdem die Desktop-Datei. Eine zweite Quelle haette also
+                nur so ausgesehen, als wuerde sie etwas bewirken. */}
             <source src={asset.src} type="video/mp4" />
           </video>
         </div>

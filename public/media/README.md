@@ -36,14 +36,12 @@ Ein Standbild, das vor dem Abspielen zu sehen ist. Gleiche Nummer plus
 Ohne Posterbild zeigt der Browser das erste Videobild — meist ein
 zufälliger Frame.
 
-## Kleinere Fassung fürs Handy
+## Eine Datei für alle Geräte
 
-Optional, spart Ladezeit auf Mobilfunk. Gleiche Nummer plus `-mobil`:
-
-```
-03.mp4
-03-mobil.mp4
-```
+Eine getrennte Handy-Fassung gibt es nicht. Der Browser wertet bei Videos
+keine Bildschirmbreite aus — eine zweite Datei würde nur so aussehen, als
+brächte sie etwas. Komprimiere stattdessen einmal gut: 1080p reicht auch
+auf großen Bildschirmen.
 
 ## Größe
 

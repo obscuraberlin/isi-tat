@@ -47,8 +47,6 @@ export interface MediaAsset {
   src: string | null;
   /** Poster/Fallback fuer Videos */
   poster?: string | null;
-  /** Kleinere Quelle fuer Mobile (Performance) */
-  srcMobile?: string | null;
   /** Aussagekraeftiger Alt-Text bzw. Videobeschreibung */
   alt: string;
   /** CSS aspect-ratio, z. B. "16 / 9" */
@@ -77,7 +75,6 @@ const media = (
     kind,
     src: datei?.src ?? null,
     poster: datei?.poster ?? null,
-    srcMobile: datei?.srcMobile ?? null,
     alt,
     ratio,
     ...extra,
@@ -155,11 +152,14 @@ export const hero = {
     "NETZWERK",
     "LIVE-AUSTAUSCH",
   ],
+  /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die
+     halbe Bildbreite weggeschnitten — und das Motiv wandert im Clip von
+     links nach rechts, ein fester Bildausschnitt trifft es nie. */
   video: media(
     "[ISI_HERO_VIDEO]",
     "video",
     "ISI TAT im Portrait — Hero-Sequenz",
-    "4 / 5",
+    "16 / 9",
   ),
   image: media("[ISI_HERO_IMAGE]", "image", "ISI TAT — Hero-Portrait", "4 / 5"),
 } as const;
@@ -480,7 +480,9 @@ export const lifestyle = {
   ],
   /* Slots entsprechen den vorhandenen Aufnahmen — nur `src` setzen. */
   gallery: [
-    media("[ISI_ROLLS_ROYCE]", "image", "Paris bei Nacht", "4 / 5"),
+    /* Alt-Text beschreibt, was zu sehen ist — er wird vorgelesen,
+       wenn das Bild nicht laedt oder jemand es nicht sehen kann. */
+    media("[ISI_ROLLS_ROYCE]", "image", "ISI TAT im Anzug vor einem Rolls-Royce", "4 / 5"),
     media("[ISI_REISE]", "image", "Unterwegs", "4 / 5"),
     media("[ISI_FAMILIE]", "image", "Zuhause", "4 / 5"),
     media("[ISI_BUSINESS]", "image", "Bei der Arbeit", "4 / 5"),

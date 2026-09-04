@@ -10,6 +10,8 @@ interface CtaBandProps {
   tone?: "light" | "dark";
   /** Foto hinter dem Band. Fehlt es, bleibt das Band einfarbig. */
   image?: string | null;
+  /** Clip hinter dem Band — stumm in Schleife, gewinnt gegen `image`. */
+  video?: string | null;
   imageOpacity?: number;
   imagePosition?: string;
 }
@@ -28,6 +30,7 @@ export function CtaBand({
   note,
   tone = "dark",
   image,
+  video,
   imageOpacity,
   imagePosition,
 }: CtaBandProps) {
@@ -43,6 +46,7 @@ export function CtaBand({
         variant="grain"
         tone={tone}
         image={image}
+        video={video}
         imageOpacity={imageOpacity ?? (tone === "light" ? 0.16 : 0.3)}
         imagePosition={imagePosition}
         drift={40}

@@ -70,15 +70,14 @@
   }
 }
 
-/* Versetzte Anordnung — ruhiger als ein starres Raster */
+/* Drei Kacheln auf einer Linie. */
 @media (min-width: 768px) {
   .gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
-  }
-
-  .tile:nth-child(2n) {
-    margin-top: clamp(24px, 4vw, 56px);
+    /* stretch statt start: alle drei sind gleich hoch und stehen oben wie
+       unten auf derselben Kante. Der Versatz vorher hat die Reihe unruhig
+       gemacht, statt sie zu rhythmisieren. */
+    align-items: stretch;
   }
 }
 

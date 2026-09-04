@@ -1,6 +1,6 @@
 # Material für die ISI TAT Landingpage
 
-34 Flächen. Auf der Seite steht in jedem Platzhalter die Nummer.
+35 Flächen. Auf der Seite steht in jedem Platzhalter die Nummer.
 Benenne deine Dateien danach — `01.jpg`, `07.mp4` — dann ist eindeutig,
 was wohin gehört.
 
@@ -47,3 +47,4 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **32** | Präsentationsseite | Die Präsentation — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
 | **33** | Hintergrundebene | Hintergrund: die Halle mit dem Rolls-Royce | Bild | 16 / 9 |
 | **34** | Hintergrundebene | Hintergrund: im Showroom neben dem Ferrari | Bild | 16 / 9 |
+| **35** | Hintergrundebene | Hintergrund-Clip: Menschen im Umfeld | Video | 16 / 9 |

@@ -93,19 +93,6 @@ export function TrustSection() {
               <p className={styles.claim}>{trust.claim}</p>
             </Reveal>
 
-            {/* Stehen jetzt neben der Person, die sie beschreiben, statt als
-                eigenes Band quer ueber die Seite — und fuellen die Luecke,
-                die unter dem Claim entstanden ist. */}
-            <Reveal delay={160}>
-              <dl className={styles.metrics}>
-                {trust.metrics.map((metric) => (
-                  <div key={metric.label} className={styles.metric}>
-                    <dt className={styles.metricLabel}>{metric.label}</dt>
-                    <dd className={styles.metricValue}>{metric.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
           </div>
 
           {/* Video und Namenszeile stehen in derselben Zelle. Als eigene
@@ -139,6 +126,20 @@ export function TrustSection() {
             </Reveal>
           </div>
         </div>
+
+        {/* Ueber die volle Breite statt in der linken Spalte: dort endete
+            der Text und rechts stand nichts mehr — eine halbe Bildschirm-
+            breite Leere unter dem Video. Quer gelesen schliesst der Block. */}
+        <Reveal delay={160}>
+          <dl className={styles.metrics}>
+            {trust.metrics.map((metric) => (
+              <div key={metric.label} className={styles.metric}>
+                <dt className={styles.metricLabel}>{metric.label}</dt>
+                <dd className={styles.metricValue}>{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
 
         <div className={styles.timeline} id="erfahrung">
           <Reveal>

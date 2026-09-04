@@ -17,6 +17,11 @@ interface BackdropProps {
    * zurueck — die Sektion sieht dann aus wie vorher.
    */
   image?: string | null;
+  /**
+   * Bewegtbild statt Standbild — laeuft stumm in Schleife. Gewinnt gegen
+   * `image`, das dann als Standbild darunter liegt, bis der Clip laedt.
+   */
+  video?: string | null;
   /** Deckkraft des Fotos. Bewusst niedrig: es traegt keine Aussage. */
   imageOpacity?: number;
   /** Bildausschnitt, z. B. "50% 30%". */
@@ -40,6 +45,7 @@ export function Backdrop({
   tone = "dark",
   drift = 0,
   image,
+  video,
   imageOpacity = 0.22,
   imagePosition = "50% 50%",
 }: BackdropProps) {
@@ -87,15 +93,29 @@ export function Backdrop({
       ].join(" ")}
       style={{ ["--drift" as string]: drift }}
     >
-      {image ? (
+      {image || video ? (
         <span
           className={styles.photo}
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: image ? `url(${image})` : undefined,
             backgroundPosition: imagePosition,
             opacity: imageOpacity,
           }}
-        />
+        >
+          {video ? (
+            <video
+              className={styles.clip}
+              src={video}
+              poster={image ?? undefined}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              style={{ objectPosition: imagePosition }}
+            />
+          ) : null}
+        </span>
       ) : null}
     </div>
   );

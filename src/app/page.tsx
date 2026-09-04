@@ -52,6 +52,7 @@ export default function Page() {
           {...ctaBands.nachInhalten}
           tone="dark"
           image={backdrops.ctaNachInhalten.src}
+          video={backdrops.ctaClip.src}
           imagePosition="50% 42%"
         />
         <Network />           {/* dunkel · Das Umfeld              */}

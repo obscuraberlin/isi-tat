@@ -129,8 +129,8 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(14px, 2vw, 28px);
-  margin-top: clamp(30px, 3.4vw, 44px);
-  padding-top: clamp(20px, 2.4vw, 28px);
+  margin-top: clamp(36px, 4vw, 56px);
+  padding-top: clamp(24px, 2.8vw, 34px);
   border-top: 1px solid var(--line-dark);
 }
 
@@ -167,8 +167,6 @@
 
 .timeline {
   margin-top: clamp(40px, 4.4vw, 64px);
-  padding-top: clamp(30px, 3.2vw, 44px);
-  border-top: 1px solid var(--line-dark);
 }
 
 .timelineHead {

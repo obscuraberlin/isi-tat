@@ -983,6 +983,15 @@ export const backdrops = {
     "Hintergrund: im Showroom neben dem Ferrari",
     "16 / 9",
   ),
+  /* Bewegtbild fuer das erste Band. Liegt die Datei nicht im Ordner,
+     bleibt das Standbild darunter stehen — das Band sieht dann aus wie
+     vorher, es fehlt nichts. */
+  ctaClip: media(
+    "[BACKDROP_CTA_CLIP]",
+    "video",
+    "Hintergrund-Clip: Menschen im Umfeld",
+    "16 / 9",
+  ),
 } as const;
 
 /* --------------------------------------------------------------------------

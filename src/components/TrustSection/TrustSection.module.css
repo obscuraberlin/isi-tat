@@ -128,20 +128,17 @@
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: clamp(30px, 3.4vw, 48px);
-  background: var(--line-dark);
-  border-block: 1px solid var(--line-dark);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+  margin-top: clamp(30px, 3.4vw, 44px);
+  padding-top: clamp(20px, 2.4vw, 28px);
+  border-top: 1px solid var(--line-dark);
 }
 
 .metric {
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
-  background: var(--bg-light);
-  /* Schlanker als vorher: die Zahlen sind ein Beleg, kein Abschnitt. */
-  padding: clamp(14px, 1.5vw, 20px) clamp(12px, 1.6vw, 20px);
 }
 
 .metric dd {
@@ -266,12 +263,6 @@
   .dot {
     left: -30px;
     top: 7px;
-  }
-}
-
-@media (min-width: 768px) {
-  .metrics {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

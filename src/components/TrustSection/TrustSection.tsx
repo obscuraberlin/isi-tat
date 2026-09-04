@@ -92,6 +92,20 @@ export function TrustSection() {
 
               <p className={styles.claim}>{trust.claim}</p>
             </Reveal>
+
+            {/* Stehen jetzt neben der Person, die sie beschreiben, statt als
+                eigenes Band quer ueber die Seite — und fuellen die Luecke,
+                die unter dem Claim entstanden ist. */}
+            <Reveal delay={160}>
+              <dl className={styles.metrics}>
+                {trust.metrics.map((metric) => (
+                  <div key={metric.label} className={styles.metric}>
+                    <dt className={styles.metricLabel}>{metric.label}</dt>
+                    <dd className={styles.metricValue}>{metric.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
           </div>
 
           <Reveal delay={100} className={styles.visual}>
@@ -116,17 +130,6 @@ export function TrustSection() {
             <p className={styles.personRole}>{trust.person.role}</p>
           </Reveal>
         </div>
-
-        <Reveal>
-          <dl className={styles.metrics}>
-            {trust.metrics.map((metric) => (
-              <div key={metric.label} className={styles.metric}>
-                <dt className={styles.metricLabel}>{metric.label}</dt>
-                <dd className={styles.metricValue}>{metric.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
 
         <div className={styles.timeline} id="erfahrung">
           <Reveal>

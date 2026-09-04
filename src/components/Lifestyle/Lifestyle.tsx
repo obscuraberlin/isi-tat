@@ -25,12 +25,20 @@ export function Lifestyle() {
           belowAccent
           variant="band"
         >
-          <span className={styles.gallery}>
-            {lifestyle.gallery.map((asset) => (
-              <span key={asset.id} className={styles.tile}>
-                <Media asset={asset} />
-              </span>
-            ))}
+          <span className={styles.stack}>
+            {/* Das Bewegtbild traegt die Sektion, die drei Aufnahmen
+                belegen sie. */}
+            <span className={styles.film}>
+              <Media asset={lifestyle.video} tone="dark" />
+            </span>
+
+            <span className={styles.gallery}>
+              {lifestyle.gallery.map((asset) => (
+                <span key={asset.id} className={styles.tile}>
+                  <Media asset={asset} />
+                </span>
+              ))}
+            </span>
           </span>
         </WrapHead>
 

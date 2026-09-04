@@ -255,9 +255,9 @@ export const trust = {
      Herkunft, Wendepunkt, was heute daraus geworden ist. Solange leer,
      zeigt die Seite die Stelle als gekennzeichnete Luecke. */
   bio: "TODO_CONTENT",
-  /* Vom Auftraggeber freigegeben. */
+  /* Vom Auftraggeber freigegeben. "20+ JAHRE ERFAHRUNG" ist raus — das
+     steht schon im Hero ueber der Headline und war hier eine Wiederholung. */
   metrics: [
-    { value: "20+", label: "JAHRE ERFAHRUNG" },
     { value: "7", label: "UNTERNEHMEN MITGEGRÜNDET" },
     { value: "8+", label: "STELLIG UMGESETZT" },
     { value: "150+", label: "MITGLIEDER IM CLUB" },
@@ -483,13 +483,17 @@ export const lifestyle = {
     "Welche Chancen du annimmst — und zu welchen du Nein sagst.",
   ],
   /* Slots entsprechen den vorhandenen Aufnahmen — nur `src` setzen. */
+  /* Steht ueber der Galerie und traegt die Sektion — bewegtes Bild wirkt
+     hier staerker als vier Standbilder nebeneinander. */
+  video: media("[ISI_GARAGE]", "video", "ISI TAT in der Garage", "16 / 9"),
+  /* Drei statt vier: die vierte Kachel war eine Kachel zu viel, und der
+     Auftraggeber liefert drei Autoaufnahmen. */
   gallery: [
     /* Alt-Text beschreibt, was zu sehen ist — er wird vorgelesen,
        wenn das Bild nicht laedt oder jemand es nicht sehen kann. */
-    media("[ISI_ROLLS_ROYCE]", "image", "ISI TAT im Anzug vor einem Rolls-Royce", "4 / 5"),
-    media("[ISI_REISE]", "image", "Unterwegs", "4 / 5"),
-    media("[ISI_FAMILIE]", "image", "Zuhause", "4 / 5"),
-    media("[ISI_BUSINESS]", "image", "Bei der Arbeit", "4 / 5"),
+    media("[ISI_AUTO_01]", "image", "Auto — Aufnahme eins", "4 / 5"),
+    media("[ISI_AUTO_02]", "image", "Auto — Aufnahme zwei", "4 / 5"),
+    media("[ISI_AUTO_03]", "image", "Auto — Aufnahme drei", "4 / 5"),
   ],
   disclaimer:
     "Meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussieht.",

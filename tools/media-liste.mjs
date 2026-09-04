@@ -27,6 +27,7 @@ const gruppen = [
   ]),
   ["Live mit ISI", [d.live.visual]],
   ["Erfahrungen", d.testimonials.items.map((t) => t.video)],
+  ["Freiheit", [d.lifestyle.video]],
   ["Freiheit (Galerie)", d.lifestyle.gallery],
   ["Abschluss", [d.finalCta.video]],
   ["Präsentationsseite", [d.presentation.video]],

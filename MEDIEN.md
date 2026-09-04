@@ -32,10 +32,10 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **17** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 2 / 3 |
 | **18** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 16 / 9 |
 | **19** | Was bei mir schiefgelaufen ist | ISI TAT — frühe Jahre | Bild | 3 / 4 |
-| **20** | Freiheit (Galerie) | ISI TAT im Anzug vor einem Rolls-Royce | Bild | 4 / 5 |
-| **21** | Freiheit (Galerie) | Unterwegs | Bild | 4 / 5 |
-| **22** | Freiheit (Galerie) | Zuhause | Bild | 4 / 5 |
-| **23** | Freiheit (Galerie) | Bei der Arbeit | Bild | 4 / 5 |
+| **20** | Freiheit | ISI TAT in der Garage | Video | 16 / 9 |
+| **21** | Freiheit (Galerie) | Auto — Aufnahme eins | Bild | 4 / 5 |
+| **22** | Freiheit (Galerie) | Auto — Aufnahme zwei | Bild | 4 / 5 |
+| **23** | Freiheit (Galerie) | Auto — Aufnahme drei | Bild | 4 / 5 |
 | **24** | Live mit ISI | Live-Runde mit ISI TAT | Video | 16 / 9 |
 | **25** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |
 | **26** | Erfahrungen | Erfahrungsbericht eines Mitglieds | Video | 3 / 4 |

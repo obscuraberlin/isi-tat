@@ -30,8 +30,24 @@
 
 /* ---------- Galerie ---------- */
 
+.stack {
+  display: block;
+}
+
+.film {
+  display: block;
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  box-shadow: var(--sh-soft);
+}
+
+.film > div {
+  border-radius: inherit;
+}
+
 .gallery {
   display: grid;
+  margin-top: clamp(12px, 1.4vw, 20px);
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(10px, 1.2vw, 18px);
 }
@@ -57,7 +73,7 @@
 /* Versetzte Anordnung — ruhiger als ein starres Raster */
 @media (min-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: start;
   }
 

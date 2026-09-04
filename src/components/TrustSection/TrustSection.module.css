@@ -277,7 +277,7 @@
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
     gap: clamp(48px, 5vw, 88px);
   }
 

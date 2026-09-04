@@ -232,13 +232,13 @@ export const trust = {
   ],
   /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
   claim: "Du musst nicht jede Situation zum ersten Mal alleine erleben.",
-  /* Quadratisch statt hochkant: das Hochformat war hoeher als der Text
-     daneben und liess links eine Luecke von einer halben Bildschirmhoehe. */
+  /* 16:9, so ist das Material gedreht. Ein quadratischer Ausschnitt haette
+     ein Viertel der Bildbreite gekostet. */
   video: media(
     "[ISI_REPUTATION_VIDEO]",
     "video",
     "ISI TAT über seinen Weg",
-    "1 / 1",
+    "16 / 9",
   ),
   /* Bildunterschrift am Portrait — wie eine Autorenzeile. */
   person: {

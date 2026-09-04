@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { isPending, timeline, trust } from "@/data/landingPage";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import { Media } from "@/components/Media/Media";
+import { VideoTeaser } from "@/components/VideoTeaser/VideoTeaser";
 import { PlayButton } from "@/components/ui/PlayButton";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -94,11 +95,20 @@ export function TrustSection() {
           </div>
 
           <Reveal delay={100} className={styles.visual}>
-            <Media asset={trust.video} tone="dark" />
-            <PlayButton
-              onClick={() => openVideo(trust.video, trust.eyebrow)}
-              ariaLabel={`Video abspielen: ${trust.video.alt}`}
-            />
+            {/* Liegt das Video vor, laeuft es stumm als Vorschau und startet
+                auf Klick mit Ton von vorn. Ohne Datei bleibt der gestaltete
+                Platzhalter samt Trailer-Overlay. */}
+            {trust.video.src ? (
+              <VideoTeaser asset={trust.video} label="Kurz zu mir" />
+            ) : (
+              <>
+                <Media asset={trust.video} tone="dark" />
+                <PlayButton
+                  onClick={() => openVideo(trust.video, trust.eyebrow)}
+                  ariaLabel={`Video abspielen: ${trust.video.alt}`}
+                />
+              </>
+            )}
           </Reveal>
 
           <Reveal delay={140} className={styles.person}>

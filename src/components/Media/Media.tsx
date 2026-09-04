@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { MediaAsset } from "@/data/landingPage";
+import { assetNo, type MediaAsset } from "@/data/landingPage";
 import styles from "./Media.module.css";
 
 interface MediaProps {
@@ -108,7 +108,11 @@ export function Media({
       <span className={styles.corner} aria-hidden="true" />
       <span className={styles.corner} aria-hidden="true" />
       <div className={styles.placeholderInner}>
-        <span className={styles.placeholderLabel}>{asset.id}</span>
+        {/* Die Nummer traegt den Platzhalter: danach heisst die gelieferte
+            Datei, danach wird einsortiert. Deshalb steht sie gross und der
+            Rest klein darunter. */}
+        <span className={styles.placeholderNo}>{assetNo(asset)}</span>
+        <span className={styles.placeholderLabel}>{asset.alt}</span>
         <span className={styles.placeholderKind}>
           {asset.kind === "video" ? "Video" : "Bild"} · {asset.ratio}
         </span>

@@ -16,7 +16,7 @@ interface SeriesModalProps {
 }
 
 /**
- * Detailansicht eines Kurses — bewusst ohne Nummerierung und ohne
+ * Detailansicht einer Serie — bewusst ohne Nummerierung und ohne
  * vorgegebene Reihenfolge: eine Mediathek, kein Lehrplan.
  */
 export function SeriesModal({ series, onClose }: SeriesModalProps) {
@@ -97,7 +97,7 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
             <h2 className={styles.title}>{series.label}</h2>
             <div className={styles.meta}>
               <span className={styles.tag}>
-                {series.format === "live" ? "Format" : "Kurs"}
+                {series.format === "live" ? "Format" : "Serie"}
               </span>
               <span className={styles.tag}>{hero.meta.edition}</span>
               <span className={`${styles.tag} ${styles.tagAccent}`}>

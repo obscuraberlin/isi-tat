@@ -8,7 +8,7 @@ import styles from "./DeviceCluster.module.css";
  * schauen.
  *
  * Alles ist Markup, kein Screenshot — dadurch scharf auf jedem Display und
- * immer synchron mit den echten Kursdaten. Bewusst ohne Glanzlichter,
+ * immer synchron mit den echten Seriendaten. Bewusst ohne Glanzlichter,
  * Spiegelungen und schwebende Schatten: die Geraete sind Rahmen, nicht Deko.
  */
 export function DeviceCluster() {

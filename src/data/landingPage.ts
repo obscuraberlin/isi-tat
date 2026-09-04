@@ -1,7 +1,7 @@
 /* =============================================================================
    ISI TAT BUSINESS CLUB — Zentrale Content-Datei
    -----------------------------------------------------------------------------
-   Einzige Quelle fuer Texte, Zahlen, Medien, Kurse, CTA-Ziele und Pricing.
+   Einzige Quelle fuer Texte, Zahlen, Medien, Serien, CTA-Ziele und Pricing.
    Komponenten enthalten KEINE fest verdrahteten Inhalte.
 
    KONVENTIONEN
@@ -11,15 +11,15 @@
                        Zum Austausch nur `src` (und ggf. `poster`) setzen.
 
    ENTWURFSTEXTE
-   Kursbeschreibungen, Folgentitel, Mitgliedschafts-Zeilen und FAQ-Antworten sind
+   Serienbeschreibungen, Folgentitel, Mitgliedschafts-Zeilen und FAQ-Antworten sind
    als Entwurf gesetzt, damit die Seite vollstaendig lesbar ist. Sie sind
    ersetzbar und beschreiben Themen — keine Zusicherungen, keine Zahlen,
    keine Ergebnisse.
 
-   [FERNUSG CHECK] — Begriff "Kurs"
-   Die Inhalte heissen auf Wunsch des Auftraggebers "Kurse". Das ist der
-   Begriff, den das FernUSG-Umfeld am deutlichsten anspricht. Weiterhin
-   bewusst NICHT verwendet: Modulnummern, Lektionsnummern, vorgegebene
+   [FERNUSG CHECK] — Begriff "Serie"
+   Die Inhalte heissen "Serien", nicht "Kurse". "Kurs" ruft den
+   Fernlehrgang auf, "Serie" beschreibt Inhalt — das ist das schwaechere
+   Signal Richtung FernUSG. Weiterhin bewusst NICHT verwendet: Modulnummern, Lektionsnummern, vorgegebene
    Reihenfolgen, Lernpfade, Lernkontrollen, Hausaufgaben, Pruefungen,
    Zertifikate. Diese Abgrenzung steht ausdruecklich in der FAQ und traegt
    die rechtliche Argumentation — sie darf nicht stillschweigend entfallen.
@@ -32,8 +32,14 @@ export const isPending = (value: string) => value.startsWith("TODO_CONTENT");
 export type MediaKind = "image" | "video";
 
 export interface MediaAsset {
-  /** Sichtbares Platzhalter-Label, z. B. "[ISI_HERO_VIDEO]" */
+  /** Internes Label, z. B. "[ISI_HERO_VIDEO]" */
   id: string;
+  /**
+   * Laufende Nummer, im Platzhalter gross sichtbar. Der Auftraggeber
+   * benennt seine Dateien danach (01.jpg, 02.mp4 …), dann ist eindeutig,
+   * was wohin gehoert. Wird beim Anlegen vergeben, nie von Hand getippt.
+   */
+  no: number;
   kind: MediaKind;
   /** null = noch kein Asset geliefert */
   src: string | null;
@@ -47,6 +53,9 @@ export interface MediaAsset {
   ratio: string;
 }
 
+/* Zaehlt in der Reihenfolge hoch, in der die Assets hier stehen. */
+let assetCounter = 0;
+
 const media = (
   id: string,
   kind: MediaKind,
@@ -55,6 +64,7 @@ const media = (
   extra: Partial<MediaAsset> = {},
 ): MediaAsset => ({
   id,
+  no: ++assetCounter,
   kind,
   src: null,
   poster: null,
@@ -62,6 +72,9 @@ const media = (
   ratio,
   ...extra,
 });
+
+/** Zweistellig, damit die Nummern in einer Dateiliste sortiert bleiben. */
+export const assetNo = (asset: MediaAsset) => String(asset.no).padStart(2, "0");
 
 /* --------------------------------------------------------------------------
    BRAND / GLOBAL
@@ -101,7 +114,7 @@ export const hero = {
   /* Metazeile im Stil einer Streaming-Titelseite.
      `edition` und `quality` sind Angaben ueber das Material — `quality`
      nur stehen lassen, wenn tatsaechlich in 4K produziert wird.
-     Kurs- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
+     Serien- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
   meta: {
     by: "VON ISI TAT",
     edition: "2026",
@@ -245,8 +258,8 @@ export interface Episode {
 
 export interface Series {
   id: string;
-  /** "kurs" zaehlt in die Kurs-Zahl, "live" ist ein Format. */
-  format: "kurs" | "live";
+  /** "serie" zaehlt in die Serien-Zahl, "live" ist ein Format. */
+  format: "serie" | "live";
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
@@ -262,7 +275,7 @@ export interface Series {
 export const insideTheClub = {
   eyebrow: "Im Club",
   headline: "WAS DICH DRINNEN ERWARTET.",
-  subline: "Fünf Kurse. Plus live. Keine Reihenfolge.",
+  subline: "Fünf Serien. Plus live. Keine Reihenfolge.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
   draftEpisodeNote:
     "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
@@ -270,7 +283,7 @@ export const insideTheClub = {
     {
       /* interne Ablage: MINDSET:PERSÖNLICHKEIT */
       id: "mindset",
-      format: "kurs",
+      format: "serie",
       label: "MINDSET & PERSÖNLICHKEIT",
       tagline: "Entscheiden, wenn es unbequem wird.",
       description:
@@ -287,7 +300,7 @@ export const insideTheClub = {
     },
     {
       id: "vertrieb",
-      format: "kurs",
+      format: "serie",
       label: "VERTRIEB",
       tagline: "Menschen verstehen, bevor du verkaufst.",
       description:
@@ -305,7 +318,7 @@ export const insideTheClub = {
     {
       /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
       id: "business",
-      format: "kurs",
+      format: "serie",
       label: "BUSINESS",
       tagline: "Vom Job zum eigenen Unternehmen.",
       description:
@@ -327,7 +340,7 @@ export const insideTheClub = {
          Oeffentlich als NETZWERK gefuehrt: die interne Bezeichnung beschreibt
          eine Vertriebsmechanik und gehoert nicht auf die Verkaufsseite. */
       id: "netzwerk",
-      format: "kurs",
+      format: "serie",
       label: "NETZWERK",
       tagline: "Wer dich kennt, entscheidet mit.",
       description:
@@ -343,7 +356,7 @@ export const insideTheClub = {
     },
     {
       id: "geschichten",
-      format: "kurs",
+      format: "serie",
       label: "ECHTE GESCHICHTEN",
       tagline: "Was gelaufen ist. Und was nicht.",
       description:
@@ -379,7 +392,8 @@ export const insideTheClub = {
 
 /** Aus den Daten abgeleitet — waechst automatisch mit der Mediathek. */
 export const catalogue = {
-  courseCount: insideTheClub.series.filter((s) => s.format === "kurs").length,
+  seriesCount: insideTheClub.series.filter((s) => s.format === "serie")
+    .length,
   episodeCount: insideTheClub.series.reduce(
     (total, s) => total + s.episodes.length,
     0,
@@ -711,10 +725,10 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Zugang zum Club mit allen Kursen, den Live-Runden und dem Austausch mit den anderen Mitgliedern. Alles über ein Login.",
+      a: "Zugang zum Club mit allen Serien, den Live-Runden und dem Austausch mit den anderen Mitgliedern. Alles über ein Login.",
     },
     {
-      q: "Wie sind die Kurse aufgebaut?",
+      q: "Wie sind die Serien aufgebaut?",
       a: "Es gibt keine feste Reihenfolge, keine Hausaufgaben, keine Prüfung und kein Zertifikat. Du schaust, was dich gerade betrifft, und fragst in den Live-Runden nach.",
     },
     {
@@ -786,4 +800,14 @@ export const meta = {
   title: "ISI TAT BUSINESS CLUB — Du musst nicht alles selbst herausfinden.",
   description:
     "Über 20 Jahre Vertrieb, Business und Netzwerk. Inhalte, Live-Austausch und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst.",
+} as const;
+
+/* --------------------------------------------------------------------------
+   LOGIN
+   -------------------------------------------------------------------------- */
+
+export const login = {
+  visual: media("[LOGIN_VISUAL]", "image", "ISI TAT BUSINESS CLUB", "3 / 4"),
+  /* Folgt der Hero-Aussage — vorher stand hier noch die abgeloeste Headline. */
+  quote: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
 } as const;

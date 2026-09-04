@@ -27,7 +27,7 @@ import { Footer } from "@/components/Footer/Footer";
  *   3 Inhalt           Was bekomme ich konkret?
  *   4 Entscheidung     Bestaetigt das jemand, was kostet es, wie komme ich rein?
  *
- * Der Katalog steht bewusst NACH der Person. Ein Kursverzeichnis ueberzeugt
+ * Der Katalog steht bewusst NACH der Person. Ein Serienverzeichnis ueberzeugt
  * niemanden, der noch nicht weiss, wessen Erfahrung darin steckt.
  */
 export default function Page() {
@@ -46,7 +46,7 @@ export default function Page() {
         <FailureStory />      {/* dunkel · Auch die Fehler         */}
 
         {/* --- 3 · Inhalt -------------------------------------------- */}
-        <SeriesRow />         {/* hell   · Die Kurse               */}
+        <SeriesRow />         {/* hell   · Die Serien              */}
         <LiveSection />       {/* hell   · Live dabei              */}
         <Network />           {/* dunkel · Das Umfeld              */}
 

@@ -34,7 +34,7 @@ export function MemberPreview() {
         <div className={styles.stageBody}>
           <p className={styles.stageTitle}>{featured.label}</p>
           <div className={styles.stageMeta}>
-            <span className={styles.tag}>Kurs</span>
+            <span className={styles.tag}>Serie</span>
             <span className={styles.tag}>{hero.meta.edition}</span>
             <span className={`${styles.tag} ${styles.tagAccent}`}>
               {hero.meta.quality}

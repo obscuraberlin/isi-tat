@@ -80,7 +80,7 @@ function Card({ series, onOpen }: { series: Series; onOpen: () => void }) {
 
       <div className={styles.cardBody}>
         <span className={styles.cardMeta}>
-          {series.format === "live" ? "Format" : "Kurs"} ·{" "}
+          {series.format === "live" ? "Format" : "Serie"} ·{" "}
           {count} {count === 1 ? "Folge" : "Folgen"}
         </span>
         <h3 className={styles.cardLabel}>{series.label}</h3>

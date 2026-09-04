@@ -1,21 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { brand, cta } from "@/data/landingPage";
+import { brand, cta, login } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { Button } from "@/components/ui/Button";
 import styles from "./page.module.css";
 
 /* Platzhalter-Visual — Austausch wie überall nur über `src`. */
-const visual = {
-  id: "[LOGIN_VISUAL]",
-  kind: "image" as const,
-  src: null,
-  poster: null,
-  alt: "ISI TAT BUSINESS CLUB",
-  ratio: "3 / 4",
-};
-
 /**
  * Login-Oberfläche für den späteren Mitgliederbereich.
  * Noch ohne Anbindung: das Formular sendet nichts und legt nichts ab.
@@ -129,11 +120,10 @@ export default function LoginPage() {
       </div>
 
       <div className={styles.visual}>
-        <Media asset={visual} tone="dark" radius="0" />
+        <Media asset={login.visual} tone="dark" radius="0" />
         <span className={styles.visualScrim} aria-hidden="true" />
         <p className={styles.visualQuote}>
-          ERFAHRUNG LÄSST SICH NICHT ABKÜRZEN.{" "}
-          <span>ZUGANG SCHON.</span>
+          {login.quote[0]} <span>{login.quote[1]}</span>
         </p>
       </div>
     </main>

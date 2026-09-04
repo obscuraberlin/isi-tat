@@ -10,6 +10,27 @@
   --p: 0;
 }
 
+/* ---------- Foto als unterste Ebene ---------- */
+
+/* Die Varianten arbeiten mit ::before und ::after. Beide liegen ueber dem
+   Foto, damit Korn und Vignette darauf laufen — ein Bild ohne diese Ebenen
+   sieht aus wie ein Screenshot, der versehentlich im Hintergrund liegt. */
+.backdrop::before,
+.backdrop::after {
+  z-index: 1;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Weich auslaufende Kanten: sonst schneidet das Foto die Sektion in ein
+     Rechteck, und genau das soll eine Hintergrundebene nicht tun. */
+  mask-image: radial-gradient(125% 100% at 50% 45%, #000 30%, transparent 100%);
+}
+
 /* Der Inhalt der Sektion muss darueber liegen. Die Sektionen setzen dafuer
    position: relative und ihr .inner auf z-index: 1. */
 

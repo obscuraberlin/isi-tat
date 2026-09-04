@@ -1,6 +1,9 @@
 /* Zwischenruf. Schmal, damit er unterbricht statt zu ersetzen. */
 
 .band {
+  /* Bezugsrahmen fuer die Hintergrundebene. */
+  position: relative;
+  overflow: hidden;
   padding-block: clamp(40px, 5vw, 72px);
 }
 
@@ -15,6 +18,9 @@
 }
 
 .inner {
+  /* Ueber der Hintergrundebene. */
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: var(--max-page);
   margin-inline: auto;

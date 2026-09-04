@@ -10,6 +10,17 @@ interface BackdropProps {
   tone?: "light" | "dark";
   /** Staerke der Bewegung beim Scrollen. 0 = still. */
   drift?: number;
+  /**
+   * Foto als unterste Ebene. Liegt unter der Variante, damit Korn, Lichtkegel
+   * und Vignette darueber laufen und das Bild nicht wie eine aufgeklebte
+   * Kachel wirkt. `null` (fehlendes Asset) faellt still auf den Verlauf
+   * zurueck — die Sektion sieht dann aus wie vorher.
+   */
+  image?: string | null;
+  /** Deckkraft des Fotos. Bewusst niedrig: es traegt keine Aussage. */
+  imageOpacity?: number;
+  /** Bildausschnitt, z. B. "50% 30%". */
+  imagePosition?: string;
 }
 
 /**
@@ -24,7 +35,14 @@ interface BackdropProps {
  * CSS-Variable auf dem Element; gerechnet wird in CSS, nicht in React —
  * so laeuft die Bewegung im Compositor und loest keinen Rerender aus.
  */
-export function Backdrop({ variant, tone = "dark", drift = 0 }: BackdropProps) {
+export function Backdrop({
+  variant,
+  tone = "dark",
+  drift = 0,
+  image,
+  imageOpacity = 0.22,
+  imagePosition = "50% 50%",
+}: BackdropProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -68,6 +86,17 @@ export function Backdrop({ variant, tone = "dark", drift = 0 }: BackdropProps) {
         tone === "light" ? styles.onLight : styles.onDark,
       ].join(" ")}
       style={{ ["--drift" as string]: drift }}
-    />
+    >
+      {image ? (
+        <span
+          className={styles.photo}
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundPosition: imagePosition,
+            opacity: imageOpacity,
+          }}
+        />
+      ) : null}
+    </div>
   );
 }

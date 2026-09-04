@@ -25,4 +25,6 @@ export const mediaFiles: Record<number, MediaFile> = {
   24: {"src":"/media/24.jpg"},
   25: {"src":"/media/25.jpg"},
   29: {"src":"/media/29.jpg"},
+  33: {"src":"/media/33.jpg"},
+  34: {"src":"/media/34.jpg"},
 };

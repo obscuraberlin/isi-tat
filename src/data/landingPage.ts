@@ -99,7 +99,7 @@ export const brand = {
 export const cta = {
   primary: { label: "JETZT BEWERBEN", href: "#zugang" },
   secondary: { label: "TRAILER ANSEHEN", href: "#trailer" },
-  heroSecondary: { label: "90 SEKUNDEN TRAILER", href: "#trailer" },
+  heroSecondary: { label: "TRAILER", href: "#trailer" },
   login: { label: "LOGIN", href: "/login" },
 } as const;
 
@@ -167,13 +167,18 @@ export const hero = {
    -------------------------------------------------------------------------- */
 
 export const trailer = {
-  label: "90 SEKUNDEN TRAILER",
+  label: "TRAILER",
   closeLabel: "SCHLIESSEN",
+  /* Solange kein eigener Trailer geschnitten ist, laeuft hier derselbe
+     Zusammenschnitt wie im Hero — ein Knopf, der ins Leere fuehrt, ist
+     schlechter als einer, der das zeigt, was schon da ist. Sobald 03.mp4
+     im Ordner liegt, gewinnt die Datei. */
   video: media(
     "[ISI_TRAILER_VIDEO]",
     "video",
-    "90 Sekunden Trailer — ISI TAT BUSINESS CLUB",
+    "Trailer — ISI TAT BUSINESS CLUB",
     "16 / 9",
+    mediaFiles[3] ? {} : { src: hero.video.src, poster: hero.video.poster },
   ),
 } as const;
 
@@ -926,4 +931,29 @@ export const ctaBands = {
     ],
     note: "Fünf Minuten Formular. Danach bekommst du die Präsentation.",
   },
+} as const;
+
+/* --------------------------------------------------------------------------
+   HINTERGRUNDEBENEN
+   Fotos, die hinter einer Sektion liegen — mit niedriger Deckkraft, Korn
+   und Vignette darueber. Sie tragen keine Aussage und keinen Text; wenn
+   eine Datei fehlt, sieht die Sektion aus wie vorher.
+   Stehen bewusst am Ende: so verschieben sich die Nummern der Flaechen
+   auf der Seite nicht, wenn hier eine dazukommt.
+   -------------------------------------------------------------------------- */
+
+export const backdrops = {
+  /* Weites Bild, viel leere Flaeche — vertraegt grosse Schrift darueber. */
+  ctaNachInhalten: media(
+    "[BACKDROP_CTA_INHALTE]",
+    "image",
+    "Hintergrund: die Halle mit dem Rolls-Royce",
+    "16 / 9",
+  ),
+  finalCta: media(
+    "[BACKDROP_ABSCHLUSS]",
+    "image",
+    "Hintergrund: im Showroom neben dem Ferrari",
+    "16 / 9",
+  ),
 } as const;

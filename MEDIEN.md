@@ -1,6 +1,6 @@
 # Material für die ISI TAT Landingpage
 
-32 Flächen. Auf der Seite steht in jedem Platzhalter die Nummer.
+34 Flächen. Auf der Seite steht in jedem Platzhalter die Nummer.
 Benenne deine Dateien danach — `01.jpg`, `07.mp4` — dann ist eindeutig,
 was wohin gehört.
 
@@ -15,7 +15,7 @@ bleibt als Platzhalter stehen; nichts bricht.
 |---|---|---|---|---|
 | **01** | Hero | ISI TAT im Portrait — Hero-Sequenz | Video | 16 / 9 |
 | **02** | Hero | ISI TAT — Hero-Portrait | Bild | 4 / 5 |
-| **03** | Trailer (Overlay) | 90 Sekunden Trailer — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
+| **03** | Trailer (Overlay) | Trailer — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
 | **04** | Intro (Scrollytelling) | ISI TAT im Anzug vor einem Rolls-Royce | Bild | 4 / 5 |
 | **05** | Intro (Scrollytelling) | ISI TAT vor einem Jet | Bild | 4 / 5 |
 | **06** | Über ISI | ISI TAT über seinen Weg | Video | 16 / 9 |
@@ -45,3 +45,5 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **30** | Abschluss | ISI TAT — Abschluss | Video | 16 / 9 |
 | **31** | Login-Seite | ISI TAT BUSINESS CLUB | Bild | 3 / 4 |
 | **32** | Präsentationsseite | Die Präsentation — ISI TAT BUSINESS CLUB | Video | 16 / 9 |
+| **33** | Hintergrundebene | Hintergrund: die Halle mit dem Rolls-Royce | Bild | 16 / 9 |
+| **34** | Hintergrundebene | Hintergrund: im Showroom neben dem Ferrari | Bild | 16 / 9 |

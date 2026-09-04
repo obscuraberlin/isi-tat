@@ -32,6 +32,7 @@ const gruppen = [
   ["Abschluss", [d.finalCta.video]],
   ["Präsentationsseite", [d.presentation.video]],
   ["Login-Seite", [d.login.visual]],
+  ["Hintergrundebene", Object.values(d.backdrops)],
 ];
 
 const zeilen = [];

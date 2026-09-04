@@ -14,7 +14,7 @@ import { Faq } from "@/components/Faq/Faq";
 import { FinalCTA } from "@/components/FinalCTA/FinalCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA/StickyMobileCTA";
 import { CtaBand } from "@/components/CtaBand/CtaBand";
-import { ctaBands } from "@/data/landingPage";
+import { backdrops, ctaBands } from "@/data/landingPage";
 import { Footer } from "@/components/Footer/Footer";
 
 /**
@@ -48,9 +48,19 @@ export default function Page() {
 
         {/* --- 3 · Inhalt -------------------------------------------- */}
         <SeriesRow />         {/* hell   · Die Serien              */}
-        <CtaBand {...ctaBands.nachInhalten} tone="dark" />
+        <CtaBand
+          {...ctaBands.nachInhalten}
+          tone="dark"
+          image={backdrops.ctaNachInhalten.src}
+          imagePosition="50% 42%"
+        />
         <Network />           {/* dunkel · Das Umfeld              */}
-        <CtaBand {...ctaBands.nachUmfeld} tone="light" />
+        <CtaBand
+          {...ctaBands.nachUmfeld}
+          tone="light"
+          image={backdrops.finalCta.src}
+          imagePosition="50% 38%"
+        />
 
         {/* --- 4 · Entscheidung -------------------------------------- */}
         <Lifestyle />         {/* hell   · Wofuer das gut ist      */}

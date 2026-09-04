@@ -1,0 +1,92 @@
+/* Zwischenruf. Schmal, damit er unterbricht statt zu ersetzen. */
+
+.band {
+  padding-block: clamp(40px, 5vw, 72px);
+}
+
+.onDark {
+  background: var(--bg-dark-alt);
+  color: var(--text-light);
+}
+
+.onLight {
+  background: var(--bg-light-deep);
+  color: var(--text-dark);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.6vw, 32px);
+}
+
+.line {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.14;
+  max-width: 24ch;
+}
+
+.lineItem {
+  display: block;
+}
+
+.onDark .lineItem:last-child {
+  color: var(--accent);
+}
+
+.onLight .lineItem:last-child {
+  color: var(--accent-deep);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.note {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  max-width: 40ch;
+}
+
+.onDark .note {
+  color: var(--text-muted);
+}
+
+.onLight .note {
+  color: var(--text-muted);
+}
+
+/* Ab Tablet nebeneinander — die Zeile links, der Aufruf rechts. */
+@media (min-width: 768px) {
+  .inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(32px, 5vw, 80px);
+  }
+
+  .line {
+    max-width: 30ch;
+  }
+
+  .action {
+    align-items: flex-end;
+    text-align: right;
+    flex: none;
+  }
+
+  .note {
+    max-width: 32ch;
+  }
+}

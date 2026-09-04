@@ -89,7 +89,7 @@ export const brand = {
 } as const;
 
 export const cta = {
-  primary: { label: "ZUGANG ANFRAGEN", href: "#zugang" },
+  primary: { label: "JETZT BEWERBEN", href: "#zugang" },
   secondary: { label: "TRAILER ANSEHEN", href: "#trailer" },
   heroSecondary: { label: "90 SEKUNDEN TRAILER", href: "#trailer" },
   login: { label: "LOGIN", href: "/login" },
@@ -133,8 +133,10 @@ export const hero = {
       accent: ["DAMIT DU NICHT JEDEN", "FEHLER SELBST MACHEN MUSST."],
     },
   },
+  /* Beantwortet ueber dem Fold die drei Fragen, mit denen jeder ankommt:
+     wer bist du, was kannst du, was habe ich davon. */
   subheadline:
-    "Erfahrung. Orientierung. Austausch. Netzwerk. Und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst.",
+    "Ich bin ISI TAT — über 20 Jahre Vertrieb, eigene Unternehmen, eigenes Netzwerk. Im Club bekommst du meine Erfahrung, den Live-Austausch und ein Umfeld, das dahin will, wo du hinwillst.",
   trustLine: [
     "20+ JAHRE ERFAHRUNG",
     "VERTRIEB",
@@ -670,23 +672,28 @@ export const membership = {
    -------------------------------------------------------------------------- */
 
 export const application = {
-  eyebrow: "Aufnahme",
+  eyebrow: "Der Weg rein",
   headline: ["SO KOMMST", "DU REIN."],
   steps: [
     {
       step: "01",
-      label: "ANFRAGE",
-      text: "Fünf Minuten. Unverbindlich.",
+      label: "INTERESSE ZEIGEN",
+      text: "Kurzes Formular. Fünf Minuten, unverbindlich.",
     },
     {
       step: "02",
-      label: "GESPRÄCH",
-      text: "Wir schauen, ob es passt. In beide Richtungen.",
+      label: "PRÄSENTATION",
+      text: "Du bekommst sie zugeschickt und schaust sie in Ruhe an. Dort steht alles: Umfang, Ablauf, Preis.",
     },
     {
       step: "03",
+      label: "VORQUALIFIZIEREN",
+      text: "Passt es für dich, legst du direkt los und füllst die Vorqualifizierung aus.",
+    },
+    {
+      step: "04",
       label: "ZUGANG",
-      text: "Passt es, bekommst du dein Login.",
+      text: "Passt es in beide Richtungen, bekommst du dein Login.",
     },
   ],
 } as const;
@@ -695,20 +702,25 @@ export const application = {
    PRICING
    -------------------------------------------------------------------------- */
 
-export const pricing = {
-  eyebrow: "Preis",
-  headline: "MITGLIEDSCHAFT.",
-  subline: "ISI TAT BUSINESS CLUB",
-  price: "4.900 €",
-  /* Noch offen — bitte eintragen. */
-  term: "TODO_CONTENT",
-  payment: "TODO_CONTENT",
+export const spots = {
+  eyebrow: "Aufnahme",
+  headline: "PLÄTZE.",
+  /* [ECHTZAHL NOETIG] Die Platzzahl muss stimmen. Eine erfundene Knappheit
+     ist irrefuehrende Werbung (UWG) und steht auf der Verbotsliste des
+     Auftraggebers. Bis zur Bestaetigung wird die Zeile als offen gerendert,
+     nicht geraten. */
+  count: "TODO_CONTENT",
+  period: "TODO_CONTENT",
   facts: [
-    "Ein Preis, keine Stufen.",
     "Kein Streichpreis, kein Countdown.",
-    "Kein Upsell nach dem Kauf.",
+    "Kein Upsell nach der Aufnahme.",
+    "Wer nicht passt, bekommt eine Absage.",
   ],
-  note: "Was drin ist, steht vor dem Abschluss vollständig da.",
+  /* Der Preis steht bewusst nicht hier, sondern in der Praesentation —
+     zusammen mit dem, was drin ist. Er wird nicht verschwiegen, nur nicht
+     aus dem Zusammenhang gerissen. */
+  priceNote:
+    "Was die Mitgliedschaft kostet, sage ich dir in der Präsentation — zusammen mit allem, was drin ist. Vorher wäre es eine Zahl ohne Zusammenhang.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -810,4 +822,45 @@ export const login = {
   visual: media("[LOGIN_VISUAL]", "image", "ISI TAT BUSINESS CLUB", "3 / 4"),
   /* Folgt der Hero-Aussage — vorher stand hier noch die abgeloeste Headline. */
   quote: ["DU MUSST NICHT ALLES", "SELBST HERAUSFINDEN."],
+} as const;
+
+/* --------------------------------------------------------------------------
+   PRAESENTATION — eigene Seite hinter der Interessensbekundung
+   -------------------------------------------------------------------------- */
+
+export const presentation = {
+  eyebrow: "Für dich freigeschaltet",
+  headline: ["DIE PRÄSENTATION."],
+  intro:
+    "Zwanzig Minuten. Was der Club ist, wie er läuft, was er kostet. Ohne Countdown und ohne Verkaufsdruck — schau sie an, wann es dir passt.",
+  video: media(
+    "[PRAESENTATION_VIDEO]",
+    "video",
+    "Die Präsentation — ISI TAT BUSINESS CLUB",
+    "16 / 9",
+  ),
+  afterHead: ["WENN ES", "FÜR DICH PASST."],
+  afterBody:
+    "Dann musst du nicht auf ein Gespräch warten. Du füllst die Vorqualifizierung aus, ich schaue sie mir an und melde mich.",
+  cta: { label: "JETZT VORQUALIFIZIEREN", href: "TODO_CONTENT" },
+  /* Ehrlich halten: eine Bewerbung ist keine Zusage. */
+  note: "Die Vorqualifizierung ist noch keine Aufnahme. Passt es nicht, bekommst du eine Absage — das ist kein schlechtes Ergebnis, sondern ein ehrliches.",
+} as const;
+
+/* --------------------------------------------------------------------------
+   ZWISCHENRUFE — der Aufruf wiederholt sich, statt nur oben und unten zu stehen
+   -------------------------------------------------------------------------- */
+
+export const ctaBands = {
+  nachInhalten: {
+    lines: ["DAS ALLES LIEGT DRIN.", "AB DEM ERSTEN TAG."],
+    note: "Die Plätze sind begrenzt — wer rein will, zeigt es zuerst.",
+  },
+  nachUmfeld: {
+    lines: [
+      "DU BEWIRBST DICH NICHT UM EINEN KURS.",
+      "SONDERN UM EIN UMFELD.",
+    ],
+    note: "Fünf Minuten Formular. Danach bekommst du die Präsentation.",
+  },
 } as const;

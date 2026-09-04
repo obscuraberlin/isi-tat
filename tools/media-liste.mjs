@@ -29,6 +29,7 @@ const gruppen = [
   ["Erfahrungen", d.testimonials.items.map((t) => t.video)],
   ["Freiheit (Galerie)", d.lifestyle.gallery],
   ["Abschluss", [d.finalCta.video]],
+  ["Präsentationsseite", [d.presentation.video]],
   ["Login-Seite", [d.login.visual]],
 ];
 

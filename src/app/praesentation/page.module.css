@@ -1,0 +1,159 @@
+/* Praesentationsseite — dunkel, ruhig, ein Weg. */
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+  padding-block: clamp(48px, 8vh, 96px) clamp(56px, 9vh, 110px);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Kopf ---------- */
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: clamp(32px, 5vh, 56px);
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+
+.brandSuffix {
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  opacity: 0.65;
+}
+
+.headline {
+  margin-top: clamp(14px, 1.6vw, 22px);
+  font-size: var(--fs-section);
+  letter-spacing: var(--tr-tight);
+}
+
+.line {
+  display: block;
+}
+
+.intro {
+  margin-top: clamp(18px, 2.2vw, 28px);
+  max-width: 54ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--text-muted-light);
+}
+
+/* ---------- Video ---------- */
+
+.stage {
+  margin-top: clamp(32px, 4.5vw, 60px);
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+}
+
+.stage > div {
+  border-radius: inherit;
+}
+
+/* ---------- Danach ---------- */
+
+.after {
+  margin-top: clamp(44px, 6vw, 80px);
+  padding-top: clamp(28px, 3.4vw, 44px);
+  border-top: 1px solid var(--line-light);
+}
+
+.afterHead {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.16;
+}
+
+.afterBody {
+  margin-top: clamp(14px, 1.8vw, 20px);
+  max-width: 52ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.58;
+  color: var(--text-muted-light);
+}
+
+.cta {
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+/* Fehlt das Ziel, steht hier eine markierte Luecke statt eines toten Links. */
+.ctaPending {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: clamp(24px, 3vw, 36px);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.ctaPending::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--text-muted);
+}
+
+.note {
+  margin-top: clamp(20px, 2.4vw, 28px);
+  max-width: 56ch;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: clamp(40px, 5vw, 64px);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+  min-height: 44px;
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .back:hover {
+    color: var(--text-light);
+  }
+}
+
+@media (max-width: 767px) {
+  .stage {
+    border-radius: var(--r-card);
+  }
+}

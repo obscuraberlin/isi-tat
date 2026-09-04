@@ -14,6 +14,8 @@ import { Access } from "@/components/Access/Access";
 import { Faq } from "@/components/Faq/Faq";
 import { FinalCTA } from "@/components/FinalCTA/FinalCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA/StickyMobileCTA";
+import { CtaBand } from "@/components/CtaBand/CtaBand";
+import { ctaBands } from "@/data/landingPage";
 import { Footer } from "@/components/Footer/Footer";
 
 /**
@@ -47,14 +49,17 @@ export default function Page() {
 
         {/* --- 3 · Inhalt -------------------------------------------- */}
         <SeriesRow />         {/* hell   · Die Serien              */}
+        <CtaBand {...ctaBands.nachInhalten} tone="dark" />
         <LiveSection />       {/* hell   · Live dabei              */}
         <Network />           {/* dunkel · Das Umfeld              */}
+        <CtaBand {...ctaBands.nachUmfeld} tone="light" />
 
         {/* --- 4 · Entscheidung -------------------------------------- */}
-        <Testimonials />      {/* hell   · Wer es bestaetigt       */}
         <Lifestyle />         {/* hell   · Wofuer das gut ist      */}
         <OpportunityMoment /> {/* dunkel · Was daraus werden kann  */}
-        <Access />            {/* hell   · Umfang, Preis, Aufnahme */}
+        {/* Der Beleg steht direkt vor der Frage, nicht in der Mitte. */}
+        <Testimonials />      {/* hell   · Wer es bestaetigt       */}
+        <Access />            {/* hell   · Umfang, Plaetze, Aufnahme */}
         <Faq />               {/* hell   · Offene Fragen           */}
         <FinalCTA />          {/* dunkel · Entscheidung            */}
       </main>

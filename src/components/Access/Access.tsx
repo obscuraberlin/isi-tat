@@ -1,6 +1,6 @@
 "use client";
 
-import { application, cta, isPending, membership, pricing } from "@/data/landingPage";
+import { application, cta, isPending, membership, spots } from "@/data/landingPage";
 import { DeviceCluster } from "@/components/DeviceCluster/DeviceCluster";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -13,17 +13,9 @@ import { Backdrop } from "@/components/Backdrop/Backdrop";
  * Vorher drei getrennte Sektionen — das hat den Abschluss zerfasert.
  */
 export function Access() {
-  /* Offene Konditionen werden als offen gezeigt, nicht erfunden. */
-  const chips = [
-    { key: "Laufzeit", value: pricing.term },
-    { key: "Zahlung", value: pricing.payment },
-  ].map((entry) => ({
-    ...entry,
-    value:
-      entry.value === "TODO_CONTENT"
-        ? "wird im Gespräch besprochen"
-        : entry.value,
-  }));
+  /* Die Platzzahl wird nicht geraten. Solange sie nicht bestaetigt ist,
+     steht hier eine offene Angabe statt einer erfundenen Knappheit. */
+  const offen = isPending(spots.count);
 
   return (
     <section className={styles.section} id="zugang">
@@ -34,7 +26,7 @@ export function Access() {
           eyebrow={membership.eyebrow}
           lines={membership.headline}
           accentLines={membership.headlineAccent}
-          subline="Was drin ist, was es kostet, wie du reinkommst."
+          subline="Was drin ist, wie viele Plätze es gibt, wie du reinkommst."
         />
 
         <Reveal className={styles.preview}>
@@ -62,20 +54,24 @@ export function Access() {
 
         <Reveal className={styles.price}>
           <div>
-            <p className={styles.priceLabel}>{pricing.eyebrow}</p>
-            <p className={styles.priceValue}>{pricing.price}</p>
-            <div className={styles.priceMeta}>
-              {chips.map((chip) => (
-                <span key={chip.key} className={styles.chip}>
-                  {chip.key}: {chip.value}
-                </span>
-              ))}
-            </div>
+            <p className={styles.priceLabel}>{spots.eyebrow}</p>
+            {offen ? (
+              <p className={styles.spotsPending}>
+                Die Zahl der freien Plätze steht hier, sobald sie feststeht.
+              </p>
+            ) : (
+              <>
+                <p className={styles.priceValue}>{spots.count}</p>
+                {isPending(spots.period) ? null : (
+                  <p className={styles.spotsPeriod}>{spots.period}</p>
+                )}
+              </>
+            )}
           </div>
 
           <div>
             <div className={styles.facts}>
-              {pricing.facts.map((fact) => (
+              {spots.facts.map((fact) => (
                 <span key={fact} className={styles.fact}>
                   {fact}
                 </span>
@@ -91,7 +87,7 @@ export function Access() {
               {cta.primary.label}
             </ButtonLink>
 
-            <p className={styles.priceNote}>{pricing.note}</p>
+            <p className={styles.priceNote}>{spots.priceNote}</p>
           </div>
         </Reveal>
 

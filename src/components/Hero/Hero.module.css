@@ -308,7 +308,12 @@
   .copyBottom {
     position: relative;
     z-index: 1;
-    text-shadow: 0 1px 26px rgba(0, 0, 0, 0.62), 0 1px 4px rgba(0, 0, 0, 0.4);
+    /* Kraeftiger als ueblich, weil unter der Schrift jetzt fast ueberall
+       Bild liegt statt Flaeche. Zwei Radien: der weite traegt, der enge
+       zeichnet die Kanten nach. */
+    text-shadow:
+      0 2px 40px rgba(0, 0, 0, 0.72),
+      0 1px 8px rgba(0, 0, 0, 0.58);
     /* Der Text darf ins Bild hineinlaufen — deshalb breiter als die halbe
        Seite. Lesbar bleibt er durch den Verlauf auf dem Visual. */
     max-width: min(58%, 700px);
@@ -346,15 +351,15 @@
        sieht die Stelle, an der er ansetzt. */
     /* Die Rampe endet frueher als vorher: das Bild ist damit schon auf
        halber Textbreite voll da, statt erst hinter der Headline. */
+    /* Kurze Rampe: das Bild ist gleich hinter seiner linken Kante voll
+       da. Die Kante selbst liegt etwa unter dem Wort "NULL". */
     --mask-x: linear-gradient(
       to right,
       transparent 0%,
-      rgba(0, 0, 0, 0.1) 4%,
-      rgba(0, 0, 0, 0.3) 8%,
-      rgba(0, 0, 0, 0.55) 12%,
-      rgba(0, 0, 0, 0.78) 17%,
-      rgba(0, 0, 0, 0.93) 21%,
-      #000 25%
+      rgba(0, 0, 0, 0.22) 3%,
+      rgba(0, 0, 0, 0.55) 6%,
+      rgba(0, 0, 0, 0.82) 9%,
+      #000 13%
     );
     --mask-y: linear-gradient(
       to bottom,
@@ -393,15 +398,17 @@
        die Schrift auf hellen Bildern trotzdem steht, traegt sie einen
        eigenen Schatten — der kostet nichts und rettet die Stelle, an der
        das Studio im Clip weiss ausbrennt. */
+    /* Ab der linken Bildkante wird es sofort heller — dort steht das Wort
+       "NULL". Ab einem Drittel liegt der Clip unverdeckt. Was die Schrift
+       an Grund verliert, holt ihr eigener Schatten zurueck. */
     background: linear-gradient(
       to right,
-      rgba(8, 8, 8, 0.9) 0%,
-      rgba(8, 8, 8, 0.78) 8%,
-      rgba(8, 8, 8, 0.56) 16%,
-      rgba(8, 8, 8, 0.34) 25%,
-      rgba(8, 8, 8, 0.18) 33%,
-      rgba(8, 8, 8, 0.07) 41%,
-      rgba(8, 8, 8, 0) 50%
+      rgba(8, 8, 8, 0.66) 0%,
+      rgba(8, 8, 8, 0.5) 7%,
+      rgba(8, 8, 8, 0.34) 14%,
+      rgba(8, 8, 8, 0.2) 21%,
+      rgba(8, 8, 8, 0.09) 27%,
+      rgba(8, 8, 8, 0) 34%
     );
   }
 }

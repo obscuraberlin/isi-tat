@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Series } from "@/data/landingPage";
 import { insideTheClub } from "@/data/landingPage";
-import { useHasHover } from "@/lib/hooks";
+import { useHasHover, useInView } from "@/lib/hooks";
 import { Media } from "@/components/Media/Media";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -110,6 +110,17 @@ const KOPIEN = 3;
 export function SeriesRow() {
   const [active, setActive] = useState<Series | null>(null);
 
+  /* Das Band stand still, bis der Besucher fast daran vorbei war: die
+     Animation lief seit dem Aufruf der Seite und war bis hierher schon
+     halb durch, also stand die Reihe beim Ankommen zufaellig irgendwo.
+     Jetzt wartet sie und setzt sich in Bewegung, sobald der Abschnitt
+     ins Bild kommt — ein Stueck vorher, damit sie beim Lesen schon
+     laeuft und nicht aus dem Stand anfaengt. */
+  const { ref: bandRef, inView } = useInView<HTMLDivElement>({
+    threshold: 0,
+    rootMargin: "0px 0px 12% 0px",
+  });
+
   return (
     <section className={styles.section} id="im-club">
       <Backdrop variant="glow" tone="light" drift={60} />
@@ -129,11 +140,16 @@ export function SeriesRow() {
           der Tastatur hineingeht — sonst klickt man auf ein Ziel, das
           sich wegbewegt. */}
       <div
+        ref={bandRef}
         className={styles.marquee}
         role="region"
         aria-label={`${insideTheClub.headline} — Serien`}
       >
-        <div className={styles.track}>
+        <div
+          className={[styles.track, inView ? "" : styles.trackWartet]
+            .filter(Boolean)
+            .join(" ")}
+        >
           {Array.from({ length: KOPIEN }, (_, kopie) =>
             insideTheClub.series.map((series) => (
               <Card

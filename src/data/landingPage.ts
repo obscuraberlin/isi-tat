@@ -692,11 +692,15 @@ export const fit = {
   yes: {
     label: "Das passt, wenn du",
     items: [
-      "verkaufst, aufbaust oder selbstständig arbeitest",
+      "verkaufst, aufbaust, selbstständig arbeitest — oder genau da hin willst",
       "Entscheidungen triffst, für die du niemanden zum Fragen hast",
       "bereit bist, an deinem Können zu arbeiten",
       "ein Umfeld willst, das weiter ist als deins",
     ],
+    /* Ohne diesen Satz las sich die erste Zeile wie eine Bedingung. Der
+       Klub steht Quereinsteigern ausdruecklich offen — dieselbe Aussage
+       wie in den haeufigen Fragen, nur dort, wo aussortiert wird. */
+    note: "Quereinsteiger ausdrücklich auch. Vorerfahrung ist keine Bedingung — anfangen kannst du auf jeder Ebene.",
   },
   no: {
     label: "Das passt nicht, wenn du",
@@ -710,11 +714,13 @@ export const fit = {
   /* Auf dem Handy je vier kurze Zeilen. Eine Zeile, ein Gedanke —
      umgebrochene Aufzaehlungen liest niemand zu Ende. */
   jaMobil: [
-    "du verkaufst, aufbaust oder selbstständig arbeitest",
+    "du verkaufst, aufbaust — oder gerade erst anfängst",
     "du Entscheidungen nicht immer alleine treffen willst",
     "du an deinen Fähigkeiten arbeiten willst",
     "du ein stärkeres Umfeld suchst",
   ],
+  /* Kurzfassung des Hinweises fuer die schmale Spalte. */
+  jaHinweisMobil: "Quereinsteiger ausdrücklich auch. Vorerfahrung ist keine Bedingung.",
   neinMobil: [
     "du schnellen Reichtum erwartest",
     "du Garantien suchst",

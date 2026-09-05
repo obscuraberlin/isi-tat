@@ -72,6 +72,18 @@
   color: var(--text-muted);
 }
 
+/* Der Hinweis unter der Ja-Spalte. Steht abgesetzt und in Gold, damit er
+   nicht als fuenfter Aufzaehlungspunkt gelesen wird — es ist eine Ansage,
+   keine weitere Bedingung. */
+.note {
+  margin-top: clamp(16px, 1.8vw, 24px);
+  padding-left: 28px;
+  max-width: 48ch;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--accent);
+}
+
 .closing {
   margin-top: clamp(36px, 4vw, 60px);
   padding-top: clamp(22px, 2.6vw, 32px);
@@ -88,5 +100,13 @@
 @media (min-width: 768px) {
   .columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  /* In der schmalen Spalte steht die Kurzfassung, entsprechend kleiner. */
+  .note {
+    font-size: var(--fs-small);
+    max-width: none;
   }
 }

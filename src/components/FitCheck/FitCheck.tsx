@@ -17,6 +17,9 @@ export function FitCheck() {
       key: "yes",
       data: fit.yes,
       items: mobil ? fit.jaMobil : fit.yes.items,
+      /* Steht nur unter der Ja-Spalte: dort entscheidet sich, ob jemand
+         sich angesprochen fuehlt. */
+      note: mobil ? fit.jaHinweisMobil : fit.yes.note,
       mark: "✓",
       className: styles.columnYes,
     },
@@ -24,6 +27,7 @@ export function FitCheck() {
       key: "no",
       data: fit.no,
       items: mobil ? fit.neinMobil : fit.no.items,
+      note: null,
       mark: "—",
       className: styles.columnNo,
     },
@@ -59,6 +63,9 @@ export function FitCheck() {
                   </li>
                 ))}
               </ul>
+              {column.note ? (
+                <p className={styles.note}>{column.note}</p>
+              ) : null}
             </Reveal>
           ))}
         </div>

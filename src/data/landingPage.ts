@@ -959,6 +959,15 @@ export const footer = {
   /* Vom Auftraggeber neu formuliert. Die Aussage "niemand kann etwas
      garantieren" bleibt darin — sie muss bleiben, sonst liest sich die
      Seite als Ergebnisversprechen. Nur der Ton ist jetzt seiner. */
+  /* Dezente Urheberzeile ganz unten, wie sie auf Agenturarbeiten ueblich
+     ist. Externer Link, deshalb rel="noreferrer noopener" — die fremde
+     Seite soll weder erfahren, von wo der Klick kam, noch Zugriff auf
+     dieses Fenster bekommen. */
+  credit: {
+    label: "CREATED BY",
+    name: "OBSCURA DIGITAL MARKETING",
+    href: "https://obscura-berlin.de",
+  },
   legalNote:
     "Hundert Prozent garantieren kann niemand. Was ich weitergebe, ist nach bestem Wissen und Gewissen alles, was mich dahin gebracht hat, wo ich heute stehe — meine Erfahrung, keine Rezepte.",
 } as const;

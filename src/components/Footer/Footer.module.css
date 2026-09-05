@@ -123,6 +123,36 @@
   color: var(--text-muted);
 }
 
+/* Urheberzeile. Bewusst leise: kleiner als der Rest, in der gedaempften
+   Farbe, erst beim Darueberfahren hell. Sie soll auffindbar sein, nicht
+   auffallen. */
+.credit {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.creditLabel {
+  opacity: 0.72;
+}
+
+.creditLink {
+  color: var(--text-muted-light);
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .creditLink:hover {
+    color: var(--accent);
+  }
+}
+
 /* ---------- Mobil ---------- */
 
 @media (max-width: 767px) {
@@ -182,5 +212,9 @@
 
   .legal {
     padding-top: 18px;
+  }
+
+  .credit {
+    margin-top: 16px;
   }
 }

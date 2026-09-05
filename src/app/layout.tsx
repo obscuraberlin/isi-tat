@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { meta } from "@/data/landingPage";
+import { Kopierstempel } from "@/components/Kopierstempel/Kopierstempel";
 import { TrailerProvider } from "@/components/TrailerModal/TrailerContext";
 import "./globals.css";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
         <a className="skipLink" href="#inhalt">
           Zum Inhalt springen
         </a>
+        <Kopierstempel />
         <TrailerProvider>{children}</TrailerProvider>
       </body>
     </html>

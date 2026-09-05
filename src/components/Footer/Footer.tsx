@@ -47,6 +47,18 @@ export function Footer() {
         </div>
 
         <p className={styles.legal}>{footer.legalNote}</p>
+
+        <p className={styles.credit}>
+          <span className={styles.creditLabel}>{footer.credit.label}</span>
+          <a
+            href={footer.credit.href}
+            className={styles.creditLink}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {footer.credit.name}
+          </a>
+        </p>
       </div>
     </footer>
   );

@@ -290,13 +290,6 @@ export const trust = {
      Herkunft, Wendepunkt, was heute daraus geworden ist. Solange leer,
      zeigt die Seite die Stelle als gekennzeichnete Luecke. */
   bio: "OFFEN",
-  /* Vom Auftraggeber freigegeben. "20+ JAHRE ERFAHRUNG" ist raus — das
-     steht schon im Hero ueber der Headline und war hier eine Wiederholung. */
-  metrics: [
-    { value: "7", label: "UNTERNEHMEN MITGEGRÜNDET" },
-    { value: "8+", label: "STELLIG UMGESETZT" },
-    { value: "150+", label: "MITGLIEDER IM CLUB" },
-  ],
 } as const;
 
 /* --------------------------------------------------------------------------

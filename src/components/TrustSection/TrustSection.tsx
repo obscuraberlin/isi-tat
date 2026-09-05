@@ -127,20 +127,6 @@ export function TrustSection() {
           </div>
         </div>
 
-        {/* Ueber die volle Breite statt in der linken Spalte: dort endete
-            der Text und rechts stand nichts mehr — eine halbe Bildschirm-
-            breite Leere unter dem Video. Quer gelesen schliesst der Block. */}
-        <Reveal delay={160}>
-          <dl className={styles.metrics}>
-            {trust.metrics.map((metric) => (
-              <div key={metric.label} className={styles.metric}>
-                <dt className={styles.metricLabel}>{metric.label}</dt>
-                <dd className={styles.metricValue}>{metric.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-
         <div className={styles.timeline} id="erfahrung">
           <Reveal>
             <p className={styles.timelineHead}>{timeline.headline.join(" ")}</p>

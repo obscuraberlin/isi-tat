@@ -23,7 +23,7 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const restoreRef = useRef<HTMLElement | null>(null);
-  const { openVideo } = useTrailer();
+  const { openTrailer } = useTrailer();
 
   useScrollLock(series !== null);
 
@@ -106,6 +106,12 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
               <span>
                 {count} {count === 1 ? "Folge" : "Folgen"}
               </span>
+              {series.runtime ? (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span>{series.runtime}</span>
+                </>
+              ) : null}
               <span aria-hidden="true">·</span>
               <span>{series.tagline}</span>
             </div>
@@ -115,12 +121,21 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
         <div className={styles.content}>
           <div className={styles.left}>
             <div className={styles.actions}>
+              {/* Frueher "VORSCHAU", die series.still oeffnete — ein
+                  Standbild in einem Videofenster. Es gibt genau ein
+                  Video auf dieser Seite, und das ist der Trailer. */}
               <Button
                 variant="primaryOnDark"
                 withPlayIcon
-                onClick={() => openVideo(series.still, series.label)}
+                onClick={() => {
+                  /* Erst dieses Fenster zu, dann den Trailer auf — sonst
+                     lägen zwei Overlays uebereinander und beide sperrten
+                     das Scrollen. */
+                  onClose();
+                  openTrailer();
+                }}
               >
-                VORSCHAU
+                {cta.secondary.label}
               </Button>
               <ButtonLink href={cta.primary.href} variant="ghostOnDark" onClick={onClose}>
                 {cta.primary.label}

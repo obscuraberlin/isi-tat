@@ -310,19 +310,23 @@ export interface Series {
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
+  /**
+   * Gesamtlaufzeit der Serie, frei formuliert, z. B. "58 MIN".
+   * null = noch nicht gemessen; dann steht auf der Karte nur die
+   * Folgenzahl. Es wird nichts geschaetzt.
+   */
+  runtime: string | null;
   /** Zwei bis drei Saetze in der Detailansicht. */
   description: string;
   cover: MediaAsset;
   still: MediaAsset;
-  /** Stummes Hover-Preview (nur Desktop). null = kein Preview, keine Animation. */
-  preview: MediaAsset | null;
   episodes: Episode[];
 }
 
 export const insideTheClub = {
   eyebrow: "Im Club",
   headline: "WAS DICH IM MENTORING ERWARTET.",
-  subline: "Fünf Serien. Über 60 Stunden Material. Plus live. Keine Reihenfolge.",
+  subline: "Fünf Serien. Rund sechs Stunden. Plus live. Keine Reihenfolge.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
   draftEpisodeNote:
     "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
@@ -333,11 +337,11 @@ export const insideTheClub = {
       format: "serie",
       label: "MINDSET & PERSÖNLICHKEIT",
       tagline: "Entscheiden, wenn es unbequem wird.",
+      runtime: null,
       description:
         "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Über Standards, die niemand kontrolliert — und was passiert, wenn ich sie unterschreite.",
       cover: media("kurs-mindset-cover", "image", "Mindset & Persönlichkeit", "2 / 3"),
       still: media("kurs-mindset-still", "image", "Mindset & Persönlichkeit", "16 / 9", {}, 7),
-      preview: null,
       episodes: [
         { title: "Standards, die niemand kontrolliert", runtime: null },
         { title: "Entscheiden mit halber Information", runtime: null },
@@ -350,11 +354,11 @@ export const insideTheClub = {
       format: "serie",
       label: "VERTRIEB",
       tagline: "Menschen verstehen, bevor du verkaufst.",
+      runtime: null,
       description:
         "Zwanzig Jahre Gespräche, Einwände und Verhandlungen. Warum Menschen kaufen, bevor sie überzeugt sind — und woran es liegt, wenn sie es nicht tun.",
       cover: media("kurs-vertrieb-cover", "image", "Vertrieb", "2 / 3"),
       still: media("kurs-vertrieb-still", "image", "Vertrieb", "16 / 9", {}, 9),
-      preview: null,
       episodes: [
         { title: "Das Gespräch vor dem Gespräch", runtime: null },
         { title: "Einwände sind Informationen", runtime: null },
@@ -368,11 +372,11 @@ export const insideTheClub = {
       format: "serie",
       label: "BUSINESS",
       tagline: "Vom Job zum eigenen Unternehmen.",
+      runtime: null,
       description:
         "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Verantwortung, Struktur, Leute — und die Entscheidungen, die ich heute anders treffen würde.",
       cover: media("kurs-business-cover", "image", "Business", "2 / 3"),
       still: media("kurs-business-still", "image", "Business", "16 / 9", {}, 11),
-      preview: null,
       episodes: [
         { title: "Vom Angestellten zum Unternehmer", runtime: null },
         { title: "Verantwortung, die niemand abnimmt", runtime: null },
@@ -390,11 +394,11 @@ export const insideTheClub = {
       format: "serie",
       label: "NETZWERK",
       tagline: "Wer dich kennt, entscheidet mit.",
+      runtime: null,
       description:
         "Warum man an Menschen schwerer rankommt als an Wissen. Wie Beziehungen entstehen, woran sie kaputtgehen und was Verlässlichkeit über Jahre wert ist.",
       cover: media("kurs-netzwerk-cover", "image", "Netzwerk", "2 / 3"),
       still: media("kurs-netzwerk-still", "image", "Netzwerk", "16 / 9", {}, 13),
-      preview: null,
       episodes: [
         { title: "Der erste Eindruck ist der zweite", runtime: null },
         { title: "Geben, bevor du brauchst", runtime: null },
@@ -406,11 +410,11 @@ export const insideTheClub = {
       format: "serie",
       label: "ECHTE GESCHICHTEN",
       tagline: "Was gelaufen ist. Und was nicht.",
+      runtime: null,
       description:
         "Erzählte Fälle aus zwanzig Jahren, ohne Politur. Die Sachen, die funktioniert haben. Die, die schiefgingen. Und was jeweils den Unterschied gemacht hat.",
       cover: media("kurs-geschichten-cover", "image", "Echte Geschichten", "2 / 3"),
       still: media("kurs-geschichten-still", "image", "Echte Geschichten", "16 / 9", {}, 15),
-      preview: null,
       episodes: [
         { title: "Der Deal, der zu gut aussah", runtime: null },
         { title: "Zwei Jahre auf die falsche Karte", runtime: null },
@@ -422,11 +426,11 @@ export const insideTheClub = {
       format: "live",
       label: "LIVE MIT ISI",
       tagline: "Fragen stellen, statt nur zuschauen.",
+      runtime: null,
       description:
         "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Situationen einordne und Leute miteinander bekannt mache.",
       cover: media("kurs-live-cover", "image", "Live mit ISI", "2 / 3"),
       still: media("kurs-live-still", "image", "Live mit ISI", "16 / 9", {}, 17),
-      preview: null,
       episodes: [
         { title: "Offene Fragerunden", runtime: null },
         { title: "Fälle aus dem Alltag", runtime: null },

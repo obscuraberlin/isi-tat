@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { Series } from "@/data/landingPage";
 import { insideTheClub } from "@/data/landingPage";
-import { useHasHover, useInView } from "@/lib/hooks";
+import { useInView } from "@/lib/hooks";
 import { Media } from "@/components/Media/Media";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -21,31 +21,6 @@ function Card({
   onOpen: () => void;
   kopie?: boolean;
 }) {
-  const hasHover = useHasHover();
-  const [previewOn, setPreviewOn] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  /* Preview nur, wenn ein echtes Asset vorliegt — nichts vortaeuschen. */
-  const canPreview = hasHover && !!series.preview?.src;
-
-  const start = useCallback(() => {
-    if (!canPreview) return;
-    timer.current = setTimeout(() => setPreviewOn(true), 550);
-  }, [canPreview]);
-
-  const stop = useCallback(() => {
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = null;
-    setPreviewOn(false);
-  }, []);
-
-  useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
-    },
-    [],
-  );
-
   const count = series.episodes.length;
 
   return (
@@ -53,37 +28,21 @@ function Card({
       type="button"
       className={styles.card}
       onClick={onOpen}
-      onMouseEnter={start}
-      onMouseLeave={stop}
-      onFocus={start}
-      onBlur={stop}
       aria-label={`${series.label} öffnen`}
       aria-hidden={kopie || undefined}
       tabIndex={kopie ? -1 : undefined}
     >
       <Media asset={series.cover} tone="dark" radius="inherit" />
 
-      {canPreview && series.preview?.src ? (
-        <video
-          className={[styles.preview, previewOn ? styles.previewVisible : ""]
-            .filter(Boolean)
-            .join(" ")}
-          src={previewOn ? series.preview.src : undefined}
-          poster={series.preview.poster ?? undefined}
-          muted
-          loop
-          playsInline
-          autoPlay={previewOn}
-          aria-hidden="true"
-        />
-      ) : null}
-
       <span className={styles.scrim} aria-hidden="true" />
 
       <div className={styles.cardBody}>
+        {/* Laufzeit steht nur da, wenn sie gemessen ist. Geschaetzte
+            Minuten waeren eine Angabe, die sich nachpruefen laesst. */}
         <span className={styles.cardMeta}>
           {series.format === "live" ? "Format" : "Serie"} ·{" "}
           {count} {count === 1 ? "Folge" : "Folgen"}
+          {series.runtime ? ` · ${series.runtime}` : ""}
         </span>
         <h3 className={styles.cardLabel}>{series.label}</h3>
         <div className={styles.cardCopyWrap}>

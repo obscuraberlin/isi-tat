@@ -322,7 +322,7 @@ export interface Series {
 export const insideTheClub = {
   eyebrow: "Im Club",
   headline: "WAS DICH IM MENTORING ERWARTET.",
-  subline: "Fünf Serien. Plus live. Keine Reihenfolge.",
+  subline: "Fünf Serien. Über 60 Stunden Material. Plus live. Keine Reihenfolge.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
   draftEpisodeNote:
     "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
@@ -775,21 +775,30 @@ export const membership = {
     },
     {
       label: "NETZWERK",
-      text: "Kontakte, die über Zeit entstehen.",
+      text: "Ich nehme dich mit rein. Kontakte entstehen über Zeit.",
     },
     {
       label: "TREFFEN & EVENTS",
-      text: "OFFEN — tatsächlichen Umfang eintragen.",
+      text: "Wenn es passt, nehme ich dich mit. In echt, nicht per Video.",
     },
+    /* "Ruecksprache halten" statt "Feedback", "Betreuung" oder
+       "Lernkontrolle": das FernUSG haengt an der Ueberwachung des
+       Lernerfolgs durch den Anbieter. Fragen beantworten ist keine
+       Ueberwachung — Ergebnisse pruefen, korrigieren oder einen
+       Fortschritt bestaetigen waere eine. */
     {
       label: "ZUGANG ZU ISI",
-      text: "OFFEN — tatsächlichen Umfang des persönlichen Zugangs eintragen.",
+      text: "Rücksprache halten — auch dann noch, wenn du die Inhalte längst durch hast.",
     },
     {
       label: "WEITERE MÖGLICHKEITEN",
       text: "Keine Garantie. Aber die Chance, sichtbar zu werden.",
     },
   ],
+  /* Sagt, worauf das hinauslaeuft — und haelt zugleich fest, dass es
+     nicht ums Durcharbeiten geht. Beides zusammen in einem Satz. */
+  rowsNote:
+    "Das Ziel ist nicht, dass du alles gesehen hast. Das Ziel ist, dass du weißt, wen du fragst, wenn es drauf ankommt.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -934,8 +943,11 @@ export const footer = {
     { label: "AGB", href: "OFFEN" },
     { label: "KONTAKT", href: "OFFEN" },
   ],
+  /* Vom Auftraggeber neu formuliert. Die Aussage "niemand kann etwas
+     garantieren" bleibt darin — sie muss bleiben, sonst liest sich die
+     Seite als Ergebnisversprechen. Nur der Ton ist jetzt seiner. */
   legalNote:
-    "Ich teile hier Erfahrungen, keine Rezepte. Es gibt keine Zusicherung auf Ergebnisse, Einkommen oder eine Zusammenarbeit.",
+    "Hundert Prozent garantieren kann niemand. Was ich weitergebe, ist nach bestem Wissen und Gewissen alles, was mich dahin gebracht hat, wo ich heute stehe — meine Erfahrung, keine Rezepte.",
 } as const;
 
 export const meta = {

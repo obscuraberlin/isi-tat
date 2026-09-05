@@ -75,6 +75,10 @@ export function Access() {
           ))}
         </div>
 
+        <Reveal delay={80}>
+          <p className={styles.rowsNote}>{membership.rowsNote}</p>
+        </Reveal>
+
         {/* Der Live-Teil in einer Zeile statt in einer eigenen Sektion —
             er gehoert zum Umfang, nicht zu den Argumenten. */}
         <Reveal className={styles.live} delay={60}>

@@ -381,6 +381,19 @@
 
 /* ---------- Live in einer Zeile ---------- */
 
+/* Steht unter der Liste und fasst sie zusammen. Abgesetzt und in der
+   Auszeichnungsschrift, damit es nicht als achte Zeile gelesen wird. */
+.rowsNote {
+  margin-top: clamp(26px, 3vw, 40px);
+  max-width: 52ch;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.24;
+}
+
 .live {
   margin-top: clamp(30px, 3.4vw, 48px);
   padding-top: clamp(20px, 2.4vw, 28px);

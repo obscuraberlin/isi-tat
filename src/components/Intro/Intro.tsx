@@ -14,6 +14,75 @@ const SCENES = intro.scenes;
  * Scroll-Hijacking: der Nutzer scrollt normal, nur der Inhalt haelt an.
  * Mobil sind es zwei normale Bloecke — kein Sticky, keine Parallax.
  */
+/**
+ * Die Schlagworte auf dem Telefon.
+ *
+ * Sie stehen von Anfang an da, aber sie faerben sich beim Scrollen eines
+ * nach dem anderen golden — und bleiben es. Das gibt dem Block einen
+ * Verlauf, ohne dass etwas springt oder nachgeladen wird.
+ *
+ * Gerechnet wird aus der Position des Blocks im Bild: sobald seine
+ * Oberkante ueber zwei Drittel der Bildschirmhoehe steigt, faengt es an;
+ * wenn seine Unterkante dort ankommt, sind alle golden.
+ */
+function Schlagworte({ words }: { words: readonly string[] }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [gold, setGold] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    /* Wer Bewegung reduziert haben will, bekommt sie alle sofort — der
+       Effekt ist Schmuck, die Woerter sind der Inhalt. */
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setGold(words.length);
+      return;
+    }
+
+    let frame = 0;
+    const lesen = () => {
+      frame = 0;
+      const r = el.getBoundingClientRect();
+      /* Grosszuegiger Weg: die Faerbung soll ueber mehrere hundert Pixel
+         laufen, nicht in zwei Wischern durch sein. */
+      const start = window.innerHeight * 0.88;
+      const weg = r.height + window.innerHeight * 0.62;
+      const p = weg <= 0 ? 0 : (start - r.top) / weg;
+      setGold(
+        Math.max(0, Math.min(words.length, Math.ceil(p * words.length))),
+      );
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(lesen);
+    };
+
+    lesen();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [words.length]);
+
+  return (
+    <p ref={ref} className={styles.words}>
+      {words.map((word, i) => (
+        <span
+          key={word}
+          className={[styles.word, styles.wordOn, i < gold ? styles.wordGold : ""]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {word}
+        </span>
+      ))}
+    </p>
+  );
+}
+
 export function Intro() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
@@ -81,7 +150,9 @@ export function Intro() {
           </h2>
         ) : null}
 
-        {scene.words.length > 0 ? (
+        {scene.words.length === 0 ? null : isMobile ? (
+          <Schlagworte words={scene.words} />
+        ) : (
           <p className={styles.words}>
             {scene.words.map((word, wordIndex) => (
               <span
@@ -97,7 +168,7 @@ export function Intro() {
               </span>
             ))}
           </p>
-        ) : null}
+        )}
       </>
     );
   };

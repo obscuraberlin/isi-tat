@@ -140,6 +140,25 @@
   color: var(--accent);
 }
 
+/* Beim Scrollen eingefaerbt. Der Uebergang liegt schon auf .word, das
+   Wort wechselt also weich statt zu springen. */
+.wordGold {
+  color: var(--accent);
+}
+
+/* Auf dem Telefon kommt das Gold ausschliesslich aus dem Scrollen. Das
+   feste letzte Wort waere sonst schon golden, waehrend die anderen noch
+   warten — das sieht nach Fehler aus, nicht nach Absicht. */
+@media (max-width: 767px) {
+  .wordOn:last-child {
+    color: inherit;
+  }
+
+  .wordOn:last-child.wordGold {
+    color: var(--accent);
+  }
+}
+
 /* ---------- Fortschritt ---------- */
 
 .progress {

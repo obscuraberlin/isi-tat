@@ -327,6 +327,15 @@ export const insideTheClub = {
   eyebrow: "Im Club",
   headline: "WAS DICH IM MENTORING ERWARTET.",
   subline: "Fünf Serien. Rund sechs Stunden. Plus live. Keine Reihenfolge.",
+  /* Steht unter dem Band und schliesst den Inhaltsteil ab. Der Satz macht
+     klar, dass es nicht ums Ansehen geht — und sagt zugleich nichts ueber
+     Ergebnisse zu: "vom Zuschauen hat noch niemand etwas verdient" ist
+     das Gegenteil eines Verdienstversprechens. */
+  /* Nicht "Wissen ist der Anfang": zwei Sektionen weiter unten steht
+     "Inhalte sind der Anfang" — dieselbe Figur zweimal liest sich wie
+     ein Versehen. */
+  workLine: ["WISSEN ALLEIN REICHT NICHT.", "GEARBEITET WIRD DANACH."],
+  work: "Alles hier ist zum Anwenden gedacht, nicht zum Ansehen. Vom Zuschauen hat noch niemand etwas verdient. Entschieden wird es draußen, im echten Geschäft.",
   note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
   draftEpisodeNote:
     "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",

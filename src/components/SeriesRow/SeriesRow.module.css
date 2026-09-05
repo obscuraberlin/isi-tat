@@ -284,7 +284,39 @@
   margin-top: clamp(20px, 2vw, 30px);
 }
 
+/* Schliesst den Inhaltsteil ab: erst die Ansage in der
+   Auszeichnungsschrift, darunter der Satz dazu, zuletzt die kleine
+   Randnotiz zur Reihenfolge. */
+.workLine {
+  margin-top: clamp(30px, 3.4vw, 48px);
+  padding-top: clamp(22px, 2.4vw, 32px);
+  border-top: 1px solid var(--line-dark);
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: var(--fs-sub);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.18;
+}
+
+.workLineRow {
+  display: block;
+}
+
+.workLineRow:last-child {
+  color: var(--accent);
+}
+
+.work {
+  max-width: 58ch;
+  margin-top: clamp(12px, 1.4vw, 18px);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: #3a3a3a;
+}
+
 .note {
+  margin-top: clamp(16px, 1.8vw, 24px);
   max-width: 62ch;
   font-size: var(--fs-small);
   line-height: 1.55;

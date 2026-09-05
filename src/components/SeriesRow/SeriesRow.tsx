@@ -123,6 +123,17 @@ export function SeriesRow() {
       </div>
 
       <div className={styles.noteWrap}>
+        <Reveal>
+          <p className={styles.workLine}>
+            {insideTheClub.workLine.map((line) => (
+              <span key={line} className={styles.workLineRow}>
+                {line}
+              </span>
+            ))}
+          </p>
+          <p className={styles.work}>{insideTheClub.work}</p>
+        </Reveal>
+
         <p className={styles.note}>{insideTheClub.note}</p>
       </div>
 

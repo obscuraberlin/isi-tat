@@ -27,6 +27,10 @@ interface CtaBandProps {
  *
  * Bewusst schmal gehalten: das Band unterbricht den Lesefluss, es soll ihn
  * nicht ersetzen.
+ *
+ * `data-cta` ist die Marke fuer die Leiste am unteren Rand: sie haelt sich
+ * zurueck, solange ein Band im Bild ist — sonst stehen zwei gleiche
+ * Aufrufe uebereinander.
  */
 export function CtaBand({
   lines,
@@ -49,6 +53,7 @@ export function CtaBand({
         .filter(Boolean)
         .join(" ")}
       aria-label="Aufnahme anfragen"
+      data-cta
     >
       {/* Das Band ist die Stelle, an der ein Bild am meisten traegt: kurzer
           Satz, ein Knopf, sonst nichts — dahinter darf es weit sein. */}

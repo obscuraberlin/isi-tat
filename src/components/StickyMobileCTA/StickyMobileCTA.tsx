@@ -9,7 +9,7 @@ import styles from "./StickyMobileCTA.module.css";
 /* Wo der Aufruf ohnehin auf der Seite steht. Solange einer davon im Bild
    ist, hält die Leiste sich zurück — zwei Aufforderungen gleichzeitig
    wirken nicht dringlicher, sondern lauter. */
-const EIGENE_CTA = ["#zugang", "#abschluss", "footer"];
+const EIGENE_CTA = ["#zugang", "#abschluss", "footer", "[data-cta]"];
 
 /**
  * Leiste am unteren Rand, nur auf dem Telefon.
@@ -26,8 +26,10 @@ export function StickyMobileCTA() {
   useEffect(() => {
     if (!isMobile) return;
 
-    const ziele = EIGENE_CTA.map((s) => document.querySelector(s)).filter(
-      (el): el is Element => Boolean(el),
+    /* querySelectorAll, nicht querySelector: von den Baendern gibt es
+       mehrere, und jedes davon soll die Leiste zurueckhalten. */
+    const ziele = EIGENE_CTA.flatMap((s) =>
+      Array.from(document.querySelectorAll(s)),
     );
     if (ziele.length === 0) return;
 

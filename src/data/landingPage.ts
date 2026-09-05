@@ -1040,11 +1040,23 @@ export const presentation = {
    -------------------------------------------------------------------------- */
 
 export const ctaBands = {
-  /* Zeigt auf die Menschen, nicht auf das Material: das Band steht nach
-     den Serien, und ab da ist der Unterschied nicht mehr der Inhalt. */
+  /* Steht direkt nach den Serien. Vorher stand hier "Inhalte sind der
+     Anfang. Die Menschen sind der Rest." — eine Behauptung ohne Gegen-
+     stand, und dazu fast wortgleich mit der Ueberschrift der naechsten
+     Sektion ("Wissen findest du ueberall. Die richtigen Menschen
+     nicht."), der sie damit die Wirkung nahm.
+
+     Jetzt steht dort, was der Klub tatsaechlich abkuerzt: nicht das
+     Wissen, sondern die Jahre. Das ist nachpruefbar, es steht so schon
+     im Hero, und es verspricht nichts. */
   nachInhalten: {
-    lines: ["INHALTE SIND DER ANFANG.", "DIE MENSCHEN SIND DER REST."],
-    note: "Die Plätze sind begrenzt — wer rein will, zeigt es zuerst.",
+    lines: [
+      "DU KANNST DIR ALLES SELBST BEIBRINGEN.",
+      "ICH HABE ZWANZIG JAHRE DAFÜR GEBRAUCHT.",
+    ],
+    /* Vorher "Die Plaetze sind begrenzt" — eine Knappheitsaussage ohne
+       Zahl dahinter. Die Absage ist der echte Filter und braucht keine. */
+    note: "Wer nicht passt, bekommt eine Absage.",
   },
   nachUmfeld: {
     lines: [

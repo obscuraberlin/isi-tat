@@ -131,19 +131,13 @@
    Schwarz, bevor der Footer anfing. Die Sektion braucht dort keine
    Bildschirmhoehe — der Inhalt endet mit dem zweiten Knopf. */
 @media (max-width: 767px) {
-  /* Hier steht das Hochformat, das die Flaeche fuellt, ohne stark
-     beschnitten zu werden. Kein Band, kein Verlauf — es traegt die ganze
-     Sektion. */
+  /* Die Flaeche ist hier mehr als doppelt so hoch wie breit. Bei voller
+     Breite waere das Band nur ein Viertel davon hoch. Es laeuft deshalb
+     ueber die Kanten hinaus — aber bei 1,75-facher statt dreifacher
+     Vergroesserung, und die Szene bleibt erkennbar. */
   .bg > div {
-    top: 0;
-    left: 0;
-    transform: none;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
+    width: 175%;
     filter: blur(4px) saturate(0.95);
-    -webkit-mask-image: none;
-    mask-image: none;
   }
 
   .section {

@@ -1,35 +1,35 @@
 "use client";
 
-import { cta, finalCta, lifestyle } from "@/data/landingPage";
+import { cta, finalCta, trailer } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/Reveal/Reveal";
-import { useMediaQuery } from "@/lib/hooks";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import styles from "./FinalCTA.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 export function FinalCTA() {
-  const { openTrailer } = useTrailer();
+  const { openTrailer, active } = useTrailer();
 
-  /* Die Flaeche ist auf dem Telefon mehr als doppelt so hoch wie breit.
-     Ein Querformat muesste dort auf ein Drittel seiner Breite beschnitten
-     werden — vom Garagenclip blieb ein unscharfer Oberkoerper. Hier steht
-     deshalb die Nachtaufnahme aus Paris: Hochformat, dunkel, mit dem
-     goldenen Licht, das ohnehin die Farbe der Seite ist. Am Desktop, wo
-     das Verhaeltnis passt, laeuft weiter der Clip. */
-  const mobil = useMediaQuery("(max-width: 767px)");
 
   return (
     <section className={styles.section} id="abschluss">
       <Backdrop variant="grain" tone="dark" />
 
+      {/* Der fertige Trailer, stumm und unscharf. Er laeuft hier ohnehin
+          im Hintergrund, also liegt die Datei schon im Zwischenspeicher,
+          wenn jemand darunter auf "Trailer ansehen" drueckt — das Fenster
+          geht dann ohne Ladezeit auf.
+
+          Solange ein Video im Overlay laeuft, steht hier keines: iOS
+          erlaubt nur eine begrenzte Zahl gleichzeitig laufender Videos,
+          und der Hintergrund darf dem Trailer nicht den Platz wegnehmen.
+          Das Overlay deckt die Flaeche ohnehin ab, zu sehen ist davon
+          nichts. */}
       <div className={styles.bg} aria-hidden="true">
-        {mobil ? (
-          <Media asset={lifestyle.gallery[0]} tone="dark" radius="0" />
-        ) : (
+        {active ? null : (
           <Media
-            asset={finalCta.video}
+            asset={trailer.video}
             tone="dark"
             radius="0"
             autoPlay

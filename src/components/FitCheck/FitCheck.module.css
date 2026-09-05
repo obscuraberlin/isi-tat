@@ -109,4 +109,51 @@
     font-size: var(--fs-small);
     max-width: none;
   }
+
+  /* #777 auf fast schwarzem Grund war auf dem Telefon nicht mehr zu
+     lesen — am Desktop steht die Spalte neben der hellen Ja-Seite und
+     traegt sich, allein untereinander fehlt ihr der Bezug. */
+  .columnNo .item,
+  .columnNo .mark,
+  .columnNo .label {
+    color: var(--text-muted-light);
+  }
+
+  /* Der Strich wird gezogen, nicht geschaltet: eine Linie, die von links
+     nach rechts waechst. text-decoration kann das nicht. */
+  .itemText {
+    position: relative;
+  }
+
+  .columnNo .itemText::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0.66em;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 520ms var(--ease-out);
+  }
+
+  .itemDurch .itemText::after {
+    transform: scaleX(1);
+  }
+
+  /* Was durchgestrichen ist, tritt zurueck — aber nur wenig. Bei 0,62
+     landete die Zeile wieder auf dem Grauwert, der vorher nicht zu lesen
+     war. Der Strich sagt schon genug. */
+  .itemDurch {
+    opacity: 0.82;
+    transition: opacity 520ms var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .columnNo .itemText::after,
+    .itemDurch {
+      transition: none;
+    }
+  }
 }

@@ -3,7 +3,7 @@
 import { fit } from "@/data/landingPage";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/Reveal/Reveal";
-import { useMediaQuery } from "@/lib/hooks";
+import { useMediaQuery, useNacheinander } from "@/lib/hooks";
 import styles from "./FitCheck.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 
@@ -33,6 +33,16 @@ export function FitCheck() {
     },
   ];
 
+  /* Die Nein-Seite streicht sich beim Scrollen durch, eine Zeile nach der
+     anderen. Nur auf dem Telefon: am Desktop stehen beide Spalten
+     nebeneinander im Bild, dort waere der Lauf schon durch, bevor man
+     hinsieht. */
+  const { ref: neinRef, an: durch } = useNacheinander<HTMLUListElement>(
+    mobil ? fit.neinMobil.length : 0,
+    0.72,
+    0.5,
+  );
+
   return (
     <section className={styles.section} id="fuer-wen">
       <Backdrop variant="beam" tone="dark" drift={30} />
@@ -53,13 +63,26 @@ export function FitCheck() {
               delay={index * 90}
             >
               <p className={styles.label}>{column.data.label}</p>
-              <ul className={styles.list}>
-                {column.items.map((item) => (
-                  <li key={item} className={styles.item}>
+              <ul
+                className={styles.list}
+                ref={column.key === "no" ? neinRef : undefined}
+              >
+                {column.items.map((item, i) => (
+                  <li
+                    key={item}
+                    className={[
+                      styles.item,
+                      column.key === "no" && mobil && i < durch
+                        ? styles.itemDurch
+                        : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
                     <span className={styles.mark} aria-hidden="true">
                       {column.mark}
                     </span>
-                    {item}
+                    <span className={styles.itemText}>{item}</span>
                   </li>
                 ))}
               </ul>

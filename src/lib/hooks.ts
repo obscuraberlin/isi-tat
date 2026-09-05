@@ -245,3 +245,64 @@ export function useBackdropTone(offset: number) {
 
   return tone;
 }
+
+/**
+ * Zaehlt beim Scrollen hoch — fuer Effekte, die eine Liste nacheinander
+ * durchlaufen (Faerben, Durchstreichen).
+ *
+ * Die Elemente stehen von Anfang an da, aendern sich beim Scrollen aber
+ * eines nach dem anderen — und bleiben so. Das gibt einem Block einen
+ * Verlauf, ohne dass etwas springt oder nachgeladen wird.
+ *
+ * Gerechnet wird aus der Position des Blocks im Bild: sobald seine
+ * Oberkante ueber zwei Drittel der Bildschirmhoehe steigt, faengt es an;
+ * wenn seine Unterkante dort ankommt, sind alle durch.
+ */
+export function useNacheinander<T extends HTMLElement>(
+  anzahl: number,
+  /** Ab welcher Bildschirmhoehe es losgeht — kleiner = spaeter. */
+  beginn = 0.88,
+  /** Wie viel Bildschirmhoehe der Lauf zusaetzlich braucht. */
+  strecke = 0.62,
+) {
+  const ref = useRef<T>(null);
+  const [an, setAn] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    /* Wer Bewegung reduziert haben will, bekommt sie alle sofort — der
+       Effekt ist Schmuck, der Text ist der Inhalt. */
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setAn(anzahl);
+      return;
+    }
+
+    let frame = 0;
+    const lesen = () => {
+      frame = 0;
+      const r = el.getBoundingClientRect();
+      /* Grosszuegiger Weg: die Faerbung soll ueber mehrere hundert Pixel
+         laufen, nicht in zwei Wischern durch sein. */
+      const start = window.innerHeight * beginn;
+      const weg = r.height + window.innerHeight * strecke;
+      const p = weg <= 0 ? 0 : (start - r.top) / weg;
+      setAn(Math.max(0, Math.min(anzahl, Math.ceil(p * anzahl))));
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(lesen);
+    };
+
+    lesen();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [anzahl, beginn, strecke]);
+
+  return { ref, an };
+}

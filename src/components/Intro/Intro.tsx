@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { intro } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
-import { useMediaQuery } from "@/lib/hooks";
+import { useMediaQuery, useNacheinander } from "@/lib/hooks";
 import styles from "./Intro.module.css";
 
 const SCENES = intro.scenes;
@@ -14,69 +14,9 @@ const SCENES = intro.scenes;
  * Scroll-Hijacking: der Nutzer scrollt normal, nur der Inhalt haelt an.
  * Mobil sind es zwei normale Bloecke — kein Sticky, keine Parallax.
  */
-/**
- * Der Goldlauf auf dem Telefon.
- *
- * Die Zeilen stehen von Anfang an da, faerben sich beim Scrollen aber
- * eine nach der anderen golden — und bleiben es. Das gibt dem Block
- * einen Verlauf, ohne dass etwas springt oder nachgeladen wird.
- *
- * Gerechnet wird aus der Position des Blocks im Bild: sobald seine
- * Oberkante ueber zwei Drittel der Bildschirmhoehe steigt, faengt es an;
- * wenn seine Unterkante dort ankommt, sind alle golden.
- */
-function useGoldlauf<T extends HTMLElement>(
-  anzahl: number,
-  /** Ab welcher Bildschirmhoehe es losgeht — kleiner = spaeter. */
-  beginn = 0.88,
-  /** Wie viel Bildschirmhoehe der Lauf zusaetzlich braucht. */
-  strecke = 0.62,
-) {
-  const ref = useRef<T>(null);
-  const [gold, setGold] = useState(0);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    /* Wer Bewegung reduziert haben will, bekommt sie alle sofort — der
-       Effekt ist Schmuck, der Text ist der Inhalt. */
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setGold(anzahl);
-      return;
-    }
-
-    let frame = 0;
-    const lesen = () => {
-      frame = 0;
-      const r = el.getBoundingClientRect();
-      /* Grosszuegiger Weg: die Faerbung soll ueber mehrere hundert Pixel
-         laufen, nicht in zwei Wischern durch sein. */
-      const start = window.innerHeight * beginn;
-      const weg = r.height + window.innerHeight * strecke;
-      const p = weg <= 0 ? 0 : (start - r.top) / weg;
-      setGold(Math.max(0, Math.min(anzahl, Math.ceil(p * anzahl))));
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(lesen);
-    };
-
-    lesen();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, [anzahl, beginn, strecke]);
-
-  return { ref, gold };
-}
-
 /** Die Schlagworte, eines nach dem anderen. */
 function Schlagworte({ words }: { words: readonly string[] }) {
-  const { ref, gold } = useGoldlauf<HTMLParagraphElement>(words.length);
+  const { ref, an: gold } = useNacheinander<HTMLParagraphElement>(words.length);
 
   return (
     <p ref={ref} className={styles.words}>
@@ -100,7 +40,11 @@ function Zeilen({ lines }: { lines: readonly string[] }) {
      sonst golden, bevor man sie gelesen hat. So faellt die erste Zeile
      etwa in der Bildmitte um, die zweite kurz bevor der Block oben
      hinausgeht. */
-  const { ref, gold } = useGoldlauf<HTMLHeadingElement>(lines.length, 0.7, 0.95);
+  const { ref, an: gold } = useNacheinander<HTMLHeadingElement>(
+    lines.length,
+    0.7,
+    0.95,
+  );
 
   return (
     <h2 ref={ref} className={styles.headline}>

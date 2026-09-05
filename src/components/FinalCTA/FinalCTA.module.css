@@ -109,3 +109,13 @@
     align-items: stretch;
   }
 }
+
+/* Unter den Knoepfen stand auf dem Telefon ein Viertel Bildschirm leeres
+   Schwarz, bevor der Footer anfing. Die Sektion braucht dort keine
+   Bildschirmhoehe — der Inhalt endet mit dem zweiten Knopf. */
+@media (max-width: 767px) {
+  .section {
+    min-height: 0;
+    padding-block: clamp(64px, 12vw, 96px) clamp(48px, 9vw, 72px);
+  }
+}

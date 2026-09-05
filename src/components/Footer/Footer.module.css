@@ -123,8 +123,64 @@
   color: var(--text-muted);
 }
 
+/* ---------- Mobil ---------- */
+
 @media (max-width: 767px) {
+  /* Platz fuer die Leiste am unteren Rand. */
   .footer {
     padding-bottom: calc(clamp(48px, 6vw, 80px) + 80px);
+  }
+
+  .inner {
+    gap: 22px;
+  }
+
+  .top {
+    gap: 22px;
+  }
+
+  /* Drei Kanaele als umbrechende Reihe ergaben zwei nebeneinander und
+     einen allein darunter — das sah aus wie ein Umbruchunfall. Jetzt
+     einer pro Zeile: Name links, Kuerzel rechts, Haarlinie dazwischen.
+     Dieselbe Figur wie bei den Kennzahlen und der Zeitleiste. */
+  .social {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .socialLink {
+    justify-content: space-between;
+    width: 100%;
+    min-height: 0;
+    padding-block: 13px;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .socialLink:last-child {
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .navs {
+    width: 100%;
+    gap: 18px;
+  }
+
+  /* Zwei Links statt vier: was noch nicht existiert, steht auch nicht als
+     graues Wort da. Damit passt die Zeile in eine. */
+  .linkPending {
+    display: none;
+  }
+
+  .links {
+    gap: 0 24px;
+  }
+
+  .link {
+    min-height: 38px;
+  }
+
+  .legal {
+    padding-top: 18px;
   }
 }

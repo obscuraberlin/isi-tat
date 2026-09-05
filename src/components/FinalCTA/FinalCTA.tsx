@@ -1,9 +1,10 @@
 "use client";
 
-import { cta, finalCta } from "@/data/landingPage";
+import { cta, finalCta, lifestyle } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/Reveal/Reveal";
+import { useMediaQuery } from "@/lib/hooks";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import styles from "./FinalCTA.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
@@ -11,12 +12,30 @@ import { Backdrop } from "@/components/Backdrop/Backdrop";
 export function FinalCTA() {
   const { openTrailer } = useTrailer();
 
+  /* Die Flaeche ist auf dem Telefon mehr als doppelt so hoch wie breit.
+     Ein Querformat muesste dort auf ein Drittel seiner Breite beschnitten
+     werden — vom Garagenclip blieb ein unscharfer Oberkoerper. Hier steht
+     deshalb die Nachtaufnahme aus Paris: Hochformat, dunkel, mit dem
+     goldenen Licht, das ohnehin die Farbe der Seite ist. Am Desktop, wo
+     das Verhaeltnis passt, laeuft weiter der Clip. */
+  const mobil = useMediaQuery("(max-width: 767px)");
+
   return (
     <section className={styles.section} id="abschluss">
       <Backdrop variant="grain" tone="dark" />
 
       <div className={styles.bg} aria-hidden="true">
-        <Media asset={finalCta.video} tone="dark" radius="0" autoPlay decoration />
+        {mobil ? (
+          <Media asset={lifestyle.gallery[0]} tone="dark" radius="0" />
+        ) : (
+          <Media
+            asset={finalCta.video}
+            tone="dark"
+            radius="0"
+            autoPlay
+            decoration
+          />
+        )}
       </div>
       <span className={styles.scrim} aria-hidden="true" />
 

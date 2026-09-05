@@ -12,17 +12,34 @@
   z-index: -2;
 }
 
+/* Ein 16:9-Bild auf die volle Hoehe dieser Sektion zu ziehen heisst, es
+   auf einen Ausschnitt seiner Breite zu beschneiden — vom Garagenbild
+   blieb ein unscharfer Oberkoerper, die Halle und der Wagen fielen aus
+   dem Bild. Es steht deshalb als Band in seinem eigenen Verhaeltnis,
+   mittig, und verlaeuft nach oben und unten ins Dunkle. So ist die ganze
+   Szene zu sehen und die Kante zur Sektion nicht. */
 .bg > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 0;
   /* Unscharf: die Aufnahme soll Stimmung tragen, nicht gelesen werden —
-     und die Headline steht mitten darauf. Leicht groesser skaliert, damit
-     der Weichzeichner keine helle Kante am Rand stehen laesst. */
-  /* Weniger als vorher: man soll erkennen, was laeuft, ohne dass es die
-     Headline zerreisst. Unscharf bleibt es, aber lesbar unscharf. */
-  filter: blur(7px) saturate(0.95);
-  transform: scale(1.04);
+     die Headline steht mitten darauf. Weniger als vorher, weil das Bild
+     jetzt nicht mehr um ein Vielfaches vergroessert wird. */
+  filter: blur(5px) saturate(0.95);
+  --verlauf: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 24%,
+    #000 76%,
+    transparent 100%
+  );
+  -webkit-mask-image: var(--verlauf);
+  mask-image: var(--verlauf);
 }
 
 .scrim {
@@ -114,6 +131,21 @@
    Schwarz, bevor der Footer anfing. Die Sektion braucht dort keine
    Bildschirmhoehe — der Inhalt endet mit dem zweiten Knopf. */
 @media (max-width: 767px) {
+  /* Hier steht das Hochformat, das die Flaeche fuellt, ohne stark
+     beschnitten zu werden. Kein Band, kein Verlauf — es traegt die ganze
+     Sektion. */
+  .bg > div {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    filter: blur(4px) saturate(0.95);
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
   .section {
     min-height: 0;
     padding-block: clamp(64px, 12vw, 96px) clamp(48px, 9vw, 72px);

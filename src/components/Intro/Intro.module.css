@@ -102,10 +102,17 @@
 
 .line {
   display: block;
+  transition: color 480ms var(--ease-out);
 }
 
 .line:last-child {
   color: var(--text-muted-light);
+}
+
+/* Gleiche Spezifitaet wie .line:last-child, steht danach — gewinnt also
+   auch fuer die letzte Zeile. */
+.line.lineGold {
+  color: var(--accent);
 }
 
 /* ---------- Wortfolge ---------- */

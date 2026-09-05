@@ -15,18 +15,24 @@ const SCENES = intro.scenes;
  * Mobil sind es zwei normale Bloecke — kein Sticky, keine Parallax.
  */
 /**
- * Die Schlagworte auf dem Telefon.
+ * Der Goldlauf auf dem Telefon.
  *
- * Sie stehen von Anfang an da, aber sie faerben sich beim Scrollen eines
- * nach dem anderen golden — und bleiben es. Das gibt dem Block einen
- * Verlauf, ohne dass etwas springt oder nachgeladen wird.
+ * Die Zeilen stehen von Anfang an da, faerben sich beim Scrollen aber
+ * eine nach der anderen golden — und bleiben es. Das gibt dem Block
+ * einen Verlauf, ohne dass etwas springt oder nachgeladen wird.
  *
  * Gerechnet wird aus der Position des Blocks im Bild: sobald seine
  * Oberkante ueber zwei Drittel der Bildschirmhoehe steigt, faengt es an;
  * wenn seine Unterkante dort ankommt, sind alle golden.
  */
-function Schlagworte({ words }: { words: readonly string[] }) {
-  const ref = useRef<HTMLParagraphElement>(null);
+function useGoldlauf<T extends HTMLElement>(
+  anzahl: number,
+  /** Ab welcher Bildschirmhoehe es losgeht — kleiner = spaeter. */
+  beginn = 0.88,
+  /** Wie viel Bildschirmhoehe der Lauf zusaetzlich braucht. */
+  strecke = 0.62,
+) {
+  const ref = useRef<T>(null);
   const [gold, setGold] = useState(0);
 
   useEffect(() => {
@@ -34,9 +40,9 @@ function Schlagworte({ words }: { words: readonly string[] }) {
     if (!el) return;
 
     /* Wer Bewegung reduziert haben will, bekommt sie alle sofort — der
-       Effekt ist Schmuck, die Woerter sind der Inhalt. */
+       Effekt ist Schmuck, der Text ist der Inhalt. */
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setGold(words.length);
+      setGold(anzahl);
       return;
     }
 
@@ -46,12 +52,10 @@ function Schlagworte({ words }: { words: readonly string[] }) {
       const r = el.getBoundingClientRect();
       /* Grosszuegiger Weg: die Faerbung soll ueber mehrere hundert Pixel
          laufen, nicht in zwei Wischern durch sein. */
-      const start = window.innerHeight * 0.88;
-      const weg = r.height + window.innerHeight * 0.62;
+      const start = window.innerHeight * beginn;
+      const weg = r.height + window.innerHeight * strecke;
       const p = weg <= 0 ? 0 : (start - r.top) / weg;
-      setGold(
-        Math.max(0, Math.min(words.length, Math.ceil(p * words.length))),
-      );
+      setGold(Math.max(0, Math.min(anzahl, Math.ceil(p * anzahl))));
     };
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(lesen);
@@ -65,7 +69,14 @@ function Schlagworte({ words }: { words: readonly string[] }) {
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [words.length]);
+  }, [anzahl, beginn, strecke]);
+
+  return { ref, gold };
+}
+
+/** Die Schlagworte, eines nach dem anderen. */
+function Schlagworte({ words }: { words: readonly string[] }) {
+  const { ref, gold } = useGoldlauf<HTMLParagraphElement>(words.length);
 
   return (
     <p ref={ref} className={styles.words}>
@@ -80,6 +91,81 @@ function Schlagworte({ words }: { words: readonly string[] }) {
         </span>
       ))}
     </p>
+  );
+}
+
+/** Dieselbe Bewegung an der Ueberschrift der ersten Szene, Zeile fuer Zeile. */
+function Zeilen({ lines }: { lines: readonly string[] }) {
+  /* Spaeter und langsamer als bei den Schlagworten: zwei Zeilen waeren
+     sonst golden, bevor man sie gelesen hat. So faellt die erste Zeile
+     etwa in der Bildmitte um, die zweite kurz bevor der Block oben
+     hinausgeht. */
+  const { ref, gold } = useGoldlauf<HTMLHeadingElement>(lines.length, 0.7, 0.95);
+
+  return (
+    <h2 ref={ref} className={styles.headline}>
+      {lines.map((line, i) => (
+        <span
+          key={line}
+          className={[styles.line, i < gold ? styles.lineGold : ""]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {line}
+        </span>
+      ))}
+    </h2>
+  );
+}
+
+/**
+ * Text einer Szene.
+ *
+ * Steht auf Modulebene, nicht in `Intro`: eine im Rendern definierte
+ * Komponente ist bei jedem Durchlauf ein neuer Typ — React haengt sie
+ * dann ab und neu an, und der Goldlauf darin finge jedes Mal wieder bei
+ * null an.
+ */
+function Copy({
+  scene,
+  isMobile,
+  shown,
+}: {
+  scene: (typeof SCENES)[number];
+  isMobile: boolean;
+  shown: number;
+}) {
+  return (
+    <>
+      {scene.lines.length === 0 ? null : isMobile ? (
+        <Zeilen lines={scene.lines} />
+      ) : (
+        <h2 className={styles.headline}>
+          {scene.lines.map((line) => (
+            <span key={line} className={styles.line}>
+              {line}
+            </span>
+          ))}
+        </h2>
+      )}
+
+      {scene.words.length === 0 ? null : isMobile ? (
+        <Schlagworte words={scene.words} />
+      ) : (
+        <p className={styles.words}>
+          {scene.words.map((word, wordIndex) => (
+            <span
+              key={word}
+              className={[styles.word, wordIndex < shown ? styles.wordOn : ""]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              {word}
+            </span>
+          ))}
+        </p>
+      )}
+    </>
   );
 }
 
@@ -134,45 +220,6 @@ export function Intro() {
         : /* Wörter erscheinen über die Szene verteilt, das letzte kurz vor Ende. */
           Math.round(sceneProgress * (SCENES[index].words.length + 0.6));
 
-  const Copy = ({ index }: { index: number }) => {
-    const scene = SCENES[index];
-    const shown = isMobile ? scene.words.length : wordCount(index);
-
-    return (
-      <>
-        {scene.lines.length > 0 ? (
-          <h2 className={styles.headline}>
-            {scene.lines.map((line) => (
-              <span key={line} className={styles.line}>
-                {line}
-              </span>
-            ))}
-          </h2>
-        ) : null}
-
-        {scene.words.length === 0 ? null : isMobile ? (
-          <Schlagworte words={scene.words} />
-        ) : (
-          <p className={styles.words}>
-            {scene.words.map((word, wordIndex) => (
-              <span
-                key={word}
-                className={[
-                  styles.word,
-                  wordIndex < shown ? styles.wordOn : "",
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
-              >
-                {word}
-              </span>
-            ))}
-          </p>
-        )}
-      </>
-    );
-  };
-
   /* ---------- Mobile: zwei einfache Bloecke ---------- */
   if (isMobile) {
     return (
@@ -185,7 +232,7 @@ export function Intro() {
               </div>
               <span className={styles.scrim} aria-hidden="true" />
               <div className={styles.copy}>
-                <Copy index={index} />
+                <Copy scene={scene} isMobile shown={scene.words.length} />
               </div>
             </div>
           ))}
@@ -232,7 +279,11 @@ export function Intro() {
                 .join(" ")}
               aria-hidden={index !== activeIndex}
             >
-              <Copy index={index} />
+              <Copy
+                scene={scene}
+                isMobile={false}
+                shown={wordCount(index)}
+              />
             </div>
           ))}
         </div>

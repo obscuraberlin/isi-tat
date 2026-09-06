@@ -138,26 +138,27 @@ export function TrustSection() {
             <span className={styles.line} aria-hidden="true" />
             <span className={styles.progress} aria-hidden="true" />
 
-            {/* Keine leuchtenden Kreise mehr: die aktive Station steht
-                voll da, die anderen treten zurueck. Die duenne Linie ist
-                der ganze Fortschritt. */}
             <ol className={styles.entries}>
               {timeline.entries.map((entry, index) => (
-                <li
+                <Reveal
+                  as="li"
                   key={entry.year}
-                  className={[
-                    styles.entry,
-                    progress >= index / total ? styles.entryAktiv : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
+                  className={styles.entry}
+                  delay={index * 60}
+                  shift={14}
                 >
-                  <span className={styles.nr} aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <span
+                    className={[
+                      styles.dot,
+                      progress >= (index + 0.5) / total ? styles.dotActive : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                    aria-hidden="true"
+                  />
                   <p className={styles.year}>{entry.year}</p>
                   <p className={styles.entryTitle}>{entry.title}</p>
-                </li>
+                </Reveal>
               ))}
             </ol>
           </div>

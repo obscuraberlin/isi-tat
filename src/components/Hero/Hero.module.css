@@ -1,290 +1,436 @@
-/* Der Hero ist die Buehne, nicht ein Kasten mit einem Bild daneben.
-   Bewegtbild ueber die ganze Flaeche, Schrift darauf, sonst nichts. */
-
 .hero {
   position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
   background: var(--bg-dark);
   color: var(--text-light);
-  padding-top: calc(var(--header-h) + clamp(24px, 4vw, 56px));
-  padding-bottom: clamp(40px, 5vh, 88px);
-  /* Startwert, bis der Scroll-Handler das erste Mal gelaufen ist. */
-  --p: 0;
+  overflow: hidden;
+  padding-top: var(--header-h);
 }
 
-/* ---------- Buehne ---------- */
-
-.buehne {
+/* Warmer, sehr dezenter Lichtschein — kein Gold-Overkill */
+.hero::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  /* Sehr dezent: 1.00 bis 1.05 ueber die volle Hoehe des Hero. Mehr
-     wuerde man als Zoom sehen statt als Tiefe. */
-  transform: scale(calc(1 + var(--p) * 0.05));
-  will-change: transform;
-}
-
-.buehne > div {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-}
-
-/* Das Dunkel nimmt beim Scrollen zu — die naechste Sektion schiebt sich
-   dadurch aus einem Bild, das schon dunkler geworden ist. */
-.scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  top: -10%;
+  right: -5%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 166, 106, 0.13) 0%,
+    transparent 62%
+  );
   pointer-events: none;
-  background:
-    linear-gradient(
-      to top,
-      rgba(5, 5, 5, 0.95) 0%,
-      rgba(5, 5, 5, 0.55) 46%,
-      rgba(5, 5, 5, 0.35) 100%
-    ),
-    linear-gradient(
-      to right,
-      rgba(5, 5, 5, 0.8) 0%,
-      rgba(5, 5, 5, 0.3) 52%,
-      rgba(5, 5, 5, 0.12) 100%
-    );
-  opacity: calc(1 + var(--p) * 0.28);
 }
 
 .inner {
+  /* Ueber der Hintergrundebene. */
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  position: relative;
   width: 100%;
   max-width: var(--max-page);
   margin-inline: auto;
   padding-inline: var(--gutter);
-  /* Die Schrift wandert ein Stueck nach oben, waehrend der Hintergrund
-     stehen bleibt. Maximal 40 px. */
-  transform: translateY(calc(var(--p) * -40px));
-  opacity: calc(1 - var(--p) * 0.55);
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+  grid-template-areas:
+    "top"
+    "visual"
+    "meta"
+    "bottom";
 }
 
-/* ---------- Marken oben ---------- */
+.copyTop {
+  grid-area: top;
+}
 
-.marken {
+.copyBottom {
+  grid-area: bottom;
+}
+
+.visual {
+  grid-area: visual;
+}
+
+.meta {
+  grid-area: meta;
+}
+
+/* ---------- Text ---------- */
+
+.copy {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px 22px;
-  margin-bottom: clamp(14px, 2.6vh, 36px);
-  animation: heroAuf var(--d-slow) var(--ease-lux) both;
-  animation-delay: var(--d, 0ms);
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: var(--max-text-wide);
 }
-
-.marke,
-.markeAkzent {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-}
-
-.marke {
-  color: var(--text-muted-light);
-}
-
-.markeAkzent {
-  color: var(--accent);
-}
-
-/* ---------- Headline ---------- */
 
 .headline {
-  max-width: 15ch;
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" var(--display-width);
-  /* Auch die Fensterhoehe begrenzt die Groesse: auf einem flachen
-     Laptop ragten drei Zeilen a 115 px sonst ueber den Bildschirm und
-     schnitten die Knoepfe ab. */
-  font-size: min(var(--fs-hero), 10.5vh);
-  font-weight: 700;
-  letter-spacing: var(--tr-tight);
+  font-size: var(--fs-hero);
   line-height: var(--lh-tight);
-  text-wrap: balance;
-}
-
-/* Der Rahmen schneidet ab, die Zeile faehrt von unten herein. */
-.lineWrap {
-  display: block;
-  overflow: hidden;
+  letter-spacing: var(--tr-tight);
+  margin-top: clamp(16px, 1.8vw, 24px);
 }
 
 .line {
   display: block;
-  transform: translateY(105%);
-  animation: heroZeile var(--d-reveal) var(--ease-lux) both;
-  animation-delay: var(--d, 0ms);
+  overflow: hidden;
 }
 
-.lineAccent {
-  color: var(--accent);
-}
-
-.accentBlock {
+.lineInner {
   display: block;
-  margin-top: clamp(10px, 1.4vw, 20px);
-  font-size: min(var(--fs-hero-accent), 5vh);
+  transform: translateY(105%);
+  animation: lineUp 900ms var(--ease-out) forwards;
+  animation-delay: var(--delay, 0ms);
 }
 
-@keyframes heroZeile {
+@keyframes lineUp {
   to {
     transform: translateY(0);
   }
 }
 
-@keyframes heroAuf {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.accent {
+  color: var(--accent);
 }
 
-.fadeUp {
-  animation: heroAuf var(--d-slow) var(--ease-lux) both;
-  animation-delay: var(--d, 0ms);
+/* Zweite Ebene: gleicher Charakter, ruhigere Groesse. */
+.accentBlock {
+  display: block;
+  margin-top: clamp(12px, 1.2vw, 18px);
+  font-size: var(--fs-hero-accent);
+  line-height: 1.08;
+  letter-spacing: var(--tr-head);
 }
-
-/* ---------- Subline, Marken, Aufrufe ---------- */
 
 .sub {
-  max-width: 56ch;
-  margin-top: clamp(14px, 2.2vh, 30px);
+  max-width: 46ch;
+  margin-top: clamp(20px, 2.4vw, 30px);
   font-size: var(--fs-body-lg);
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-muted-light);
-}
-
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
-  margin-top: clamp(16px, 2.4vh, 32px);
-}
-
-.metaItem {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--text-light);
-}
-
-.metaItem + .metaItem::before {
-  content: "/";
-  margin-inline: 14px;
-  color: var(--accent);
-  font-weight: 400;
 }
 
 .ctas {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: clamp(20px, 3vh, 40px);
-}
-
-/* ---------- Scroll-Hinweis ---------- */
-
-.scroll {
-  position: relative;
-  z-index: 2;
+  gap: 14px;
+  margin-top: clamp(28px, 3.2vw, 42px);
   width: 100%;
-  max-width: var(--max-page);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  margin-top: clamp(18px, 3vh, 48px);
-  font-size: var(--fs-label);
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
+}
+
+/* ---------- Metazeile im Stil einer Streaming-Titelseite ---------- */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(18px, 2.2vw, 26px);
+}
+
+.metaBy {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-light);
+  margin-right: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--text-muted-light);
-  /* Verschwindet, sobald jemand scrollt — dann hat er verstanden. */
-  opacity: calc(1 - var(--p) * 3);
-  transition: opacity var(--d-base) var(--ease-lux);
+  white-space: nowrap;
 }
 
-@media (min-width: 1024px) {
-  .headline {
-    max-width: 13ch;
+.badgeAccent {
+  border-color: rgba(200, 166, 106, 0.55);
+  color: var(--accent);
+}
+
+.metaPlain {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-muted-light);
+  white-space: nowrap;
+}
+
+/* Die Zahlen brechen als Gruppe um, nicht mitten im Satz. */
+.metaCounts {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.metaDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex: none;
+}
+
+/* ---------- Visual ---------- */
+
+.visual {
+  position: relative;
+}
+
+.visualFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-visual);
+  animation: visualIn 1200ms var(--ease-out) both;
+  animation-delay: 120ms;
+}
+
+@keyframes visualIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-/* Flache Fenster (Laptops mit 720 px Hoehe): der Scroll-Hinweis ist das
-   Erste, was weichen darf — er sagt nur, was ohnehin jeder tut. */
-@media (min-width: 768px) and (max-height: 780px) {
-  .scroll {
-    display: none;
-  }
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to top,
+      rgba(8, 8, 8, 0.72) 0%,
+      rgba(8, 8, 8, 0.12) 42%,
+      rgba(8, 8, 8, 0) 70%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(8, 8, 8, 0.55) 0%,
+      rgba(8, 8, 8, 0) 26%
+    );
+}
 
-  .sub {
-    font-size: var(--fs-body);
+/* ---------- Entrance-Staffelung ---------- */
+
+.fadeUp {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 700ms var(--ease-out) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+/* ---------- Mobile ---------- */
 
 @media (max-width: 767px) {
-  .headline {
-    max-width: none;
-    font-size: var(--fs-hero);
-  }
-
-  .sub {
-    font-size: var(--fs-body);
-  }
-
-  .ctas > * {
-    width: 100%;
-  }
-
-  /* Auf dem Telefon kostet jede Bewegung Akku und bringt wenig: der
-     Hintergrund steht still, die Schrift bleibt. */
-  .buehne {
-    transform: none;
+  /* Visual laeuft randlos unter den transparenten Header — cinematischer
+     Einstieg, ohne dass der Text unter den Fold rutscht. */
+  .hero {
+    padding-top: calc(var(--header-h) + 12px);
+    padding-bottom: clamp(44px, 8vw, 64px);
   }
 
   .inner {
-    transform: none;
-    opacity: 1;
+    gap: clamp(20px, 4vw, 28px);
+    padding-inline: var(--gutter);
   }
 
-  .scroll {
+  /* Wie auf einer Titelseite: erst die Aussage, dann das Bild. */
+  .visualFrame {
+    border-radius: var(--r-card);
+    height: auto;
+  }
+
+  .visualFrame > div {
+    --ratio: 16 / 9;
+    height: auto;
+  }
+
+  .headline {
+    margin-top: 12px;
+  }
+
+  /* Der Abstand kommt aus dem Raster, nicht zusaetzlich aus dem Absatz —
+     sonst stehen zwischen Metazeile und Text zwei Abstaende. */
+  .sub {
+    margin-top: 0;
+    font-size: var(--fs-body);
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .meta {
+    margin-top: 0;
+    gap: 8px;
+  }
+}
+
+/* ---------- Tablet / Desktop ---------- */
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: clamp(96px, 10vh, 140px) clamp(64px, 8vh, 110px);
+    padding-top: calc(var(--header-h) + clamp(40px, 6vh, 90px));
+  }
+
+  /* Statisch, damit das Visual sich am Abschnitt ausrichtet und nicht an
+     dieser Spalte — nur so laeuft es bis an den Bildschirmrand. */
+  .inner {
+    position: static;
+    display: block;
+  }
+
+  .copyTop,
+  .copyBottom,
+  .meta {
+    position: relative;
+    z-index: 1;
+    /* Kraeftiger als ueblich, weil unter der Schrift jetzt fast ueberall
+       Bild liegt statt Flaeche. Zwei Radien: der weite traegt, der enge
+       zeichnet die Kanten nach. */
+    text-shadow:
+      0 2px 40px rgba(0, 0, 0, 0.72),
+      0 1px 8px rgba(0, 0, 0, 0.58);
+    /* Der Text darf ins Bild hineinlaufen — deshalb breiter als die halbe
+       Seite. Lesbar bleibt er durch den Verlauf auf dem Visual. */
+    max-width: min(58%, 700px);
+    /* Naeher an den Bildschirmrand als der Rest der Seite: der Hero ist
+       randlos, ein Text auf Spaltenmass wirkt darin eingerueckt. Der
+       negative Rand zieht ihn zurueck, ohne den Rand der Sektion zu
+       veraendern — auf schmaleren Schirmen bleibt er, wo er war. */
+    margin-left: clamp(-96px, calc((var(--gutter) - 100vw / 16) * 1), 0px);
+  }
+
+  .copyBottom .sub {
+    margin-top: clamp(20px, 2.4vw, 30px);
+  }
+
+  /* Randlos rechts, ueber die volle Hoehe — wie eine Titelseite bei einem
+     Streamingdienst. Nach links loest es sich im Hintergrund auf, damit der
+     Text darauf lesbar bleibt und keine Kante entsteht. */
+  .visual {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* Deutlich breiter als die freie Haelfte: das Bild schiebt sich unter
+       den Text, statt neben ihm aufzuhoeren. */
+    width: min(84%, 1620px);
+    z-index: 0;
+  }
+
+  .visualFrame {
+    height: 100%;
+    border-radius: 0;
+    /* Zwei Verlaeufe: nach links weich raus, nach unten in die Sektion. */
+    /* Weiche Rampe statt einer Kante: viele Stufen, damit der Verlauf nicht
+       als Linie sichtbar wird. Zwei, drei Stopps reichen dafuer nicht — man
+       sieht die Stelle, an der er ansetzt. */
+    /* Die Rampe endet frueher als vorher: das Bild ist damit schon auf
+       halber Textbreite voll da, statt erst hinter der Headline. */
+    /* Kurze Rampe: das Bild ist gleich hinter seiner linken Kante voll
+       da. Die Kante selbst liegt etwa unter dem Wort "NULL". */
+    --mask-x: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.22) 3%,
+      rgba(0, 0, 0, 0.55) 6%,
+      rgba(0, 0, 0, 0.82) 9%,
+      #000 13%
+    );
+    --mask-y: linear-gradient(
+      to bottom,
+      #000 46%,
+      rgba(0, 0, 0, 0.92) 62%,
+      rgba(0, 0, 0, 0.66) 76%,
+      rgba(0, 0, 0, 0.3) 89%,
+      transparent 100%
+    );
+    -webkit-mask-image: var(--mask-x), var(--mask-y);
+    -webkit-mask-composite: source-in;
+    mask-image: var(--mask-x), var(--mask-y);
+    mask-composite: intersect;
+  }
+
+  /* Ohne festes Seitenverhaeltnis fuellt das Medium die ganze Flaeche und
+     wird beschnitten statt gestaucht. */
+  .visualFrame > div {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+
+  /* Der Trailer-Button unter der Headline uebernimmt — das Play-Overlay
+     auf dem Bild waere doppelt und laege ausserdem im Anschnitt. */
+  .visual button {
     display: none;
+  }
+
+  .visualOverlay {
+    /* Kraeftiger als vorher: unter dem Text liegt jetzt Bild, und die
+       Aufnahme ist ein helles Studio. Ohne das laeuft Weiss auf Weiss. */
+    /* Der dunkle Teil endet frueher — links bleibt die Schrift auf
+       ruhigem Grund, ab der Mitte sieht man den Clip fast unverdeckt. */
+    /* Der Schatten faengt etwa halb so weit rechts an wie vorher. Damit
+       die Schrift auf hellen Bildern trotzdem steht, traegt sie einen
+       eigenen Schatten — der kostet nichts und rettet die Stelle, an der
+       das Studio im Clip weiss ausbrennt. */
+    /* Ab der linken Bildkante wird es sofort heller — dort steht das Wort
+       "NULL". Ab einem Drittel liegt der Clip unverdeckt. Was die Schrift
+       an Grund verliert, holt ihr eigener Schatten zurueck. */
+    background: linear-gradient(
+      to right,
+      rgba(8, 8, 8, 0.66) 0%,
+      rgba(8, 8, 8, 0.5) 7%,
+      rgba(8, 8, 8, 0.34) 14%,
+      rgba(8, 8, 8, 0.2) 21%,
+      rgba(8, 8, 8, 0.09) 27%,
+      rgba(8, 8, 8, 0) 34%
+    );
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .buehne,
-  .inner {
-    transform: none;
-    opacity: 1;
-  }
-
-  .line {
-    transform: none;
-    animation: none;
-  }
-
-  .marken,
-  .fadeUp {
+  .lineInner,
+  .fadeUp,
+  .visualFrame {
     animation: none;
     opacity: 1;
+    transform: none;
   }
+}
 
-  .scrim {
-    opacity: 1;
-  }
+/* Medien-Radius folgt dem Frame (Mobile: 0, Desktop: --r-visual) */
+.visualFrame > div {
+  border-radius: inherit;
 }

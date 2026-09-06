@@ -11,6 +11,18 @@ import { Backdrop } from "@/components/Backdrop/Backdrop";
 /* Zwei Ringe statt einem — das nimmt der Grafik das Mindmap-Schema. */
 const RING = [32, 44];
 
+const points = network.nodes.map((label, index) => {
+  const angle = (index / network.nodes.length) * Math.PI * 2 - Math.PI / 2;
+  const radius = RING[index % RING.length];
+  return {
+    label,
+    x: 50 + Math.cos(angle) * radius,
+    /* Der Rahmen ist jetzt breiter als hoch — ohne Ausgleich lagen die
+       Knoten oben und unten fast aufeinander. */
+    y: 50 + Math.sin(angle) * radius * 1.15,
+  };
+});
+
 export function Network() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
@@ -57,34 +69,66 @@ export function Network() {
           </Reveal>
         </div>
 
-        {/* Frueher ein Speichenrad mit Punkten und Beschriftungen — das
-            sah aus wie eine Infografik in einer Praesentation. Jetzt
-            laufen die Felder als sehr grosse Zeile langsam durch, wie
-            ein Filmvorspann. Zwei Kopien fuer den lueckenlosen Lauf,
-            die zweite fuer Vorlesegeraete unsichtbar. */}
-        <div ref={ref} className={styles.band} aria-hidden="true">
-          <div className={styles.bandLauf}>
-            {[0, 1].map((kopie) => (
-              <span key={kopie} className={styles.bandKopie}>
-                {network.nodes.map((label) => (
-                  <span key={label} className={styles.bandWort}>
-                    {label}
-                    <span className={styles.bandStrich}>—</span>
-                  </span>
-                ))}
-              </span>
+        <div ref={ref} className={styles.graph}>
+          <svg
+            className={styles.svg}
+            viewBox="0 0 100 100"
+            aria-hidden="true"
+            focusable="false"
+          >
+            {points.map((point, index) => (
+              <line
+                key={`l-${point.label}`}
+                className={[styles.spoke, inView ? styles.spokeOn : ""]
+                  .filter(Boolean)
+                  .join(" ")}
+                x1="50"
+                y1="50"
+                x2={point.x}
+                y2={point.y}
+                style={delay(index, 120)}
+              />
             ))}
-          </div>
-        </div>
 
-        {/* Derselbe Inhalt einmal als Liste, damit er vorgelesen und
-            gefunden wird. */}
-        <ul className={styles.bandListe}>
-          {network.nodes.map((label) => (
-            <li key={label}>{label}</li>
+            {points.map((point, index) => (
+              <circle
+                key={`p-${point.label}`}
+                className={[
+                  styles.node,
+                  inView ? styles.nodeOn : "",
+                  index === 0 ? styles.nodeAccent : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                cx={point.x}
+                cy={point.y}
+                r={index === 0 ? 0.85 : 0.55}
+                style={delay(index, 320)}
+              />
+            ))}
+          </svg>
+
+          <span className={styles.center}>{network.center}</span>
+
+          {points.map((point, index) => (
+            <span
+              key={point.label}
+              className={[styles.label, inView ? styles.labelOn : ""]
+                .filter(Boolean)
+                .join(" ")}
+              style={
+                {
+                  "--x": `${point.x}%`,
+                  /* Etwas oberhalb des Punktes, damit die Linie frei bleibt. */
+                  "--y": `${point.y - 4}%`,
+                  ...delay(index, 420),
+                } as CSSProperties
+              }
+            >
+              {point.label}
+            </span>
           ))}
-        </ul>
-
+        </div>
       </div>
     </section>
   );

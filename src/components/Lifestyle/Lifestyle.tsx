@@ -1,108 +1,58 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { lifestyle } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { WrapHead } from "@/components/ui/WrapHead";
+import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./Lifestyle.module.css";
+import { Backdrop } from "@/components/Backdrop/Backdrop";
 
 /**
- * Die Luxus-Sektion als Sticky-Strecke.
- *
- * Das Bild bleibt stehen, waehrend die Aussage darueber wechselt. Kein
- * Karussell, keine Pfeile, keine Slides — die Bilder blenden ineinander,
- * die Zeile wechselt synchron. Drei Stationen, am Ende die Aufloesung.
- *
- * Auf dem Telefon faellt die Sticky-Mechanik weg: dort stehen die drei
- * Aufnahmen untereinander. Eine Strecke ueber zwei Bildschirmhoehen, die
- * man mit dem Daumen durchscrollt, ist kein Erlebnis, sondern Arbeit.
+ * Die Galerie liegt zwischen Aussage und Gegenaussage: oben steht, was
+ * Luxus nicht ist, unten in Champagne, was er ist. Die Bilder dazwischen
+ * sind das Argument — nicht Dekoration daneben.
  */
 export function Lifestyle() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [stufe, setStufe] = useState(0);
-  const stationen = lifestyle.stationen;
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    let frame = 0;
-    const lesen = () => {
-      frame = 0;
-      const r = el.getBoundingClientRect();
-      const weg = r.height - window.innerHeight;
-      if (weg <= 0) return;
-      const p = Math.min(0.999, Math.max(0, -r.top / weg));
-      setStufe(Math.floor(p * stationen.length));
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(lesen);
-    };
-
-    lesen();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, [stationen.length]);
-
   return (
-    <section className={styles.section} aria-label={lifestyle.eyebrow}>
-      <div ref={ref} className={styles.strecke}>
-        <div className={styles.buehne}>
-          {/* Alle drei Bilder liegen uebereinander und blenden ineinander.
-              Kein Nachladen beim Wechsel, kein Aufblitzen. */}
-          {lifestyle.gallery.map((asset, i) => (
-            <div
-              key={asset.id}
-              className={[styles.bild, i === stufe ? styles.bildAn : ""]
-                .filter(Boolean)
-                .join(" ")}
-              aria-hidden={i !== stufe}
-            >
-              <Media asset={asset} tone="dark" radius="0" />
-            </div>
-          ))}
+    <section className={styles.section}>
+      <Backdrop variant="beam" tone="light" drift={30} />
 
-          <span className={styles.scrim} aria-hidden="true" />
+      <div className={styles.inner}>
+        <WrapHead
+          eyebrow={lifestyle.eyebrow}
+          above={lifestyle.headline}
+          below={lifestyle.headlineAccent}
+          belowAccent
+          variant="band"
+        >
+          <span className={styles.stack}>
+            {/* Das Bewegtbild traegt die Sektion, die drei Aufnahmen
+                belegen sie. */}
+            <span className={styles.film}>
+              <Media asset={lifestyle.video} tone="dark" />
+            </span>
 
-          <div className={styles.copy}>
-            <Eyebrow tone="accent" rule>
-              {lifestyle.eyebrow}
-            </Eyebrow>
-
-            <div className={styles.zeilen}>
-              {stationen.map((station, i) => (
-                <p
-                  key={station.zeile.join(" ")}
-                  className={[
-                    styles.zeile,
-                    i === stufe ? styles.zeileAn : "",
-                    station.akzent ? styles.zeileAkzent : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                  aria-hidden={i !== stufe}
-                >
-                  {station.zeile.map((z) => (
-                    <span key={z}>{z}</span>
-                  ))}
-                </p>
+            <span className={styles.gallery}>
+              {lifestyle.gallery.map((asset) => (
+                <span key={asset.id} className={styles.tile}>
+                  <Media asset={asset} />
+                </span>
               ))}
-            </div>
+            </span>
+          </span>
+        </WrapHead>
 
-            <p className={styles.schluss}>
-              {lifestyle.schluss.map((s) => (
-                <span key={s}>{s}</span>
-              ))}
-            </p>
+        <Reveal delay={140}>
+          <div className={styles.body}>
+            {lifestyle.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
+        </Reveal>
 
+        <Reveal>
           <p className={styles.disclaimer}>{lifestyle.disclaimer}</p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

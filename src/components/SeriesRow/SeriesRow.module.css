@@ -1,231 +1,285 @@
 .section {
+  /* Bezugsrahmen fuer die Hintergrundebene. */
   position: relative;
-  background: var(--bg-light);
+  background: var(--bg-light-alt);
   color: var(--text-dark);
-  padding-block: var(--section-y) 0;
+  padding-block: var(--section-y);
   overflow: hidden;
 }
 
 .head {
+  /* Ueber der Hintergrundebene. */
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: var(--max-page);
   margin-inline: auto;
   padding-inline: var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px 32px;
+  margin-bottom: clamp(28px, 3.4vw, 48px);
 }
 
 .headline {
-  margin-top: clamp(14px, 1.6vw, 22px);
-  max-width: 16ch;
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" var(--display-width);
   font-size: var(--fs-section);
-  font-weight: 700;
   letter-spacing: var(--tr-tight);
-  line-height: var(--lh-tight);
-}
-
-.headlineZeile,
-.headlineAkzent {
-  display: block;
-}
-
-.headlineAkzent {
-  color: var(--accent);
+  margin-top: 16px;
 }
 
 .subline {
-  max-width: var(--max-text);
-  margin-top: clamp(16px, 1.8vw, 24px);
-  font-size: var(--fs-body-lg);
-  line-height: 1.5;
-  color: #3a3a3a;
+  font-size: var(--fs-sub);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  padding-bottom: 6px;
 }
 
-/* ---------- Kapitel ---------- */
+/* ---------- Pfeile ---------- */
 
-.chapters {
+/* ---------- Laufband ---------- */
+
+/* Ueber die volle Breite, links wie rechts ohne Rand: die Reihe steht nie
+   angeschnitten still, sie laeuft an beiden Seiten aus dem Bild. */
+.marquee {
   position: relative;
   z-index: 1;
-  margin-top: clamp(48px, 6vw, 96px);
-}
+  --gap: clamp(12px, 1.2vw, 20px);
+  --karte: clamp(232px, 21vw, 330px);
+  --dauer: 26s;
+  /* Wie viele Karten im Fenster stehen. Die halbe am Rand zeigt, dass es
+     weitergeht — ohne sie sieht die Reihe aus, als waere sie zu Ende. */
+  --sichtbar: 3.2;
 
-.chapter {
-  position: relative;
-  width: 100%;
-  max-width: var(--max-page);
+  /* Kein Vollbild-Band: sechs Beitraege ueber die ganze Breite wirken
+     verloren. Ein schmaleres Fenster, mittig, in dem sie durchlaufen. */
+  width: min(
+    calc(var(--sichtbar) * (var(--karte) + var(--gap))),
+    calc(100% - 2 * var(--gutter))
+  );
   margin-inline: auto;
-  padding-inline: var(--gutter);
-  padding-block: clamp(40px, 5vw, 80px);
-  display: grid;
-  gap: clamp(24px, 3.5vw, 64px);
-  align-items: center;
-}
-
-/* Die Kapitelnummer als Flaeche dahinter. Sehr weit zurueckgenommen —
-   man soll sie spueren, nicht lesen. */
-.ghost {
-  position: absolute;
-  right: var(--gutter);
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" var(--display-width);
-  font-size: clamp(9rem, 26vw, 28rem);
-  font-weight: 700;
-  line-height: 0.8;
-  color: var(--text-dark);
-  opacity: 0.055;
-  pointer-events: none;
-  user-select: none;
-}
-
-.chapterGedreht .ghost {
-  right: auto;
-  left: var(--gutter);
-}
-
-/* Bild mit Mask-Reveal: es waechst von unten ins Bild, statt einzublenden.
-   Das ist die eine Bewegung, die auf der ganzen Seite wiederkehrt. */
-.chapterVisual {
-  position: relative;
-  z-index: 1;
-}
-
-.chapterBild {
   overflow: hidden;
-  border-radius: 2px;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path var(--d-reveal) var(--ease-lux);
+  padding-block: 18px;
+  /* An beiden Raendern weich auslaufen — sonst schneidet die Kante die
+     Karten hart ab und der Lauf sieht aus wie ein Fehler. */
+  --rand: linear-gradient(
+    to right,
+    transparent 0,
+    #000 clamp(24px, 4vw, 64px),
+    #000 calc(100% - clamp(24px, 4vw, 64px)),
+    transparent 100%
+  );
+  -webkit-mask-image: var(--rand);
+  mask-image: var(--rand);
 }
 
-.chapterBild > div {
-  transform: scale(1.06);
-  transition: transform 1400ms var(--ease-lux);
+.track {
+  display: flex;
+  width: max-content;
+  /* Der Abstand haengt an der Karte, nicht am Flex-Container: nur dann
+     ist eine Kopie exakt ein Drittel der Bahn und der Sprung faellt auf
+     ein identisches Bild. Mit flex-gap fehlte pro Runde ein halber
+     Abstand — und genau das sieht man als Ruckler. */
+  animation: lauf var(--dauer) linear infinite;
+  will-change: transform;
 }
 
-.chapterAn .chapterBild {
-  clip-path: inset(0 0 0 0);
+/* Bis der Abschnitt im Bild ist, steht die Bahn auf ihrem Startbild.
+   Sie faengt dort an zu laufen, wo der Besucher sie zuerst sieht —
+   vorher waere sie schon halb durchgelaufen, wenn er ankommt. */
+.trackWartet {
+  animation-play-state: paused;
 }
 
-.chapterAn .chapterBild > div {
-  transform: scale(1);
+/* Von links nach rechts: die Bahn startet um eine Kopie nach links
+   versetzt und schiebt sich auf null. */
+@keyframes lauf {
+  from {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.chapterText {
+/* Anhalten, sobald jemand hineingeht — ein Ziel, das sich wegbewegt,
+   klickt niemand gern. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+.marquee:focus-within .track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+
+  /* Ohne Lauf muss man selbst schieben koennen. */
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .marquee::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------- Karte ---------- */
+
+.card {
+  flex: 0 0 var(--karte);
+  margin-right: var(--gap);
   position: relative;
-  z-index: 1;
-  opacity: 0;
-  transform: translateY(28px);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--card-dark);
+  text-align: left;
+  color: var(--text-light);
+  cursor: pointer;
   transition:
-    opacity var(--d-slow) var(--ease-lux),
-    transform var(--d-slow) var(--ease-lux);
-  transition-delay: 160ms;
+    transform var(--d-base) var(--ease-out),
+    box-shadow var(--d-base) var(--ease-out);
+  will-change: transform;
 }
 
-.chapterAn .chapterText {
-  opacity: 1;
-  transform: none;
+.card > div {
+  border-radius: inherit;
 }
 
-.kapitelMarke {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--accent);
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 6, 0.92) 0%,
+    rgba(6, 6, 6, 0.52) 34%,
+    rgba(6, 6, 6, 0.08) 66%,
+    rgba(6, 6, 6, 0) 100%
+  );
+  transition: background var(--d-base) var(--ease-out);
 }
 
-.chapterTitel {
-  margin-top: clamp(14px, 1.6vw, 22px);
-  max-width: 18ch;
+.cardBody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(16px, 1.4vw, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Die Titel der Themenwelten sind lang ("MINDSET, CHANCEN &
+   UNTERNEHMERISCHES DENKEN"). Einzelne Woerter sind breiter als die
+   Karte — ohne Trennung liefen sie ueber den Rand hinaus und wurden
+   abgeschnitten. Deshalb kleiner gesetzt, mit Silbentrennung, und als
+   letzte Sicherung ein Umbruch mitten im Wort. */
+.cardLabel {
   font-family: var(--font-display);
   font-variation-settings: "wdth" var(--display-width);
-  font-size: clamp(1.75rem, 1rem + 2.6vw, 3.25rem);
+  font-size: clamp(0.9375rem, 0.72rem + 0.62vw, 1.1875rem);
   font-weight: 700;
-  letter-spacing: var(--tr-head);
-  line-height: 1.02;
-  /* "UNTERNEHMERISCHES" ist breiter als die Spalte. Silbentrennung
-     zuerst, Umbruch im Wort als letzte Sicherung — sonst laeuft der
-     Titel ueber die Kante. */
+  letter-spacing: 0.01em;
+  line-height: 1.14;
   hyphens: auto;
   overflow-wrap: anywhere;
 }
 
-.chapterZahl {
-  margin-top: clamp(12px, 1.4vw, 18px);
-  font-size: var(--fs-label);
+.cardMeta {
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: var(--tr-label);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--accent);
 }
 
-.chapterCopy {
-  max-width: 42ch;
-  margin-top: clamp(12px, 1.4vw, 18px);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: #3a3a3a;
+.cardCopyWrap {
+  min-height: 0;
 }
 
-.kapitelKnopf {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: clamp(18px, 2vw, 28px);
-  min-height: 44px;
-  padding: 0;
+.cardCopyWrap > * {
+  overflow: hidden;
+}
+
+.cardCopy {
   font-size: var(--fs-small);
-  font-weight: 600;
-  letter-spacing: var(--tr-wide);
-  text-transform: uppercase;
-  color: var(--text-dark);
-  border-bottom: 1px solid currentColor;
-  transition: color var(--d-fast) var(--ease-lux);
+  line-height: 1.45;
+  color: var(--text-muted-light);
 }
 
-.pfeil {
-  transition: transform var(--d-fast) var(--ease-lux);
+.cardOpen {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
 }
+
+.playIcon {
+  width: 9px;
+  height: 11px;
+  fill: currentColor;
+}
+
+/* ---------- Desktop Hover ---------- */
 
 @media (hover: hover) and (pointer: fine) {
-  .kapitelKnopf:hover {
-    color: var(--accent);
+  .card:hover,
+  .card:focus-visible {
+    transform: scale(1.035);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    z-index: 2;
   }
 
-  .kapitelKnopf:hover .pfeil {
-    transform: translateX(4px);
-  }
-}
-
-@media (min-width: 900px) {
-  .chapter {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  }
-
-  /* Bild und Text tauschen bei jedem zweiten Kapitel die Seite. */
-  .chapterGedreht .chapterVisual {
-    order: 2;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chapterBild {
-    clip-path: none;
-    transition: none;
+  .card:hover .scrim,
+  .card:focus-visible .scrim {
+    background: linear-gradient(
+      to top,
+      rgba(6, 6, 6, 0.96) 0%,
+      rgba(6, 6, 6, 0.68) 44%,
+      rgba(6, 6, 6, 0.22) 76%,
+      rgba(6, 6, 6, 0.05) 100%
+    );
   }
 
-  .chapterBild > div,
-  .chapterText {
-    transform: none;
-    transition: none;
+  /* Copy klappt auf, statt unsichtbar Platz zu belegen —
+     so sitzen alle Titel auf derselben Grundlinie. */
+  .card .cardCopyWrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows var(--d-base) var(--ease-out),
+      opacity var(--d-base) var(--ease-out);
+  }
+
+  .card:hover .cardCopyWrap,
+  .card:focus-visible .cardCopyWrap {
+    grid-template-rows: 1fr;
     opacity: 1;
   }
-}
 
-/* ---------- Umsetzung ---------- */
+  .card:hover .cardOpen,
+  .card:focus-visible .cardOpen {
+    display: inline-flex;
+  }
+}
 
 .noteWrap {
   position: relative;
@@ -234,38 +288,51 @@
   max-width: var(--max-page);
   margin-inline: auto;
   padding-inline: var(--gutter);
-  padding-bottom: var(--section-y);
+  margin-top: clamp(20px, 2vw, 30px);
+}
+
+/* Untertext und Faktenzeile unter der Ueberschrift. */
+.body {
+  max-width: var(--max-text);
+  margin-top: clamp(12px, 1.4vw, 18px);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: #3a3a3a;
+}
+
+.facts {
+  margin-top: clamp(12px, 1.4vw, 18px);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--accent);
 }
 
 /* Die Arbeitsschritte als Kette. Auf schmalen Schirmen umbrechend, damit
    nichts abgeschnitten wird. */
 .ablauf {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
-  gap: clamp(14px, 2vw, 32px);
-  margin-top: clamp(24px, 2.8vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 0;
+  margin-top: clamp(20px, 2.2vw, 30px);
 }
 
 .schritt {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 16px;
+  display: inline-flex;
+  align-items: center;
   font-size: var(--fs-small);
   font-weight: 600;
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
   color: var(--text-dark);
-  /* Die duenne Linie laeuft durch alle fuenf Schritte. Keine Kreise,
-     keine Haken — die Linie ist der ganze Fortschritt. */
-  border-top: 1px solid var(--line-dark);
 }
 
-.schrittNr {
-  font-size: var(--fs-label);
-  letter-spacing: var(--tr-label);
+.schritt + .schritt::before {
+  content: "→";
+  margin-inline: 12px;
   color: var(--accent);
+  font-weight: 400;
 }
 
 /* Schliesst den Inhaltsteil ab: erst die Ansage in der

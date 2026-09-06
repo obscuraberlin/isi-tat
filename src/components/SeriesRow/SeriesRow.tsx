@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Series } from "@/data/landingPage";
-import { catalogue, insideTheClub } from "@/data/landingPage";
+import { insideTheClub } from "@/data/landingPage";
 import { useInView } from "@/lib/hooks";
 import { Media } from "@/components/Media/Media";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -11,117 +11,111 @@ import { SeriesModal } from "./SeriesModal";
 import styles from "./SeriesRow.module.css";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 
-/**
- * Ein Kapitel der Masterclass.
- *
- * Frueher lagen die Themenwelten als Karten in einem Endlos-Laufband.
- * Das hatte zwei Probleme: es sah aus wie ein Shop-Regal, und fuer den
- * lueckenlosen Lauf standen alle Karten dreifach im DOM — Suchmaschinen
- * und Vorlesegeraete sahen jede Themenwelt dreimal.
- *
- * Jetzt nimmt jedes Kapitel eine eigene Flaeche ein, Bild und Text
- * wechseln die Seite, und die Nummer steht gross und fast unsichtbar
- * dahinter. Jede Themenwelt steht genau einmal auf der Seite.
- */
-function Chapter({
+function Card({
   series,
-  index,
-  gesamt,
   onOpen,
+  /** Kopie fuer den Endlos-Lauf: dekorativ, nicht anspringbar, nicht vorgelesen. */
+  kopie = false,
 }: {
   series: Series;
-  index: number;
-  gesamt: number;
   onOpen: () => void;
+  kopie?: boolean;
 }) {
-  const { ref, inView } = useInView<HTMLDivElement>({
-    threshold: 0.14,
-    rootMargin: "0px 0px -12% 0px",
-  });
-  const nr = String(index + 1).padStart(2, "0");
-
   return (
-    <article
-      ref={ref}
-      className={[
-        styles.chapter,
-        index % 2 === 1 ? styles.chapterGedreht : "",
-        inView ? styles.chapterAn : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+    <button
+      type="button"
+      className={styles.card}
+      onClick={onOpen}
+      aria-label={`${series.label} öffnen`}
+      aria-hidden={kopie || undefined}
+      tabIndex={kopie ? -1 : undefined}
     >
-      {/* Die Nummer traegt keine Information, sie gibt der Flaeche Tiefe.
-          Deshalb aria-hidden und sehr weit zurueckgenommen. */}
-      <span className={styles.ghost} aria-hidden="true">
-        {nr}
-      </span>
+      <Media asset={series.cover} tone="dark" radius="inherit" />
 
-      <div className={styles.chapterVisual}>
-        <div className={styles.chapterBild}>
-          <Media asset={series.cover} tone="dark" ratio="4 / 5" radius="0" />
+      <span className={styles.scrim} aria-hidden="true" />
+
+      <div className={styles.cardBody}>
+        <span className={styles.cardMeta}>
+          Themenwelt · {series.videos} Videos
+        </span>
+        <h3 className={styles.cardLabel}>{series.label}</h3>
+        <div className={styles.cardCopyWrap}>
+          <div>
+            <p className={styles.cardCopy}>{series.tagline}</p>
+          </div>
         </div>
+        <span className={styles.cardOpen}>
+          <svg className={styles.playIcon} viewBox="0 0 9 11" aria-hidden="true">
+            <path d="M0 0v11l9-5.5z" />
+          </svg>
+          Ansehen
+        </span>
       </div>
-
-      <div className={styles.chapterText}>
-        <p className={styles.kapitelMarke}>
-          {nr} <span aria-hidden="true">/</span> {String(gesamt).padStart(2, "0")}
-        </p>
-
-        <h3 className={styles.chapterTitel}>{series.label}</h3>
-
-        <p className={styles.chapterZahl}>
-          {String(series.videos).padStart(2, "0")} Filme
-        </p>
-
-        <p className={styles.chapterCopy}>{series.tagline}</p>
-
-        <button type="button" className={styles.kapitelKnopf} onClick={onOpen}>
-          {insideTheClub.kapitelOeffnen}
-          <span className={styles.pfeil} aria-hidden="true">
-            →
-          </span>
-        </button>
-      </div>
-    </article>
+    </button>
   );
 }
 
+/* Drei Kopien: eine reicht nicht ueber die Breite eines grossen Schirms,
+   zwei liessen beim Sprung eine Luecke. Verschoben wird um genau eine
+   Kopie — dadurch sitzt der Sprung auf einem identischen Bild. */
+const KOPIEN = 3;
+
 export function SeriesRow() {
   const [active, setActive] = useState<Series | null>(null);
+
+  /* Das Band stand still, bis der Besucher fast daran vorbei war: die
+     Animation lief seit dem Aufruf der Seite und war bis hierher schon
+     halb durch, also stand die Reihe beim Ankommen zufaellig irgendwo.
+     Jetzt wartet sie und setzt sich in Bewegung, sobald der Abschnitt
+     ins Bild kommt — ein Stueck vorher, damit sie beim Lesen schon
+     laeuft und nicht aus dem Stand anfaengt. */
+  const { ref: bandRef, inView } = useInView<HTMLDivElement>({
+    threshold: 0,
+    rootMargin: "0px 0px 12% 0px",
+  });
 
   return (
     <section className={styles.section} id="im-club">
       <Backdrop variant="glow" tone="light" drift={60} />
 
-      <div className={styles.head}>
-        <Eyebrow rule>{insideTheClub.eyebrow}</Eyebrow>
-        <Reveal variant="mask">
-          <h2 className={styles.headline}>
-            {catalogue.videoCount} VIDEOS.
-            <span className={styles.headlineZeile}>
-              {catalogue.seriesCount} THEMENWELTEN.
-            </span>
-            <span className={styles.headlineAkzent}>
-              KEINE ABKÜRZUNG OHNE UMSETZUNG.
-            </span>
-          </h2>
-        </Reveal>
-        <Reveal delay={120}>
-          <p className={styles.subline}>{insideTheClub.subline}</p>
-        </Reveal>
-      </div>
+      <Reveal className={styles.head}>
+        <div>
+          <Eyebrow rule>{insideTheClub.eyebrow}</Eyebrow>
+          <h2 className={styles.headline}>{insideTheClub.headline}</h2>
+        </div>
 
-      <div className={styles.chapters}>
-        {insideTheClub.series.map((series, index) => (
-          <Chapter
-            key={series.id}
-            series={series}
-            index={index}
-            gesamt={insideTheClub.series.length}
-            onOpen={() => setActive(series)}
-          />
-        ))}
+        <p className={styles.subline}>{insideTheClub.subline}</p>
+        <p className={styles.body}>{insideTheClub.body}</p>
+        <p className={styles.facts}>{insideTheClub.facts}</p>
+      </Reveal>
+
+      {/* Laufband ueber die volle Breite statt einer Spalte mit Pfeilen:
+          links wie rechts laeuft es aus dem Bild, die Reihe steht nie
+          angeschnitten still. Haelt an, sobald jemand mit der Maus oder
+          der Tastatur hineingeht — sonst klickt man auf ein Ziel, das
+          sich wegbewegt. */}
+      <div
+        ref={bandRef}
+        className={styles.marquee}
+        role="region"
+        aria-label="Die fünf Themenwelten"
+      >
+        <div
+          className={[styles.track, inView ? "" : styles.trackWartet]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {Array.from({ length: KOPIEN }, (_, kopie) =>
+            insideTheClub.series.map((series) => (
+              <Card
+                key={`${kopie}-${series.id}`}
+                series={series}
+                kopie={kopie > 0}
+                onOpen={() => setActive(series)}
+              />
+            )),
+          )}
+        </div>
       </div>
 
       <div className={styles.noteWrap}>
@@ -138,11 +132,8 @@ export function SeriesRow() {
           {/* Wie an einem einzelnen Video gearbeitet wird — kein Lernpfad
               durch die Inhalte, sondern die Arbeitsweise daran. */}
           <ol className={styles.ablauf}>
-            {insideTheClub.ablauf.map((schritt, i) => (
+            {insideTheClub.ablauf.map((schritt) => (
               <li key={schritt} className={styles.schritt}>
-                <span className={styles.schrittNr}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 {schritt}
               </li>
             ))}

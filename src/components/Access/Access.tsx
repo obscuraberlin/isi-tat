@@ -1,6 +1,6 @@
 "use client";
 
-import { application, cta, membership, spots } from "@/data/landingPage";
+import { application, cta, isPending, membership, spots } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -13,6 +13,10 @@ import { Backdrop } from "@/components/Backdrop/Backdrop";
  * Vorher drei getrennte Sektionen — das hat den Abschluss zerfasert.
  */
 export function Access() {
+  /* Die Platzzahl wird nicht geraten. Solange sie nicht bestaetigt ist,
+     steht hier eine offene Angabe statt einer erfundenen Knappheit. */
+  const offen = isPending(spots.count);
+
   return (
     <section className={styles.section} id="zugang">
       <Backdrop variant="glow" tone="light" drift={50} />
@@ -62,7 +66,11 @@ export function Access() {
               shift={12}
             >
               <h3 className={styles.rowLabel}>{row.label}</h3>
-              <p className={styles.rowText}>{row.text}</p>
+              {isPending(row.text) ? (
+                <p className={styles.pending}>Umfang wird ergänzt.</p>
+              ) : (
+                <p className={styles.rowText}>{row.text}</p>
+              )}
             </Reveal>
           ))}
         </div>
@@ -74,17 +82,18 @@ export function Access() {
         <Reveal className={styles.price}>
           <div>
             <p className={styles.priceLabel}>{spots.eyebrow}</p>
-            {/* Keine Platzzahl. Solange es keine echte Limitierung gibt,
-                waere jede Zahl erfundene Knappheit — und ein Hinweis,
-                dass sie "noch kommt", ist ein sichtbarer Platzhalter.
-                Stattdessen steht hier, was tatsaechlich gilt. */}
-            <p className={styles.priceValue}>
-              {spots.headlineNeu.map((zeile) => (
-                <span key={zeile} className={styles.priceZeile}>
-                  {zeile}
-                </span>
-              ))}
-            </p>
+            {offen ? (
+              <p className={styles.spotsPending}>
+                Die Zahl der freien Plätze steht hier, sobald sie feststeht.
+              </p>
+            ) : (
+              <>
+                <p className={styles.priceValue}>{spots.count}</p>
+                {isPending(spots.period) ? null : (
+                  <p className={styles.spotsPeriod}>{spots.period}</p>
+                )}
+              </>
+            )}
           </div>
 
           <div>

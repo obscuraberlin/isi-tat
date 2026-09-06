@@ -30,22 +30,14 @@
   --bg-light: #f5f3ee;
   --bg-light-alt: #f2f0eb;
   --bg-light-deep: #ebe8e1;
-  /* Vier Schwarzstufen statt zwei: der Unterschied zwischen #050505 und
-     #111111 ist gering genug, dass er nicht als Farbwechsel auffaellt,
-     und gross genug, dass Flaechen sich voneinander abheben. */
-  --bg-dark: #050505;
-  --bg-dark-alt: #0a0a0a;
-  --bg-dark-deep: #111111;
-  --card-dark: #181818;
+  --bg-dark: #080808;
+  --bg-dark-alt: #111111;
+  --card-dark: #161616;
 
   --text-dark: #111111;
-  /* Warmweiss statt Kaltweiss. Auf schwarzem Grund ist das der
-     Unterschied zwischen Bildschirm und Papier. */
-  --text-light: #f2f0eb;
+  --text-light: #f5f5f5;
   --text-muted: #777777;
-  /* Als Transparenz, nicht als Grauwert: so sitzt der Text immer im
-     Verhaeltnis zu seinem Grund, egal auf welcher Schwarzstufe. */
-  --text-muted-light: rgba(255, 255, 255, 0.56);
+  --text-muted-light: #a6a6a6;
 
   --accent: #c8a66a;
   --accent-deep: #b89965;
@@ -66,33 +58,23 @@
   /* Die Hero-Headline ist zweistufig: die Aussage gross, die Einloesung
      darunter ruhiger. Beide Groessen sind so gewaehlt, dass die im Text
      gesetzten Zeilenumbrueche halten und nicht zusaetzlich umbrechen. */
-  /* Deutlich groesser als vorher. Grosse Typografie ist auf einer
-     Editorial-Seite kein Effekt, sondern das Layout selbst — sie ersetzt
-     die Kaesten, die sonst die Struktur tragen muessten. */
-  --fs-hero: clamp(2.625rem, 0.4rem + 8.2vw, 9.375rem);
-  --fs-hero-accent: clamp(1.5rem, 1.05rem + 1.9vw, 2.75rem);
-  /* Fuer die wenigen Aussagen, die die ganze Flaeche tragen. */
-  --fs-display: clamp(2.5rem, 0.2rem + 8vw, 8.75rem);
-  --fs-section: clamp(2.25rem, 1.15rem + 4.5vw, 5.5rem);
-  --fs-sub: clamp(1.5rem, 1.2rem + 1.4vw, 2.375rem);
+  --fs-hero: clamp(2.75rem, 1.2rem + 4.3vw, 3.875rem);
+  --fs-hero-accent: clamp(1.875rem, 0.9rem + 2.9vw, 2.75rem);
+  --fs-section: clamp(2.25rem, 1.45rem + 3.4vw, 4.5rem);
+  --fs-sub: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
   --fs-card: clamp(1.25rem, 1.13rem + 0.5vw, 1.625rem);
   --fs-body: clamp(1rem, 0.96rem + 0.19vw, 1.1875rem);
   --fs-body-lg: clamp(1.0625rem, 0.98rem + 0.4vw, 1.375rem);
   --fs-small: 0.875rem;
   --fs-eyebrow: 0.8125rem;
-  /* Editorial-Marken: ISI / 001, CHAPTER / 03, MASTERCLASS / 040. */
-  --fs-label: 0.6875rem;
 
-  /* Bei diesen Groessen muessen die Zeilen enger stehen, sonst zerfaellt
-     die Headline in einzelne Zeilen statt einen Block zu bilden. */
-  --lh-tight: 0.92;
-  --lh-head: 1.02;
+  --lh-tight: 0.98;
+  --lh-head: 1.06;
   --lh-body: 1.62;
 
-  --tr-tight: -0.035em;
-  --tr-head: -0.025em;
+  --tr-tight: -0.03em;
+  --tr-head: -0.022em;
   --tr-wide: 0.16em;
-  --tr-label: 0.2em;
 
   /* ---------- Layout ---------- */
   --max-page: 1440px;
@@ -115,16 +97,11 @@
   --sh-header: 0 1px 24px rgba(0, 0, 0, 0.06);
 
   /* ---------- Motion ---------- */
-  /* Ein Easing fuer alles Grosse. Sehr schneller Start, langer Auslauf —
-     das ist die Kurve, die Bewegung teuer aussehen laesst statt
-     technisch. Kein Bounce, kein Elastic. */
-  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
-  --d-fast: 250ms;
-  --d-base: 380ms;
-  --d-slow: 900ms;
-  --d-reveal: 1000ms;
+  --d-fast: 180ms;
+  --d-base: 250ms;
+  --d-slow: 700ms;
 
   --header-h: 72px;
 
@@ -144,12 +121,7 @@
        "AUF HUNDERT." allein stand. Eine Spur kleiner haelt die Zeile
        zusammen — die Aussage wirkt in zwei sauberen Zeilen staerker als
        gross und zerrissen. */
-    /* Auf dem Telefon zwischen 40 und 68 px — gross genug, dass die
-       Aussage traegt, klein genug, dass "VON NULL AUF HUNDERT." in zwei
-       Zeilen bleibt statt in drei zu zerreissen. */
-    --fs-hero: clamp(2.5rem, 1.1rem + 5.6vw, 4.25rem);
-    --fs-display: clamp(2.375rem, 1.1rem + 5vw, 3.75rem);
-    --fs-section: clamp(2rem, 1.2rem + 3.6vw, 3rem);
+    --fs-hero: clamp(2.0625rem, 1.1rem + 3.2vw, 2.75rem);
   }
 }
 

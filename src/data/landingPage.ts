@@ -629,8 +629,17 @@ export const lifestyle = {
     media("isi-freiheit-02", "image", "Im Showroom, neben einem roten Ferrari", "4 / 5"),
     media("isi-freiheit-03", "image", "Vor einem Privatjet", "4 / 5"),
   ],
+  /* Drei Stationen fuer die Sticky-Sektion: das Bild bleibt stehen, die
+     Aussage wechselt. Die Bilder sind die vorhandenen drei aus der
+     Galerie — kein neues Material noetig. */
+  stationen: [
+    { zeile: ["DER LUXUS IST", "NICHT DAS AUTO."], akzent: false },
+    { zeile: ["NICHT DIE ADRESSE."], akzent: false },
+    { zeile: ["DER LUXUS IST,", "ENTSCHEIDEN ZU KÖNNEN."], akzent: true },
+  ] as readonly { zeile: readonly string[]; akzent: boolean }[],
+  schluss: ["Mit wem.", "Wann.", "Wo.", "Und zu welchen Chancen du Nein sagst."],
   disclaimer:
-    "Meine Bilder aus meinem Leben. Kein Versprechen, wie deins aussieht.",
+    "Bilder aus meinem Leben. Kein Versprechen darüber, wie deins aussehen wird.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -642,6 +651,44 @@ export const lifestyle = {
    Die Unterscheidung, an der die ganze Produktlogik haengt — einmal gross
    und ohne Beiwerk, damit sie niemand ueberliest.
    -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   ECHTE ENTSCHEIDUNGEN
+   Vier Geschichten aus dem Manuskript. Der Betrag ist der Einstieg, die
+   Lektion ist der Inhalt — nicht umgekehrt. Alle Zahlen sind
+   Erinnerungswerte des Auftraggebers und als "ca." gekennzeichnet, wo
+   sie es sein muessen.
+   -------------------------------------------------------------------------- */
+
+export const stories = {
+  headline: ["KEINE THEORIE.", "ECHTE ENTSCHEIDUNGEN."],
+  items: [
+    {
+      nr: "01",
+      betrag: "CA. 20.000 €",
+      zeile: ["WIE MARKTKENNTNIS", "EINE VERHANDLUNG VERÄNDERT."],
+      marke: "Ferrari · Verhandeln",
+    },
+    {
+      nr: "02",
+      betrag: "FÜNFSTELLIGES LEHRGELD",
+      zeile: ["WARUM EIN VOLLER LADEN", "NOCH KEIN GUTES INVESTMENT IST."],
+      marke: "Due Diligence · Beteiligungen",
+    },
+    {
+      nr: "03",
+      betrag: "250.000 € — EIN HANDSCHLAG",
+      zeile: ["WARUM VERTRAUEN", "KEINEN VERTRAG ERSETZT."],
+      marke: "Verträge · Partner",
+    },
+    {
+      nr: "04",
+      betrag: "FERRARI GESTOHLEN",
+      zeile: ["WARUM VERMÖGEN AUFBAUEN", "NICHT REICHT."],
+      marke: "Risiko · Absicherung",
+    },
+  ],
+} as const;
 
 export const vergleich = {
   links: { label: "DIE MASTERCLASS", zeile: "GIBT DIR ERFAHRUNG." },

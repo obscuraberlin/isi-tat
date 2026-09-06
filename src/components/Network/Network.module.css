@@ -62,106 +62,7 @@
 
 /* ---------- Grafik ---------- */
 
-.graph {
-  position: relative;
-  width: min(100%, 560px);
-  /* Quadratisch war die Grafik hoeher als der Text daneben — links und
-     unten blieb eine halbe Bildschirmhoehe leer. Flacher passt sie zur
-     Textspalte, die Knoten stehen dadurch weiter auseinander statt
-     uebereinander. */
-  aspect-ratio: 5 / 4;
-  margin-inline: auto;
-}
-
-.svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.spoke {
-  stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 0.14;
-  stroke-dasharray: 60;
-  stroke-dashoffset: 60;
-  transition: stroke-dashoffset 1100ms var(--ease-out);
-  transition-delay: var(--delay);
-}
-
-.spokeOn {
-  stroke-dashoffset: 0;
-}
-
-.node {
-  fill: rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  transition: opacity 500ms var(--ease-out);
-  transition-delay: var(--delay);
-}
-
-.nodeOn {
-  opacity: 1;
-}
-
 /* Ein einzelner Punkt traegt den Akzent — mehr braucht es nicht. */
-.nodeAccent {
-  fill: var(--accent);
-}
-
-.center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" var(--display-width);
-  font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
-  font-weight: 700;
-  letter-spacing: var(--tr-tight);
-  line-height: 1;
-  color: var(--text-light);
-}
-
-.center::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(96px, 22vw, 148px);
-  height: clamp(96px, 22vw, 148px);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(200, 166, 106, 0.16) 0%,
-    transparent 68%
-  );
-  pointer-events: none;
-}
-
-.label {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  transform: translate(-50%, -50%);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
-  white-space: nowrap;
-  opacity: 0;
-  transition:
-    opacity 620ms var(--ease-out),
-    color 620ms var(--ease-out);
-  transition-delay: var(--delay);
-}
-
-.labelOn {
-  opacity: 1;
-  color: var(--text-muted-light);
-}
 
 @media (min-width: 1024px) {
   .inner {
@@ -171,13 +72,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spoke,
-  .node,
-  .label,
   .hint {
     transition: none;
     opacity: 1;
-    stroke-dashoffset: 0;
     transform: none;
   }
 }
@@ -189,7 +86,87 @@
    dafuer. Die Aussage der Sektion steht in der Headline — die Grafik
    wiederholt sie nur mit Punkten und Linien. */
 @media (max-width: 767px) {
-  .graph {
-    display: none;
+}
+
+/* ---------- Laufende Zeile ---------- */
+
+.band {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(40px, 5vw, 80px);
+  overflow: hidden;
+  /* An beiden Raendern weich auslaufen, damit die Zeile nicht an einer
+     Kante abgeschnitten wirkt. */
+  --rand: linear-gradient(
+    to right,
+    transparent 0,
+    #000 clamp(24px, 6vw, 120px),
+    #000 calc(100% - clamp(24px, 6vw, 120px)),
+    transparent 100%
+  );
+  -webkit-mask-image: var(--rand);
+  mask-image: var(--rand);
+}
+
+.bandLauf {
+  display: flex;
+  width: max-content;
+  /* Sehr langsam: eine Runde dauert knapp eine Minute. Schneller waere
+     Bewegung, langsamer waere Stillstand. */
+  animation: bandLauf 52s linear infinite;
+  will-change: transform;
+}
+
+.bandKopie {
+  display: flex;
+  flex: none;
+}
+
+.bandWort {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--display-width);
+  font-size: clamp(2rem, 6vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-head);
+  line-height: 1.1;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.bandStrich {
+  margin-inline: clamp(20px, 3vw, 56px);
+  color: var(--accent);
+  font-weight: 400;
+}
+
+@keyframes bandLauf {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Der Inhalt einmal in lesbarer Form — die laufende Zeile ist Bild. */
+.bandListe {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bandLauf {
+    animation: none;
+  }
+
+  .band {
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 }

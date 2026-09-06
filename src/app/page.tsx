@@ -6,6 +6,8 @@ import { FitCheck } from "@/components/FitCheck/FitCheck";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
 import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
 import { LiveSection } from "@/components/LiveSection/LiveSection";
+import { Stories } from "@/components/Stories/Stories";
+import { Vergleich } from "@/components/Vergleich/Vergleich";
 import { Network } from "@/components/Network/Network";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
@@ -51,7 +53,12 @@ export default function Page() {
         <SeriesRow />         {/* hell   · Die Masterclass         */}
         {/* Live gehoert zum Club, nicht zur Masterclass — deshalb hinter
             den fuenf Themenwelten und als eigener Abschnitt. */}
+        {/* Die Geschichten machen greifbar, was in den Kapiteln steckt —
+            direkt hinter der Masterclass, vor dem Club. */}
+        <Stories />           {/* dunkel · Echte Entscheidungen    */}
         <LiveSection />       {/* dunkel · Live mit ISI            */}
+        {/* Die Unterscheidung, an der die Produktlogik haengt. */}
+        <Vergleich />         {/* dunkel · Masterclass vs Club     */}
         <CtaBand
           {...ctaBands.nachInhalten}
           tone="dark"

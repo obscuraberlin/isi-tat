@@ -49,13 +49,20 @@ function Zeilen({ lines }: { lines: readonly string[] }) {
   return (
     <h2 ref={ref} className={styles.headline}>
       {lines.map((line, i) => (
-        <span
-          key={line}
-          className={[styles.line, i < gold ? styles.lineGold : ""]
-            .filter(Boolean)
-            .join(" ")}
-        >
-          {line}
+        <span key={line} className={styles.lineWrap}>
+          <span
+            className={[
+              styles.line,
+              /* Die Zeile faehrt herein, sobald sie an der Reihe ist —
+                 dieselbe Zahl steuert Bewegung und Farbe. */
+              i < gold ? styles.lineAn : "",
+              i < gold ? styles.lineGold : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            {line}
+          </span>
         </span>
       ))}
     </h2>
@@ -86,8 +93,8 @@ function Copy({
       ) : (
         <h2 className={styles.headline}>
           {scene.lines.map((line) => (
-            <span key={line} className={styles.line}>
-              {line}
+            <span key={line} className={styles.lineWrap}>
+              <span className={`${styles.line} ${styles.lineAn}`}>{line}</span>
             </span>
           ))}
         </h2>

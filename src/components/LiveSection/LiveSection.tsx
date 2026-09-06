@@ -7,7 +7,7 @@ import { Backdrop } from "@/components/Backdrop/Backdrop";
 import styles from "./LiveSection.module.css";
 
 /**
- * Live mit ISI — eigener Abschnitt hinter den fuenf Themenwelten.
+ * Live mit ISI — eigener Abschnitt hinter den fuenf Kapiteln.
  *
  * Frueher stand das als sechste Karte in der Serienreihe und wurde damit
  * zur Masterclass gezaehlt. Es ist aber kein Kursinhalt, sondern ein

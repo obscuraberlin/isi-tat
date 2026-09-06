@@ -36,7 +36,7 @@ function Card({
 
       <div className={styles.cardBody}>
         <span className={styles.cardMeta}>
-          Themenwelt · {series.videos} Videos
+          Kapitel · {series.videos} Videos
         </span>
         <h3 className={styles.cardLabel}>{series.label}</h3>
         <div className={styles.cardCopyWrap}>
@@ -98,7 +98,7 @@ export function SeriesRow() {
         ref={bandRef}
         className={styles.marquee}
         role="region"
-        aria-label="Die fünf Themenwelten"
+        aria-label="Die fünf Kapitel"
       >
         <div
           className={[styles.track, inView ? "" : styles.trackWartet]

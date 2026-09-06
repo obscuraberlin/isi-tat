@@ -109,7 +109,7 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
           <div className={styles.stageBody}>
             <h2 className={styles.title}>{series.label}</h2>
             <div className={styles.meta}>
-              <span className={styles.tag}>Themenwelt</span>
+              <span className={styles.tag}>Kapitel</span>
               <span className={`${styles.tag} ${styles.tagAccent}`}>
                 {hero.meta.edition}
               </span>

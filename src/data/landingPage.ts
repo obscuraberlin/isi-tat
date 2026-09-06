@@ -143,7 +143,7 @@ export const hero = {
   /* Die Erfahrung steht jetzt hier oben statt als zweite Headline-Ebene —
      sie qualifiziert die Aussage, bevor man sie liest. */
   /* Das Leitmotiv der Masterclass. Es taucht spaeter im Fehler-Abschnitt
-     als Zwischenheadline wieder auf und in der ersten Themenwelt als
+     als Zwischenheadline wieder auf und im ersten Kapitel als
      Beispielthema — dreimal dieselbe Idee, nie als Behauptung. */
   eyebrow: "ERFAHRUNG ALS ABKÜRZUNG",
   eyebrowMobil: "ERFAHRUNG ALS ABKÜRZUNG",
@@ -151,7 +151,7 @@ export const hero = {
      Ausgangsmaterial ist 1080p und wird als 720p ausgeliefert — die
      Angabe waere nachpruefbar falsch gewesen. Sie kommt zurueck, sobald
      tatsaechlich in 4K produziert und ausgeliefert wird.
-     Themenwelten- und Videozahl werden gerechnet, nie getippt. */
+     Kapitel- und Videozahl werden gerechnet, nie getippt. */
   meta: {
     by: "VON ISI TAT",
     edition: "MASTERCLASS 2026",
@@ -311,16 +311,16 @@ export const trust = {
    Bewusst ohne Nummerierung und ohne vorgegebene Reihenfolge.
    -------------------------------------------------------------------------- */
 
-/** Ein Beispielthema aus einer Themenwelt. Kein Folgentitel, keine Nummer. */
+/** Ein Beispielthema aus einem Kapitel. Kein Folgentitel, keine Nummer. */
 export type Thema = string;
 
 export interface Series {
   id: string;
-  /** Titel der Themenwelt. */
+  /** Titel des Kapitels. */
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
-  /** Anzahl der Videos in dieser Themenwelt. Summe ueber alle: 40. */
+  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 40. */
   videos: number;
   /** Zwei bis drei Saetze in der Detailansicht. */
   description: string;
@@ -335,12 +335,12 @@ export const insideTheClub = {
   headline: "DIE MASTERCLASS.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
-  subline: "40 Videos. 5 Themenwelten. Erfahrung aus über 20 Jahren.",
-  body: "Keine Theorie-Sammlung. Jede Themenwelt verbindet persönliche Erfahrungen, konkrete Prinzipien und Aufgaben zur Umsetzung.",
-  facts: "5 Themenwelten · 40 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
+  subline: "40 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
+  body: "Keine Theorie-Sammlung. Jedes Kapitel verbindet persönliche Erfahrungen, konkrete Prinzipien und Aufgaben zur Umsetzung.",
+  facts: "5 Kapitel · 40 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
-  note: "Die Masterclass ist in fünf klar strukturierte Themenwelten gegliedert. Du kannst gezielt dort einsteigen, wo du gerade eine konkrete Herausforderung hast — oder sie als gesamten Weg von Mindset und Sales über Business und Geld bis zur Personal Brand durcharbeiten.",
+  note: "Die Masterclass ist in fünf klar strukturierte Kapitel gegliedert. Du kannst gezielt dort einsteigen, wo du gerade eine konkrete Herausforderung hast — oder sie als gesamten Weg von Mindset und Sales über Business und Geld bis zur Personal Brand durcharbeiten.",
   workLine: ["WISSEN ALLEIN REICHT NICHT.", "UMSETZUNG ENTSCHEIDET."],
   work: "Jedes Video hat eine klare Kernbotschaft, konkrete Beispiele und eine Umsetzungsaufgabe. Du sollst nicht 40 Videos sammeln. Du sollst aus jedem relevanten Inhalt mindestens eine Sache in dein reales Leben oder Business übertragen.",
   /* Die Schritte als Zeile unter dem Text. Kein Lernpfad durch die
@@ -467,7 +467,7 @@ export const insideTheClub = {
 
 export const catalogue = {
   seriesCount: insideTheClub.series.length,
-  /* Getippt wird nichts: die Videozahl ist die Summe der Themenwelten.
+  /* Getippt wird nichts: die Videozahl ist die Summe der Kapitel.
      8 + 8 + 10 + 9 + 5 = 40. Live mit ISI zaehlt nicht mit — das ist
      Club, nicht Masterclass. */
   videoCount: insideTheClub.series.reduce((summe, s) => summe + s.videos, 0),
@@ -674,7 +674,7 @@ export const network = {
 /* Live mit ISI war frueher eine sechste Karte neben den Serien und wurde
    damit zur Masterclass gezaehlt. Es ist aber kein Kursinhalt, sondern
    ein Bestandteil der Mitgliedschaft — und steht deshalb in einem eigenen
-   Bereich nach den fuenf Themenwelten. */
+   Bereich nach den fuenf Kapiteln. */
 export const live = {
   lead: ["DIE MASTERCLASS", "IST NICHT DER GANZE CLUB."],
   label: "LIVE MIT ISI",
@@ -847,7 +847,7 @@ export const membership = {
   rows: [
     {
       label: "40-VIDEO MASTERCLASS",
-      text: "Fünf Themenwelten aus über 20 Jahren praktischer Erfahrung.",
+      text: "Fünf Kapitel aus über 20 Jahren praktischer Erfahrung.",
     },
     {
       label: "LIVE MIT ISI",
@@ -964,13 +964,13 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Du erhältst Zugang zur 40-Video-Masterclass mit fünf Themenwelten: Mindset & unternehmerisches Denken, Sales & Verhandeln, Business, Geld & Lifestyle sowie Personal Brand & Wachstum. Hinzu kommen die Club-Bestandteile wie Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "Du erhältst Zugang zur 40-Video-Masterclass mit fünf Kapiteln: Mindset & unternehmerisches Denken, Sales & Verhandeln, Business, Geld & Lifestyle sowie Personal Brand & Wachstum. Hinzu kommen die Club-Bestandteile wie Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
     },
     /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
       q: "Wie ist die Masterclass aufgebaut?",
-      a: "Die Masterclass besteht aus 40 Videos in fünf Themenwelten. Jedes Video vermittelt eine Kernbotschaft, ordnet sie anhand konkreter Erfahrungen oder Beispiele ein und endet mit einer praktischen Umsetzungsaufgabe und klaren ISI Rules. Es geht nicht darum, möglichst schnell alles anzusehen. Entscheidend ist, was du davon tatsächlich anwendest.",
+      a: "Die Masterclass besteht aus 40 Videos in fünf Kapiteln. Jedes Video vermittelt eine Kernbotschaft, ordnet sie anhand konkreter Erfahrungen oder Beispiele ein und endet mit einer praktischen Umsetzungsaufgabe und klaren ISI Rules. Es geht nicht darum, möglichst schnell alles anzusehen. Entscheidend ist, was du davon tatsächlich anwendest.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */

@@ -50,7 +50,7 @@ export default function Page() {
         {/* --- 3 · Inhalt -------------------------------------------- */}
         <SeriesRow />         {/* hell   · Die Masterclass         */}
         {/* Live gehoert zum Club, nicht zur Masterclass — deshalb hinter
-            den fuenf Themenwelten und als eigener Abschnitt. */}
+            den fuenf Kapiteln und als eigener Abschnitt. */}
         <LiveSection />       {/* dunkel · Live mit ISI            */}
         <CtaBand
           {...ctaBands.nachInhalten}

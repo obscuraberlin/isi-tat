@@ -91,11 +91,11 @@ export function Hero() {
           <span className={`${styles.badge} ${styles.badgeAccent}`}>
             {hero.meta.edition}
           </span>
-          {/* Beide Zahlen kommen aus den Daten: 5 Themenwelten, und die
+          {/* Beide Zahlen kommen aus den Daten: 5 Kapitel, und die
               Videozahl ist ihre Summe. Getippt wird nichts. */}
           <span className={styles.metaCounts}>
             <span className={styles.metaPlain}>
-              {catalogue.seriesCount} Themenwelten
+              {catalogue.seriesCount} Kapitel
             </span>
             <span className={styles.metaDot} aria-hidden="true" />
             <span className={styles.metaPlain}>

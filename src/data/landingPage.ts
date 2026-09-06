@@ -377,7 +377,7 @@ export const insideTheClub = {
         "Verkaufen lernen, Menschen besser verstehen, Preise erklären und Verhandlungen vorbereiten.",
       videos: 8,
       description:
-        "Verkaufen ist kein Talent, sondern Handwerk — und der größte Teil davon passiert, bevor jemand über den Preis spricht. Wie ich Kundentypen unterscheide, wie ich mit „zu teuer\u201c umgehe und warum ich manche Kunden ziehen lasse.",
+        "Verkaufen ist kein Talent, sondern Handwerk — und der größte Teil davon passiert, bevor jemand über den Preis spricht. Wie ich Kundentypen unterscheide, wie ich mit „zu teuer“ umgehe und warum ich manche Kunden ziehen lasse.",
       cover: media("kurs-sales-cover", "image", "Sales, Menschen & Verhandeln", "2 / 3"),
       still: media("kurs-sales-still", "image", "Sales, Menschen & Verhandeln", "16 / 9", {}, 9),
       topics: [

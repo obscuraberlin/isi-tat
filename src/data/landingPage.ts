@@ -270,11 +270,13 @@ export const trust = {
   headline: ["WER IST", "ISI TAT?"],
   body: [
     "Über zwanzig Jahre Vertrieb. Angefangen ohne Netzwerk, ohne Kapital, ohne Plan B.",
-    "Seitdem: eigene Unternehmen, eigene Teams, eigene Fehler.",
   ],
   /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
+  /* Nur der staerkste Satz. Der Rest des Zitats sagte, was der Absatz
+     direkt darueber schon sagt — "genau deshalb" stand zweimal auf
+     derselben Bildschirmhoehe. */
   claim:
-    "Ich will euch nicht erzählen, dass ich immer alles richtig gemacht habe. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet. Genau deshalb kann meine Erfahrung für euch eine Abkürzung sein.",
+    "Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet.",
   /* 16:9, so ist das Material gedreht. Ein quadratischer Ausschnitt haette
      ein Viertel der Bildbreite gekostet. */
   video: media(
@@ -297,12 +299,13 @@ export const trust = {
   /* "Ausfuehrliche Biografie folgt." ist ersatzlos raus — ein Hinweis auf
      eine fehlende Biografie ist keine Biografie, und an der Stelle, an der
      Vertrauen entsteht, liest er sich wie eine unfertige Seite. */
+  /* Vorher sieben Absaetze, die zweimal dasselbe sagten: "Ueber zwanzig
+     Jahre Vertrieb" und drei Absaetze spaeter "Ueber zwei Jahrzehnte
+     praktische Erfahrung". Jetzt drei kurze — der Rest steht im Zitat
+     darunter und in der Zeitleiste daneben. */
   bio: [
-    "Über zwei Jahrzehnte praktische Erfahrung in Handel, Vertrieb, Unternehmertum, Investments, Gastronomie und Personal Brand.",
-    "Mein Weg begann nicht mit einem Businessplan. Er begann mit der Frage, wo Möglichkeiten entstehen.",
-    "Von frühen Online- und Handelsgeschäften über Felgenhandel, Promotion und Vertrieb bis zu Vermögensberatung, eigenen unternehmerischen Strukturen, Beteiligungen, Investments und Social Media.",
-    "Dabei ist nicht alles richtig gelaufen. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet.",
-    "Genau deshalb kann meine Erfahrung heute für andere eine Abkürzung sein.",
+    "Handel, Vertrieb, eigene Unternehmen, Beteiligungen, Investments — und irgendwann eine Personal Brand.",
+    "Nicht jede Entscheidung war richtig. Genau deshalb ist meine Erfahrung heute wertvoll.",
   ],
 } as const;
 
@@ -955,17 +958,17 @@ export const faq = {
   items: [
     {
       q: "Für wen ist der Club?",
-      a: "Für Quereinsteiger, die neu anfangen — und genauso für Leute, die längst dabei sind und auf ein ganz anderes Level wollen. Entscheidend ist nicht, wo du heute stehst, sondern wohin du willst.",
+      a: "Für Quereinsteiger genauso wie für Leute, die längst dabei sind. Entscheidend ist nicht, wo du heute stehst, sondern wohin du willst.",
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Du erhältst Zugang zur 40-Video-Masterclass mit fünf Kapiteln: Mindset & unternehmerisches Denken, Sales & Verhandeln, Business, Geld & Lifestyle sowie Personal Brand & Wachstum. Hinzu kommen die Club-Bestandteile wie Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "Die 40-Video-Masterclass mit fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
     },
     /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
       q: "Wie ist die Masterclass aufgebaut?",
-      a: "Die Masterclass besteht aus 40 Videos in fünf Kapiteln. Jedes Video vermittelt eine Kernbotschaft, ordnet sie anhand konkreter Erfahrungen oder Beispiele ein und endet mit einer praktischen Umsetzungsaufgabe und klaren ISI Rules. Es geht nicht darum, möglichst schnell alles anzusehen. Entscheidend ist, was du davon tatsächlich anwendest.",
+      a: "40 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele und endet mit einer Umsetzungsaufgabe und klaren ISI Rules. Entscheidend ist nicht, wie schnell du durch bist, sondern was du anwendest.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
@@ -981,11 +984,11 @@ export const faq = {
        Zusammenarbeit und damit ein Versprechen, das niemand halten muss. */
     {
       q: "Kann daraus eine Zusammenarbeit werden?",
-      a: "Das kann passieren, ist aber kein Bestandteil oder Versprechen der Mitgliedschaft. Wer über Zeit durch Umsetzung, Zuverlässigkeit, Fähigkeiten und Charakter auffällt, kann in meinem Umfeld sichtbar werden. Daraus können Gespräche oder Möglichkeiten entstehen. Es gibt jedoch keine Garantie und keinen Anspruch auf Zusammenarbeit, Job, Beteiligung, Investment oder Einkommen.",
+      a: "Das kann passieren, ist aber kein Bestandteil der Mitgliedschaft. Wer über Zeit durch Umsetzung und Charakter auffällt, wird sichtbar — daraus entstehen manchmal Gespräche. Es gibt keinen Anspruch auf Zusammenarbeit, Job, Beteiligung, Investment oder Einkommen.",
     },
     {
       q: "Bin ich nach der Aufnahme auf mich allein gestellt?",
-      a: "Nein. Du profitierst vom Netzwerk, von der Erfahrung und von den Fragen, die dort beantwortet werden — auch von denen, die du selbst nie gestellt hättest. Entscheiden musst du weiter selbst, aber du machst es nicht mehr mit dir allein aus.",
+      a: "Nein. Du profitierst von den Fragen der anderen — auch von denen, die du selbst nie gestellt hättest. Entscheiden musst du weiter selbst, aber nicht mehr allein.",
     },
   ],
   /* Steht unter den Fragen, klein und sachlich — nicht als Warnkasten.

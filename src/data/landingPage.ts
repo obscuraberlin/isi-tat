@@ -177,7 +177,10 @@ export const hero = {
   /* Drei Punkte, drei Sekunden. Der lange Satz vorher hat erklaert,
      dieser behauptet — und der letzte Teil ist der, der sitzt. */
   subheadline:
-    "Meine Erfahrung. Meine Fehler. Meine Entscheidungen. Mein Netzwerk — verdichtet, damit du nicht jeden Umweg selbst gehen musst.",
+    "20+ Jahre Entscheidungen, Fehler, Vertrieb und Unternehmertum — verdichtet in einer Masterclass und einem Umfeld, das über Content hinausgeht.",
+  /* Vier Marken statt eines Satzes. Kuerzer liest sich teurer. */
+  metaListe: ["40 VIDEOS", "5 THEMENWELTEN", "LIVE", "COMMUNITY"],
+  scroll: "SCROLL TO ENTER",
   /* Die Vertrauenszeile ist raus: sie hat aufgezaehlt, was die Subline
      zwei Zeilen darueber schon sagt, und den Hero unten zugestellt. */
   /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die
@@ -267,14 +270,15 @@ export const intro = {
 
 export const trust = {
   eyebrow: "Über mich",
-  headline: ["WER IST", "ISI TAT?"],
+  headline: ["KEIN THEORETIKER.", "EIN WEG, DER ÜBER 20 JAHRE DAUERT."],
   body: [
     "Über zwanzig Jahre Vertrieb. Angefangen ohne Netzwerk, ohne Kapital, ohne Plan B.",
     "Seitdem: eigene Unternehmen, eigene Teams, eigene Fehler.",
   ],
   /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
   claim:
-    "Ich will euch nicht erzählen, dass ich immer alles richtig gemacht habe. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet. Genau deshalb kann meine Erfahrung für euch eine Abkürzung sein.",
+    "Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet.",
+  claimNach: "ERFAHRUNG ALS ABKÜRZUNG.",
   /* 16:9, so ist das Material gedreht. Ein quadratischer Ausschnitt haette
      ein Viertel der Bildbreite gekostet. */
   video: media(
@@ -297,12 +301,16 @@ export const trust = {
   /* "Ausfuehrliche Biografie folgt." ist ersatzlos raus — ein Hinweis auf
      eine fehlende Biografie ist keine Biografie, und an der Stelle, an der
      Vertrauen entsteht, liest er sich wie eine unfertige Seite. */
+  /* Von fuenf Absaetzen auf vier gekuerzt. Der alte Text sagte zweimal
+     dasselbe: erst "nicht alles ist richtig gelaufen", dann "deshalb ist
+     meine Erfahrung wertvoll" — und darunter stand das Zitat, das genau
+     das noch einmal sagte. Jetzt sagt es der Text einmal und das Zitat
+     traegt es. */
   bio: [
-    "Über zwei Jahrzehnte praktische Erfahrung in Handel, Vertrieb, Unternehmertum, Investments, Gastronomie und Personal Brand.",
-    "Mein Weg begann nicht mit einem Businessplan. Er begann mit der Frage, wo Möglichkeiten entstehen.",
-    "Von frühen Online- und Handelsgeschäften über Felgenhandel, Promotion und Vertrieb bis zu Vermögensberatung, eigenen unternehmerischen Strukturen, Beteiligungen, Investments und Social Media.",
-    "Dabei ist nicht alles richtig gelaufen. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet.",
-    "Genau deshalb kann meine Erfahrung heute für andere eine Abkürzung sein.",
+    "Mein Weg begann nicht mit einem Businessplan.",
+    "Er begann mit Handel, Verkauf und der Frage, wo Möglichkeiten entstehen.",
+    "Daraus wurden Vertrieb, Unternehmen, Teams, Beteiligungen, Investments und irgendwann eine Personal Brand.",
+    "Nicht jede Entscheidung war richtig. Genau deshalb ist meine Erfahrung heute wertvoll.",
   ],
 } as const;
 
@@ -332,22 +340,21 @@ export interface Series {
 
 export const insideTheClub = {
   eyebrow: "Die Masterclass",
-  headline: "DIE MASTERCLASS.",
+  headline: "40 VIDEOS. 5 THEMENWELTEN. KEINE ABKÜRZUNG OHNE UMSETZUNG.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
-  subline: "40 Videos. 5 Themenwelten. Erfahrung aus über 20 Jahren.",
-  body: "Keine Theorie-Sammlung. Jede Themenwelt verbindet persönliche Erfahrungen, konkrete Prinzipien und Aufgaben zur Umsetzung.",
-  facts: "5 Themenwelten · 40 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
+  subline: "Persönliche Geschichten. Konkrete Prinzipien. Klare Aufgaben.",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
-  note: "Die Masterclass ist in fünf klar strukturierte Themenwelten gegliedert. Du kannst gezielt dort einsteigen, wo du gerade eine konkrete Herausforderung hast — oder sie als gesamten Weg von Mindset und Sales über Business und Geld bis zur Personal Brand durcharbeiten.",
-  workLine: ["WISSEN ALLEIN REICHT NICHT.", "UMSETZUNG ENTSCHEIDET."],
-  work: "Jedes Video hat eine klare Kernbotschaft, konkrete Beispiele und eine Umsetzungsaufgabe. Du sollst nicht 40 Videos sammeln. Du sollst aus jedem relevanten Inhalt mindestens eine Sache in dein reales Leben oder Business übertragen.",
+  note: "Du kannst gezielt dort einsteigen, wo du gerade eine konkrete Herausforderung hast — oder die Masterclass als gesamten Weg durcharbeiten.",
+  workLine: ["WISSEN VERÄNDERT NICHTS.", "UMSETZUNG SCHON."],
+  work: "Jedes Video endet mit einer konkreten Aufgabe. Nicht damit du beschäftigt bist. Sondern damit aus einer Erkenntnis eine Handlung wird.",
   /* Die Schritte als Zeile unter dem Text. Kein Lernpfad durch die
      Inhalte, sondern die Arbeitsweise an einem einzelnen Video. */
   ablauf: ["VERSTEHEN", "PRÜFEN", "ANWENDEN", "REFLEKTIEREN", "WEITERMACHEN"],
   /* Auf dem Telefon nur die ersten drei Beispielthemen, der Rest hinter
      einem Schalter. Zwoelf Zeilen Aufzaehlung liest dort niemand. */
+  kapitelOeffnen: "Kapitel entdecken",
   themenMehr: "Alle Themen ansehen",
   themenWeniger: "Weniger",
   series: [
@@ -502,25 +509,29 @@ export const timeline = {
    -------------------------------------------------------------------------- */
 
 export const opportunity = {
-  first: ["MANCHMAL", "ENTSTEHT MEHR DARAUS."],
+  eyebrow: "MÖGLICHKEITEN ENTSTEHEN NICHT DURCH MITGLIEDSCHAFT.",
+  first: ["SONDERN DURCH DAS,", "WAS DU ZEIGST."],
   second: ["NICHT WEIL DU INVESTIERT HAST.", "SONDERN WEIL DU"],
   accent: "AUFFÄLLST.",
-  note: "Wer durch Umsetzung, Zuverlässigkeit, Fähigkeiten und den Umgang mit anderen positiv auffällt, kann in meinem Umfeld sichtbar werden. Daraus können Gespräche, Kontakte oder neue Möglichkeiten entstehen.",
+  note: "Wer durch Fähigkeiten, Umsetzung, Zuverlässigkeit und Charakter auffällt, wird sichtbar. Manchmal entsteht daraus ein Gespräch. Manchmal ein Kontakt. Manchmal mehr.",
   /* ISI in eigenen Worten. Steht hier, weil dieser Abschnitt sonst eine
      Behauptung ueber ihn waere — so ist es sein Motiv, und ein Motiv ist
      kein Versprechen. "Moeglicherweise" bleibt unangetastet: das Wort
      traegt die ganze rechtliche Last des Absatzes. */
+  /* Verdichtete Fassung, vom Auftraggeber freigegeben. Der Kern bleibt:
+     beide Gruende offen benannt, und "nicht als Versprechen" ausdruecklich
+     im Zitat selbst. */
   zitat: [
-    "Ich mache diese Masterclass aus zwei Gründen: Zum einen möchte ich das Wissen und die Erfahrungen aus vielen Jahren Selbstständigkeit und Vertrieb weitergeben, damit andere nicht dieselben Fehler machen müssen und schneller vorankommen.",
-    "Zum anderen möchte ich darüber natürlich auch Menschen kennenlernen, die zu unserer Philosophie passen und mit denen sich möglicherweise eine langfristige Zusammenarbeit entwickelt.",
-    "Das kommuniziere ich ganz offen — denn für mich schließen sich Mehrwert und der Aufbau eines starken Teams nicht aus.",
+    "Ich gebe diese Erfahrungen weiter, weil andere nicht jeden meiner Umwege selbst machen müssen.",
+    "Und gleichzeitig lerne ich darüber Menschen kennen. Wenn jemand zu unserer Philosophie passt und durch das auffällt, was er tut, kann daraus irgendwann mehr entstehen.",
+    "Nicht als Versprechen. Sondern weil gute Zusammenarbeit immer mit Vertrauen beginnt.",
   ],
   closing: ["ZUGANG KANNST DU ANFRAGEN.", "VERTRAUEN MUSST DU DIR ERARBEITEN."],
   /* "kann sichtbar werden" statt "wird sichtbar", und der Anspruch wird
      ausdruecklich ausgeschlossen — sonst liest sich der Abschnitt als
      Zusage auf Zusammenarbeit. */
   disclaimer:
-    "Es gibt jedoch keinerlei Anspruch auf einen Job, eine Beteiligung, eine geschäftliche Zusammenarbeit, ein Investment oder ein bestimmtes Einkommen.",
+    "Es gibt keinen Anspruch auf einen Job, eine Beteiligung, ein Investment, eine Zusammenarbeit oder ein bestimmtes Einkommen.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -530,27 +541,31 @@ export const opportunity = {
 export const failure = {
   eyebrow: "Ehrlich",
   headline: ["WAS BEI MIR", "SCHIEFGELAUFEN IST."],
+  /* Drei lange Absaetze auf vier kurze Zeilen. Der Abschnitt lebt von
+     den Fotos, nicht vom Text — er soll filmisch sein, nicht erklaerend. */
   body: [
-    "Als Jugendlicher habe ich Party gemacht wie alle anderen auch. Ernst genommen habe ich davon nichts.",
-    "Je älter meine Eltern wurden, desto klarer wurde mir: irgendwann zählt es wirklich. Also habe ich Vollgas gegeben — und bereue davon keinen Tag.",
-    "Das Schwerste war nicht die Arbeit. Es war, dass mir niemand etwas erklärt hat. Ich habe mir alles selbst beigebracht, und das hat Jahre gekostet, die ich nicht zurückbekomme.",
+    "Irgendwann wurde mir klar, dass Zeit nicht unendlich ist.",
+    "Also habe ich angefangen, Dinge ernst zu nehmen.",
+    "Das Schwerste war nicht die Arbeit.",
+    "Es war, jeden Umweg selbst herausfinden zu müssen.",
   ],
   /* Auf dem Handy dieselbe Aussage in vier Zeilen statt in drei Absaetzen.
      Wer auf einer Spalte liest, steigt bei der dritten Erklaerung aus. */
   /* Nur ein Absatz: der zweite Gedanke steht direkt darunter gross als
      Schlusszeile — zweimal derselbe Satz ist einer zu viel. */
   bodyMobil: [
-    "Falsches Timing. Falsche Menschen. Entscheidungen, die ich heute anders treffen würde.",
+    "Irgendwann wurde mir klar, dass Zeit nicht unendlich ist.",
+    "Das Schwerste war nicht die Arbeit. Es war, jeden Umweg selbst herausfinden zu müssen.",
   ],
   /* Zwei Bilder statt einem: der Abstand zwischen ihnen ist das Argument.
      Bewusst ueber Wissen und Zeit erzaehlt, nicht ueber Besitz — sonst
      kippt die Gegenueberstellung ins Angeberische. */
   compare: {
-    beforeLabel: "FRÜHER",
-    beforeCaption: "Ohne Plan, ohne jemanden, der es erklärt.",
+    beforeLabel: "FRÜHER.",
+    beforeCaption: "Ohne Netzwerk. Ohne jemanden, der mir erklärt, wie es funktioniert.",
     before: media("isi-frueher", "image", "ISI TAT als Jugendlicher", "3 / 4"),
-    afterLabel: "HEUTE",
-    afterCaption: "Derselbe Weg — nur habe ich ihn alleine gesucht.",
+    afterLabel: "HEUTE.",
+    afterCaption: "Viele Jahre später kenne ich einige dieser Antworten.",
     after: media("isi-heute", "image", "ISI TAT heute", "3 / 4"),
   },
   /* Kein Erfolgsbild. Es steht neben dem Absatz ueber die Eltern und
@@ -566,42 +581,25 @@ export const failure = {
       "4 / 5",
     ),
   },
-  closing: [
-    "MIT JEMANDEM AN MEINER SEITE",
-    "WÄRE ICH VIEL SCHNELLER GEWESEN.",
-  ],
+  closing: ["MIT JEMANDEM AN MEINER SEITE", "WÄRE ICH SCHNELLER GEWESEN."],
   /* Der Satz, der die Sektion mit dem Angebot verbindet — ohne zu
      versprechen, dass es bei jemand anderem funktioniert. */
-  pass: "Genau das gebe ich heute weiter: Schritt für Schritt, damit du meine Umwege nicht noch einmal gehen musst.",
+  pass: "Heute gebe ich weiter, was mir damals gefehlt hat.",
   /* Verbindet die persoenliche Geschichte mit dem Produkt: die Fehler
      sind nicht Beiwerk, sie sind der Gegenstand. Zwischenheadline und
      Text kommen woertlich vom Auftraggeber. */
   shortcut: {
-    line: ["ERFAHRUNG ALS ABKÜRZUNG."],
+    line: ["DU MUSST NICHT", "JEDEN FEHLER", "SELBST MACHEN."],
     body: [
-      "Du musst nicht jeden Fehler selbst machen.",
-      "Manche Fehler kosten ein paar hundert Euro. Andere fünfstellige Beträge. Andere kosten Jahre.",
-      "Wenn jemand einen Weg bereits gegangen ist, kannst du trotzdem selbst entscheiden — aber du musst nicht jedes Lehrgeld noch einmal bezahlen.",
+      "Manche Fehler kosten Geld. Manche kosten Jahre. Die teuersten kosten beides.",
     ],
     /* Vier Lektionen, keine Anekdoten. Jede benennt, worum es geht, nicht
        wie dramatisch es war. Keine Namen, keine Vorwuerfe gegen Dritte. */
     stories: [
-      {
-        label: "STEUERN",
-        text: "Warum Umsatz nicht automatisch dein Geld ist.",
-      },
-      {
-        label: "INVESTMENTS",
-        text: "Warum ein gutes Produkt noch kein gutes Investment ist.",
-      },
-      {
-        label: "VERTRÄGE",
-        text: "Warum Vertrauen wichtig ist — aber ein Handschlag keinen sauberen Vertrag ersetzt.",
-      },
-      {
-        label: "RISIKO",
-        text: "Warum Vermögen aufzubauen nur die Hälfte der Aufgabe ist.",
-      },
+      { nr: "01", label: "STEUERN", text: "Umsatz ist nicht automatisch dein Geld." },
+      { nr: "02", label: "INVESTMENTS", text: "Ein gutes Produkt ist noch kein gutes Investment." },
+      { nr: "03", label: "VERTRÄGE", text: "Vertrauen ersetzt keinen sauberen Vertrag." },
+      { nr: "04", label: "RISIKO", text: "Vermögen aufzubauen ist nur die Hälfte." },
     ],
   },
 } as const;
@@ -638,6 +636,18 @@ export const lifestyle = {
 /* --------------------------------------------------------------------------
    NETWORK
    -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   MASTERCLASS VS CLUB
+   Die Unterscheidung, an der die ganze Produktlogik haengt — einmal gross
+   und ohne Beiwerk, damit sie niemand ueberliest.
+   -------------------------------------------------------------------------- */
+
+export const vergleich = {
+  links: { label: "DIE MASTERCLASS", zeile: "GIBT DIR ERFAHRUNG." },
+  rechts: { label: "DER CLUB", zeile: "GIBT DIR EIN UMFELD." },
+  note: "Information findest du überall. Die richtige Perspektive zur richtigen Zeit ist schwieriger.",
+} as const;
 
 export const network = {
   eyebrow: "Dein Umfeld",
@@ -676,26 +686,16 @@ export const network = {
    ein Bestandteil der Mitgliedschaft — und steht deshalb in einem eigenen
    Bereich nach den fuenf Themenwelten. */
 export const live = {
-  lead: ["DIE MASTERCLASS", "IST NICHT DER GANZE CLUB."],
-  label: "LIVE MIT ISI",
+  eyebrow: "ÜBER DIE VIDEOS HINAUS.",
+  lead: ["MANCHMAL BRAUCHST DU", "KEIN WEITERES VIDEO."],
+  leadAccent: ["SONDERN EINE", "ZWEITE PERSPEKTIVE."],
+  label: "LIVE MIT ISI.",
   line: "Videos geben dir die Grundlagen. Im Live-Austausch geht es um die Situationen, die gerade wirklich vor dir liegen.",
   items: [
-    {
-      label: "FRAGEN STELLEN",
-      text: "Was beschäftigt dich gerade?",
-    },
-    {
-      label: "SITUATIONEN EINORDNEN",
-      text: "Eine zweite Perspektive auf reale Entscheidungen.",
-    },
-    {
-      label: "VON ANDEREN LERNEN",
-      text: "Die Frage eines anderen kann genau dein Problem treffen.",
-    },
-    {
-      label: "UMSETZUNG BESPRECHEN",
-      text: "Nicht nur Inhalte konsumieren, sondern anwenden.",
-    },
+    { label: "FRAGEN", text: "Was beschäftigt dich gerade?" },
+    { label: "EINORDNUNG", text: "Eine zweite Sicht auf reale Entscheidungen." },
+    { label: "ERFAHRUNG", text: "Von Situationen anderer lernen." },
+    { label: "UMSETZUNG", text: "Besprechen, was in der Praxis passiert." },
   ],
   /* Keine Zahl und keine Frequenz, solange die Termine nicht feststehen.
      "Woechentlich" waere eine Zusage, die jemand einloesen muss. */
@@ -771,15 +771,15 @@ export const testimonials = {
 
 export const fit = {
   eyebrow: "Kurz vorab",
-  headline: ["FÜR WEN DAS IST."],
-  headlineAccent: ["UND FÜR WEN NICHT."],
+  headline: ["NICHT FÜR JEDEN."],
+  headlineAccent: ["UND GENAU SO SOLL ES SEIN."],
   yes: {
     label: "Das passt, wenn du",
     items: [
-      "verkaufst, aufbaust, selbstständig arbeitest — oder genau da hin willst",
-      "Entscheidungen triffst, für die du niemanden zum Fragen hast",
-      "bereit bist, an deinem Können zu arbeiten",
-      "ein Umfeld willst, das weiter ist als deins",
+      "Verantwortung für deine Entscheidungen übernehmen willst.",
+      "verkaufst, aufbaust oder unternehmerisch denkst.",
+      "bereit bist, Können durch Umsetzung aufzubauen.",
+      "ein Umfeld suchst, das andere Perspektiven mitbringt.",
     ],
     /* Ohne diesen Satz las sich die erste Zeile wie eine Bedingung. Der
        Klub steht Quereinsteigern ausdruecklich offen — dieselbe Aussage
@@ -787,31 +787,34 @@ export const fit = {
     note: "Quereinsteiger ausdrücklich auch. Vorerfahrung ist keine Bedingung — anfangen kannst du auf jeder Ebene.",
   },
   no: {
-    label: "Das passt nicht, wenn du",
+    label: "Nicht, wenn du",
     items: [
-      "von heute auf morgen reich werden willst",
-      "denkst, es geht um Zufall statt um dein Können",
-      "eine Garantie erwartest, dass es funktioniert",
-      "Inhalte sammelst und nichts davon umsetzt",
+      "schnelle Ergebnisse ohne eigene Arbeit erwartest.",
+      "nach Garantien suchst.",
+      "nur Content konsumieren willst.",
+      "Verantwortung für deine Entscheidungen abgeben möchtest.",
     ],
   },
   /* Auf dem Handy je vier kurze Zeilen. Eine Zeile, ein Gedanke —
      umgebrochene Aufzaehlungen liest niemand zu Ende. */
   jaMobil: [
-    "du verkaufst, aufbaust — oder gerade erst anfängst",
-    "du Entscheidungen nicht immer alleine treffen willst",
-    "du an deinen Fähigkeiten arbeiten willst",
-    "du ein stärkeres Umfeld suchst",
+    "Verantwortung für deine Entscheidungen übernehmen willst.",
+    "verkaufst, aufbaust oder unternehmerisch denkst.",
+    "Können durch Umsetzung aufbauen willst.",
+    "ein Umfeld suchst, das andere Perspektiven mitbringt.",
   ],
   /* Kurzfassung des Hinweises fuer die schmale Spalte. */
   jaHinweisMobil: "Quereinsteiger ausdrücklich auch. Vorerfahrung ist keine Bedingung.",
   neinMobil: [
-    "du schnellen Reichtum erwartest",
-    "du Garantien suchst",
-    "du Verantwortung abgeben willst",
-    "du nur Content sammeln willst",
+    "schnelle Ergebnisse ohne eigene Arbeit erwartest.",
+    "nach Garantien suchst.",
+    "nur Content konsumieren willst.",
+    "Verantwortung abgeben möchtest.",
   ],
-  closing: "Ich baue mit dir etwas auf, das kein schneller Gewinn ist.",
+  /* "Ich baue mit dir etwas auf" ist raus: das klang nach 1:1-Coaching
+     und versprach eine persoenliche Betreuung, die es so nicht gibt. */
+  closing:
+    "Wo du heute stehst, ist weniger entscheidend als die Frage, was du daraus machst.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -820,8 +823,8 @@ export const fit = {
 
 export const membership = {
   eyebrow: "Deine Mitgliedschaft",
-  headline: ["NICHT NUR CONTENT."],
-  headlineAccent: ["EIN UMFELD,", "DAS MITDENKT."],
+  headline: ["NICHT NUR EINE IDEE."],
+  headlineAccent: ["EIN FERTIGES SYSTEM."],
   /* Das Mockup steht nicht nackt auf der Seite, sondern in einem Banner:
      links, was der Bereich ist, rechts das Bild, das aus dem Rahmen
      laeuft. Ein Screenshot allein erklaert sich nicht. */
@@ -861,9 +864,11 @@ export const membership = {
       label: "NETZWERK",
       text: "Kontakte entstehen über Vertrauen, Zeit und gegenseitigen Mehrwert.",
     },
+    /* Vorher "Wenn es passt, nehme ich dich mit" — das klang nach einer
+       persoenlichen Zusage, die organisatorisch nicht feststeht. */
     {
       label: "TREFFEN & EVENTS",
-      text: "Wenn es passt, nehme ich dich mit. In echt, nicht per Video.",
+      text: "Ausgewählte Formate können auch außerhalb des digitalen Clubs stattfinden.",
     },
     /* "Ruecksprache halten" statt "Feedback", "Betreuung" oder
        "Lernkontrolle": das FernUSG haengt an der Ueberwachung des
@@ -900,29 +905,12 @@ export const application = {
   /* Vier statt fuenf: "Ich schaue es mir an" war kein Schritt, den der
      Besucher geht — der letzte Schritt gehoert ihm, nicht mir. */
   steps: [
-    {
-      step: "01",
-      label: "DU ENTSCHEIDEST DICH",
-      text: "Was willst du wirklich erreichen?",
-    },
-    {
-      step: "02",
-      label: "DU BEWIRBST DICH",
-      text: "Fünf Fragen. Unverbindlich.",
-    },
-    {
-      step: "03",
-      label: "DU SIEHST DIE PRÄSENTATION",
-      text: "Umfang, Ablauf, Preis — in Ruhe.",
-    },
-    {
-      step: "04",
-      label: "DU ENTSCHEIDEST, OB WIR LOSLEGEN",
-      text: "Passt es für dich, geht es los.",
-    },
+    { step: "01", label: "ANFRAGE", text: "Du erzählst uns kurz, wo du stehst und was du suchst." },
+    { step: "02", label: "FIT", text: "Wir schauen, ob das Umfeld zu deiner Situation passt." },
+    { step: "03", label: "EINBLICK", text: "Du bekommst Aufbau, Umfang und Konditionen transparent gezeigt." },
+    { step: "04", label: "ENTSCHEIDUNG", text: "Wenn es für beide Seiten passt, geht es los." },
   ],
-  /* Ehrlich halten: eine Bewerbung ist keine Zusage. */
-  note: "Es passt nicht mit jedem. Wenn ich absage, ist das kein schlechtes Ergebnis — nur ein ehrliches.",
+  note: "Kein Druck. Keine Entscheidung im Blindflug.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -938,16 +926,20 @@ export const spots = {
      nicht geraten. */
   count: "OFFEN",
   period: "OFFEN",
+  /* Die Platzzahl ist ersatzlos raus. "Die Zahl steht hier, sobald sie
+     feststeht" war ein sichtbarer Platzhalter — und eine Limitierung, die
+     es nicht gibt, waere erfundene Knappheit. */
+  headlineNeu: ["KEIN COUNTDOWN.", "KEIN KÜNSTLICHER DRUCK."],
   facts: [
     "Kein Streichpreis, kein Countdown.",
     "Kein Upsell nach der Aufnahme.",
-    "Wer nicht passt, bekommt eine Absage.",
+    "Aufnahme nach Bewerbung.",
   ],
   /* Der Preis steht bewusst nicht hier, sondern in der Praesentation —
      zusammen mit dem, was drin ist. Er wird nicht verschwiegen, nur nicht
      aus dem Zusammenhang gerissen. */
   priceNote:
-    "Was die Mitgliedschaft kostet, sage ich dir in der Präsentation — zusammen mit allem, was drin ist. Vorher wäre es eine Zahl ohne Zusammenhang.",
+    "Preis, Laufzeit und Zahlungsoptionen werden dir vor deiner Entscheidung vollständig transparent gezeigt. Du bekommst alle Informationen und entscheidest in Ruhe.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -979,8 +971,8 @@ export const faq = {
       a: "Der persönliche Austausch findet insbesondere über die vorgesehenen Live- und Community-Formate statt. Die konkreten Frequenzen und Formate werden vor Abschluss der Mitgliedschaft transparent kommuniziert.",
     },
     {
-      q: "Laufzeit und Zahlung?",
-      a: "Ja, es kostet etwas. Wer das nicht als Investment sieht, ist hier ohnehin falsch. Einen Weg findet man: komplett auf einmal oder in zwei bis drei Zahlungen. Umfang, Laufzeit, Preis und Zahlungsoptionen siehst du vor deiner Entscheidung transparent in der Präsentation.",
+      q: "Was kostet die Mitgliedschaft?",
+      a: "Preis, Laufzeit und Zahlungsoptionen erhältst du vor deiner Entscheidung vollständig transparent in der Präsentation. Je nach Modell können unterschiedliche Zahlungsoptionen angeboten werden.",
     },
     /* Frueher: "Genau das ist die Idee dahinter." Das war eine Zusage auf
        Zusammenarbeit und damit ein Versprechen, das niemand halten muss. */
@@ -1013,12 +1005,11 @@ export const faq = {
 
 export const finalCta = {
   headline: ["JETZT KENNST", "DU MICH BESSER."],
-  accent: ["DIE FRAGE IST, MIT WEM DU", "DEINE NÄCHSTEN ENTSCHEIDUNGEN TRIFFST."],
-  body: [
-    "Kein Fake. Alles echt.",
-    "Mein Wort ist mein Stil.",
-    "Mein Name ist meine Marke.",
-  ],
+  accent: ["MIT WEM TRIFFST DU", "DEINE NÄCHSTEN", "ENTSCHEIDUNGEN?"],
+  /* "Kein Fake. Alles echt. Mein Wort ist mein Stil." war ein
+     Social-Media-Spruch an der Stelle, an der die Seite am ruhigsten
+     sein sollte. */
+  body: ["ECHTE ERFAHRUNG.", "EIGENE ENTSCHEIDUNGEN.", "KEINE ERFOLGSGARANTIE."],
   brand: "ISI TAT BUSINESS CLUB",
   /* Der Auftraggeber hat fuer diese Flaeche denselben Garagen-Clip
      geliefert, der oben in "Freiheit" laeuft — byte-gleiche Datei. Statt

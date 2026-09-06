@@ -57,6 +57,17 @@ export function OpportunityMoment() {
           ))}
         </Reveal>
 
+        {/* Vor dem Hinweis, nicht danach: erst sagt er, warum — dann
+            steht da, was daraus nicht folgt. */}
+        <Reveal delay={160}>
+          <blockquote className={styles.zitat}>
+            {opportunity.zitat.map((absatz) => (
+              <p key={absatz}>{absatz}</p>
+            ))}
+            <cite className={styles.zitatName}>ISI TAT</cite>
+          </blockquote>
+        </Reveal>
+
         <Reveal delay={180}>
           <p className={styles.note}>{opportunity.note}</p>
           <p className={styles.disclaimer}>{opportunity.disclaimer}</p>

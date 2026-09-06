@@ -506,6 +506,15 @@ export const opportunity = {
   second: ["NICHT WEIL DU INVESTIERT HAST.", "SONDERN WEIL DU"],
   accent: "AUFFÄLLST.",
   note: "Wer durch Umsetzung, Zuverlässigkeit, Fähigkeiten und den Umgang mit anderen positiv auffällt, kann in meinem Umfeld sichtbar werden. Daraus können Gespräche, Kontakte oder neue Möglichkeiten entstehen.",
+  /* ISI in eigenen Worten. Steht hier, weil dieser Abschnitt sonst eine
+     Behauptung ueber ihn waere — so ist es sein Motiv, und ein Motiv ist
+     kein Versprechen. "Moeglicherweise" bleibt unangetastet: das Wort
+     traegt die ganze rechtliche Last des Absatzes. */
+  zitat: [
+    "Ich mache diese Masterclass aus zwei Gründen: Zum einen möchte ich das Wissen und die Erfahrungen aus vielen Jahren Selbstständigkeit und Vertrieb weitergeben, damit andere nicht dieselben Fehler machen müssen und schneller vorankommen.",
+    "Zum anderen möchte ich darüber natürlich auch Menschen kennenlernen, die zu unserer Philosophie passen und mit denen sich möglicherweise eine langfristige Zusammenarbeit entwickelt.",
+    "Das kommuniziere ich ganz offen — denn für mich schließen sich Mehrwert und der Aufbau eines starken Teams nicht aus.",
+  ],
   closing: ["ZUGANG KANNST DU ANFRAGEN.", "VERTRAUEN MUSST DU DIR ERARBEITEN."],
   /* "kann sichtbar werden" statt "wird sichtbar", und der Anspruch wird
      ausdruecklich ausgeschlossen — sonst liest sich der Abschnitt als

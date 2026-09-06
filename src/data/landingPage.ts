@@ -300,7 +300,7 @@ export const trust = {
   bio: [
     "Über zwei Jahrzehnte praktische Erfahrung in Handel, Vertrieb, Unternehmertum, Investments, Gastronomie und Personal Brand.",
     "Mein Weg begann nicht mit einem Businessplan. Er begann mit der Frage, wo Möglichkeiten entstehen.",
-    "Von frühen Online- und Handelsgeschäften über Felgenhandel, Promotion und Vertrieb bis zu eigenen unternehmerischen Strukturen, Beteiligungen, Investments und Social Media.",
+    "Von frühen Online- und Handelsgeschäften über Felgenhandel, Promotion und Vertrieb bis zu Vermögensberatung, eigenen unternehmerischen Strukturen, Beteiligungen, Investments und Social Media.",
     "Dabei ist nicht alles richtig gelaufen. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet.",
     "Genau deshalb kann meine Erfahrung heute für andere eine Abkürzung sein.",
   ],
@@ -384,6 +384,7 @@ export const insideTheClub = {
         "Verkaufen kann man lernen",
         "Schlagzahl entscheidet",
         "Warum Menschen bei Menschen kaufen",
+        "Verkaufe nichts, woran du nicht glaubst",
         "Drei Kundentypen",
         "„Das ist mir zu teuer.“",
         "Warum ich Kunden gehen lasse",

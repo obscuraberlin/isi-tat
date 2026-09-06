@@ -43,6 +43,10 @@
   font-weight: 700;
   letter-spacing: var(--tr-tight);
   line-height: 1.05;
+  /* Bei der groesseren Typo-Skala lief "Datenschutzerklaerung" ueber
+     die Textspalte hinaus. */
+  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 .stand {

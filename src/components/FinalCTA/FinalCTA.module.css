@@ -71,8 +71,9 @@
 }
 
 .headline {
-  font-size: var(--fs-section);
+  font-size: min(var(--fs-display), 13vh);
   letter-spacing: var(--tr-tight);
+  line-height: var(--lh-tight);
 }
 
 .line {
@@ -86,7 +87,8 @@
 
 .accentBlock {
   display: block;
-  margin-top: clamp(16px, 2vw, 26px);
+  margin-top: clamp(20px, 3vw, 44px);
+  font-size: min(var(--fs-section), 9vh);
 }
 
 .body {
@@ -96,9 +98,13 @@
   gap: 4px;
 }
 
+/* Drei Marken statt drei Saetzen — an der ruhigsten Stelle der Seite. */
 .bodyLine {
-  font-size: var(--fs-body-lg);
-  line-height: 1.5;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  line-height: 1.9;
   color: var(--text-muted-light);
 }
 
@@ -138,6 +144,14 @@
   .bg > div {
     width: 175%;
     filter: blur(4px) saturate(0.95);
+  }
+
+  .headline {
+    font-size: var(--fs-display);
+  }
+
+  .accentBlock {
+    font-size: var(--fs-section);
   }
 
   .section {

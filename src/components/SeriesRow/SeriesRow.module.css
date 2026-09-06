@@ -146,7 +146,11 @@
   font-weight: 700;
   letter-spacing: var(--tr-head);
   line-height: 1.02;
+  /* "UNTERNEHMERISCHES" ist breiter als die Spalte. Silbentrennung
+     zuerst, Umbruch im Wort als letzte Sicherung — sonst laeuft der
+     Titel ueber die Kante. */
   hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 .chapterZahl {

@@ -2,7 +2,7 @@
 
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import { isPending, timeline, trust } from "@/data/landingPage";
+import { timeline, trust } from "@/data/landingPage";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
 import { Media } from "@/components/Media/Media";
 import { VideoTeaser } from "@/components/VideoTeaser/VideoTeaser";
@@ -82,13 +82,11 @@ export function TrustSection() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              {isPending(trust.bio) ? (
-                <p className={styles.bioPending}>
-                  Ausführliche Biografie folgt.
-                </p>
-              ) : (
-                <p className={styles.bio}>{trust.bio}</p>
-              )}
+              <div className={styles.bio}>
+                {trust.bio.map((absatz) => (
+                  <p key={absatz}>{absatz}</p>
+                ))}
+              </div>
 
               <p className={styles.claim}>{trust.claim}</p>
             </Reveal>

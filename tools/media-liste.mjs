@@ -22,9 +22,10 @@ const gruppen = [
   ["Über ISI", [d.trust.video]],
   ["Was bei mir schiefgelaufen ist", [d.failure.compare.before, d.failure.compare.after, d.failure.motive.asset]],
   ...d.insideTheClub.series.map((s) => [
-    `Serie: ${s.label}`,
-    [s.cover, s.still, s.preview].filter(Boolean),
+    `Themenwelt: ${s.label}`,
+    [s.cover, s.still],
   ]),
+  ["Live mit ISI", Object.values(d.insideTheClub.liveVisual)],
   ["Erfahrungen", d.testimonials.items.map((t) => t.video)],
   ["Freiheit", [d.lifestyle.video]],
   ["Freiheit (Galerie)", d.lifestyle.gallery],

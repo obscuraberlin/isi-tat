@@ -142,18 +142,19 @@ export const nav = [
 export const hero = {
   /* Die Erfahrung steht jetzt hier oben statt als zweite Headline-Ebene —
      sie qualifiziert die Aussage, bevor man sie liest. */
-  eyebrow: "20+ JAHRE ERFAHRUNG AN DEINER SEITE",
-  /* Auf dem Telefon dieselbe Aussage in drei Woertern — die lange Zeile
-     brach dort um und stand als zweizeilige Vorzeile ueber der Headline. */
-  eyebrowMobil: "20+ JAHRE ERFAHRUNG",
-  /* Metazeile im Stil einer Streaming-Titelseite.
-     `edition` und `quality` sind Angaben ueber das Material — `quality`
-     nur stehen lassen, wenn tatsaechlich in 4K produziert wird.
-     Serien- und Folgenzahl werden aus den Daten berechnet, nie getippt. */
+  /* Das Leitmotiv der Masterclass. Es taucht spaeter im Fehler-Abschnitt
+     als Zwischenheadline wieder auf und in der ersten Themenwelt als
+     Beispielthema — dreimal dieselbe Idee, nie als Behauptung. */
+  eyebrow: "ERFAHRUNG ALS ABKÜRZUNG",
+  eyebrowMobil: "ERFAHRUNG ALS ABKÜRZUNG",
+  /* Metazeile im Stil einer Streaming-Titelseite. "4K" ist raus: das
+     Ausgangsmaterial ist 1080p und wird als 720p ausgeliefert — die
+     Angabe waere nachpruefbar falsch gewesen. Sie kommt zurueck, sobald
+     tatsaechlich in 4K produziert und ausgeliefert wird.
+     Themenwelten- und Videozahl werden gerechnet, nie getippt. */
   meta: {
     by: "VON ISI TAT",
-    edition: "2026",
-    quality: "4K",
+    edition: "MASTERCLASS 2026",
   },
   /* Zwei Headline-Varianten. Umschalten ueber `headlineVariant` — beide
      sind im Layout geprueft, die Wahl ist reine Geschmackssache. */
@@ -176,7 +177,7 @@ export const hero = {
   /* Drei Punkte, drei Sekunden. Der lange Satz vorher hat erklaert,
      dieser behauptet — und der letzte Teil ist der, der sitzt. */
   subheadline:
-    "Meine Erfahrung. Mein Netzwerk. Meine Fehler — damit du sie nicht auch machst.",
+    "Meine Erfahrung. Meine Fehler. Meine Entscheidungen. Mein Netzwerk — verdichtet, damit du nicht jeden Umweg selbst gehen musst.",
   /* Die Vertrauenszeile ist raus: sie hat aufgezaehlt, was die Subline
      zwei Zeilen darueber schon sagt, und den Hero unten zugestellt. */
   /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die
@@ -272,7 +273,8 @@ export const trust = {
     "Seitdem: eigene Unternehmen, eigene Teams, eigene Fehler.",
   ],
   /* Steht als eigene Zeile unter der Copy — die Kernhaltung der Seite. */
-  claim: "Du musst nicht jede Situation zum ersten Mal alleine erleben.",
+  claim:
+    "Ich will euch nicht erzählen, dass ich immer alles richtig gemacht habe. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet. Genau deshalb kann meine Erfahrung für euch eine Abkürzung sein.",
   /* 16:9, so ist das Material gedreht. Ein quadratischer Ausschnitt haette
      ein Viertel der Bildbreite gekostet. */
   video: media(
@@ -284,12 +286,24 @@ export const trust = {
   /* Bildunterschrift am Portrait — wie eine Autorenzeile. */
   person: {
     name: "ISI TAT",
-    role: "Unternehmer · Vertrieb · Netzwerk",
+    /* "Investor" steht bewusst nicht da: die Bezeichnung ist rechtlich
+       aufgeladen und vom Auftraggeber nicht freigegeben. Sie kann hier
+       eingesetzt werden, sobald ISI sie ausdruecklich bestaetigt. */
+    role: "Unternehmer · Vertrieb · Beteiligungen · Personal Brand",
   },
   /* Die eigentliche Biografie. Drei bis vier Saetze in ISIs Worten:
      Herkunft, Wendepunkt, was heute daraus geworden ist. Solange leer,
      zeigt die Seite die Stelle als gekennzeichnete Luecke. */
-  bio: "OFFEN",
+  /* "Ausfuehrliche Biografie folgt." ist ersatzlos raus — ein Hinweis auf
+     eine fehlende Biografie ist keine Biografie, und an der Stelle, an der
+     Vertrauen entsteht, liest er sich wie eine unfertige Seite. */
+  bio: [
+    "Über zwei Jahrzehnte praktische Erfahrung in Handel, Vertrieb, Unternehmertum, Investments, Gastronomie und Personal Brand.",
+    "Mein Weg begann nicht mit einem Businessplan. Er begann mit der Frage, wo Möglichkeiten entstehen.",
+    "Von frühen Online- und Handelsgeschäften über Felgenhandel, Promotion und Vertrieb bis zu eigenen unternehmerischen Strukturen, Beteiligungen, Investments und Social Media.",
+    "Dabei ist nicht alles richtig gelaufen. Einige meiner wichtigsten Lektionen haben mich Geld, Zeit und Nerven gekostet.",
+    "Genau deshalb kann meine Erfahrung heute für andere eine Abkürzung sein.",
+  ],
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -297,167 +311,165 @@ export const trust = {
    Bewusst ohne Nummerierung und ohne vorgegebene Reihenfolge.
    -------------------------------------------------------------------------- */
 
-export interface Episode {
-  title: string;
-  /** Freie Laufzeitangabe, z. B. "18 MIN". null = noch offen. */
-  runtime: string | null;
-}
+/** Ein Beispielthema aus einer Themenwelt. Kein Folgentitel, keine Nummer. */
+export type Thema = string;
 
 export interface Series {
   id: string;
-  /** "serie" zaehlt in die Serien-Zahl, "live" ist ein Format. */
-  format: "serie" | "live";
+  /** Titel der Themenwelt. */
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
-  /**
-   * Gesamtlaufzeit der Serie, frei formuliert, z. B. "58 MIN".
-   * null = noch nicht gemessen; dann steht auf der Karte nur die
-   * Folgenzahl. Es wird nichts geschaetzt.
-   */
-  runtime: string | null;
+  /** Anzahl der Videos in dieser Themenwelt. Summe ueber alle: 40. */
+  videos: number;
   /** Zwei bis drei Saetze in der Detailansicht. */
   description: string;
   cover: MediaAsset;
   still: MediaAsset;
-  episodes: Episode[];
+  /** Beispielthemen — was vorkommt, nicht in welcher Reihenfolge. */
+  topics: readonly Thema[];
 }
 
 export const insideTheClub = {
-  eyebrow: "Im Club",
-  headline: "WAS DICH IM MENTORING ERWARTET.",
-  subline: "Fünf Serien. Rund sechs Stunden. Plus live. Keine Reihenfolge.",
-  /* Steht unter dem Band und schliesst den Inhaltsteil ab. Der Satz macht
-     klar, dass es nicht ums Ansehen geht — und sagt zugleich nichts ueber
-     Ergebnisse zu: "vom Zuschauen hat noch niemand etwas verdient" ist
-     das Gegenteil eines Verdienstversprechens. */
-  /* Nicht "Wissen ist der Anfang": zwei Sektionen weiter unten steht
-     "Inhalte sind der Anfang" — dieselbe Figur zweimal liest sich wie
-     ein Versehen. */
-  workLine: ["WISSEN ALLEIN REICHT NICHT.", "GEARBEITET WIRD DANACH."],
-  work: "Alles hier ist zum Anwenden gedacht, nicht zum Ansehen. Vom Zuschauen hat noch niemand etwas verdient. Entschieden wird es draußen, im echten Geschäft.",
-  note: "Es kommt laufend etwas dazu. Du fängst an, wo es dich gerade betrifft — nicht bei Folge eins.",
-  draftEpisodeNote:
-    "Folgentitel sind Arbeitsstände und werden durch die finalen Titel ersetzt.",
+  eyebrow: "Die Masterclass",
+  headline: "DIE MASTERCLASS.",
+  /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
+     eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
+  subline: "40 Videos. 5 Themenwelten. Erfahrung aus über 20 Jahren.",
+  body: "Keine Theorie-Sammlung. Jede Themenwelt verbindet persönliche Erfahrungen, konkrete Prinzipien und Aufgaben zur Umsetzung.",
+  facts: "5 Themenwelten · 40 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
+  /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
+     Freiheit liegt im Einstieg, nicht in der Struktur. */
+  note: "Die Masterclass ist in fünf klar strukturierte Themenwelten gegliedert. Du kannst gezielt dort einsteigen, wo du gerade eine konkrete Herausforderung hast — oder sie als gesamten Weg von Mindset und Sales über Business und Geld bis zur Personal Brand durcharbeiten.",
+  workLine: ["WISSEN ALLEIN REICHT NICHT.", "UMSETZUNG ENTSCHEIDET."],
+  work: "Jedes Video hat eine klare Kernbotschaft, konkrete Beispiele und eine Umsetzungsaufgabe. Du sollst nicht 40 Videos sammeln. Du sollst aus jedem relevanten Inhalt mindestens eine Sache in dein reales Leben oder Business übertragen.",
+  /* Die Schritte als Zeile unter dem Text. Kein Lernpfad durch die
+     Inhalte, sondern die Arbeitsweise an einem einzelnen Video. */
+  ablauf: ["VERSTEHEN", "PRÜFEN", "ANWENDEN", "REFLEKTIEREN", "WEITERMACHEN"],
+  /* Auf dem Telefon nur die ersten drei Beispielthemen, der Rest hinter
+     einem Schalter. Zwoelf Zeilen Aufzaehlung liest dort niemand. */
+  themenMehr: "Alle Themen ansehen",
+  themenWeniger: "Weniger",
   series: [
     {
-      /* interne Ablage: MINDSET:PERSÖNLICHKEIT */
       id: "mindset",
-      format: "serie",
-      label: "MINDSET & PERSÖNLICHKEIT",
-      tagline: "Entscheiden, wenn es unbequem wird.",
-      runtime: null,
+      label: "MINDSET, CHANCEN & UNTERNEHMERISCHES DENKEN",
+      tagline:
+        "Chancen erkennen, Entscheidungen treffen und Probleme lösen, ohne dich in Theorie zu verlieren.",
+      videos: 8,
       description:
-        "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Über Standards, die niemand kontrolliert — und was passiert, wenn ich sie unterschreite.",
-      cover: media("kurs-mindset-cover", "image", "Mindset & Persönlichkeit", "2 / 3"),
-      still: media("kurs-mindset-still", "image", "Mindset & Persönlichkeit", "16 / 9", {}, 7),
-      episodes: [
-        { title: "Standards, die niemand kontrolliert", runtime: null },
-        { title: "Entscheiden mit halber Information", runtime: null },
-        { title: "Was Rückschläge wirklich kosten", runtime: null },
-        { title: "Disziplin ohne Motivation", runtime: null },
+        "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Warum manche Chancen erst sichtbar werden, wenn man einmal darauf geachtet hat — und warum die meisten Probleme nicht gelöst, sondern nur verwaltet werden.",
+      cover: media("kurs-mindset-cover", "image", "Mindset, Chancen & unternehmerisches Denken", "2 / 3"),
+      still: media("kurs-mindset-still", "image", "Mindset, Chancen & unternehmerisches Denken", "16 / 9", {}, 7),
+      topics: [
+        "Erfahrung als Abkürzung",
+        "Der Red-Car-Effekt",
+        "Entscheidungen schnell treffen",
+        "Zu langsam vs. zu schnell",
+        "Probleme lösen statt verwalten",
+        "Ziele visualisieren und umsetzen",
       ],
     },
     {
-      id: "vertrieb",
-      format: "serie",
-      label: "VERTRIEB",
-      tagline: "Menschen verstehen, bevor du verkaufst.",
-      runtime: null,
+      id: "sales",
+      label: "SALES, MENSCHEN & VERHANDELN",
+      tagline:
+        "Verkaufen lernen, Menschen besser verstehen, Preise erklären und Verhandlungen vorbereiten.",
+      videos: 8,
       description:
-        "Zwanzig Jahre Gespräche, Einwände und Verhandlungen. Warum Menschen kaufen, bevor sie überzeugt sind — und woran es liegt, wenn sie es nicht tun.",
-      cover: media("kurs-vertrieb-cover", "image", "Vertrieb", "2 / 3"),
-      still: media("kurs-vertrieb-still", "image", "Vertrieb", "16 / 9", {}, 9),
-      episodes: [
-        { title: "Das Gespräch vor dem Gespräch", runtime: null },
-        { title: "Einwände sind Informationen", runtime: null },
-        { title: "Verhandeln, ohne zu verlieren", runtime: null },
-        { title: "Der Abschluss ist kein Moment", runtime: null },
+        "Verkaufen ist kein Talent, sondern Handwerk — und der größte Teil davon passiert, bevor jemand über den Preis spricht. Wie ich Kundentypen unterscheide, wie ich mit „zu teuer\u201c umgehe und warum ich manche Kunden ziehen lasse.",
+      cover: media("kurs-sales-cover", "image", "Sales, Menschen & Verhandeln", "2 / 3"),
+      still: media("kurs-sales-still", "image", "Sales, Menschen & Verhandeln", "16 / 9", {}, 9),
+      topics: [
+        "Verkaufen kann man lernen",
+        "Schlagzahl entscheidet",
+        "Warum Menschen bei Menschen kaufen",
+        "Drei Kundentypen",
+        "„Das ist mir zu teuer.“",
+        "Warum ich Kunden gehen lasse",
+        "Wie ich bei einem Ferrari ca. 20.000 € verhandelt habe",
       ],
     },
     {
-      /* interne Ablage: DER BERUF: DAS UNTERNEHMEN */
       id: "business",
-      format: "serie",
-      label: "BUSINESS",
-      tagline: "Vom Job zum eigenen Unternehmen.",
-      runtime: null,
+      label: "BUSINESS AUFBAUEN & GELD VERDIENEN",
+      tagline:
+        "Ideen prüfen, Partner einschätzen, Risiken verstehen, Teams aufbauen und Systeme schaffen.",
+      videos: 10,
       description:
-        "Was sich ändert, wenn aus einer Tätigkeit ein Unternehmen wird. Verantwortung, Struktur, Leute — und die Entscheidungen, die ich heute anders treffen würde.",
-      cover: media("kurs-business-cover", "image", "Business", "2 / 3"),
-      still: media("kurs-business-still", "image", "Business", "16 / 9", {}, 11),
-      episodes: [
-        { title: "Vom Angestellten zum Unternehmer", runtime: null },
-        { title: "Verantwortung, die niemand abnimmt", runtime: null },
-        { title: "Die falschen Partner erkennen", runtime: null },
-        { title: "Wachsen, ohne die Kontrolle zu verlieren", runtime: null },
-        /* aus der Ablage GELD — real existierende Folge */
-        { title: "Konsum vs Investieren", runtime: null },
+        "Eine gute Idee ist der einfachste Teil. Wie ich Partner einschätze, warum ein Handschlag keinen Vertrag ersetzt und was mich das Lehrgeld gekostet hat, bevor ich das verstanden hatte.",
+      cover: media("kurs-business-cover", "image", "Business aufbauen & Geld verdienen", "2 / 3"),
+      still: media("kurs-business-still", "image", "Business aufbauen & Geld verdienen", "16 / 9", {}, 11),
+      topics: [
+        "Eine gute Idee reicht nicht",
+        "Investiere in Menschen",
+        "Fünfstelliges Investment-Lehrgeld",
+        "Warum Verträge Pflicht sind",
+        "Geld wird beim Einkauf verdient",
+        "Vermögen schützen",
+        "Delegation",
+        "Zeit gegen Geld",
+        "Menschen auswählen",
+        "Menschen führen",
       ],
     },
     {
-      /* interne Ablage: FREUNDE WERBEN FREUNDE
-         Oeffentlich als NETZWERK gefuehrt: die interne Bezeichnung beschreibt
-         eine Vertriebsmechanik und gehoert nicht auf die Verkaufsseite. */
-      id: "netzwerk",
-      format: "serie",
-      label: "NETZWERK",
-      tagline: "Wer dich kennt, entscheidet mit.",
-      runtime: null,
+      id: "geld",
+      label: "GELD, LIFESTYLE & BUSINESS-HACKS",
+      tagline:
+        "Liquidität verstehen, Geld sinnvoll einsetzen und finanzielle Entscheidungen erwachsener treffen.",
+      videos: 9,
       description:
-        "Warum man an Menschen schwerer rankommt als an Wissen. Wie Beziehungen entstehen, woran sie kaputtgehen und was Verlässlichkeit über Jahre wert ist.",
-      cover: media("kurs-netzwerk-cover", "image", "Netzwerk", "2 / 3"),
-      still: media("kurs-netzwerk-still", "image", "Netzwerk", "16 / 9", {}, 13),
-      episodes: [
-        { title: "Der erste Eindruck ist der zweite", runtime: null },
-        { title: "Geben, bevor du brauchst", runtime: null },
-        { title: "Räume, in die man eingeladen wird", runtime: null },
+        "Umsatz ist nicht dein Geld — das ist der Satz, der die meisten am spätesten trifft. Wie ich zwischen Ausgeben, Reinvestieren und Behalten unterscheide, und warum ein guter Steuerberater keine Kostenstelle ist.",
+      cover: media("kurs-geld-cover", "image", "Geld, Lifestyle & Business-Hacks", "2 / 3"),
+      still: media("kurs-geld-still", "image", "Geld, Lifestyle & Business-Hacks", "16 / 9", {}, 13),
+      topics: [
+        "Mehr verdienen statt nur sparen",
+        "Umsatz ist nicht dein Geld",
+        "Warum ein guter Steuerberater Geld wert ist",
+        "Reinvestieren",
+        "Geld bewusst ausgeben",
+        "Lifestyle als Content",
+        "Kreditkarten und Punkte",
+        "Finanzierung vs. Barzahlung",
+        "Preise recherchieren",
       ],
     },
     {
-      id: "geschichten",
-      format: "serie",
-      label: "ECHTE GESCHICHTEN",
-      tagline: "Was gelaufen ist. Und was nicht.",
-      runtime: null,
+      id: "brand",
+      label: "PERSONAL BRAND, NETZWERK & WACHSTUM",
+      tagline:
+        "Sichtbarkeit aufbauen, Vertrauen schaffen und dafür sorgen, dass die richtigen Menschen wissen, wofür du stehst.",
+      videos: 5,
       description:
-        "Erzählte Fälle aus zwanzig Jahren, ohne Politur. Die Sachen, die funktioniert haben. Die, die schiefgingen. Und was jeweils den Unterschied gemacht hat.",
-      cover: media("kurs-geschichten-cover", "image", "Echte Geschichten", "2 / 3"),
-      still: media("kurs-geschichten-still", "image", "Echte Geschichten", "16 / 9", {}, 15),
-      episodes: [
-        { title: "Der Deal, der zu gut aussah", runtime: null },
-        { title: "Zwei Jahre auf die falsche Karte", runtime: null },
-        { title: "Wieder aufstehen ist keine Metapher", runtime: null },
+        "Eine Personal Brand ist kein Selbstzweck. Sie sorgt dafür, dass Menschen dich kennen, bevor du dich vorstellst — und dass aus Reichweite gelegentlich ein Gespräch wird, aus dem etwas entsteht.",
+      cover: media("kurs-brand-cover", "image", "Personal Brand, Netzwerk & Wachstum", "2 / 3"),
+      still: media("kurs-brand-still", "image", "Personal Brand, Netzwerk & Wachstum", "16 / 9", {}, 15),
+      topics: [
+        "Deine Personal Brand arbeitet, während du schläfst",
+        "Wie Social Media echte Deals bringen kann",
+        "Warum ich Lifestyle zeige",
+        "Reichweite ist nicht gleich Einfluss",
+        "Vom Zuschauer zum möglichen Geschäftskontakt",
       ],
     },
-    {
-      id: "live",
-      format: "live",
-      label: "LIVE MIT ISI",
-      tagline: "Fragen stellen, statt nur zuschauen.",
-      runtime: null,
-      description:
-        "Der Teil, den man nicht aufzeichnen kann. Runden, in denen ich Fragen beantworte, Situationen einordne und Leute miteinander bekannt mache.",
-      cover: media("kurs-live-cover", "image", "Live mit ISI", "2 / 3"),
-      still: media("kurs-live-still", "image", "Live mit ISI", "16 / 9", {}, 17),
-      episodes: [
-        { title: "Offene Fragerunden", runtime: null },
-        { title: "Fälle aus dem Alltag", runtime: null },
-        { title: "Austausch unter Mitgliedern", runtime: null },
-        { title: "Treffen vor Ort", runtime: null },
-      ],
-    },
-  ] satisfies Series[],
+  ] as readonly Series[],
+  /* Die beiden Flaechen, die frueher zur Serie "Live mit ISI" gehoerten
+     (Nummer 17 und 18). Sie bleiben an dieser Stelle stehen, damit sich
+     die Nummerierung aller folgenden Flaechen nicht verschiebt — und
+     tragen jetzt den eigenen Live-Bereich statt einer sechsten Karte. */
+  liveVisual: {
+    cover: media("live-cover", "image", "Live mit ISI", "2 / 3"),
+    still: media("live-still", "image", "Live mit ISI", "16 / 9", {}, 17),
+  },
 } as const;
 
-/** Aus den Daten abgeleitet — waechst automatisch mit der Mediathek. */
 export const catalogue = {
-  seriesCount: insideTheClub.series.filter((s) => s.format === "serie")
-    .length,
-  episodeCount: insideTheClub.series.reduce(
-    (total, s) => total + s.episodes.length,
-    0,
-  ),
+  seriesCount: insideTheClub.series.length,
+  /* Getippt wird nichts: die Videozahl ist die Summe der Themenwelten.
+     8 + 8 + 10 + 9 + 5 = 40. Live mit ISI zaehlt nicht mit — das ist
+     Club, nicht Masterclass. */
+  videoCount: insideTheClub.series.reduce((summe, s) => summe + s.videos, 0),
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -469,13 +481,18 @@ export const timeline = {
   headline: ["MEIN WEG."],
   /* Nur Jahr und Stichwort. Sechs erklaerende Saetze daneben hat niemand
      gelesen — sie haben nur eine Bildschirmhoehe gekostet. */
+  /* Ohne Jahreszahlen. 2003 / 2008 / 2013 / 2018 / 2021 waren nie von ISI
+     bestaetigt — sechs erfundene Daten in einer Zeitleiste sind sechs
+     Angaben, die jemand nachrechnen kann. Die Stationen selbst stimmen,
+     also stehen sie ohne Datum. Sobald ISI die Jahre bestaetigt, koennen
+     sie hier eingesetzt werden. */
   entries: [
-    { year: "2003", title: "ANFÄNGE" },
-    { year: "2008", title: "VERTRIEB" },
-    { year: "2013", title: "BUSINESS" },
-    { year: "2018", title: "WACHSTUM" },
-    { year: "2021", title: "FREIHEIT" },
-    { year: "HEUTE", title: "DER CLUB" },
+    { year: "ANFÄNGE", title: "HANDEL & ERSTE GESCHÄFTE" },
+    { year: "VERTRIEB", title: "VERKAUFEN LERNEN DURCH PRAXIS" },
+    { year: "UNTERNEHMERTUM", title: "EIGENE STRUKTUREN UND TEAMS" },
+    { year: "BETEILIGUNGEN", title: "INVESTMENTS, CHANCEN UND LEHRGELD" },
+    { year: "PERSONAL BRAND", title: "SOCIAL MEDIA ALS GESCHÄFTLICHER HEBEL" },
+    { year: "HEUTE", title: "ISI BUSINESS CLUB" },
   ],
 } as const;
 
@@ -487,10 +504,13 @@ export const opportunity = {
   first: ["MANCHMAL", "ENTSTEHT MEHR DARAUS."],
   second: ["NICHT WEIL DU INVESTIERT HAST.", "SONDERN WEIL DU"],
   accent: "AUFFÄLLST.",
-  note: "Wer im Club durch Zuverlässigkeit, Persönlichkeit und den Umgang mit anderen auffällt, wird in meinem Umfeld sichtbar.",
+  note: "Wer durch Umsetzung, Zuverlässigkeit, Fähigkeiten und den Umgang mit anderen positiv auffällt, kann in meinem Umfeld sichtbar werden. Daraus können Gespräche, Kontakte oder neue Möglichkeiten entstehen.",
   closing: ["ZUGANG KANNST DU ANFRAGEN.", "VERTRAUEN MUSST DU DIR ERARBEITEN."],
+  /* "kann sichtbar werden" statt "wird sichtbar", und der Anspruch wird
+     ausdruecklich ausgeschlossen — sonst liest sich der Abschnitt als
+     Zusage auf Zusammenarbeit. */
   disclaimer:
-    "Daraus entsteht kein Anspruch: keine Jobgarantie, keine Einkommensgarantie, keine automatische Zusammenarbeit.",
+    "Es gibt jedoch keinerlei Anspruch auf einen Job, eine Beteiligung, eine geschäftliche Zusammenarbeit, ein Investment oder ein bestimmtes Einkommen.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -543,6 +563,37 @@ export const failure = {
   /* Der Satz, der die Sektion mit dem Angebot verbindet — ohne zu
      versprechen, dass es bei jemand anderem funktioniert. */
   pass: "Genau das gebe ich heute weiter: Schritt für Schritt, damit du meine Umwege nicht noch einmal gehen musst.",
+  /* Verbindet die persoenliche Geschichte mit dem Produkt: die Fehler
+     sind nicht Beiwerk, sie sind der Gegenstand. Zwischenheadline und
+     Text kommen woertlich vom Auftraggeber. */
+  shortcut: {
+    line: ["ERFAHRUNG ALS ABKÜRZUNG."],
+    body: [
+      "Du musst nicht jeden Fehler selbst machen.",
+      "Manche Fehler kosten ein paar hundert Euro. Andere fünfstellige Beträge. Andere kosten Jahre.",
+      "Wenn jemand einen Weg bereits gegangen ist, kannst du trotzdem selbst entscheiden — aber du musst nicht jedes Lehrgeld noch einmal bezahlen.",
+    ],
+    /* Vier Lektionen, keine Anekdoten. Jede benennt, worum es geht, nicht
+       wie dramatisch es war. Keine Namen, keine Vorwuerfe gegen Dritte. */
+    stories: [
+      {
+        label: "STEUERN",
+        text: "Warum Umsatz nicht automatisch dein Geld ist.",
+      },
+      {
+        label: "INVESTMENTS",
+        text: "Warum ein gutes Produkt noch kein gutes Investment ist.",
+      },
+      {
+        label: "VERTRÄGE",
+        text: "Warum Vertrauen wichtig ist — aber ein Handschlag keinen sauberen Vertrag ersetzt.",
+      },
+      {
+        label: "RISIKO",
+        text: "Warum Vermögen aufzubauen nur die Hälfte der Aufgabe ist.",
+      },
+    ],
+  },
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -610,24 +661,34 @@ export const network = {
    dafuer kein Material und es soll auch keins gedreht werden — statt eine
    Bildschirmhoehe mit einem Platzhalter zu fuellen, steht die Aussage jetzt
    als schmale Zeile im Zugang-Abschnitt, wo sie ohnehin hingehoert. */
+/* Live mit ISI war frueher eine sechste Karte neben den Serien und wurde
+   damit zur Masterclass gezaehlt. Es ist aber kein Kursinhalt, sondern
+   ein Bestandteil der Mitgliedschaft — und steht deshalb in einem eigenen
+   Bereich nach den fuenf Themenwelten. */
 export const live = {
-  label: "LIVE DABEI",
-  line: "Der Club besteht nicht nur aus Aufnahmen.",
+  lead: ["DIE MASTERCLASS", "IST NICHT DER GANZE CLUB."],
+  label: "LIVE MIT ISI",
+  line: "Videos geben dir die Grundlagen. Im Live-Austausch geht es um die Situationen, die gerade wirklich vor dir liegen.",
   items: [
     {
       label: "FRAGEN STELLEN",
-      text: "Was dich gerade beschäftigt.",
+      text: "Was beschäftigt dich gerade?",
     },
     {
       label: "SITUATIONEN EINORDNEN",
-      text: "Eine zweite Perspektive von jemandem, der sie kennt.",
+      text: "Eine zweite Perspektive auf reale Entscheidungen.",
     },
     {
-      label: "VON ANDEREN FÄLLEN PROFITIEREN",
-      text: "Die Frage eines anderen ist oft auch deine.",
+      label: "VON ANDEREN LERNEN",
+      text: "Die Frage eines anderen kann genau dein Problem treffen.",
+    },
+    {
+      label: "UMSETZUNG BESPRECHEN",
+      text: "Nicht nur Inhalte konsumieren, sondern anwenden.",
     },
   ],
-  /* Frequenz noch offen. */
+  /* Keine Zahl und keine Frequenz, solange die Termine nicht feststehen.
+     "Woechentlich" waere eine Zusage, die jemand einloesen muss. */
   frequency: "OFFEN",
 } as const;
 
@@ -775,20 +836,20 @@ export const membership = {
   ),
   rows: [
     {
-      label: "INHALTE & ERFAHRUNGEN",
-      text: "Aus über 20 Jahren Vertrieb und Business.",
+      label: "40-VIDEO MASTERCLASS",
+      text: "Fünf Themenwelten aus über 20 Jahren praktischer Erfahrung.",
     },
     {
       label: "LIVE MIT ISI",
-      text: "Fragen stellen. Situationen einordnen.",
+      text: "Fragen stellen und reale Situationen einordnen.",
     },
     {
-      label: "DIE COMMUNITY",
-      text: "Menschen mit denselben Fragen.",
+      label: "COMMUNITY",
+      text: "Austausch mit Menschen, die ebenfalls aufbauen, verkaufen und entscheiden.",
     },
     {
       label: "NETZWERK",
-      text: "Ich nehme dich mit rein. Kontakte entstehen über Zeit.",
+      text: "Kontakte entstehen über Vertrauen, Zeit und gegenseitigen Mehrwert.",
     },
     {
       label: "TREFFEN & EVENTS",
@@ -799,13 +860,15 @@ export const membership = {
        Lernerfolgs durch den Anbieter. Fragen beantworten ist keine
        Ueberwachung — Ergebnisse pruefen, korrigieren oder einen
        Fortschritt bestaetigen waere eine. */
+    /* Bewusst ohne Zusage staendiger Erreichbarkeit: der Zugang laeuft
+       ueber die vorgesehenen Formate, nicht ueber eine offene Leitung. */
     {
       label: "ZUGANG ZU ISI",
-      text: "Rücksprache halten — auch dann noch, wenn du die Inhalte längst durch hast.",
+      text: "Rücksprache über die vorgesehenen Live- und Community-Formate.",
     },
     {
       label: "WEITERE MÖGLICHKEITEN",
-      text: "Keine Garantie. Aber die Chance, sichtbar zu werden.",
+      text: "Keine Garantie. Aber die Möglichkeit, durch Umsetzung und Fähigkeiten sichtbar zu werden.",
     },
   ],
   /* Sagt, worauf das hinauslaeuft — und haelt zugleich fest, dass es
@@ -891,29 +954,47 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Die Erfahrung aus über 20 Jahren Vertrieb, Business und Aufbau — und ein Netzwerk, das funktioniert. Beides an einem Ort, über ein Login.",
+      a: "Du erhältst Zugang zur 40-Video-Masterclass mit fünf Themenwelten: Mindset & unternehmerisches Denken, Sales & Verhandeln, Business, Geld & Lifestyle sowie Personal Brand & Wachstum. Hinzu kommen die Club-Bestandteile wie Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
     },
+    /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
+       Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
-      q: "Wie sind die Serien aufgebaut?",
-      a: "So, dass jeder auf seiner Ebene einsteigen kann. Es gibt keine feste Reihenfolge, keine Hausaufgaben, keine Prüfung und kein Zertifikat. Du gehst dahin, wo du gerade stehst, und fragst im Austausch nach, was offen bleibt.",
+      q: "Wie ist die Masterclass aufgebaut?",
+      a: "Die Masterclass besteht aus 40 Videos in fünf Themenwelten. Jedes Video vermittelt eine Kernbotschaft, ordnet sie anhand konkreter Erfahrungen oder Beispiele ein und endet mit einer praktischen Umsetzungsaufgabe und klaren ISI Rules. Es geht nicht darum, möglichst schnell alles anzusehen. Entscheidend ist, was du davon tatsächlich anwendest.",
     },
+    /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
+       "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
     {
       q: "Wie viel Kontakt habe ich zu dir?",
-      a: "OFFEN — Live-Runden, Frequenz und Umfang des persönlichen Zugangs eintragen.",
+      a: "Der persönliche Austausch findet insbesondere über die vorgesehenen Live- und Community-Formate statt. Die konkreten Frequenzen und Formate werden vor Abschluss der Mitgliedschaft transparent kommuniziert.",
     },
     {
       q: "Laufzeit und Zahlung?",
-      a: "Ja, es kostet etwas. Wer das nicht als Investment sieht, ist hier ohnehin falsch. Einen Weg findet man: komplett auf einmal oder in zwei bis drei Zahlungen. Die eigentliche Frage ist nicht das Wie, sondern ob du überhaupt teilnehmen kannst — es ist ein Bewerbungsverfahren mit einer begrenzten Zahl an Plätzen.",
+      a: "Ja, es kostet etwas. Wer das nicht als Investment sieht, ist hier ohnehin falsch. Einen Weg findet man: komplett auf einmal oder in zwei bis drei Zahlungen. Umfang, Laufzeit, Preis und Zahlungsoptionen siehst du vor deiner Entscheidung transparent in der Präsentation.",
     },
+    /* Frueher: "Genau das ist die Idee dahinter." Das war eine Zusage auf
+       Zusammenarbeit und damit ein Versprechen, das niemand halten muss. */
     {
       q: "Kann daraus eine Zusammenarbeit werden?",
-      a: "Genau das ist die Idee dahinter. Wenn jemand mitmacht, dranbleibt und auffällt, wird es interessant — dann reden wir darüber. Zusichern kann ich es dir vorab nicht, das entsteht über Zeit.",
+      a: "Das kann passieren, ist aber kein Bestandteil oder Versprechen der Mitgliedschaft. Wer über Zeit durch Umsetzung, Zuverlässigkeit, Fähigkeiten und Charakter auffällt, kann in meinem Umfeld sichtbar werden. Daraus können Gespräche oder Möglichkeiten entstehen. Es gibt jedoch keine Garantie und keinen Anspruch auf Zusammenarbeit, Job, Beteiligung, Investment oder Einkommen.",
     },
     {
       q: "Bin ich nach der Aufnahme auf mich allein gestellt?",
       a: "Nein. Du profitierst vom Netzwerk, von der Erfahrung und von den Fragen, die dort beantwortet werden — auch von denen, die du selbst nie gestellt hättest. Entscheiden musst du weiter selbst, aber du machst es nicht mehr mit dir allein aus.",
     },
   ],
+  /* Steht unter den Fragen, klein und sachlich — nicht als Warnkasten.
+     Noetig, weil die Masterclass Geld, Investments, Finanzierung,
+     Versicherungen, Steuern und Vertraege beruehrt. */
+  hinweis: {
+    label: "Hinweis",
+    text: [
+      "Die Inhalte des ISI BUSINESS CLUB dienen der allgemeinen Weiterbildung und basieren auf persönlichen Erfahrungen und Einschätzungen.",
+      "Sie stellen keine individuelle Rechts-, Steuer-, Versicherungs-, Finanzierungs- oder Anlageberatung dar.",
+      "Persönliche Zahlen und historische Beispiele werden — soweit erforderlich — als ungefähre Erinnerungswerte dargestellt.",
+      "Es werden keine Einkommens-, Investment- oder sonstigen Erfolgsversprechen abgegeben.",
+    ],
+  },
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -969,13 +1050,13 @@ export const footer = {
     href: "https://obscura-berlin.de",
   },
   legalNote:
-    "Hundert Prozent garantieren kann niemand. Was ich weitergebe, ist nach bestem Wissen und Gewissen alles, was mich dahin gebracht hat, wo ich heute stehe — meine Erfahrung, keine Rezepte.",
+    "Was ich hier weitergebe, sind Erfahrungen, Prinzipien und Lektionen aus meinem eigenen Weg. Keine Garantie und kein Rezept für ein bestimmtes Ergebnis. Was daraus entsteht, hängt von deiner Ausgangslage, deinen Entscheidungen und deiner Umsetzung ab.",
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB — Von null auf hundert, ohne meine Umwege.",
+  title: "ISI TAT BUSINESS CLUB | 40-Video Masterclass, Live & Netzwerk",
   description:
-    "Über 20 Jahre Vertrieb, Business und Netzwerk. Serien, Live-Austausch und ein Umfeld, in dem du mit deinen Fragen nicht alleine bleibst. Aufnahme nur über Bewerbung.",
+    "40 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -1060,12 +1141,12 @@ export const ctaBands = {
      im Hero, und es verspricht nichts. */
   nachInhalten: {
     lines: [
-      "DU KANNST DIR ALLES SELBST BEIBRINGEN.",
-      "ICH HABE ZWANZIG JAHRE DAFÜR GEBRAUCHT.",
+      "40 VIDEOS SIND DER ANFANG.",
+      "ENTSCHEIDEND IST, WAS DU DAMIT MACHST.",
     ],
     /* Vorher "Die Plaetze sind begrenzt" — eine Knappheitsaussage ohne
        Zahl dahinter. Die Absage ist der echte Filter und braucht keine. */
-    note: "Wer nicht passt, bekommt eine Absage.",
+    note: "Du siehst Umfang, Ablauf und Konditionen, bevor du dich entscheidest.",
   },
   nachUmfeld: {
     lines: [

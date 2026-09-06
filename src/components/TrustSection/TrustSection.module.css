@@ -49,8 +49,12 @@
   color: var(--text-dark);
 }
 
+/* Die Biografie steht jetzt als mehrere Absaetze, nicht als ein Satz. */
 .bio {
   margin-top: 0.9em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
 }
 
 .bioPending {

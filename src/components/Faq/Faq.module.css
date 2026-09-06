@@ -111,3 +111,29 @@
     top: calc(var(--header-h) + 48px);
   }
 }
+
+/* ---------- Rechtlicher Hinweis ---------- */
+
+.hinweis {
+  max-width: 78ch;
+  margin-top: clamp(40px, 4.5vw, 68px);
+  padding-top: clamp(20px, 2.2vw, 28px);
+  border-top: 1px solid var(--line-dark);
+}
+
+.hinweisLabel {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hinweisText {
+  margin-top: 10px;
+  /* Klein, aber nicht kleiner als der uebrige Kleintext — ein Hinweis,
+     den man nicht lesen kann, ist keiner. */
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-muted);
+}

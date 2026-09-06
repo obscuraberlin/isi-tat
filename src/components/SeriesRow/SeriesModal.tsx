@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Series } from "@/data/landingPage";
 import { cta, hero, insideTheClub } from "@/data/landingPage";
-import { useScrollLock } from "@/lib/hooks";
+import { useMediaQuery, useScrollLock } from "@/lib/hooks";
 import { Media } from "@/components/Media/Media";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { useTrailer } from "@/components/TrailerModal/TrailerContext";
@@ -24,8 +24,17 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const restoreRef = useRef<HTMLElement | null>(null);
   const { openTrailer } = useTrailer();
+  /* Zehn Beispielthemen untereinander sind auf 375 px eine halbe
+     Bildschirmhoehe Aufzaehlung. Drei reichen, um zu zeigen, worum es
+     geht; der Rest steht hinter einem Schalter. */
+  const mobil = useMediaQuery("(max-width: 767px)");
+  const [alleThemen, setAlleThemen] = useState(false);
 
   useScrollLock(series !== null);
+
+  useEffect(() => {
+    setAlleThemen(false);
+  }, [series]);
 
   useEffect(() => {
     if (!series) return;
@@ -67,7 +76,11 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
 
   if (!series || typeof document === "undefined") return null;
 
-  const count = series.episodes.length;
+  /* Nur auf dem Telefon kuerzen, und nur wenn es wirklich mehr als drei
+     sind — sonst stuende ein Schalter da, der nichts aufklappt. */
+  const gekuerzt = mobil && series.topics.length > 3;
+  const themen =
+    gekuerzt && !alleThemen ? series.topics.slice(0, 3) : series.topics;
 
   return createPortal(
     <div
@@ -96,22 +109,11 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
           <div className={styles.stageBody}>
             <h2 className={styles.title}>{series.label}</h2>
             <div className={styles.meta}>
-              <span className={styles.tag}>
-                {series.format === "live" ? "Format" : "Serie"}
-              </span>
-              <span className={styles.tag}>{hero.meta.edition}</span>
+              <span className={styles.tag}>Themenwelt</span>
               <span className={`${styles.tag} ${styles.tagAccent}`}>
-                {hero.meta.quality}
+                {hero.meta.edition}
               </span>
-              <span>
-                {count} {count === 1 ? "Folge" : "Folgen"}
-              </span>
-              {series.runtime ? (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span>{series.runtime}</span>
-                </>
-              ) : null}
+              <span>{series.videos} Videos</span>
               <span aria-hidden="true">·</span>
               <span>{series.tagline}</span>
             </div>
@@ -143,29 +145,37 @@ export function SeriesModal({ series, onClose }: SeriesModalProps) {
             </div>
 
             <p className={styles.description}>{series.description}</p>
-
-            <p className={styles.footnote}>
-              {insideTheClub.draftEpisodeNote}
-            </p>
           </div>
 
+          {/* Beispielthemen statt Folgentitel: was vorkommt, nicht in
+              welcher Reihenfolge. Die Liste ist bewusst nicht
+              nummeriert. */}
           <div>
-            <p className={styles.episodesTitle}>Folgen</p>
+            <p className={styles.episodesTitle}>Beispielthemen</p>
             <ul className={styles.episodes}>
-              {series.episodes.map((episode) => (
-                <li key={episode.title} className={styles.episode}>
+              {themen.map((thema) => (
+                <li key={thema} className={styles.episode}>
                   <span className={styles.episodeIcon} aria-hidden="true">
                     <svg viewBox="0 0 9 11">
                       <path d="M0 0v11l9-5.5z" />
                     </svg>
                   </span>
-                  <span className={styles.episodeTitle}>{episode.title}</span>
-                  {episode.runtime ? (
-                    <span className={styles.episodeRuntime}>{episode.runtime}</span>
-                  ) : null}
+                  <span className={styles.episodeTitle}>{thema}</span>
                 </li>
               ))}
             </ul>
+
+            {gekuerzt ? (
+              <button
+                type="button"
+                className={styles.mehr}
+                onClick={() => setAlleThemen((v) => !v)}
+              >
+                {alleThemen
+                  ? insideTheClub.themenWeniger
+                  : insideTheClub.themenMehr}
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

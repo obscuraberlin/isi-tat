@@ -21,8 +21,6 @@ function Card({
   onOpen: () => void;
   kopie?: boolean;
 }) {
-  const count = series.episodes.length;
-
   return (
     <button
       type="button"
@@ -37,12 +35,8 @@ function Card({
       <span className={styles.scrim} aria-hidden="true" />
 
       <div className={styles.cardBody}>
-        {/* Laufzeit steht nur da, wenn sie gemessen ist. Geschaetzte
-            Minuten waeren eine Angabe, die sich nachpruefen laesst. */}
         <span className={styles.cardMeta}>
-          {series.format === "live" ? "Format" : "Serie"} ·{" "}
-          {count} {count === 1 ? "Folge" : "Folgen"}
-          {series.runtime ? ` · ${series.runtime}` : ""}
+          Themenwelt · {series.videos} Videos
         </span>
         <h3 className={styles.cardLabel}>{series.label}</h3>
         <div className={styles.cardCopyWrap}>
@@ -91,6 +85,8 @@ export function SeriesRow() {
         </div>
 
         <p className={styles.subline}>{insideTheClub.subline}</p>
+        <p className={styles.body}>{insideTheClub.body}</p>
+        <p className={styles.facts}>{insideTheClub.facts}</p>
       </Reveal>
 
       {/* Laufband ueber die volle Breite statt einer Spalte mit Pfeilen:
@@ -102,7 +98,7 @@ export function SeriesRow() {
         ref={bandRef}
         className={styles.marquee}
         role="region"
-        aria-label={`${insideTheClub.headline} — Serien`}
+        aria-label="Die fünf Themenwelten"
       >
         <div
           className={[styles.track, inView ? "" : styles.trackWartet]
@@ -132,6 +128,16 @@ export function SeriesRow() {
             ))}
           </p>
           <p className={styles.work}>{insideTheClub.work}</p>
+
+          {/* Wie an einem einzelnen Video gearbeitet wird — kein Lernpfad
+              durch die Inhalte, sondern die Arbeitsweise daran. */}
+          <ol className={styles.ablauf}>
+            {insideTheClub.ablauf.map((schritt) => (
+              <li key={schritt} className={styles.schritt}>
+                {schritt}
+              </li>
+            ))}
+          </ol>
         </Reveal>
 
         <p className={styles.note}>{insideTheClub.note}</p>

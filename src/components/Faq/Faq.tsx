@@ -74,6 +74,18 @@ export function Faq() {
             );
           })}
         </div>
+
+        {/* Sachlicher Hinweis, kein Warnkasten: die Masterclass beruehrt
+            Geld, Investments, Finanzierung, Versicherungen, Steuern und
+            Vertraege. Klein gesetzt, aber lesbar — nicht versteckt. */}
+        <div className={styles.hinweis}>
+          <p className={styles.hinweisLabel}>{faq.hinweis.label}</p>
+          {faq.hinweis.text.map((absatz) => (
+            <p key={absatz} className={styles.hinweisText}>
+              {absatz}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { application, cta, isPending, live, membership, spots } from "@/data/landingPage";
+import { application, cta, isPending, membership, spots } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -77,23 +77,6 @@ export function Access() {
 
         <Reveal delay={80}>
           <p className={styles.rowsNote}>{membership.rowsNote}</p>
-        </Reveal>
-
-        {/* Der Live-Teil in einer Zeile statt in einer eigenen Sektion —
-            er gehoert zum Umfang, nicht zu den Argumenten. */}
-        <Reveal className={styles.live} delay={60}>
-          <p className={styles.liveHead}>
-            <span className={styles.liveLabel}>{live.label}</span>
-            {live.line}
-          </p>
-          <ul className={styles.liveItems}>
-            {live.items.map((item) => (
-              <li key={item.label} className={styles.liveItem}>
-                <span className={styles.liveItemLabel}>{item.label}</span>
-                <span className={styles.liveItemText}>{item.text}</span>
-              </li>
-            ))}
-          </ul>
         </Reveal>
 
         <Reveal className={styles.price}>

@@ -19,18 +19,18 @@ bleibt als Platzhalter stehen; nichts bricht.
 | **04** | Intro (Scrollytelling) | ISI TAT im Anzug vor einem Rolls-Royce | Bild | 4 / 5 |
 | **05** | Intro (Scrollytelling) | ISI TAT vor einem Jet | Bild | 4 / 5 |
 | **06** | Über ISI | ISI TAT über seinen Weg | Video | 16 / 9 |
-| **07** | Serie: MINDSET & PERSÖNLICHKEIT | Mindset & Persönlichkeit | Bild | 2 / 3 |
-| **08** | Serie: MINDSET & PERSÖNLICHKEIT | Mindset & Persönlichkeit | Bild | 16 / 9 |
-| **09** | Serie: VERTRIEB | Vertrieb | Bild | 2 / 3 |
-| **10** | Serie: VERTRIEB | Vertrieb | Bild | 16 / 9 |
-| **11** | Serie: BUSINESS | Business | Bild | 2 / 3 |
-| **12** | Serie: BUSINESS | Business | Bild | 16 / 9 |
-| **13** | Serie: NETZWERK | Netzwerk | Bild | 2 / 3 |
-| **14** | Serie: NETZWERK | Netzwerk | Bild | 16 / 9 |
-| **15** | Serie: ECHTE GESCHICHTEN | Echte Geschichten | Bild | 2 / 3 |
-| **16** | Serie: ECHTE GESCHICHTEN | Echte Geschichten | Bild | 16 / 9 |
-| **17** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 2 / 3 |
-| **18** | Serie: LIVE MIT ISI | Live mit ISI | Bild | 16 / 9 |
+| **07** | Themenwelt: MINDSET, CHANCEN & UNTERNEHMERISCHES DENKEN | Mindset, Chancen & unternehmerisches Denken | Bild | 2 / 3 |
+| **08** | Themenwelt: MINDSET, CHANCEN & UNTERNEHMERISCHES DENKEN | Mindset, Chancen & unternehmerisches Denken | Bild | 16 / 9 |
+| **09** | Themenwelt: SALES, MENSCHEN & VERHANDELN | Sales, Menschen & Verhandeln | Bild | 2 / 3 |
+| **10** | Themenwelt: SALES, MENSCHEN & VERHANDELN | Sales, Menschen & Verhandeln | Bild | 16 / 9 |
+| **11** | Themenwelt: BUSINESS AUFBAUEN & GELD VERDIENEN | Business aufbauen & Geld verdienen | Bild | 2 / 3 |
+| **12** | Themenwelt: BUSINESS AUFBAUEN & GELD VERDIENEN | Business aufbauen & Geld verdienen | Bild | 16 / 9 |
+| **13** | Themenwelt: GELD, LIFESTYLE & BUSINESS-HACKS | Geld, Lifestyle & Business-Hacks | Bild | 2 / 3 |
+| **14** | Themenwelt: GELD, LIFESTYLE & BUSINESS-HACKS | Geld, Lifestyle & Business-Hacks | Bild | 16 / 9 |
+| **15** | Themenwelt: PERSONAL BRAND, NETZWERK & WACHSTUM | Personal Brand, Netzwerk & Wachstum | Bild | 2 / 3 |
+| **16** | Themenwelt: PERSONAL BRAND, NETZWERK & WACHSTUM | Personal Brand, Netzwerk & Wachstum | Bild | 16 / 9 |
+| **17** | Live mit ISI | Live mit ISI | Bild | 2 / 3 |
+| **18** | Live mit ISI | Live mit ISI | Bild | 16 / 9 |
 | **19** | Was bei mir schiefgelaufen ist | ISI TAT als Jugendlicher | Bild | 3 / 4 |
 | **20** | Was bei mir schiefgelaufen ist | ISI TAT heute | Bild | 3 / 4 |
 | **21** | Was bei mir schiefgelaufen ist | ISI TAT mit seiner Mutter | Bild | 4 / 5 |

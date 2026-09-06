@@ -5,6 +5,7 @@ import { TrustSection } from "@/components/TrustSection/TrustSection";
 import { FitCheck } from "@/components/FitCheck/FitCheck";
 import { FailureStory } from "@/components/FailureStory/FailureStory";
 import { SeriesRow } from "@/components/SeriesRow/SeriesRow";
+import { LiveSection } from "@/components/LiveSection/LiveSection";
 import { Network } from "@/components/Network/Network";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { Lifestyle } from "@/components/Lifestyle/Lifestyle";
@@ -47,7 +48,10 @@ export default function Page() {
         <FailureStory />      {/* dunkel · Auch die Fehler         */}
 
         {/* --- 3 · Inhalt -------------------------------------------- */}
-        <SeriesRow />         {/* hell   · Die Serien              */}
+        <SeriesRow />         {/* hell   · Die Masterclass         */}
+        {/* Live gehoert zum Club, nicht zur Masterclass — deshalb hinter
+            den fuenf Themenwelten und als eigener Abschnitt. */}
+        <LiveSection />       {/* dunkel · Live mit ISI            */}
         <CtaBand
           {...ctaBands.nachInhalten}
           tone="dark"

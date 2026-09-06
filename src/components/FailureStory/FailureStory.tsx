@@ -121,6 +121,31 @@ export function FailureStory() {
             </Reveal>
           )}
         </div>
+
+        {/* Verbindet die Geschichte mit dem Produkt: die Fehler sind nicht
+            Beiwerk, sie sind der Gegenstand der Masterclass. */}
+        <Reveal delay={120} className={styles.shortcut}>
+          <p className={styles.shortcutLine}>
+            {failure.shortcut.line.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </p>
+
+          <div className={styles.shortcutBody}>
+            {failure.shortcut.body.map((absatz) => (
+              <p key={absatz}>{absatz}</p>
+            ))}
+          </div>
+
+          <ul className={styles.stories}>
+            {failure.shortcut.stories.map((story) => (
+              <li key={story.label} className={styles.story}>
+                <span className={styles.storyLabel}>{story.label}</span>
+                <span className={styles.storyText}>{story.text}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

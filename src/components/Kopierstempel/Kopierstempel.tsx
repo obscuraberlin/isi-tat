@@ -9,7 +9,8 @@ import { brand } from "@/data/landingPage";
 const AB_ZEICHEN = 60;
 
 /**
- * Haengt an laengere kopierte Passagen eine Herkunftszeile.
+ * Haengt an laengere kopierte Passagen eine Herkunftszeile und sperrt das
+ * Kontextmenue.
  *
  * Das ist kein Kopierschutz — den gibt es im Web nicht. Was ein Browser
  * anzeigt, kann er auch herausgeben: Quelltext, Entwicklerwerkzeuge,
@@ -42,8 +43,26 @@ export function Kopierstempel() {
       e.preventDefault();
     };
 
+    /* Kontextmenue sperren — auf ausdrueckliche Anweisung des
+       Auftraggebers. Es haelt niemanden auf, der die Seite kopieren will
+       (Quelltext, Entwicklerwerkzeuge, curl), aber es ist seine
+       Entscheidung.
+
+       Eingabefelder sind ausgenommen: dort braucht man das Menue zum
+       Einfuegen, und wer sich bewirbt, soll seine Adresse hineinkopieren
+       koennen, ohne dass die Seite ihn daran hindert. */
+    const menue = (e: MouseEvent) => {
+      const ziel = e.target as HTMLElement | null;
+      if (ziel?.closest("input, textarea, select, [contenteditable]")) return;
+      e.preventDefault();
+    };
+
     document.addEventListener("copy", beim);
-    return () => document.removeEventListener("copy", beim);
+    document.addEventListener("contextmenu", menue);
+    return () => {
+      document.removeEventListener("copy", beim);
+      document.removeEventListener("contextmenu", menue);
+    };
   }, []);
 
   return null;

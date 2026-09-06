@@ -235,3 +235,18 @@
     gap: 22px;
   }
 }
+
+/* Schalter fuer die restlichen Beispielthemen — nur auf dem Telefon
+   sichtbar, weil nur dort gekuerzt wird. */
+.mehr {
+  margin-top: 14px;
+  min-height: 44px;
+  padding: 0;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+  align-self: flex-start;
+}

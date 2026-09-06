@@ -43,6 +43,10 @@
   font-weight: 700;
   letter-spacing: var(--tr-tight);
   line-height: 1.05;
+  /* "Datenschutzerklaerung" ist als ein Wort breiter als die
+     Textspalte und lief 13 px ueber die Kante. */
+  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 .stand {

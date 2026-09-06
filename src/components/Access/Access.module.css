@@ -312,6 +312,11 @@
   font-size: var(--fs-card);
   font-weight: 700;
   letter-spacing: var(--tr-head);
+  /* Auf dem Tablet stehen vier Schritte nebeneinander; lange
+     Beschriftungen wie "DU ENTSCHEIDEST, OB WIR LOSLEGEN" liefen dort
+     ueber ihre Spalte. */
+  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 .stepText {

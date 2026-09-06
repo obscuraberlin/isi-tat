@@ -116,34 +116,38 @@
 
 .legal {
   max-width: var(--max-text);
-  padding-top: 24px;
-  border-top: 1px solid var(--line-light);
+  margin-top: clamp(18px, 2vw, 26px);
   font-size: var(--fs-small);
   line-height: 1.6;
   color: var(--text-muted);
 }
 
-/* Urheberzeile. Bewusst leise: kleiner als der Rest, in der gedaempften
-   Farbe, erst beim Darueberfahren hell. Sie soll auffindbar sein, nicht
-   auffallen. */
+/* Urheberzeile. Steht ueber dem rechtlichen Hinweis und deutlicher als
+   vorher — der Name in der hellen Schriftfarbe, das "created by" davor
+   zurueckgenommen. Immer noch ruhig, aber nicht mehr zu uebersehen. */
 .credit {
-  margin-top: 20px;
+  margin-top: clamp(22px, 2.4vw, 32px);
+  padding-top: clamp(18px, 2vw, 26px);
+  border-top: 1px solid var(--line-light);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 7px;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  gap: 4px 10px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 .creditLabel {
-  opacity: 0.72;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
 }
 
 .creditLink {
-  color: var(--text-muted-light);
+  font-weight: 600;
+  color: var(--text-light);
   transition: color var(--d-fast) var(--ease-out);
 }
 
@@ -210,11 +214,12 @@
     min-height: 38px;
   }
 
-  .legal {
-    padding-top: 18px;
+  .credit {
+    margin-top: 18px;
+    padding-top: 16px;
   }
 
-  .credit {
-    margin-top: 16px;
+  .legal {
+    margin-top: 14px;
   }
 }

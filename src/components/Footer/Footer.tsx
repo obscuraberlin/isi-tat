@@ -46,8 +46,9 @@ export function Footer() {
           </div>
         </div>
 
-        <p className={styles.legal}>{footer.legalNote}</p>
-
+        {/* Die Urheberzeile steht ueber dem rechtlichen Hinweis, nicht
+            darunter: als letzte Zeile der Seite las sie sich wie eine
+            Fussnote zum Kleingedruckten. */}
         <p className={styles.credit}>
           <span className={styles.creditLabel}>{footer.credit.label}</span>
           <a
@@ -59,6 +60,8 @@ export function Footer() {
             {footer.credit.name}
           </a>
         </p>
+
+        <p className={styles.legal}>{footer.legalNote}</p>
       </div>
     </footer>
   );

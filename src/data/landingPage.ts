@@ -336,13 +336,13 @@ export const insideTheClub = {
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
   subline: "40 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
-  body: "Keine Theorie-Sammlung. Jedes Kapitel verbindet persönliche Erfahrungen, konkrete Prinzipien und Aufgaben zur Umsetzung.",
+  body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Aufgaben.",
   facts: "5 Kapitel · 40 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
-  note: "Die Masterclass ist in fünf klar strukturierte Kapitel gegliedert. Du kannst gezielt dort einsteigen, wo du gerade eine konkrete Herausforderung hast — oder sie als gesamten Weg von Mindset und Sales über Business und Geld bis zur Personal Brand durcharbeiten.",
+  note: "Steig dort ein, wo du gerade eine konkrete Herausforderung hast — oder arbeite die Masterclass als Ganzes durch.",
   workLine: ["WISSEN ALLEIN REICHT NICHT.", "UMSETZUNG ENTSCHEIDET."],
-  work: "Jedes Video hat eine klare Kernbotschaft, konkrete Beispiele und eine Umsetzungsaufgabe. Du sollst nicht 40 Videos sammeln. Du sollst aus jedem relevanten Inhalt mindestens eine Sache in dein reales Leben oder Business übertragen.",
+  work: "Jedes Video endet mit einer konkreten Aufgabe. Nicht damit du beschäftigt bist — sondern damit aus einer Erkenntnis eine Handlung wird.",
   /* Die Schritte als Zeile unter dem Text. Kein Lernpfad durch die
      Inhalte, sondern die Arbeitsweise an einem einzelnen Video. */
   ablauf: ["VERSTEHEN", "PRÜFEN", "ANWENDEN", "REFLEKTIEREN", "WEITERMACHEN"],
@@ -510,10 +510,12 @@ export const opportunity = {
      Behauptung ueber ihn waere — so ist es sein Motiv, und ein Motiv ist
      kein Versprechen. "Moeglicherweise" bleibt unangetastet: das Wort
      traegt die ganze rechtliche Last des Absatzes. */
+  /* Verdichtet. Beide Gruende bleiben benannt, "moeglicherweise" bleibt
+     stehen — das Wort traegt die rechtliche Last des Absatzes. */
   zitat: [
-    "Ich mache diese Masterclass aus zwei Gründen: Zum einen möchte ich das Wissen und die Erfahrungen aus vielen Jahren Selbstständigkeit und Vertrieb weitergeben, damit andere nicht dieselben Fehler machen müssen und schneller vorankommen.",
-    "Zum anderen möchte ich darüber natürlich auch Menschen kennenlernen, die zu unserer Philosophie passen und mit denen sich möglicherweise eine langfristige Zusammenarbeit entwickelt.",
-    "Das kommuniziere ich ganz offen — denn für mich schließen sich Mehrwert und der Aufbau eines starken Teams nicht aus.",
+    "Ich gebe diese Erfahrungen weiter, damit andere nicht jeden meiner Umwege selbst gehen müssen.",
+    "Und ich lerne darüber Menschen kennen. Wenn jemand zu unserer Philosophie passt, entwickelt sich daraus möglicherweise eine langfristige Zusammenarbeit.",
+    "Das sage ich offen — Mehrwert und der Aufbau eines starken Teams schließen sich für mich nicht aus.",
   ],
   closing: ["ZUGANG KANNST DU ANFRAGEN.", "VERTRAUEN MUSST DU DIR ERARBEITEN."],
   /* "kann sichtbar werden" statt "wird sichtbar", und der Anspruch wird
@@ -580,28 +582,21 @@ export const failure = {
     line: ["ERFAHRUNG ALS ABKÜRZUNG."],
     body: [
       "Du musst nicht jeden Fehler selbst machen.",
-      "Manche Fehler kosten ein paar hundert Euro. Andere fünfstellige Beträge. Andere kosten Jahre.",
-      "Wenn jemand einen Weg bereits gegangen ist, kannst du trotzdem selbst entscheiden — aber du musst nicht jedes Lehrgeld noch einmal bezahlen.",
+      "Manche kosten Geld. Manche kosten Jahre. Die teuersten kosten beides.",
     ],
     /* Vier Lektionen, keine Anekdoten. Jede benennt, worum es geht, nicht
        wie dramatisch es war. Keine Namen, keine Vorwuerfe gegen Dritte. */
     stories: [
-      {
-        label: "STEUERN",
-        text: "Warum Umsatz nicht automatisch dein Geld ist.",
-      },
+      /* Alle vier fingen mit "Warum ..." an — vier gleiche Satzanfaenge
+         untereinander sind Laenge ohne Inhalt. Jetzt steht die Lektion
+         direkt da. */
+      { label: "STEUERN", text: "Umsatz ist nicht automatisch dein Geld." },
       {
         label: "INVESTMENTS",
-        text: "Warum ein gutes Produkt noch kein gutes Investment ist.",
+        text: "Ein gutes Produkt ist noch kein gutes Investment.",
       },
-      {
-        label: "VERTRÄGE",
-        text: "Warum Vertrauen wichtig ist — aber ein Handschlag keinen sauberen Vertrag ersetzt.",
-      },
-      {
-        label: "RISIKO",
-        text: "Warum Vermögen aufzubauen nur die Hälfte der Aufgabe ist.",
-      },
+      { label: "VERTRÄGE", text: "Vertrauen ersetzt keinen sauberen Vertrag." },
+      { label: "RISIKO", text: "Vermögen aufzubauen ist nur die Hälfte." },
     ],
   },
 } as const;
@@ -1059,8 +1054,11 @@ export const footer = {
     name: "OBSCURA DIGITAL MARKETING",
     href: "https://obscura-berlin.de",
   },
+  /* Kurz, aber die Aussage bleibt vollstaendig: keine Garantie, und das
+     Ergebnis haengt am Leser. Ohne diesen Satz liest sich die Seite als
+     Ergebnisversprechen. */
   legalNote:
-    "Was ich hier weitergebe, sind Erfahrungen, Prinzipien und Lektionen aus meinem eigenen Weg. Keine Garantie und kein Rezept für ein bestimmtes Ergebnis. Was daraus entsteht, hängt von deiner Ausgangslage, deinen Entscheidungen und deiner Umsetzung ab.",
+    "Erfahrungen und Prinzipien aus meinem eigenen Weg. Keine Garantie auf ein bestimmtes Ergebnis — was daraus entsteht, hängt von deinen Entscheidungen und deiner Umsetzung ab.",
 } as const;
 
 export const meta = {

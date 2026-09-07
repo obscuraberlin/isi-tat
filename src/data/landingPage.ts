@@ -49,6 +49,13 @@ export interface MediaAsset {
   kind: MediaKind;
   /** null = noch kein Asset geliefert */
   src: string | null;
+  /**
+   * Dasselbe Bild als AVIF bzw. WebP. Ausgeliefert wird, was der Browser
+   * kann — das JPEG auf `src` bleibt die Rueckfallebene. Beide werden vom
+   * Medien-Scan gesetzt, sobald die Dateien im Ordner liegen.
+   */
+  avif?: string | null;
+  webp?: string | null;
   /** Poster/Fallback fuer Videos */
   poster?: string | null;
   /**
@@ -92,6 +99,8 @@ const media = (
     no,
     kind,
     src: datei?.src ?? null,
+    avif: datei?.avif ?? null,
+    webp: datei?.webp ?? null,
     poster: datei?.poster ?? null,
     klein: datei?.klein ?? null,
     alt,

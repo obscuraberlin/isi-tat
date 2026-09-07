@@ -1,4 +1,4 @@
-import { cta } from "@/data/landingPage";
+import { cta, type MediaAsset } from "@/data/landingPage";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/Reveal/Reveal";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
@@ -11,7 +11,7 @@ interface CtaBandProps {
   /** Auf dem Handy ausblenden — dort ist ein Aufruf weniger mehr wert. */
   nurDesktop?: boolean;
   /** Foto hinter dem Band. Fehlt es, bleibt das Band einfarbig. */
-  image?: string | null;
+  image?: string | MediaAsset | null;
   /** Clip hinter dem Band — stumm in Schleife, gewinnt gegen `image`. */
   video?: string | null;
   videoKlein?: string | null;

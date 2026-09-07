@@ -36,6 +36,27 @@ Ein Standbild, das vor dem Abspielen zu sehen ist. Gleiche Nummer plus
 Ohne Posterbild zeigt der Browser das erste Videobild — meist ein
 zufälliger Frame.
 
+## AVIF und WebP daneben
+
+Liegt neben `07.jpg` auch `07.avif` und `07.webp`, liefert die Seite jedem
+Browser das beste Format, das er anzeigen kann — und das JPG bleibt als
+Rückfallebene für alte Browser stehen. Das AVIF ist bei gleicher Qualität
+rund halb so groß; dadurch können die Bilder in voller Auflösung liegen
+und wiegen trotzdem weniger als eine kleingerechnete JPG-Fassung.
+
+```
+07.jpg     Rückfallebene, wird immer gebraucht
+07.avif    erste Wahl
+07.webp    zweite Wahl
+```
+
+Du musst das nicht selbst erzeugen. Lege einfach die beste Fassung ab, die
+du hast — sag Bescheid, dann rechne ich die anderen beiden daraus.
+
+Bei **Posterbildern** hat das keinen Sinn: das Poster hängt als Attribut am
+Video, dort handelt kein Browser ein Format aus. Ein `03-poster.avif` wird
+deshalb ignoriert.
+
 ## Eine Datei für alle Geräte
 
 Eine getrennte Handy-Fassung gibt es nicht. Der Browser wertet bei Videos
@@ -45,7 +66,11 @@ auf großen Bildschirmen.
 
 ## Größe
 
-**Bilder** mindestens 2000 px auf der langen Seite, als JPG unter 1 MB.
+**Bilder** mindestens 2000 px auf der langen Seite — lieber größer als
+kleiner. Auf einem Retina-Bildschirm braucht eine Fläche über die volle
+Breite rund 2900 px; was darunter liegt, sieht dort weich aus, und
+hochrechnen bringt die Schärfe nicht zurück. Die Datei darf ruhig schwer
+sein: ausgeliefert wird ohnehin die gerechnete AVIF-Fassung.
 
 **Videos** sind der heikle Teil. GitHub lehnt Dateien über **100 MB** ab und
 warnt ab 50 MB. Alles, was hier landet, bleibt für immer in der

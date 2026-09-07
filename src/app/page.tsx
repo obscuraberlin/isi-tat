@@ -55,7 +55,7 @@ export default function Page() {
         <CtaBand
           {...ctaBands.nachInhalten}
           tone="dark"
-          image={backdrops.ctaNachInhalten.src}
+          image={backdrops.ctaNachInhalten}
           video={backdrops.ctaClip.src}
           videoKlein={backdrops.ctaClip.klein}
           imageOpacity={0.24}
@@ -66,7 +66,7 @@ export default function Page() {
           {...ctaBands.nachUmfeld}
           tone="light"
           nurDesktop
-          image={backdrops.finalCta.src}
+          image={backdrops.finalCta}
           imagePosition="50% 38%"
         />
 

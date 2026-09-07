@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useLoopImBild, useLoopQuelle } from "@/lib/videoLoop";
+import type { MediaAsset } from "@/data/landingPage";
 import styles from "./Backdrop.module.css";
 
 export type BackdropVariant = "grain" | "grid" | "glow" | "horizon" | "beam";
@@ -16,8 +17,12 @@ interface BackdropProps {
    * und Vignette darueber laufen und das Bild nicht wie eine aufgeklebte
    * Kachel wirkt. `null` (fehlendes Asset) faellt still auf den Verlauf
    * zurueck — die Sektion sieht dann aus wie vorher.
+   *
+   * Ein ganzes Asset ist der bessere Weg: dann liegen AVIF und WebP
+   * daneben und werden mitgenutzt. Ein einzelner Pfad geht auch — fuer
+   * Faelle wie ein Video-Poster, das nur als JPEG existiert.
    */
-  image?: string | null;
+  image?: string | MediaAsset | null;
   /**
    * Bewegtbild statt Standbild — laeuft stumm in Schleife. Gewinnt gegen
    * `image`, das dann als Standbild darunter liegt, bis der Clip laedt.
@@ -55,6 +60,12 @@ export function Backdrop({
 }: BackdropProps) {
   const ref = useRef<HTMLDivElement>(null);
   const clipRef = useRef<HTMLVideoElement>(null);
+
+  /* Ein Pfad allein hat keine modernen Fassungen; ein Asset bringt sie mit. */
+  const foto =
+    typeof image === "string" || !image
+      ? { src: image ?? null, avif: null, webp: null }
+      : { src: image.src, avif: image.avif ?? null, webp: image.webp ?? null };
 
   /* Im Hintergrund immer die kleine Fassung: die Ebene liegt bei 20
      Prozent Deckkraft hinter Schrift, dort sieht niemand den Unterschied
@@ -105,21 +116,46 @@ export function Backdrop({
       ].join(" ")}
       style={{ ["--drift" as string]: drift }}
     >
-      {image || clipQuelle ? (
+      {foto.src || clipQuelle ? (
         <span
           className={styles.photo}
-          style={{
-            backgroundImage: image ? `url(${image})` : undefined,
-            backgroundPosition: imagePosition,
-            opacity: imageOpacity,
-          }}
+          style={{ opacity: imageOpacity }}
         >
+          {/* Frueher lag das Bild als background-image auf dieser Flaeche.
+              Ein CSS-Hintergrund kennt keine Formatauswahl: dort haette
+              jeder Browser das JPEG bekommen, auch der, der eine Sektion
+              weiter oben schon das halb so grosse AVIF geladen hat. Als
+              <picture> handelt er es aus wie ueberall sonst. */}
+          {foto.src ? (
+            <picture>
+              {foto.avif ? (
+                <source srcSet={foto.avif} type="image/avif" />
+              ) : null}
+              {foto.webp ? (
+                <source srcSet={foto.webp} type="image/webp" />
+              ) : null}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className={styles.foto}
+                src={foto.src}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                style={{ objectPosition: imagePosition }}
+              />
+            </picture>
+          ) : null}
+
           {clipQuelle ? (
             <video
               ref={clipRef}
               className={styles.clip}
               src={clipQuelle}
-              poster={image ?? undefined}
+              /* Kein poster: das Standbild liegt schon als <picture>
+                 darunter und wird dort im besten Format geholt. Ein
+                 poster-Attribut kennt keine Aushandlung und wuerde
+                 dasselbe Motiv ein zweites Mal als JPEG nachladen —
+                 gemessen 234 KB fuer ein Bild, das bereits da ist. */
               autoPlay
               muted
               loop

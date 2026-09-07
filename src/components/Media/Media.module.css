@@ -8,6 +8,16 @@
   isolation: isolate;
 }
 
+/* <picture> ist nur der Traeger fuer die Formatauswahl und darf im
+   Layout nichts tun: der Rahmen gibt das Seitenverhaeltnis vor, das Bild
+   fuellt ihn. Ohne diese Zeile waere dazwischen eine Inline-Box mit
+   eigener Zeilenhoehe. */
+.picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .media {
   width: 100%;
   height: 100%;

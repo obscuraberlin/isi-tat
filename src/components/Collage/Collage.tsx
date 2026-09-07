@@ -19,6 +19,9 @@ interface CollageProps {
  *
  * Die Motive sind dieselben, die weiter oben und unten in voller Größe
  * stehen — sie sind also schon geladen und kosten keinen Aufruf mehr.
+ * Damit das stimmt, muss hier dieselbe Fassung angefragt werden wie dort:
+ * stünde nur `asset.src` im img, holte der Browser das JPEG zusätzlich
+ * zum AVIF, das er oben schon hat — gemessen acht Dateien doppelt.
  */
 export function Collage({ assets, className }: CollageProps) {
   const tiles = assets.filter((asset) => asset.src);
@@ -31,15 +34,26 @@ export function Collage({ assets, className }: CollageProps) {
     >
       <div className={styles.grid}>
         {tiles.map((asset) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={asset.id}
-            className={styles.tile}
-            src={asset.src ?? undefined}
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
+          /* Das <picture> traegt die Kachelklasse, nicht das Bild: die
+             Regeln fuer jede zweite und jede vierte Kachel zaehlen die
+             Kinder des Rasters. Waere das img das Kind, waere es immer
+             das erste und die Kacheln stuenden alle gleich hoch. */
+          <picture key={asset.id} className={styles.tile}>
+            {asset.avif ? (
+              <source srcSet={asset.avif} type="image/avif" />
+            ) : null}
+            {asset.webp ? (
+              <source srcSet={asset.webp} type="image/webp" />
+            ) : null}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className={styles.tileBild}
+              src={asset.src ?? undefined}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         ))}
       </div>
     </div>

@@ -55,7 +55,7 @@ export default function BewerbungPage() {
         <Backdrop
           variant="glow"
           tone="dark"
-          image={trailer.video.poster ?? backdrops.ctaNachInhalten.src}
+          image={trailer.video.poster ?? backdrops.ctaNachInhalten}
           video={trailer.video.src}
           videoKlein={trailer.video.klein}
           imageOpacity={0.2}
@@ -105,7 +105,7 @@ export default function BewerbungPage() {
       <Backdrop
         variant="grain"
         tone="dark"
-        image={trailer.video.poster ?? backdrops.finalCta.src}
+        image={trailer.video.poster ?? backdrops.finalCta}
         video={trailer.video.src}
         videoKlein={trailer.video.klein}
         imageOpacity={0.16}

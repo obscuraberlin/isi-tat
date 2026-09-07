@@ -3,6 +3,10 @@
 
 export interface MediaFile {
   src?: string;
+  /** Dasselbe Bild als AVIF — erste Wahl im <picture>. */
+  avif?: string;
+  /** Dasselbe Bild als WebP — zweite Wahl. */
+  webp?: string;
   poster?: string;
   klein?: string;
 }
@@ -10,23 +14,23 @@ export interface MediaFile {
 export const mediaFiles: Record<number, MediaFile> = {
   1: {"poster":"/media/01-poster.jpg","src":"/media/01.mp4"},
   3: {"poster":"/media/03-poster.jpg","src":"/media/03.mp4"},
-  4: {"src":"/media/04.jpg"},
-  5: {"src":"/media/05.jpg"},
+  4: {"avif":"/media/04.avif","src":"/media/04.jpg","webp":"/media/04.webp"},
+  5: {"avif":"/media/05.avif","src":"/media/05.jpg","webp":"/media/05.webp"},
   6: {"poster":"/media/06-poster.jpg","src":"/media/06.mp4"},
-  7: {"src":"/media/07.jpg"},
-  9: {"src":"/media/09.jpg"},
-  11: {"src":"/media/11.jpg"},
-  13: {"src":"/media/13.jpg"},
-  15: {"src":"/media/15.jpg"},
-  17: {"src":"/media/17.jpg"},
-  19: {"src":"/media/19.jpg"},
-  20: {"src":"/media/20.jpg"},
-  21: {"src":"/media/21.jpg"},
+  7: {"avif":"/media/07.avif","src":"/media/07.jpg","webp":"/media/07.webp"},
+  9: {"avif":"/media/09.avif","src":"/media/09.jpg","webp":"/media/09.webp"},
+  11: {"avif":"/media/11.avif","src":"/media/11.jpg","webp":"/media/11.webp"},
+  13: {"avif":"/media/13.avif","src":"/media/13.jpg","webp":"/media/13.webp"},
+  15: {"avif":"/media/15.avif","src":"/media/15.jpg","webp":"/media/15.webp"},
+  17: {"avif":"/media/17.avif","src":"/media/17.jpg","webp":"/media/17.webp"},
+  19: {"avif":"/media/19.avif","src":"/media/19.jpg","webp":"/media/19.webp"},
+  20: {"avif":"/media/20.avif","src":"/media/20.jpg","webp":"/media/20.webp"},
+  21: {"avif":"/media/21.avif","src":"/media/21.jpg","webp":"/media/21.webp"},
   22: {"poster":"/media/22-poster.jpg","src":"/media/22.mp4"},
-  23: {"src":"/media/23.jpg"},
-  24: {"src":"/media/24.jpg"},
-  25: {"src":"/media/25.jpg"},
-  29: {"src":"/media/29.jpg"},
-  33: {"src":"/media/33.jpg"},
-  34: {"src":"/media/34.jpg"},
+  23: {"avif":"/media/23.avif","src":"/media/23.jpg","webp":"/media/23.webp"},
+  24: {"avif":"/media/24.avif","src":"/media/24.jpg","webp":"/media/24.webp"},
+  25: {"avif":"/media/25.avif","src":"/media/25.jpg","webp":"/media/25.webp"},
+  29: {"avif":"/media/29.avif","src":"/media/29.jpg","webp":"/media/29.webp"},
+  33: {"avif":"/media/33.avif","src":"/media/33.jpg","webp":"/media/33.webp"},
+  34: {"avif":"/media/34.avif","src":"/media/34.jpg","webp":"/media/34.webp"},
 };

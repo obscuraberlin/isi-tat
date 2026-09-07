@@ -100,7 +100,7 @@ export function Media({
           >
             {/* Die Quelle steht als Attribut am <video>, nicht als <source>:
                 das media-Attribut wird an <source> nur innerhalb von
-                <picture> ausgewertet, in <video> ignorieren es alle
+                <picture className={styles.picture}> ausgewertet, in <video> ignorieren es alle
                 Browser. Welche Fassung geladen wird, entscheidet deshalb
                 useLoopQuelle im Browser. */}
           </video>
@@ -108,17 +108,27 @@ export function Media({
       );
     }
 
+    /* Drei Fassungen derselben Aufnahme, der Browser nimmt die erste,
+       die er anzeigen kann. AVIF ist bei gleicher Qualitaet rund halb so
+       gross wie JPEG — dadurch koennen die Bilder in voller Aufloesung
+       liegen und wiegen trotzdem weniger als die kleingerechneten vorher.
+       Das JPEG im <img> bleibt als Rueckfallebene stehen; faellt es weg,
+       sieht ein aelterer Browser nichts. */
     return (
       <div className={frameClass} style={frameStyle}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className={styles.media}
-          src={asset.src}
-          alt={asset.alt}
-          loading={priority ? "eager" : "lazy"}
-          decoding={priority ? "sync" : "async"}
-          fetchPriority={priority ? "high" : "auto"}
-        />
+        <picture>
+          {asset.avif ? <source srcSet={asset.avif} type="image/avif" /> : null}
+          {asset.webp ? <source srcSet={asset.webp} type="image/webp" /> : null}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className={styles.media}
+            src={asset.src}
+            alt={asset.alt}
+            loading={priority ? "eager" : "lazy"}
+            decoding={priority ? "sync" : "async"}
+            fetchPriority={priority ? "high" : "auto"}
+          />
+        </picture>
       </div>
     );
   }

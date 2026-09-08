@@ -44,13 +44,52 @@ export interface Sitzung {
   exp: number;
 }
 
+/*
+ * Ersatzschluessel fuer den Testbetrieb.
+ *
+ * Er steht im Quelltext und ist damit oeffentlich — wer ihn kennt, kann
+ * ein Sitzungs-Cookie faelschen. Deshalb gilt er nur, solange KEINE echte
+ * Mitgliederliste eingerichtet ist. In diesem Zustand gibt es nichts zu
+ * schuetzen: der einzige Zugang ist dann der Testzugang, dessen Passwort
+ * ohnehin im Quelltext steht. Ein gefaelschtes Cookie oeffnet also keine
+ * Tuer, die nicht schon offen waere.
+ *
+ * Sobald CLUB_MITGLIEDER oder CLUB_MITGLIEDER_DATEI gesetzt ist, gilt er
+ * nicht mehr. Dann ist CLUB_SITZUNG_GEHEIMNIS Pflicht, und ohne den Wert
+ * kommt niemand herein — auffaellig statt still.
+ *
+ * Warum kein zufaelliger Wert je Start: Next buendelt proxy.ts und die
+ * Routen getrennt. Zwei Buendel bekaemen zwei verschiedene Zufallswerte,
+ * und der Proxy wiese jedes Cookie ab, das die Anmelderoute gerade
+ * ausgestellt hat. Bei mehreren Arbeitsprozessen dasselbe Bild.
+ */
+const ERSATZ_FUER_TESTS = "nur-zum-ausprobieren-kein-echtes-geheimnis-0000";
+
+/** Gibt es echte Mitglieder, oder laeuft das hier zum Ausprobieren? */
+const echteListe = () =>
+  Boolean(process.env.CLUB_MITGLIEDER_DATEI || process.env.CLUB_MITGLIEDER);
+
 function geheimnis(): string | null {
   const wert = process.env.CLUB_SITZUNG_GEHEIMNIS ?? "";
   /* Ein zu kurzes Geheimnis ist schlimmer als ein fehlendes: es sieht aus,
      als waere etwas eingerichtet. Unter 32 Zeichen gilt es als nicht
-     gesetzt, und niemand kommt herein. */
-  return wert.length >= 32 ? wert : null;
+     gesetzt. */
+  if (wert.length >= 32) return wert;
+
+  /* Kein eigener Wert, aber auch keine echten Mitglieder: Testbetrieb. */
+  if (!echteListe()) return ERSATZ_FUER_TESTS;
+
+  return null;
 }
+
+/**
+ * true, solange der Club mit dem oeffentlichen Ersatzschluessel laeuft.
+ *
+ * Die Anmeldeseite schreibt das sichtbar hin. Ein Testzustand, den man
+ * nicht sieht, wird irgendwann versehentlich zum Dauerzustand.
+ */
+export const nurTestbetrieb = () =>
+  (process.env.CLUB_SITZUNG_GEHEIMNIS ?? "").length < 32 && !echteListe();
 
 /** Ist die Anmeldung ueberhaupt eingerichtet? */
 export const anmeldungMoeglich = () => geheimnis() !== null;

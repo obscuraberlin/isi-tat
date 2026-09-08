@@ -260,3 +260,43 @@
     display: block;
   }
 }
+
+/* ---------- Testbetrieb ---------- */
+
+/* Auffaellig genug, dass es niemand uebersieht, ruhig genug, dass es die
+   Seite nicht zerlegt. Es verschwindet von selbst, sobald echte Zugaenge
+   eingerichtet sind. */
+.testkasten {
+  margin-bottom: 26px;
+  padding: 14px 16px;
+  border: 1px solid rgba(200, 166, 106, 0.4);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--r-btn);
+  background: rgba(200, 166, 106, 0.06);
+}
+
+.testTitel {
+  font-size: 0.6875rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.testText {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: var(--fs-small);
+  color: var(--text-light);
+  /* Zum Abtippen eine Schrift, in der 0 und O zu unterscheiden sind. */
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+
+.testWarnung {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-muted-light);
+}

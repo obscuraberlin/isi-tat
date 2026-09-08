@@ -85,11 +85,58 @@ function gueltig(m: unknown): m is Mitglied {
   );
 }
 
+/* --------------------------------------------------------------------------
+   TESTZUGANG
+   --------------------------------------------------------------------------
+
+   Ein fester Zugang zum Ausprobieren, auf ausdrueckliche Anweisung des
+   Auftraggebers:
+
+       mancicmarcel@gmail.com  /  Oggy123
+
+   Das Passwort steht absichtlich hier im Klartext daneben. Es hinter dem
+   Hash zu verstecken waere Theater: wer den Quelltext lesen kann, kann
+   ihn auch gegen "Oggy123" pruefen. Ein Zugang, der im Repo steht, ist
+   oeffentlich — also soll das auch jeder sehen, der hier vorbeikommt.
+
+   Damit daraus kein dauerhaftes Loch wird:
+
+     - Er kommt ZUSAETZLICH zur echten Mitgliederliste, ersetzt sie nicht.
+     - CLUB_TESTZUGANG=aus schaltet ihn ab. Das gehoert in die
+       Umgebungsvariablen, bevor der Club fuer zahlende Mitglieder
+       aufmacht — sonst kommt jeder herein, der diese Zeilen kennt.
+
+   Das Passwort ist mit sieben Zeichen zu kurz fuer einen echten Zugang.
+   Fuer einen Testzugang, der ohnehin oeffentlich ist, spielt das keine
+   Rolle — fuer einen echten waere es der falsche Anfang. */
+const TESTZUGANG: Mitglied = {
+  email: "mancicmarcel@gmail.com",
+  name: "Marcel Mancic",
+  hash: "scrypt.16384.Y0HYChSn4UK9qDP7WNLKxg.UHYlnlGVneM1-srSVi7Qkr4RrIolwuIod71z3rJL6X8",
+};
+
+const testzugangAn = () =>
+  (process.env.CLUB_TESTZUGANG ?? "").toLowerCase() !== "aus";
+
 export function mitglieder(): Mitglied[] {
   const datei = process.env.CLUB_MITGLIEDER_DATEI;
-  if (datei) return ausDatei(datei);
   const variable = process.env.CLUB_MITGLIEDER;
-  return variable ? ausVariable(variable) : [];
+
+  const echte = datei
+    ? ausDatei(datei)
+    : variable
+      ? ausVariable(variable)
+      : [];
+
+  if (!testzugangAn()) return echte;
+
+  /* Steht dieselbe Adresse auch in der echten Liste, gewinnt die echte:
+     sonst haette ein Mitglied, das zufaellig diese E-Mail benutzt, sein
+     eigenes Passwort verloren. */
+  const schonDa = echte.some(
+    (m) => m.email.toLowerCase() === TESTZUGANG.email,
+  );
+  return schonDa ? echte : [...echte, TESTZUGANG];
 }
 
 /**

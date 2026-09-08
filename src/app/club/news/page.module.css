@@ -77,20 +77,95 @@
   overflow: hidden;
 }
 
+.verweis {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.verweis:hover .nachrichtTitel {
+  color: var(--accent);
+}
+
 .bild {
+  position: relative;
   aspect-ratio: 16 / 9;
   background: #000;
 }
 
 .bild img {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
+/* Laesst sich ein Vorschaubild nicht laden (Plattform nicht erreichbar),
+   zeigen Browser ein kleines Kaputt-Symbol in der Ecke. Ein kaputtes
+   <img> rendert — anders als ein heiles — Pseudo-Elemente; dieses hier
+   legt sich darueber. Die Flaeche bleibt dann einfach dunkel. */
+.bild img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #232323 0%, #171717 46%, #2a2723 100%);
+}
+
+.play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.play svg {
+  width: 16px;
+  height: 20px;
+  fill: #fff;
+  margin-left: 4px;
+  padding: 18px 18px 18px 22px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
 .koerper {
   padding: clamp(20px, 3vw, 32px);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.quelle {
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-light);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+}
+
+.club {
+  color: var(--accent);
+  border-color: rgba(200, 166, 106, 0.4);
+}
+
+.mehr {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .datum {

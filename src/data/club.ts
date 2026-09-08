@@ -146,6 +146,13 @@ export const club = {
       "Sobald es etwas zu sagen gibt — ein Termin, eine neue Folge, ein Event — findest du es an dieser Stelle.",
     neu: "NEUES IM CLUB",
     alleZeigen: "Alle News",
+    /* Woher ein Eintrag kommt — steht klein ueber dem Titel. */
+    quelle: {
+      club: "Im Club",
+      youtube: "YouTube",
+      instagram: "Instagram",
+    },
+    ansehen: "ANSEHEN",
   },
 
   events: {

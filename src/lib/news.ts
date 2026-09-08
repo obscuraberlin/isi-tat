@@ -1,14 +1,29 @@
 import { readFileSync, statSync } from "node:fs";
 import { nachrichten, type Nachricht } from "@/data/club";
+import { socialFeed, type FeedQuelle } from "./social";
 
 /**
- * Die News — aus dem Projekt oder von der Platte.
+ * Der Feed: was ISI im Club schreibt, zusammen mit dem, was er draussen
+ * veroeffentlicht.
  *
- * Steht CLUB_NEWS_DATEI auf einer JSON-Datei, gewinnt sie. Dadurch kann
- * eine Nachricht veroeffentlicht werden, ohne die Seite neu
- * bereitzustellen. Ist die Datei kaputt oder fehlt sie, bleibt es bei dem,
- * was im Projekt steht — eine unlesbare Datei darf den Feed nicht leeren.
+ * Eigene Nachrichten kommen aus dem Projekt oder aus CLUB_NEWS_DATEI.
+ * Videos von YouTube und Instagram holt social.ts — nur, wenn die
+ * Quellen eingerichtet sind. Alles zusammen, neueste zuerst.
  */
+
+export interface FeedEintrag {
+  id: string;
+  /** "club" = von ISI im Club geschrieben. */
+  quelle: FeedQuelle | "club";
+  datum: string;
+  titel: string;
+  text: readonly string[];
+  bild?: string;
+  /** Bei Eintraegen von draussen: wohin es geht. */
+  link?: string;
+  /** Bilder von draussen laufen durch /api/bild — siehe dort, warum. */
+  bildVonDraussen?: boolean;
+}
 
 let zwischen: { stand: number; liste: Nachricht[] } | null = null;
 
@@ -25,6 +40,7 @@ function gueltig(n: unknown): n is Nachricht {
   );
 }
 
+/** Nur die eigenen Nachrichten — aus dem Projekt oder von der Platte. */
 export function newsBeitraege(): Nachricht[] {
   const pfad = process.env.CLUB_NEWS_DATEI;
   let liste: Nachricht[] = [...nachrichten];
@@ -46,8 +62,32 @@ export function newsBeitraege(): Nachricht[] {
     }
   }
 
-  /* Neueste zuerst. */
   return [...liste].sort((a, b) => b.datum.localeCompare(a.datum));
+}
+
+/** Eigene Nachrichten und Videos von draussen, zusammengelegt. */
+export async function feed(): Promise<FeedEintrag[]> {
+  const eigene: FeedEintrag[] = newsBeitraege().map((n) => ({
+    id: `club-${n.datum}-${n.titel}`,
+    quelle: "club",
+    datum: n.datum,
+    titel: n.titel,
+    text: n.text,
+    bild: n.bild,
+  }));
+
+  const draussen: FeedEintrag[] = (await socialFeed()).map((s) => ({
+    id: s.id,
+    quelle: s.quelle,
+    datum: s.datum,
+    titel: s.titel,
+    text: [],
+    bild: s.bild,
+    bildVonDraussen: Boolean(s.bild),
+    link: s.link,
+  }));
+
+  return [...eigene, ...draussen].sort((a, b) => b.datum.localeCompare(a.datum));
 }
 
 /** "14. September 2026" — ausgeschrieben, nicht 14.09. */
@@ -61,3 +101,6 @@ export function datumLang(iso: string): string {
     timeZone: "UTC",
   }).format(d);
 }
+
+/** Adresse fuer ein Bild aus dem Feed — durch den Durchleiter. */
+export const bildAdresse = (u: string) => `/api/bild/?u=${encodeURIComponent(u)}`;

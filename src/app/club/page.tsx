@@ -4,7 +4,7 @@ import { kursKapitel } from "@/data/masterclass";
 import { club } from "@/data/club";
 import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
 import { liveDaten } from "@/lib/live";
-import { newsBeitraege, datumLang } from "@/lib/news";
+import { feed, datumLang } from "@/lib/news";
 import { eventDaten } from "@/lib/events";
 import { LiveKarte } from "@/components/Club/LiveKarte";
 import { EventKarte } from "@/components/Club/EventKarte";
@@ -36,7 +36,7 @@ export default async function ClubStart() {
 
   const live = liveDaten();
   const events = eventDaten();
-  const news = newsBeitraege().slice(0, 3);
+  const news = (await feed()).slice(0, 4);
   const vorname = sitzung.name.trim().split(/\s+/)[0] ?? "";
 
   return (
@@ -83,14 +83,28 @@ export default async function ClubStart() {
             </Link>
           </div>
           <ul className={styles.newsListe}>
-            {news.map((n) => (
-              <li key={`${n.datum}-${n.titel}`} className={styles.newsZeile}>
-                <time className={styles.newsDatum} dateTime={n.datum}>
-                  {datumLang(n.datum)}
-                </time>
-                <span className={styles.newsText}>{n.titel}</span>
-              </li>
-            ))}
+            {news.map((n) => {
+              const zeile = (
+                <>
+                  <time className={styles.newsDatum} dateTime={n.datum}>
+                    {datumLang(n.datum)}
+                  </time>
+                  <span className={styles.newsQuelle}>{club.news.quelle[n.quelle]}</span>
+                  <span className={styles.newsText}>{n.titel}</span>
+                </>
+              );
+              return (
+                <li key={n.id} className={styles.newsZeile}>
+                  {n.link ? (
+                    <a href={n.link} className={styles.newsVerweis} target="_blank" rel="noreferrer noopener">
+                      {zeile}
+                    </a>
+                  ) : (
+                    zeile
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </section>
       ) : null}

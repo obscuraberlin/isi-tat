@@ -82,14 +82,30 @@ function geheimnis(): string | null {
   return null;
 }
 
-/**
- * true, solange der Club mit dem oeffentlichen Ersatzschluessel laeuft.
- *
- * Die Anmeldeseite schreibt das sichtbar hin. Ein Testzustand, den man
- * nicht sieht, wird irgendwann versehentlich zum Dauerzustand.
- */
+/** true, solange der Club mit dem oeffentlichen Ersatzschluessel laeuft. */
 export const nurTestbetrieb = () =>
   (process.env.CLUB_SITZUNG_GEHEIMNIS ?? "").length < 32 && !echteListe();
+
+/*
+ * Einmal beim Start ins Protokoll, wenn der Testbetrieb laeuft.
+ *
+ * Auf der Anmeldeseite hat das nichts zu suchen: dort laesen es alle mit,
+ * die die Adresse kennen — und der Zugang ist dann keine Huerde mehr,
+ * sondern eine Einladung. Ins Serverprotokoll schaut nur, wer ohnehin
+ * Zugriff auf den Server hat.
+ *
+ * Ein Testzustand, den niemand bemerkt, wird trotzdem irgendwann zum
+ * Dauerzustand. Deshalb ueberhaupt eine Meldung.
+ */
+if (nurTestbetrieb()) {
+  console.warn(
+    "\n  ISI CLUB — TESTBETRIEB\n" +
+      "  Der oeffentliche Testzugang ist aktiv und die Cookies sind mit\n" +
+      "  einem Schluessel aus dem Quelltext unterschrieben.\n" +
+      "  Vor dem Start fuer zahlende Mitglieder setzen:\n" +
+      "    CLUB_TESTZUGANG=aus, CLUB_SITZUNG_GEHEIMNIS, Mitgliederliste\n",
+  );
+}
 
 /** Ist die Anmeldung ueberhaupt eingerichtet? */
 export const anmeldungMoeglich = () => geheimnis() !== null;

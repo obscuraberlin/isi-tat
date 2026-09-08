@@ -54,30 +54,31 @@ export const club = {
 
   start: {
     grussVor: "WILLKOMMEN ZURÜCK,",
-    darunter: "Hier ist, was gerade im Club passiert.",
     weitersehen: "WEITER ANSEHEN",
-    spaeter: "GESPEICHERT",
-    neu: "NEU IM CLUB",
-    alleZeigen: "Alle Inhalte",
+    serien: "ALLE SERIEN",
+    alleZeigen: "Alle Serien",
   },
 
+  /* Die Flaeche ganz oben: nicht ein einzelnes Video, sondern das Ganze.
+     Wer hereinkommt, soll in einem Blick wissen, was das hier ist — und
+     mit einem Tipp anfangen koennen. */
   hero: {
-    /* Ueber dem Featured-Video. Nicht "NEU" — das waere eine Behauptung
-       ueber ein Datum, das nirgends steht. */
-    eyebrow: "AUS DER MASTERCLASS",
-    ansehen: "ANSEHEN",
-    spaeterMerken: "SPÄTER",
-    spaeterGemerkt: "GESPEICHERT",
+    headline: "DIE MASTERCLASS.",
+    text: "40 Videos in fünf Serien. Erfahrung aus über 20 Jahren — zum Ansehen, dann zum Umsetzen.",
+    abspielen: "ABSPIELEN",
+    alleFolgen: "ALLE SERIEN",
   },
 
   inhalte: {
-    eyebrow: "Inhalte",
-    headline: "DIE MASTERCLASS.",
-    subline:
-      "Erfahrungen, Prinzipien und Entscheidungen aus über 20 Jahren — in fünf Kapiteln.",
-    alle: "ALLE",
-    hinweis:
-      "Es gibt keine Reihenfolge, die du einhalten musst. Steig dort ein, wo du gerade eine Entscheidung vor dir hast — oder arbeite die Masterclass der Reihe nach durch.",
+    eyebrow: "Serien",
+    headline: "ALLE SERIEN.",
+    subline: "Fünf Serien, 40 Folgen. Fang an, wo es bei dir gerade brennt.",
+  },
+
+  kapitel: {
+    folgen: "FOLGEN",
+    andere: "WEITERE SERIEN",
+    abspielen: "ABSPIELEN",
   },
 
   live: {
@@ -95,15 +96,16 @@ export const club = {
       "Sobald ein Termin steht, findest du ihn hier und auf der Startseite.",
   },
 
+  /* Unter dem Video so wenig wie moeglich: worum es geht, die Themen als
+     Stichworte, der Rest zum Aufklappen. Wer das Video ansieht, will
+     nicht danach noch eine Seite lesen. */
   video: {
     kern: "ÜBER DIESES VIDEO",
-    gliederung: "THEMEN IN DIESEM VIDEO",
-    aufgabe: "DEINE UMSETZUNG",
-    regeln: "ISI RULES",
-    aehnlich: "ÄHNLICHE INHALTE",
-    davor: "Vorheriges",
-    danach: "Nächstes",
-    zurueck: "Inhalte",
+    themen: "THEMEN",
+    aufklappen: "DEINE UMSETZUNG & ISI RULES",
+    aufgabe: "Deine Umsetzung",
+    regeln: "ISI Rules",
+    weitere: "ALLE FOLGEN",
     aufgabeHinweis:
       "Nichts davon wird eingereicht oder bewertet. Die Aufgabe steht hier, weil ein Video, aus dem nichts folgt, nur Unterhaltung war.",
     nochNicht: "Dieses Video wird gerade produziert.",

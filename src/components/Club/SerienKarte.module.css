@@ -1,0 +1,85 @@
+.karte {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.bild {
+  position: relative;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--card-dark);
+  box-shadow: inset 0 0 0 1px var(--line-light);
+  transition:
+    transform var(--d-base) var(--ease-out),
+    box-shadow var(--d-base) var(--ease-out);
+}
+
+.karte:hover .bild,
+.karte:focus-visible .bild {
+  /* §44: hoechstens 1.025 — es soll reagieren, nicht springen. */
+  transform: scale(1.025);
+  box-shadow:
+    inset 0 0 0 1px rgba(200, 166, 106, 0.5),
+    0 22px 48px rgba(0, 0, 0, 0.5);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.zahl {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.titel {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--text-light);
+  overflow-wrap: anywhere;
+}
+
+.karte:hover .titel {
+  color: var(--accent);
+}
+
+.text {
+  margin-top: 6px;
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--text-muted-light);
+  /* Zwei Zeilen, dann Schluss — die Kachel soll nicht zur Spalte werden. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bild {
+    transition: none;
+  }
+
+  .karte:hover .bild,
+  .karte:focus-visible .bild {
+    transform: none;
+  }
+}

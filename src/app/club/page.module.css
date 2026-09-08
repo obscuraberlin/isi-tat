@@ -7,29 +7,58 @@
   margin-bottom: clamp(34px, 4vw, 54px);
 }
 
-.gruss {
-  max-width: var(--max-page);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  padding-block: clamp(28px, 3.5vw, 46px) clamp(20px, 2.5vw, 32px);
+.abstand {
+  height: clamp(24px, 3vw, 40px);
 }
 
-.grussTitel {
+/* ---------- Serien ---------- */
+
+.serienTitel {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 0.95rem + 1.3vw, 1.875rem);
-  line-height: var(--lh-head);
-  letter-spacing: var(--tr-head);
+  font-size: clamp(0.9375rem, 0.85rem + 0.4vw, 1.125rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-light);
+  margin-bottom: 16px;
 }
 
-.name {
-  color: var(--accent);
+.serien {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 22px);
 }
 
-.grussText {
-  margin-top: 8px;
-  font-size: var(--fs-small);
-  color: var(--text-muted-light);
+/* Auf dem Telefon als Band zum Wischen, die naechste Kachel schaut
+   hervor — §52. Kein Zweispalter voller Miniaturen. */
+@media (max-width: 767px) {
+  .serien {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start: var(--gutter);
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .serien::-webkit-scrollbar {
+    display: none;
+  }
+
+  .serien > * {
+    flex: 0 0 auto;
+    width: 58vw;
+    scroll-snap-align: start;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .serien {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* ---------- Diese Woche im Club ---------- */
@@ -113,9 +142,7 @@
   }
 }
 
-/* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort — auf dem
-   Desktop wuerde derselbe Zuschlag die Abstaende verschieben, und dort
-   trifft eine Maus auch 21 Pixel. */
+/* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort. */
 @media (pointer: coarse) {
   .wocheMehr {
     padding-block: 12px;

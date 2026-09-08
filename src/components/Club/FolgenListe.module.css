@@ -1,0 +1,103 @@
+.liste {
+  list-style: none;
+}
+
+.eintrag {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.eintrag:last-child {
+  border-bottom: none;
+}
+
+.zeile {
+  display: grid;
+  grid-template-columns: 28px 132px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding-block: 14px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--r-btn);
+  transition: background-color var(--d-fast) var(--ease-soft);
+}
+
+a.zeile:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+a.zeile:hover .titel {
+  color: var(--accent);
+}
+
+.laeuft .titel {
+  color: var(--accent);
+}
+
+.nummer {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  color: var(--text-muted-light);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.laeuft .nummer {
+  color: var(--accent);
+}
+
+.bild {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card-dark);
+  box-shadow: inset 0 0 0 1px var(--line-light);
+}
+
+/* Geliehenes Kapitelmotiv: zurueckgenommen, Ausschnitt oben — wie bei den
+   Kacheln. Sobald eigene Standbilder da sind, entfaellt das von selbst. */
+.geliehen img {
+  filter: grayscale(0.35) brightness(0.72);
+  object-position: 50% 26%;
+}
+
+.text {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.titel {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.28;
+  color: var(--text-light);
+  overflow-wrap: anywhere;
+  transition: color var(--d-fast) var(--ease-soft);
+}
+
+.unter {
+  font-size: var(--fs-small);
+  line-height: 1.4;
+  color: var(--text-muted-light);
+}
+
+@media (max-width: 599px) {
+  .zeile {
+    grid-template-columns: 20px 104px minmax(0, 1fr);
+    gap: 12px;
+    padding-block: 12px;
+  }
+
+  .nummer {
+    font-size: 0.9375rem;
+  }
+
+  .titel {
+    font-size: 0.9375rem;
+  }
+
+  .unter {
+    font-size: 0.8125rem;
+  }
+}

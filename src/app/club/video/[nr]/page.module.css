@@ -1,38 +1,8 @@
 .seite {
   max-width: 1080px;
-  padding-block-start: clamp(28px, 4vw, 56px);
   margin-inline: auto;
+  padding-block-start: clamp(20px, 3vw, 40px);
   padding-inline: var(--gutter);
-}
-
-/* ---------- Pfad ---------- */
-
-.pfad {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  min-width: 0;
-}
-
-.pfadLink {
-  color: var(--text-muted-light);
-  text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.pfadLink:hover {
-  color: var(--accent);
-}
-
-.pfadTrenner {
-  color: var(--text-muted);
-  flex-shrink: 0;
 }
 
 /* ---------- Spieler ---------- */
@@ -51,9 +21,27 @@
   object-position: 50% 30%;
 }
 
+/* §53: auf dem Telefon randlos. Der Rahmen faellt weg, das Video fuellt
+   die Breite. */
+@media (max-width: 599px) {
+  .seite {
+    padding-block-start: 0;
+    padding-inline: 0;
+  }
+
+  .spieler {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .inhalt {
+    padding-inline: var(--gutter);
+  }
+}
+
 .fehlt {
   margin-top: 16px;
-  padding: 16px 18px;
+  padding: 14px 16px;
   border: 1px solid var(--line-light);
   border-left: 2px solid var(--accent);
   border-radius: var(--r-btn);
@@ -70,31 +58,36 @@
 /* ---------- Kopf ---------- */
 
 .kopf {
-  margin-top: clamp(26px, 3vw, 40px);
+  margin-top: clamp(22px, 3vw, 36px);
 }
 
-.nummer {
+.serie {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
   font-size: var(--fs-eyebrow);
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
-  color: var(--accent);
 }
 
-.trenner {
-  width: 20px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.5;
-  flex-shrink: 0;
+.serieLink {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.serieLink:hover {
+  text-decoration: underline;
+}
+
+.serieFolge {
+  color: var(--text-muted);
 }
 
 .titel {
-  margin-top: 12px;
+  margin-top: 10px;
   font-family: var(--font-display);
-  font-size: clamp(1.625rem, 1rem + 2.2vw, 2.75rem);
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   line-height: var(--lh-head);
   letter-spacing: var(--tr-head);
   color: var(--text-light);
@@ -103,41 +96,16 @@
 }
 
 .unter {
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: var(--fs-body-lg);
   color: var(--text-muted-light);
   max-width: var(--max-text-wide);
 }
 
-/* ---------- Hook ---------- */
-
-.hook {
-  margin-top: clamp(30px, 3.5vw, 46px);
-  padding-left: clamp(18px, 2vw, 26px);
-  border-left: 2px solid var(--accent);
-  max-width: var(--max-text-wide);
-}
-
-.hook p {
-  font-family: var(--font-display);
-  font-size: clamp(1.125rem, 0.95rem + 0.75vw, 1.5rem);
-  line-height: 1.36;
-  letter-spacing: -0.014em;
-  color: var(--text-light);
-}
-
-.hook p::before {
-  content: "„";
-}
-
-.hook p::after {
-  content: "“";
-}
-
 /* ---------- Bloecke ---------- */
 
 .block {
-  margin-top: clamp(38px, 4.5vw, 64px);
+  margin-top: clamp(30px, 3.5vw, 46px);
 }
 
 .blockTitel {
@@ -146,101 +114,117 @@
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
   color: var(--accent);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
   border-bottom: 1px solid var(--line-light);
 }
 
 .kern {
   font-size: var(--fs-body-lg);
-  line-height: 1.62;
+  line-height: 1.6;
   color: var(--text-light);
   max-width: var(--max-text-wide);
 }
 
-/* ---------- Gliederung ---------- */
-
-.gliederung {
+/* Themen als Stichworte nebeneinander — Orientierung, keine Lektuere. */
+.themen {
   list-style: none;
-  display: grid;
-  gap: 22px;
-  max-width: var(--max-text-wide);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.punkt {
-  display: grid;
-  grid-template-columns: 34px 1fr;
-  gap: 14px;
-  align-items: start;
-}
-
-.punktNr {
+.thema {
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-light);
   font-size: var(--fs-small);
-  color: var(--text-muted);
-  padding-top: 2px;
-  font-variant-numeric: tabular-nums;
-}
-
-.punktTitel {
-  font-family: var(--font-display);
-  font-size: 1.0625rem;
-  letter-spacing: -0.01em;
-  color: var(--text-light);
-}
-
-.punktText {
-  margin-top: 5px;
-  font-size: var(--fs-small);
-  line-height: 1.62;
   color: var(--text-muted-light);
 }
 
-/* ---------- Aufgabe ---------- */
+/* ---------- Aufklappen ---------- */
 
-.aufgabe {
-  background: var(--card-dark);
+.mehr {
+  margin-top: clamp(30px, 3.5vw, 46px);
   border: 1px solid var(--line-light);
   border-radius: var(--r-card);
-  padding: clamp(22px, 3vw, 34px);
+  background: var(--card-dark);
 }
 
-.aufgabe .blockTitel {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 14px;
+.mehrKopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-light);
 }
 
-.aufgabeText {
-  font-size: var(--fs-body-lg);
+.mehrKopf::-webkit-details-marker {
+  display: none;
+}
+
+.mehrPfeil {
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--text-muted-light);
+  border-bottom: 1.5px solid var(--text-muted-light);
+  transform: rotate(45deg);
+  transition: transform var(--d-fast) var(--ease-soft);
+  flex-shrink: 0;
+}
+
+.mehr[open] .mehrPfeil {
+  transform: rotate(-135deg);
+}
+
+.mehrInhalt {
+  padding: 4px 20px 22px;
+  border-top: 1px solid var(--line-light);
+}
+
+.mehrTitel {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.aufgabe {
+  margin-top: 8px;
+  font-size: var(--fs-body);
   line-height: 1.6;
   color: var(--text-light);
   max-width: var(--max-text);
 }
 
-.aufgabeHinweis {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line-light);
+.hinweis {
+  margin-top: 10px;
   font-size: var(--fs-small);
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--text-muted);
   max-width: var(--max-text);
 }
 
-/* ---------- Regeln ---------- */
-
 .regeln {
   list-style: none;
+  margin-top: 8px;
   display: grid;
-  gap: 12px;
-  max-width: var(--max-text-wide);
+  gap: 8px;
 }
 
 .regel {
   position: relative;
-  padding-left: 22px;
+  padding-left: 18px;
   font-size: var(--fs-body);
-  line-height: 1.58;
+  line-height: 1.55;
   color: var(--text-light);
 }
 
@@ -248,76 +232,8 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 0.68em;
+  top: 0.7em;
   width: 8px;
   height: 1px;
   background: var(--accent);
-}
-
-/* ---------- Weiter ---------- */
-
-.weiter {
-  margin-top: clamp(48px, 6vw, 80px);
-  padding-top: 26px;
-  border-top: 1px solid var(--line-light);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.nachbar {
-  display: block;
-  text-decoration: none;
-  min-width: 0;
-}
-
-.rechts {
-  text-align: right;
-}
-
-.nachbarLabel {
-  display: block;
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.nachbarTitel {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-display);
-  font-size: 1rem;
-  line-height: 1.3;
-  color: var(--text-light);
-  overflow-wrap: anywhere;
-}
-
-.nachbar:hover .nachbarTitel {
-  color: var(--accent);
-}
-
-@media (max-width: 599px) {
-  .weiter {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
-  .rechts {
-    text-align: left;
-  }
-
-  .punkt {
-    grid-template-columns: 26px 1fr;
-    gap: 10px;
-  }
-}
-
-/* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort — auf dem
-   Desktop wuerde derselbe Zuschlag die Abstaende verschieben, und dort
-   trifft eine Maus auch 21 Pixel. */
-@media (pointer: coarse) {
-  .pfadLink {
-    padding-block: 12px;
-  }
 }

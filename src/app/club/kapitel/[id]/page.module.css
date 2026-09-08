@@ -1,29 +1,75 @@
 .seite {
-  max-width: var(--max-page);
-  padding-block-start: clamp(28px, 4vw, 56px);
+  max-width: 1080px;
+  padding-block-start: clamp(20px, 3vw, 40px);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
-.pfad {
-  margin-bottom: 20px;
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+/* ---------- Serienwechsel ---------- */
+
+.wechsel {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  padding-block: 4px;
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
 
-.pfadLink {
+.wechsel::-webkit-scrollbar {
+  display: none;
+}
+
+.pille {
+  flex-shrink: 0;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-light);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-muted-light);
   text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--d-fast) var(--ease-soft),
+    border-color var(--d-fast) var(--ease-soft);
 }
 
-.pfadLink:hover {
-  color: var(--accent);
+.pille:hover {
+  color: var(--text-light);
+  border-color: rgba(255, 255, 255, 0.3);
 }
+
+.pilleAktiv {
+  color: var(--bg-dark);
+  background: var(--text-light);
+  border-color: var(--text-light);
+}
+
+.pilleAktiv:hover {
+  color: var(--bg-dark);
+}
+
+/* ---------- Kopf ---------- */
 
 .kopf {
-  max-width: var(--max-text-wide);
-  margin-bottom: clamp(34px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: end;
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+.plakat {
+  border-radius: var(--r-card);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 
 .zahl {
@@ -31,42 +77,80 @@
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 14px;
 }
 
 .titel {
+  margin-top: 10px;
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 3rem);
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   line-height: var(--lh-head);
   letter-spacing: var(--tr-head);
   color: var(--text-light);
+  overflow-wrap: anywhere;
 }
 
 .text {
-  margin-top: 16px;
-  font-size: var(--fs-body-lg);
-  line-height: 1.62;
+  margin-top: 12px;
+  font-size: var(--fs-body);
+  line-height: 1.6;
   color: var(--text-muted-light);
+  max-width: 60ch;
 }
 
-.raster {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: clamp(16px, 2vw, 26px);
+.abspielen {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding-inline: 26px;
+  border-radius: var(--r-btn);
+  background: var(--text-light);
+  color: var(--bg-dark);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color var(--d-fast) var(--ease-soft);
 }
 
-@media (max-width: 599px) {
-  .raster {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+.abspielen:hover {
+  background: #fff;
+}
+
+.play {
+  width: 11px;
+  height: 13px;
+  fill: currentColor;
+}
+
+/* ---------- Folgen ---------- */
+
+.folgenTitel {
+  font-family: var(--font-display);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-light);
+}
+
+@media (max-width: 767px) {
+  .kopf {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: start;
   }
-}
 
-/* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort — auf dem
-   Desktop wuerde derselbe Zuschlag die Abstaende verschieben, und dort
-   trifft eine Maus auch 21 Pixel. */
-@media (pointer: coarse) {
-  .pfadLink {
-    padding-block: 12px;
+  .plakat {
+    width: 44%;
+    max-width: 180px;
+  }
+
+  .abspielen {
+    width: 100%;
+    justify-content: center;
   }
 }

@@ -1,76 +1,58 @@
-"use client";
-
 import Link from "next/link";
 import type { MediaAsset } from "@/data/landingPage";
-import type { KursVideo } from "@/data/masterclass";
 import { club } from "@/data/club";
 import { Media } from "@/components/Media/Media";
-import { umschalten, useMerkliste } from "@/lib/merker";
 import styles from "./FeaturedHero.module.css";
 
 /**
  * Die Flaeche ganz oben.
  *
- * Ein Bild ueber die volle Breite, darauf ein Satz und zwei Knoepfe —
- * nicht drei Kennzahlen und ein Diagramm. Wer hier hereinkommt, soll
- * etwas ansehen wollen, nicht etwas auswerten.
+ * Ein Bild ueber die volle Breite, die Begruessung klein, der Name der
+ * Masterclass gross, ein Satz, zwei Knoepfe. Das war es. Kein Kapitel,
+ * kein einzelner Videotitel, keine Kennzahl — wer hereinkommt, soll
+ * einen Knopf sehen und nicht eine Entscheidung.
  *
- * Der Verlauf nach unten ist kein Schmuck: darunter beginnt die erste
- * Reihe, und ohne ihn stuende eine harte Kante zwischen Bild und Inhalt.
+ * ABSPIELEN startet die erste Folge. ALLE SERIEN fuehrt zur Uebersicht.
  */
 export function FeaturedHero({
-  video,
   bild,
-  kapitel,
+  vorname,
+  erstesVideoNr,
 }: {
-  video: KursVideo;
   bild: MediaAsset;
-  kapitel: string;
+  vorname: string;
+  erstesVideoNr: number;
 }) {
-  const spaeter = useMerkliste("spaeter");
-  /* null = noch nicht nachgesehen. Bis dahin gilt "nicht gemerkt" — sonst
-     springt der Knopf beim ersten Rendern sichtbar um. */
-  const gemerkt = spaeter?.includes(video.nr) ?? false;
-
   return (
-    <section className={styles.hero} aria-labelledby="featured">
+    <section className={styles.hero} aria-labelledby="hero-titel">
       <div className={styles.bild}>
         <Media asset={bild} tone="dark" priority radius="0" ratio="16 / 9" />
       </div>
       <span className={styles.verlauf} aria-hidden="true" />
 
       <div className={styles.inhalt}>
-        <p className={styles.eyebrow}>
-          {club.hero.eyebrow}
-          <span className={styles.punkt} aria-hidden="true" />
-          <span className={styles.kapitelName}>{kapitel}</span>
-        </p>
+        {vorname ? (
+          <p className={styles.gruss}>
+            {club.start.grussVor} {vorname.toUpperCase()}.
+          </p>
+        ) : null}
 
-        <h1 id="featured" className={styles.titel}>
-          {video.titel}
+        <h1 id="hero-titel" className={styles.titel}>
+          {club.hero.headline}
         </h1>
 
-        <p className={styles.text}>{video.unter}</p>
+        <p className={styles.text}>{club.hero.text}</p>
 
         <div className={styles.knoepfe}>
-          <Link href={`/club/video/${video.nr}/`} className={styles.ansehen}>
+          <Link href={`/club/video/${erstesVideoNr}/`} className={styles.abspielen}>
             <svg className={styles.play} viewBox="0 0 12 14" aria-hidden="true">
               <path d="M0 0v14l12-7z" />
             </svg>
-            {club.hero.ansehen}
+            {club.hero.abspielen}
           </Link>
-
-          <button
-            type="button"
-            className={styles.merken}
-            onClick={() => umschalten("spaeter", video.nr)}
-            aria-pressed={gemerkt}
-          >
-            <span className={styles.zeichen} aria-hidden="true">
-              {gemerkt ? "✓" : "+"}
-            </span>
-            {gemerkt ? club.hero.spaeterGemerkt : club.hero.spaeterMerken}
-          </button>
+          <Link href="/club/inhalte/" className={styles.alle}>
+            {club.hero.alleFolgen}
+          </Link>
         </div>
       </div>
     </section>

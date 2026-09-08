@@ -8,6 +8,7 @@ import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
 import { Media } from "@/components/Media/Media";
 import { FolgenListe } from "@/components/Club/FolgenListe";
 import { AktivInsBild } from "@/components/Club/AktivInsBild";
+import { SerieStart } from "@/components/Club/SerieStart";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -34,8 +35,6 @@ export default async function KapitelSeite({
   for (const video of kapitel.videos) {
     bilder[video.nr] = kursBildAsset(video, kapitel.still);
   }
-  const erste = kapitel.videos[0];
-
   return (
     <div className={styles.seite}>
       {/* Zum Wechseln zwischen den Serien — die aktuelle ist markiert und
@@ -64,14 +63,7 @@ export default async function KapitelSeite({
           <p className={styles.zahl}>{kapitel.videos.length} Folgen</p>
           <h1 className={styles.titel}>{kapitel.label}</h1>
           <p className={styles.text}>{kapitel.description}</p>
-          {erste ? (
-            <Link href={`/club/video/${erste.nr}/`} className={styles.abspielen}>
-              <svg className={styles.play} viewBox="0 0 12 14" aria-hidden="true">
-                <path d="M0 0v14l12-7z" />
-              </svg>
-              {club.kapitel.abspielen}
-            </Link>
-          ) : null}
+          <SerieStart folgen={kapitel.videos} />
         </div>
       </header>
 

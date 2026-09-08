@@ -47,6 +47,42 @@
   color: rgba(255, 255, 255, 0.82);
 }
 
+/* Noch nicht dran: das Plakat zurueckgenommen, ein Schloss in der Ecke.
+   Nicht unsichtbar — man soll sehen, was kommt. */
+.gesperrt .bild img {
+  filter: grayscale(0.6) brightness(0.55);
+}
+
+.schloss {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.schloss svg {
+  width: 12px;
+  height: 14px;
+  stroke: rgba(255, 255, 255, 0.85);
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .titel {
   margin-top: 12px;
   font-family: var(--font-display);

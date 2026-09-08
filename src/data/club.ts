@@ -54,19 +54,28 @@ export const club = {
 
   start: {
     grussVor: "WILLKOMMEN ZURÜCK,",
-    weitersehen: "WEITER ANSEHEN",
-    serien: "ALLE SERIEN",
+    serien: "DEINE SERIEN",
     alleZeigen: "Alle Serien",
   },
 
-  /* Die Flaeche ganz oben: nicht ein einzelnes Video, sondern das Ganze.
-     Wer hereinkommt, soll in einem Blick wissen, was das hier ist — und
-     mit einem Tipp anfangen koennen. */
-  hero: {
-    headline: "DIE MASTERCLASS.",
-    text: "40 Videos in fünf Serien. Erfahrung aus über 20 Jahren — zum Ansehen, dann zum Umsetzen.",
-    abspielen: "ABSPIELEN",
-    alleFolgen: "ALLE SERIEN",
+  /* Die Karte ganz oben: wo es weitergeht. Ein Bild, die Folge, ein Knopf. */
+  naechste: {
+    eyebrow: "DEINE NÄCHSTE FOLGE",
+    eyebrowAnfang: "HIER GEHT ES LOS",
+    eyebrowFertig: "ALLE FOLGEN GESEHEN",
+    weiter: "WEITER",
+    anfangen: "ABSPIELEN",
+    nochmal: "VON VORN",
+    /* "12 von 40 Folgen gesehen" — Zaehlung, kein Zeugnis. */
+    stand: (gesehen: number, gesamt: number) =>
+      `${gesehen} von ${gesamt} Folgen gesehen`,
+    fertigText: "Ab jetzt kannst du jede Folge direkt öffnen.",
+  },
+
+  /* Folgen, die noch zu sind. */
+  gesperrt: {
+    kurz: "Noch gesperrt",
+    hinweis: "Sieh die Folge davor zu Ende, dann öffnet sich diese.",
   },
 
   inhalte: {
@@ -77,8 +86,11 @@ export const club = {
 
   kapitel: {
     folgen: "FOLGEN",
-    andere: "WEITERE SERIEN",
     abspielen: "ABSPIELEN",
+    weiter: "WEITER",
+    naechsteOffene: "ZUR NÄCHSTEN OFFENEN FOLGE",
+    /* "3 von 8 gesehen" unter dem Plakat. */
+    stand: (gesehen: number, gesamt: number) => `${gesehen} von ${gesamt} gesehen`,
   },
 
   live: {
@@ -106,6 +118,13 @@ export const club = {
     aufgabe: "Deine Umsetzung",
     regeln: "ISI Rules",
     weitere: "ALLE FOLGEN",
+    /* Nach dem Ende: die naechste Folge, mit Countdown. */
+    naechsteStartet: "Nächste Folge startet in",
+    jetzt: "JETZT",
+    bleiben: "HIER BLEIBEN",
+    naechsteFolge: "NÄCHSTE FOLGE",
+    gesehenWeiter: "GESEHEN — WEITER",
+    fertig: "Das war die letzte Folge.",
     aufgabeHinweis:
       "Nichts davon wird eingereicht oder bewertet. Die Aufgabe steht hier, weil ein Video, aus dem nichts folgt, nur Unterhaltung war.",
     nochNicht: "Dieses Video wird gerade produziert.",

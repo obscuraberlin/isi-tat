@@ -1,17 +1,31 @@
-/* Die Reihen laufen bis an den Bildrand, dieser Block nicht: Text braucht
-   eine Spalte, ein Band nicht. */
-.spalte {
-  max-width: var(--max-page);
+.seite {
+  max-width: 1120px;
   margin-inline: auto;
   padding-inline: var(--gutter);
-  margin-bottom: clamp(34px, 4vw, 54px);
+  padding-block-start: clamp(24px, 3.5vw, 44px);
 }
 
-.abstand {
-  height: clamp(24px, 3vw, 40px);
+.gruss {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+  margin-bottom: 16px;
+}
+
+.block {
+  margin-top: clamp(30px, 4vw, 52px);
 }
 
 /* ---------- Serien ---------- */
+
+.serienKopf {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
 
 .serienTitel {
   font-family: var(--font-display);
@@ -19,7 +33,18 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-light);
-  margin-bottom: 16px;
+}
+
+.serienMehr {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  color: var(--text-muted-light);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.serienMehr:hover {
+  color: var(--accent);
 }
 
 .serien {
@@ -50,7 +75,7 @@
 
   .serien > * {
     flex: 0 0 auto;
-    width: 58vw;
+    width: 54vw;
     scroll-snap-align: start;
   }
 }
@@ -144,7 +169,8 @@
 
 /* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort. */
 @media (pointer: coarse) {
-  .wocheMehr {
+  .wocheMehr,
+  .serienMehr {
     padding-block: 12px;
   }
 }

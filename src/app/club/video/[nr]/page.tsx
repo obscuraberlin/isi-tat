@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
-import { kursKapitel, videoNr } from "@/data/masterclass";
+import { kursKapitel, kursVideos, videoNr } from "@/data/masterclass";
 import { club } from "@/data/club";
 import { trust } from "@/data/landingPage";
 import {
@@ -11,8 +11,7 @@ import {
   kursVideoAsset,
   type Kursbild,
 } from "@/lib/kursMedien";
-import { Media } from "@/components/Media/Media";
-import { MerkeVideo } from "@/components/Club/MerkeVideo";
+import { FolgenPlayer } from "@/components/Club/FolgenPlayer";
 import { FolgenListe } from "@/components/Club/FolgenListe";
 import styles from "./page.module.css";
 
@@ -23,17 +22,19 @@ export const metadata: Metadata = {
 /**
  * Eine Folge.
  *
- * Oben das Video, darunter drei Dinge: worum es geht, die Themen als
- * Stichworte, die weiteren Folgen der Serie. Die Umsetzungsaufgabe und
- * die ISI Rules stehen zum Aufklappen bereit — sie gehoeren dazu, aber
- * nicht als Textwand unter jedem Video.
+ * Oben der Spieler, der auch entscheidet, ob die Folge schon dran ist.
+ * Darunter drei Dinge: worum es geht, die Themen als Stichworte, die
+ * Folgen der Serie. Umsetzung und ISI Rules zum Aufklappen.
  */
 export default async function VideoSeite({
   params,
+  searchParams,
 }: {
   params: Promise<{ nr: string }>;
+  searchParams: Promise<{ weiter?: string }>;
 }) {
   const { nr } = await params;
+  const { weiter } = await searchParams;
   const nummer = Number(nr);
   const video = Number.isInteger(nummer) ? videoNr(nummer) : undefined;
   if (!video) notFound();
@@ -44,38 +45,26 @@ export default async function VideoSeite({
   if (!kapitel) notFound();
 
   const asset = kursVideoAsset(video, kapitel.still);
-  const laeuft = Boolean(asset.src);
-
   const bilder: Record<number, Kursbild> = {};
   for (const v of kapitel.videos) bilder[v.nr] = kursBildAsset(v, kapitel.still);
   const folgeNr = kapitel.videos.findIndex((v) => v.nr === video.nr) + 1;
 
+  /* Die naechste im Katalog — ueber die Seriengrenze hinweg. Nach der
+     letzten Folge einer Serie kommt die erste der naechsten. */
+  const i = kursVideos.findIndex((v) => v.nr === video.nr);
+  const naechste = kursVideos[i + 1]?.nr ?? null;
+
   return (
     <article className={styles.seite}>
-      <MerkeVideo nr={video.nr} />
-
-      {/* Ohne Datei ein gedaempftes Standbild statt eines leeren Kastens —
-          und ein Satz darunter. */}
-      <div
-        className={[styles.spieler, laeuft ? "" : styles.ruht]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        <Media
-          asset={laeuft ? asset : kursHeroAsset(video, trust.video)}
-          tone="dark"
-          controls={laeuft}
-          priority
-        />
-      </div>
+      <FolgenPlayer
+        nr={video.nr}
+        asset={asset}
+        standbild={kursHeroAsset(video, trust.video)}
+        naechsteNr={naechste}
+        autoStart={weiter === "1"}
+      />
 
       <div className={styles.inhalt}>
-        {laeuft ? null : (
-          <p className={styles.fehlt}>
-            <strong>{club.video.nochNicht}</strong> {club.video.nochNichtText}
-          </p>
-        )}
-
         <header className={styles.kopf}>
           <p className={styles.serie}>
             <Link href={`/club/kapitel/${kapitel.id}/`} className={styles.serieLink}>
@@ -103,7 +92,6 @@ export default async function VideoSeite({
           </ul>
         </section>
 
-        {/* Zum Aufklappen: gehoert dazu, muss aber niemanden erschlagen. */}
         <details className={styles.mehr}>
           <summary className={styles.mehrKopf}>
             {club.video.aufklappen}

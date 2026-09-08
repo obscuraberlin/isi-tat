@@ -97,34 +97,6 @@
   max-width: 60ch;
 }
 
-.abspielen {
-  margin-top: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding-inline: 26px;
-  border-radius: var(--r-btn);
-  background: var(--text-light);
-  color: var(--bg-dark);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background-color var(--d-fast) var(--ease-soft);
-}
-
-.abspielen:hover {
-  background: #fff;
-}
-
-.play {
-  width: 11px;
-  height: 13px;
-  fill: currentColor;
-}
-
 /* ---------- Folgen ---------- */
 
 .folgenTitel {
@@ -147,10 +119,5 @@
   .plakat {
     width: 44%;
     max-width: 180px;
-  }
-
-  .abspielen {
-    width: 100%;
-    justify-content: center;
   }
 }

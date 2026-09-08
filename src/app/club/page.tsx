@@ -1,40 +1,34 @@
 import Link from "next/link";
 import { verlangeMitglied } from "@/lib/zugang";
-import { kursKapitel, kursVideos } from "@/data/masterclass";
-import { club, startVideoNr } from "@/data/club";
-import { trust } from "@/data/landingPage";
-import {
-  kursBildAsset,
-  kursHeroAsset,
-  type Kursbild,
-} from "@/lib/kursMedien";
+import { kursKapitel } from "@/data/masterclass";
+import { club } from "@/data/club";
+import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
 import { liveDaten } from "@/lib/live";
 import { kanalNachrichten, datumLang } from "@/lib/kanal";
-import { FeaturedHero } from "@/components/Club/FeaturedHero";
 import { LiveKarte } from "@/components/Club/LiveKarte";
-import { MerkReihen } from "@/components/Club/MerkReihen";
-import { SerienKarte } from "@/components/Club/SerienKarte";
+import { NaechsteFolge } from "@/components/Club/NaechsteFolge";
+import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
 import { Willkommen } from "@/components/Club/Willkommen";
 import styles from "./page.module.css";
 
 /**
- * Die Startseite des Clubs.
+ * Die Startseite des Clubs — ein Armaturenbrett, aber eins mit genau
+ * einem Hebel: WEITER.
  *
- * Bild, ein Satz, zwei Knoepfe — dann die fuenf Serien. Nicht vierzig
- * Videos. Was jemand angefangen hat, steht dazwischen; ein Live-Termin
- * und Neues aus dem Kanal nur, wenn es sie gibt.
+ * Oben die Karte mit der naechsten Folge und dem Stand. Darunter die
+ * fuenf Serien, jede mit "3 von 8 gesehen". Live-Termin und Kanal nur,
+ * wenn es sie gibt.
  *
- * Die Folgen einer Serie sieht man erst, wenn man sie oeffnet. So bleibt
- * die erste Seite eine Auswahl aus fuenf Dingen, nicht aus vierzig.
+ * Kein grosses Bild mehr ueber die volle Breite: wer hereinkommt, will
+ * weitermachen, nicht staunen. Das Bild sitzt jetzt in der Karte, neben
+ * dem Knopf.
  */
 export default async function ClubStart() {
   const sitzung = await verlangeMitglied("/club/");
 
-  const erstes = kursVideos.find((v) => v.nr === startVideoNr) ?? kursVideos[0];
-
-  /* Die Standbilder werden hier aufgeloest, nicht in der Kachel: die
-     Adresse der Videodateien steht in einer Umgebungsvariablen, und die
-     gehoert auf den Server. */
+  /* Die Standbilder werden hier aufgeloest, nicht im Browser: die Adresse
+     der Videodateien steht in einer Umgebungsvariablen, und die gehoert
+     auf den Server. */
   const bilder: Record<number, Kursbild> = {};
   for (const kapitel of kursKapitel) {
     for (const video of kapitel.videos) {
@@ -47,71 +41,60 @@ export default async function ClubStart() {
   const vorname = sitzung.name.trim().split(/\s+/)[0] ?? "";
 
   return (
-    <>
+    <div className={styles.seite}>
       <Willkommen />
 
-      <FeaturedHero
-        bild={kursHeroAsset(erstes, trust.video)}
-        vorname={vorname}
-        erstesVideoNr={erstes.nr}
-      />
+      <p className={styles.gruss}>
+        {club.start.grussVor} {vorname.toUpperCase()}.
+      </p>
 
-      <div className={styles.abstand} />
+      <NaechsteFolge bilder={bilder} />
 
-      <MerkReihen videos={kursVideos} bilder={bilder} />
-
-      {/* §50: was leer ist, erscheint nicht. Der naechste Termin steht
-          hier nur, wenn es einen gibt — den Leerzustand hat die
-          Live-Seite. */}
+      {/* §50: was leer ist, erscheint nicht. */}
       {live.naechster ? (
-        <div className={styles.spalte}>
+        <div className={styles.block}>
           <LiveKarte termin={live.naechster} />
         </div>
       ) : null}
 
       {neuigkeiten.length > 0 ? (
-        <div className={styles.spalte}>
-          <section className={styles.woche} aria-labelledby="woche">
-            <div className={styles.wocheKopf}>
-              <h2 id="woche" className={styles.wocheTitel}>
-                {club.kanal.dieseWoche}
-              </h2>
-              <Link href="/club/kanal/" className={styles.wocheMehr}>
-                {club.kanal.alleZeigen}
-                <span aria-hidden="true"> →</span>
-              </Link>
-            </div>
-            <ul className={styles.wocheListe}>
-              {neuigkeiten.map((n) => (
-                <li key={`${n.datum}-${n.titel}`} className={styles.wocheZeile}>
-                  <time className={styles.wocheDatum} dateTime={n.datum}>
-                    {datumLang(n.datum)}
-                  </time>
-                  <span className={styles.wocheText}>{n.titel}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+        <section className={`${styles.block} ${styles.woche}`} aria-labelledby="woche">
+          <div className={styles.wocheKopf}>
+            <h2 id="woche" className={styles.wocheTitel}>
+              {club.kanal.dieseWoche}
+            </h2>
+            <Link href="/club/kanal/" className={styles.wocheMehr}>
+              {club.kanal.alleZeigen}
+              <span aria-hidden="true"> →</span>
+            </Link>
+          </div>
+          <ul className={styles.wocheListe}>
+            {neuigkeiten.map((n) => (
+              <li key={`${n.datum}-${n.titel}`} className={styles.wocheZeile}>
+                <time className={styles.wocheDatum} dateTime={n.datum}>
+                  {datumLang(n.datum)}
+                </time>
+                <span className={styles.wocheText}>{n.titel}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       ) : null}
 
-      <section className={styles.spalte} aria-labelledby="serien">
-        <h2 id="serien" className={styles.serienTitel}>
-          {club.start.serien}
-        </h2>
+      <section className={styles.block} aria-labelledby="serien">
+        <div className={styles.serienKopf}>
+          <h2 id="serien" className={styles.serienTitel}>
+            {club.start.serien}
+          </h2>
+          <Link href="/club/inhalte/" className={styles.serienMehr}>
+            {club.start.alleZeigen}
+            <span aria-hidden="true"> →</span>
+          </Link>
+        </div>
         <div className={styles.serien}>
-          {kursKapitel.map((kapitel) => (
-            <SerienKarte
-              key={kapitel.id}
-              href={`/club/kapitel/${kapitel.id}/`}
-              label={kapitel.label}
-              tagline={kapitel.tagline}
-              anzahl={kapitel.videos.length}
-              cover={kapitel.cover}
-            />
-          ))}
+          <SerienUebersicht />
         </div>
       </section>
-    </>
+    </div>
   );
 }

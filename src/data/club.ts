@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MITGLIEDERBEREICH — Texte und Kanal
+   MITGLIEDERBEREICH — Texte und News
    ==========================================================================
 
    Alles, was im Club an Text steht, an einer Stelle. Wie bei der
@@ -35,8 +35,11 @@ export const club = {
     { href: "/club/", label: "START", kuerzel: "Start" },
     { href: "/club/inhalte/", label: "INHALTE", kuerzel: "Inhalte" },
     { href: "/club/live/", label: "LIVE", kuerzel: "Live" },
-    { href: "/club/kanal/", label: "KANAL", kuerzel: "Kanal" },
+    { href: "/club/news/", label: "NEWS", kuerzel: "News" },
   ],
+  /* Auf dem Desktop in der Kopfzeile, auf dem Telefon hinter "Mehr" —
+     fuenf Punkte und "Mehr" passen unten nicht nebeneinander. */
+  navMehr: [{ href: "/club/events/", label: "EVENTS", kuerzel: "Events" }],
 
   /* Im Aufklappmenue oben rechts und hinter "Mehr" auf dem Telefon. */
   konto: {
@@ -132,17 +135,38 @@ export const club = {
       "Sobald es geschnitten ist, läuft es an dieser Stelle — ohne dass du etwas tun musst.",
   },
 
-  kanal: {
-    eyebrow: "Kanal",
-    headline: "NACHRICHTEN AUS DEM CLUB.",
-    lead: "Hier schreibt ISI. Termine, Hinweise, neue Inhalte.",
+  news: {
+    eyebrow: "News",
+    headline: "NEUES IM CLUB.",
+    lead: "Hier schreibt ISI. Termine, Hinweise, neue Folgen, Events.",
     hinweis:
-      "Der Kanal ist zum Lesen. Wenn du etwas besprechen willst, bring es in die nächste Live-Runde mit.",
+      "Der Feed ist zum Lesen. Wenn du etwas besprechen willst, bring es in die nächste Live-Runde mit.",
     leer: "Hier steht noch nichts.",
     leerText:
-      "Sobald es etwas zu sagen gibt — ein Termin, ein neues Video, eine Änderung — findest du es an dieser Stelle.",
-    dieseWoche: "DIESE WOCHE IM CLUB",
-    alleZeigen: "Alle Nachrichten",
+      "Sobald es etwas zu sagen gibt — ein Termin, eine neue Folge, ein Event — findest du es an dieser Stelle.",
+    neu: "NEUES IM CLUB",
+    alleZeigen: "Alle News",
+  },
+
+  events: {
+    eyebrow: "Events",
+    headline: "TREFFEN IN ECHT.",
+    lead: "Wenn es passt, trifft man sich. Hier stehen die Termine.",
+    naechstes: "NÄCHSTES EVENT",
+    kommende: "KOMMENDE EVENTS",
+    vergangene: "VERGANGENE EVENTS",
+    ansehen: "EVENT ANSEHEN",
+    anfragen: "TEILNAHME ANFRAGEN",
+    erwartet: "WAS DICH ERWARTET",
+    zurueck: "Alle Events",
+    status: {
+      offen: "Anmeldung offen",
+      ausgebucht: "Ausgebucht",
+      vergangen: "Vergangen",
+    },
+    leer: "Das nächste Event wird hier angekündigt.",
+    leerText:
+      "Sobald ein Termin und ein Ort feststehen, findest du beides hier — und auf der Startseite.",
   },
 } as const;
 
@@ -162,10 +186,12 @@ export interface Nachricht {
   titel: string;
   /** Ein Absatz je Eintrag. */
   text: readonly string[];
+  /** Optional ein Bild, z. B. "/media/news/live-oktober.jpg". */
+  bild?: string;
 }
 
 /**
- * Was im Kanal steht.
+ * Was im News-Feed steht.
  *
  * Noch nichts — und das bleibt so, bis ISI die erste Nachricht schreibt.
  * Hier etwas hinzuschreiben, damit die Seite voller aussieht, hiesse ihm
@@ -179,9 +205,10 @@ export interface Nachricht {
  *          datum: "2026-09-14",
  *          titel: "Nächste Live-Runde",
  *          text: ["Erster Absatz.", "Zweiter Absatz."],
+ *          bild: "/media/news/live-oktober.jpg",   // optional
  *        }
  *
- *   2. CLUB_KANAL_DATEI auf eine JSON-Datei auf dem Server zeigen lassen,
+ *   2. CLUB_NEWS_DATEI auf eine JSON-Datei auf dem Server zeigen lassen,
  *      die dieselbe Liste enthaelt. Dann geht es ohne Deploy.
  *
  * Aus der Seite heraus schreiben zu koennen braeuchte eine Datenbank und

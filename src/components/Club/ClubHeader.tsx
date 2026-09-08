@@ -72,7 +72,7 @@ export function ClubHeader({ name }: { name: string }) {
         </Link>
 
         <nav className={styles.nav} aria-label="Mitgliederbereich">
-          {club.nav.map((eintrag) => {
+          {[...club.nav, ...club.navMehr].map((eintrag) => {
             const aktiv = istAktiv(pfad, eintrag.href);
             return (
               <Link

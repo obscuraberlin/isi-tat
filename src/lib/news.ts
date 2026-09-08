@@ -2,12 +2,12 @@ import { readFileSync, statSync } from "node:fs";
 import { nachrichten, type Nachricht } from "@/data/club";
 
 /**
- * Die Nachrichten des Kanals — aus dem Projekt oder von der Platte.
+ * Die News — aus dem Projekt oder von der Platte.
  *
- * Steht CLUB_KANAL_DATEI auf einer JSON-Datei, gewinnt sie. Dadurch kann
+ * Steht CLUB_NEWS_DATEI auf einer JSON-Datei, gewinnt sie. Dadurch kann
  * eine Nachricht veroeffentlicht werden, ohne die Seite neu
  * bereitzustellen. Ist die Datei kaputt oder fehlt sie, bleibt es bei dem,
- * was im Projekt steht — eine unlesbare Datei darf den Kanal nicht leeren.
+ * was im Projekt steht — eine unlesbare Datei darf den Feed nicht leeren.
  */
 
 let zwischen: { stand: number; liste: Nachricht[] } | null = null;
@@ -20,12 +20,13 @@ function gueltig(n: unknown): n is Nachricht {
     /^\d{4}-\d{2}-\d{2}$/.test(k.datum) &&
     typeof k.titel === "string" &&
     Array.isArray(k.text) &&
-    k.text.every((t) => typeof t === "string")
+    k.text.every((t) => typeof t === "string") &&
+    (k.bild === undefined || typeof k.bild === "string")
   );
 }
 
-export function kanalNachrichten(): Nachricht[] {
-  const pfad = process.env.CLUB_KANAL_DATEI;
+export function newsBeitraege(): Nachricht[] {
+  const pfad = process.env.CLUB_NEWS_DATEI;
   let liste: Nachricht[] = [...nachrichten];
 
   if (pfad) {

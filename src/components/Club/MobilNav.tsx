@@ -27,7 +27,7 @@ const Zeichen = ({ art }: { art: string }) => {
     start: "M3 9.5 10 4l7 5.5V16a1 1 0 0 1-1 1h-3v-4H7v4H4a1 1 0 0 1-1-1z",
     inhalte: "M3 5h14M3 10h14M3 15h9",
     live: "M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zM8.6 7.7l3.6 2.3-3.6 2.3z",
-    kanal: "M4 5h12v8H8l-4 3z",
+    news: "M4 5h12v8H8l-4 3z",
     mehr: "M5 10h.01M10 10h.01M15 10h.01",
   };
   return (
@@ -43,7 +43,7 @@ const Zeichen = ({ art }: { art: string }) => {
   );
 };
 
-const ART = ["start", "inhalte", "live", "kanal"];
+const ART = ["start", "inhalte", "live", "news"];
 
 export function MobilNav() {
   const pfad = usePathname();
@@ -72,10 +72,21 @@ export function MobilNav() {
       ) : null}
 
       {mehr ? (
-        <div className={styles.blatt} role="dialog" aria-label={club.konto.titel}>
+        <div className={styles.blatt} role="dialog" aria-label={club.konto.mehr}>
+          {/* Was unten keinen Platz hat: hier, ueber dem Abmelden. */}
+          {club.navMehr.map((eintrag) => (
+            <Link
+              key={eintrag.href}
+              href={eintrag.href}
+              className={styles.blattEintrag}
+              aria-current={istAktiv(pfad, eintrag.href) ? "page" : undefined}
+            >
+              {eintrag.kuerzel}
+            </Link>
+          ))}
           <button
             type="button"
-            className={styles.blattEintrag}
+            className={`${styles.blattEintrag} ${styles.blattTrenner}`}
             onClick={abmelden.los}
             disabled={abmelden.geht}
           >
@@ -111,7 +122,12 @@ export function MobilNav() {
 
         <button
           type="button"
-          className={[styles.punkt, mehr ? styles.aktiv : ""]
+          className={[
+            styles.punkt,
+            mehr || club.navMehr.some((e) => istAktiv(pfad, e.href))
+              ? styles.aktiv
+              : "",
+          ]
             .filter(Boolean)
             .join(" ")}
           onClick={() => setMehr((m) => !m)}

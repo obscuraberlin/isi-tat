@@ -83,6 +83,17 @@
   opacity: 0.5;
 }
 
+.blattEintrag[aria-current="page"] {
+  color: var(--accent);
+}
+
+.blattTrenner {
+  border-top: 1px solid var(--line-light);
+  border-radius: 0;
+  margin-top: 4px;
+  color: var(--text-muted-light);
+}
+
 .blattZu {
   color: var(--text-muted);
   border-top: 1px solid var(--line-light);

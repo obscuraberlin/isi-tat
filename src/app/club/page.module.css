@@ -17,14 +17,20 @@
   margin-top: clamp(30px, 4vw, 52px);
 }
 
-/* ---------- Serien ---------- */
-
-.serienKopf {
+.blockKopf {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 16px;
+}
+
+.blockTitel {
+  font-family: var(--font-display);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .serienTitel {
@@ -35,7 +41,7 @@
   color: var(--text-light);
 }
 
-.serienMehr {
+.blockMehr {
   font-size: var(--fs-eyebrow);
   letter-spacing: 0.1em;
   color: var(--text-muted-light);
@@ -43,9 +49,11 @@
   white-space: nowrap;
 }
 
-.serienMehr:hover {
+.blockMehr:hover {
   color: var(--accent);
 }
+
+/* ---------- Serien ---------- */
 
 .serien {
   display: grid;
@@ -86,16 +94,16 @@
   }
 }
 
-/* ---------- Diese Woche im Club ---------- */
+/* ---------- Neues im Club ---------- */
 
-.woche {
+.news {
   padding: clamp(18px, 2.4vw, 28px);
   border-radius: var(--r-card);
   background: var(--card-dark);
   border: 1px solid var(--line-light);
 }
 
-.wocheKopf {
+.newsKopf {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -105,31 +113,11 @@
   border-bottom: 1px solid var(--line-light);
 }
 
-.wocheTitel {
-  font-family: var(--font-display);
-  font-size: var(--fs-eyebrow);
-  letter-spacing: var(--tr-wide);
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.wocheMehr {
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.1em;
-  color: var(--text-muted-light);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.wocheMehr:hover {
-  color: var(--accent);
-}
-
-.wocheListe {
+.newsListe {
   list-style: none;
 }
 
-.wocheZeile {
+.newsZeile {
   display: flex;
   align-items: baseline;
   gap: 16px;
@@ -137,40 +125,40 @@
   border-bottom: 1px solid var(--line-light);
 }
 
-.wocheZeile:last-child {
+.newsZeile:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.wocheDatum {
+.newsDatum {
   flex-shrink: 0;
-  width: 12ch;
+  /* "28. September 2026" — die laengste Form muss in eine Zeile passen. */
+  width: 19ch;
   font-size: var(--fs-eyebrow);
   letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 
-.wocheText {
+.newsText {
   font-size: var(--fs-body);
   color: var(--text-light);
   min-width: 0;
 }
 
 @media (max-width: 599px) {
-  .wocheZeile {
+  .newsZeile {
     flex-direction: column;
     gap: 4px;
   }
 
-  .wocheDatum {
+  .newsDatum {
     width: auto;
   }
 }
 
 /* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort. */
 @media (pointer: coarse) {
-  .wocheMehr,
-  .serienMehr {
+  .blockMehr {
     padding-block: 12px;
   }
 }

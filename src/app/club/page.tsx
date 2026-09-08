@@ -4,8 +4,10 @@ import { kursKapitel } from "@/data/masterclass";
 import { club } from "@/data/club";
 import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
 import { liveDaten } from "@/lib/live";
-import { kanalNachrichten, datumLang } from "@/lib/kanal";
+import { newsBeitraege, datumLang } from "@/lib/news";
+import { eventDaten } from "@/lib/events";
 import { LiveKarte } from "@/components/Club/LiveKarte";
+import { EventKarte } from "@/components/Club/EventKarte";
 import { NaechsteFolge } from "@/components/Club/NaechsteFolge";
 import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
 import { Willkommen } from "@/components/Club/Willkommen";
@@ -15,13 +17,9 @@ import styles from "./page.module.css";
  * Die Startseite des Clubs — ein Armaturenbrett, aber eins mit genau
  * einem Hebel: WEITER.
  *
- * Oben die Karte mit der naechsten Folge und dem Stand. Darunter die
- * fuenf Serien, jede mit "3 von 8 gesehen". Live-Termin und Kanal nur,
- * wenn es sie gibt.
- *
- * Kein grosses Bild mehr ueber die volle Breite: wer hereinkommt, will
- * weitermachen, nicht staunen. Das Bild sitzt jetzt in der Karte, neben
- * dem Knopf.
+ * Oben die Karte mit der naechsten Folge und dem Stand. Dann, nur wenn
+ * es sie gibt: der naechste Live-Termin, das naechste Event, Neues aus
+ * den News. Darunter die fuenf Serien, jede mit "3 von 8 gesehen".
  */
 export default async function ClubStart() {
   const sitzung = await verlangeMitglied("/club/");
@@ -37,7 +35,8 @@ export default async function ClubStart() {
   }
 
   const live = liveDaten();
-  const neuigkeiten = kanalNachrichten().slice(0, 3);
+  const events = eventDaten();
+  const news = newsBeitraege().slice(0, 3);
   const vorname = sitzung.name.trim().split(/\s+/)[0] ?? "";
 
   return (
@@ -57,24 +56,39 @@ export default async function ClubStart() {
         </div>
       ) : null}
 
-      {neuigkeiten.length > 0 ? (
-        <section className={`${styles.block} ${styles.woche}`} aria-labelledby="woche">
-          <div className={styles.wocheKopf}>
-            <h2 id="woche" className={styles.wocheTitel}>
-              {club.kanal.dieseWoche}
+      {events.naechstes ? (
+        <section className={styles.block} aria-labelledby="event">
+          <div className={styles.blockKopf}>
+            <h2 id="event" className={styles.blockTitel}>
+              {club.events.naechstes}
             </h2>
-            <Link href="/club/kanal/" className={styles.wocheMehr}>
-              {club.kanal.alleZeigen}
+            <Link href="/club/events/" className={styles.blockMehr}>
+              {club.events.zurueck}
               <span aria-hidden="true"> →</span>
             </Link>
           </div>
-          <ul className={styles.wocheListe}>
-            {neuigkeiten.map((n) => (
-              <li key={`${n.datum}-${n.titel}`} className={styles.wocheZeile}>
-                <time className={styles.wocheDatum} dateTime={n.datum}>
+          <EventKarte event={events.naechstes} gross />
+        </section>
+      ) : null}
+
+      {news.length > 0 ? (
+        <section className={`${styles.block} ${styles.news}`} aria-labelledby="news">
+          <div className={styles.newsKopf}>
+            <h2 id="news" className={styles.blockTitel}>
+              {club.news.neu}
+            </h2>
+            <Link href="/club/news/" className={styles.blockMehr}>
+              {club.news.alleZeigen}
+              <span aria-hidden="true"> →</span>
+            </Link>
+          </div>
+          <ul className={styles.newsListe}>
+            {news.map((n) => (
+              <li key={`${n.datum}-${n.titel}`} className={styles.newsZeile}>
+                <time className={styles.newsDatum} dateTime={n.datum}>
                   {datumLang(n.datum)}
                 </time>
-                <span className={styles.wocheText}>{n.titel}</span>
+                <span className={styles.newsText}>{n.titel}</span>
               </li>
             ))}
           </ul>
@@ -82,11 +96,11 @@ export default async function ClubStart() {
       ) : null}
 
       <section className={styles.block} aria-labelledby="serien">
-        <div className={styles.serienKopf}>
+        <div className={styles.blockKopf}>
           <h2 id="serien" className={styles.serienTitel}>
             {club.start.serien}
           </h2>
-          <Link href="/club/inhalte/" className={styles.serienMehr}>
+          <Link href="/club/inhalte/" className={styles.blockMehr}>
             {club.start.alleZeigen}
             <span aria-hidden="true"> →</span>
           </Link>

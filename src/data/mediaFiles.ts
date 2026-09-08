@@ -34,3 +34,10 @@ export const mediaFiles: Record<number, MediaFile> = {
   33: {"avif":"/media/33.avif","src":"/media/33.jpg","webp":"/media/33.webp"},
   34: {"avif":"/media/34.avif","src":"/media/34.jpg","webp":"/media/34.webp"},
 };
+
+/* Die Masterclass-Videos, v01…v40. Liegt zu einer Nummer nichts, bleibt
+   die Flaeche im Mitgliederbereich ein Platzhalter — genau wie auf der
+   Startseite. */
+export const kursDateien: Record<number, MediaFile> = {
+
+};

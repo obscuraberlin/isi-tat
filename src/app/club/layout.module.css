@@ -1,0 +1,15 @@
+/* Der Club ist durchgehend dunkel. Draussen wechseln helle und dunkle
+   Abschnitte — das ist Dramaturgie fuer jemanden, der die Seite zum ersten
+   Mal sieht. Drinnen wird gearbeitet: ein Grund, der nicht mitredet. */
+.club {
+  min-height: 100dvh;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-block: clamp(28px, 4vw, 56px) clamp(64px, 8vw, 120px);
+}

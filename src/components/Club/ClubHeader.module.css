@@ -1,0 +1,134 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(8, 8, 8, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.inner {
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoMark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  color: var(--text-light);
+}
+
+.logoSuffix {
+  font-size: 0.5625rem;
+  letter-spacing: var(--tr-wide);
+  color: var(--text-muted-light);
+  margin-top: 3px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 30px);
+  margin-inline-start: clamp(8px, 2vw, 28px);
+}
+
+.navLink {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  color: var(--text-muted-light);
+  text-decoration: none;
+  padding-block: 6px;
+  border-bottom: 1px solid transparent;
+  transition: color var(--d-fast) var(--ease-soft);
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--text-light);
+}
+
+.navAktiv {
+  color: var(--text-light);
+  border-bottom-color: var(--accent);
+}
+
+.rechts {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--fs-small);
+  color: var(--text-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 22ch;
+}
+
+.abmelden {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  color: var(--text-muted-light);
+  background: none;
+  border: 1px solid var(--line-light);
+  border-radius: var(--r-btn);
+  padding: 7px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--d-fast) var(--ease-soft),
+    border-color var(--d-fast) var(--ease-soft);
+}
+
+.abmelden:hover:not(:disabled) {
+  color: var(--text-light);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.abmelden:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Auf dem Telefon ist kein Platz fuer Name und beide Ziele nebeneinander.
+   Der Name faellt zuerst — er sagt dem Mitglied nichts, was es nicht
+   weiss, und steht auf der Startseite des Clubs noch einmal gross. */
+@media (max-width: 599px) {
+  .name {
+    display: none;
+  }
+
+  .inner {
+    gap: 10px;
+  }
+
+  .nav {
+    margin-inline-start: 4px;
+    gap: 14px;
+  }
+
+  .navLink {
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+  }
+}

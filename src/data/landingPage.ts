@@ -68,6 +68,13 @@ export interface MediaAsset {
   alt: string;
   /** CSS aspect-ratio, z. B. "16 / 9" */
   ratio: string;
+  /**
+   * Vorsatz vor der Nummer im Platzhalter. Leer fuer die Startseite
+   * (01…35), "v" fuer die 40 Videos der Masterclass — die haben einen
+   * eigenen Namensraum, damit ein neues Kursvideo die Nummern der
+   * Uebergabeliste nicht verschiebt.
+   */
+  praefix?: string;
 }
 
 /* Zaehlt in der Reihenfolge hoch, in der die Assets hier stehen. */
@@ -110,7 +117,8 @@ const media = (
 };
 
 /** Zweistellig, damit die Nummern in einer Dateiliste sortiert bleiben. */
-export const assetNo = (asset: MediaAsset) => String(asset.no).padStart(2, "0");
+export const assetNo = (asset: MediaAsset) =>
+  `${asset.praefix ?? ""}${String(asset.no).padStart(2, "0")}`;
 
 /* --------------------------------------------------------------------------
    BRAND / GLOBAL

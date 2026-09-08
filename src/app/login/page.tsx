@@ -1,21 +1,44 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { brand, cta, login } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { Button } from "@/components/ui/Button";
 import { Backdrop } from "@/components/Backdrop/Backdrop";
 import styles from "./page.module.css";
 
-/* Platzhalter-Visual — Austausch wie überall nur über `src`. */
 /**
- * Login-Oberfläche für den späteren Mitgliederbereich.
- * Noch ohne Anbindung: das Formular sendet nichts und legt nichts ab.
- * Der Submit-Handler ist die Stelle, an der die Authentifizierung andockt.
+ * Anmeldung zum Mitgliederbereich.
+ *
+ * Schickt E-Mail und Passwort an /api/anmeldung. Stimmt beides, setzt die
+ * Route ein signiertes Cookie und hier geht es weiter in den Club.
+ *
+ * Das Ziel steht als ?weiter=/club/... in der Adresse — wer ein einzelnes
+ * Video aufruft und dabei abgemeldet ist, landet nach der Anmeldung genau
+ * dort und nicht auf der Uebersicht.
  */
 export default function LoginPage() {
+  const router = useRouter();
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+
+  /**
+   * Wohin nach der Anmeldung.
+   *
+   * Nur Pfade im eigenen Haus. Ohne diese Pruefung koennte jemand einen
+   * Link mit ?weiter=https://... verschicken: die Anmeldung sieht echt
+   * aus, weil sie es ist — und wirft den Angemeldeten danach auf eine
+   * fremde Seite. Das doppelte "//" ist derselbe Fall in kurz.
+   */
+  function ziel(): string {
+    if (typeof window === "undefined") return "/club/";
+    const wunsch = new URLSearchParams(window.location.search).get("weiter");
+    if (wunsch && wunsch.startsWith("/") && !wunsch.startsWith("//")) {
+      return wunsch;
+    }
+    return "/club/";
+  }
 
   return (
     <main className={styles.page}>
@@ -31,26 +54,56 @@ export default function LoginPage() {
         <div className={styles.center}>
           <form
             className={styles.form}
-            onSubmit={(event) => {
+            onSubmit={async (event) => {
               event.preventDefault();
+              if (pending) return;
+
+              const formular = event.currentTarget;
+              const felder = new FormData(formular);
+              setNotice(null);
               setPending(true);
-              /* TODO: Anbindung an die Mitgliederverwaltung. */
-              setNotice(
-                "Der Mitgliederbereich ist noch nicht angebunden. Die Anmeldung wird aktiviert, sobald er steht.",
-              );
-              setPending(false);
+
+              try {
+                const antwort = await fetch("/api/anmeldung/", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    email: felder.get("email"),
+                    passwort: felder.get("passwort"),
+                    bleiben: felder.get("bleiben") === "on",
+                  }),
+                });
+
+                const daten = await antwort.json().catch(() => ({}));
+
+                if (antwort.ok && daten.ok) {
+                  /* refresh() vor push(): der Router haelt die Seiten des
+                     Clubs zwischengespeichert, und die stammen von vor der
+                     Anmeldung. Ohne das steht dort kurz die Weiterleitung
+                     zur Anmeldung. */
+                  router.refresh();
+                  router.push(ziel());
+                  return;
+                }
+
+                setNotice(
+                  typeof daten.meldung === "string"
+                    ? daten.meldung
+                    : "Anmeldung nicht möglich. Bitte versuch es später noch einmal.",
+                );
+              } catch {
+                setNotice(
+                  "Keine Verbindung. Prüf deine Internetverbindung und versuch es noch einmal.",
+                );
+              } finally {
+                setPending(false);
+              }
             }}
           >
             <p className={styles.kicker}>Du bist Mitglied?</p>
             <h1 className={styles.headline}>WILLKOMMEN ZURÜCK.</h1>
             <p className={styles.sub}>
               Melde dich an und mach da weiter, wo du aufgehört hast.
-            </p>
-
-            {/* Offen sagen, dass hier noch nichts vergeben wird — sonst
-                probiert jemand minutenlang Zugangsdaten, die es nicht gibt. */}
-            <p className={styles.preview}>
-              Vorschau — Zugänge werden noch nicht vergeben.
             </p>
 
             <div className={styles.fields}>
@@ -75,7 +128,7 @@ export default function LoginPage() {
                 </label>
                 <input
                   id="password"
-                  name="password"
+                  name="passwort"
                   type="password"
                   autoComplete="current-password"
                   required
@@ -89,14 +142,16 @@ export default function LoginPage() {
               <label className={styles.remember}>
                 <input
                   type="checkbox"
-                  name="remember"
+                  name="bleiben"
                   className={styles.checkbox}
                 />
                 Angemeldet bleiben
               </label>
-              <span className={styles.link} aria-disabled="true">
-                Passwort vergessen?
-              </span>
+              {/* Kein Selbstbedienungs-Weg zurueck: dafuer braeuchte es
+                  Mailversand mit Einmal-Links und eine Stelle, die sie
+                  ablegt. Solange die Zugaenge von Hand vergeben werden,
+                  ist ein neues Passwort eine kurze Nachricht. */}
+              <span className={styles.link}>Passwort vergessen? Melde dich.</span>
             </div>
 
             <Button

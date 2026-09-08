@@ -34,8 +34,25 @@ mkdirSync(DIR, { recursive: true });
 
 const dateien = existsSync(DIR) ? readdirSync(DIR) : [];
 const treffer = {};
+/* Zweiter Satz Nummern: die 40 Videos der Masterclass heissen v01…v40.
+   Ein eigener Namensraum, damit die Nummern der Startseite (01…35) beim
+   Dazukommen eines Kursvideos nicht verrutschen — an ihnen haengt die
+   ganze Uebergabeliste in MEDIEN.md. */
+const kurs = {};
 
 for (const name of dateien) {
+  const k = /^v(\d{2})(-poster|-klein)?\.([a-z0-9]+)$/i.exec(name);
+  if (k) {
+    if (!BILD.test(name) && !VIDEO.test(name)) continue;
+    const no = Number(k[1]);
+    const rolle = (k[2] ?? "").toLowerCase();
+    kurs[no] ??= {};
+    if (rolle === "-poster") kurs[no].poster = `/media/${name}`;
+    else if (rolle === "-klein") kurs[no].klein = `/media/${name}`;
+    else kurs[no].src = `/media/${name}`;
+    continue;
+  }
+
   const m = /^(\d{2})(-poster|-klein)?\.([a-z0-9]+)$/i.exec(name);
   if (!m) continue;
   if (!BILD.test(name) && !VIDEO.test(name)) continue;
@@ -73,6 +90,11 @@ for (const [no, eintrag] of Object.entries(treffer)) {
   }
 }
 
+const kursZeilen = Object.keys(kurs)
+  .map(Number)
+  .sort((a, b) => a - b)
+  .map((no) => `  ${no}: ${JSON.stringify(kurs[no])},`);
+
 const zeilen = Object.keys(treffer)
   .map(Number)
   .sort((a, b) => a - b)
@@ -96,6 +118,13 @@ export interface MediaFile {
 export const mediaFiles: Record<number, MediaFile> = {
 ${zeilen.join("\n")}
 };
+
+/* Die Masterclass-Videos, v01…v40. Liegt zu einer Nummer nichts, bleibt
+   die Flaeche im Mitgliederbereich ein Platzhalter — genau wie auf der
+   Startseite. */
+export const kursDateien: Record<number, MediaFile> = {
+${kursZeilen.join("\n")}
+};
 `,
 );
 
@@ -105,3 +134,6 @@ console.log(
     ? `src/data/mediaFiles.ts — ${anzahl} Datei${anzahl === 1 ? "" : "en"} gefunden`
     : "src/data/mediaFiles.ts — noch kein Material in public/media",
 );
+if (kursZeilen.length) {
+  console.log(`  davon Masterclass (v01…v40): ${kursZeilen.length}`);
+}

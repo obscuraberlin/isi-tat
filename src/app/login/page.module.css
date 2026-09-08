@@ -70,28 +70,6 @@
   margin-bottom: 12px;
 }
 
-/* Als Hinweis erkennbar, ohne wie eine Fehlermeldung auszusehen. */
-.preview {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 14px;
-  padding: 7px 13px;
-  border: 1px solid var(--line-light);
-  border-radius: var(--r-pill);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-
-.preview::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-}
 
 .headline {
   font-size: clamp(2rem, 1.3rem + 2.4vw, 3rem);

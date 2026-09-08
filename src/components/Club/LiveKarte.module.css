@@ -1,0 +1,158 @@
+.karte {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(18px, 3vw, 40px);
+  padding: clamp(20px, 2.6vw, 32px);
+  border-radius: var(--r-card);
+  background: var(--card-dark);
+  border: 1px solid var(--line-light);
+  /* Ein einzelner Goldstrich statt eines goldenen Rahmens: der Termin ist
+     die wichtigste Karte der Seite, aber nicht die lauteste. */
+  border-left: 2px solid var(--accent);
+}
+
+.text {
+  min-width: 0;
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.titel {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: var(--fs-card);
+  line-height: 1.22;
+  letter-spacing: var(--tr-head);
+  color: var(--text-light);
+  overflow-wrap: anywhere;
+}
+
+.wann {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: var(--fs-body);
+  color: var(--text-light);
+}
+
+.punkt {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.beschreibung {
+  margin-top: 10px;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+  max-width: 58ch;
+}
+
+.aktion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding-inline: 26px;
+  border-radius: var(--r-btn);
+  background: var(--accent);
+  color: var(--bg-dark);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--d-fast) var(--ease-soft);
+}
+
+.knopf:hover {
+  background: #d8b578;
+}
+
+.mehr {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mehr:hover {
+  color: var(--accent);
+}
+
+/* ---------- Leerzustand ---------- */
+
+.leer {
+  display: block;
+  border-left-color: var(--line-light);
+  border-style: dashed;
+  background: none;
+}
+
+.leerTitel {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: var(--fs-card);
+  color: var(--text-light);
+}
+
+.leerText {
+  margin-top: 8px;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+  max-width: 52ch;
+}
+
+/* §54: auf dem Telefon der Knopf ueber die volle Breite. */
+@media (max-width: 767px) {
+  .karte {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .aktion {
+    align-items: stretch;
+    flex-direction: column-reverse;
+    gap: 14px;
+  }
+
+  .knopf {
+    width: 100%;
+  }
+
+  .mehr {
+    text-align: center;
+  }
+}
+
+/* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort — auf dem
+   Desktop wuerde derselbe Zuschlag die Abstaende verschieben, und dort
+   trifft eine Maus auch 21 Pixel. */
+@media (pointer: coarse) {
+  .mehr {
+    padding-block: 12px;
+  }
+}

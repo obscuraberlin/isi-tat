@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
 import { kursKapitel, nachbarn, videoNr } from "@/data/masterclass";
 import { club } from "@/data/club";
-import { kursNr, kursVideoAsset } from "@/lib/kursMedien";
+import { kursHeroAsset, kursNr, kursVideoAsset } from "@/lib/kursMedien";
+import { trust } from "@/data/landingPage";
 import { Media } from "@/components/Media/Media";
 import { MerkeVideo } from "@/components/Club/MerkeVideo";
 import styles from "./page.module.css";
@@ -39,13 +40,14 @@ export default async function VideoSeite({
 
   const asset = kursVideoAsset(video, kapitel.still);
   const { davor, danach } = nachbarn(video.nr);
+  const laeuft = Boolean(asset.src);
 
   return (
     <article className={styles.seite}>
       <MerkeVideo nr={video.nr} />
 
       <nav className={styles.pfad} aria-label="Wo du bist">
-        <Link href="/club/" className={styles.pfadLink}>
+        <Link href="/club/inhalte/" className={styles.pfadLink}>
           {club.video.zurueck}
         </Link>
         <span className={styles.pfadTrenner} aria-hidden="true">
@@ -56,16 +58,25 @@ export default async function VideoSeite({
         </Link>
       </nav>
 
-      <div className={styles.spieler}>
+      {/* Liegt noch keine Datei vor, steht hier ein Standbild statt eines
+          leeren Kastens. Eine grosse graue Flaeche auf der Seite eines
+          Videos, fuer das jemand vierstellig bezahlt hat, sieht aus wie
+          ein Fehler — und ein Abspielknopf, der nichts tut, waere
+          schlimmer. Also ein Bild, gedaempft, und ein Satz darunter. */}
+      <div
+        className={[styles.spieler, laeuft ? "" : styles.ruht]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <Media
-          asset={asset}
+          asset={laeuft ? asset : kursHeroAsset(video, trust.video)}
           tone="dark"
-          controls={Boolean(asset.src)}
+          controls={laeuft}
           priority
         />
       </div>
 
-      {asset.src ? null : (
+      {laeuft ? null : (
         <p className={styles.fehlt}>
           <strong>{club.video.nochNicht}</strong> {club.video.nochNichtText}
         </p>

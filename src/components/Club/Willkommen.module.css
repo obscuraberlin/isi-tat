@@ -1,0 +1,76 @@
+.schleier {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: rgba(6, 6, 6, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: auf 320ms var(--ease-out) both;
+}
+
+.kasten {
+  width: min(560px, 100%);
+  padding: clamp(30px, 5vw, 52px);
+  border-radius: var(--r-visual);
+  background: var(--card-dark);
+  border: 1px solid var(--line-light);
+  text-align: center;
+}
+
+.titel {
+  display: grid;
+  gap: 2px;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 2.75rem);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  color: var(--text-light);
+}
+
+.gold {
+  color: var(--accent);
+}
+
+.text {
+  margin-top: 18px;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+  max-width: 42ch;
+  margin-inline: auto;
+}
+
+.knopf {
+  margin-top: clamp(24px, 3vw, 34px);
+  min-height: 50px;
+  padding-inline: 32px;
+  border: none;
+  border-radius: var(--r-btn);
+  background: var(--text-light);
+  color: var(--bg-dark);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--d-fast) var(--ease-soft);
+}
+
+.knopf:hover {
+  background: #fff;
+}
+
+@keyframes auf {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schleier {
+    animation: none;
+  }
+}

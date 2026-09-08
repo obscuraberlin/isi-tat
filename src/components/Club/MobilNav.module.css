@@ -1,0 +1,97 @@
+.leiste {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: none;
+  background: rgba(8, 8, 8, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line-light);
+  /* Unter der Leiste liegt auf dem iPhone der Balken zum Wechseln der
+     Anwendung. Ohne diesen Zuschlag sitzen die Beschriftungen darunter. */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.punkt {
+  flex: 1 1 0;
+  min-width: 0;
+  /* §67: 44 px Zielflaeche, hier mit Beschriftung darunter. */
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted-light);
+  text-decoration: none;
+  transition: color var(--d-fast) var(--ease-soft);
+}
+
+.zeichen {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+.aktiv {
+  color: var(--accent);
+}
+
+/* ---------- "Mehr" ---------- */
+
+.schleier {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.blatt {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  z-index: 51;
+  padding: 8px;
+  background: #1d1d1d;
+  border-top: 1px solid var(--line-light);
+}
+
+.blattEintrag {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px;
+  border: none;
+  border-radius: var(--r-btn);
+  background: none;
+  color: var(--text-light);
+  font-size: var(--fs-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.blattEintrag:disabled {
+  opacity: 0.5;
+}
+
+.blattZu {
+  color: var(--text-muted);
+  border-top: 1px solid var(--line-light);
+  border-radius: 0;
+  margin-top: 4px;
+}
+
+@media (max-width: 899px) {
+  .leiste {
+    display: flex;
+  }
+}

@@ -33,6 +33,42 @@ function basis(): string | null {
   return wert.replace(/\/+$/, "");
 }
 
+/**
+ * Das Bild fuer die Flaeche ganz oben.
+ *
+ * Hier taugt das Kapitelbild nicht als Ersatz: die Kapitelmotive sind im
+ * Hochformat aufgenommen (2:3), und auf 16:9 beschnitten schneidet der
+ * Rahmen genau den Kopf ab. Solange kein eigenes Standbild vorliegt,
+ * traegt deshalb ein Motiv, das quer gedreht wurde.
+ */
+export function kursHeroAsset(
+  video: KursVideo,
+  querFormat: MediaAsset,
+): MediaAsset {
+  const datei = kursDateien[video.nr];
+  const b = basis();
+  const eigenes =
+    datei?.poster ?? (b ? `${b}/${kursNr(video.nr)}-poster.jpg` : null);
+
+  const bild = eigenes
+    ? { src: eigenes, avif: null, webp: null }
+    : {
+        src: querFormat.poster ?? querFormat.src,
+        avif: null,
+        webp: null,
+      };
+
+  return {
+    id: `kurs-hero-${kursNr(video.nr)}`,
+    no: video.nr,
+    praefix: "v",
+    kind: "image",
+    ...bild,
+    alt: eigenes ? video.titel : querFormat.alt,
+    ratio: "16 / 9",
+  };
+}
+
 /** v07 — so heissen die Dateien, so steht es im Platzhalter. */
 export const kursNr = (nr: number) => `v${String(nr).padStart(2, "0")}`;
 

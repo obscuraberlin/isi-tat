@@ -2,10 +2,24 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(8, 8, 8, 0.82);
+  /* Ueber dem randlosen Hero durchsichtig — sonst schneidet ein Balken
+     das Bild ab, bevor es angefangen hat. */
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 8, 8, 0.72) 0%,
+    rgba(8, 8, 8, 0) 100%
+  );
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--d-base) var(--ease-soft),
+    border-color var(--d-base) var(--ease-soft);
+}
+
+.fest {
+  background: rgba(8, 8, 8, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line-light);
+  border-bottom-color: var(--line-light);
 }
 
 .inner {
@@ -44,8 +58,8 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 2.4vw, 30px);
-  margin-inline-start: clamp(8px, 2vw, 28px);
+  gap: clamp(16px, 2.4vw, 32px);
+  margin-inline-start: clamp(10px, 2vw, 30px);
 }
 
 .navLink {
@@ -53,7 +67,7 @@
   letter-spacing: var(--tr-wide);
   color: var(--text-muted-light);
   text-decoration: none;
-  padding-block: 6px;
+  padding-block: 8px;
   border-bottom: 1px solid transparent;
   transition: color var(--d-fast) var(--ease-soft);
   white-space: nowrap;
@@ -68,67 +82,111 @@
   border-bottom-color: var(--accent);
 }
 
-.rechts {
+/* ---------- Konto ---------- */
+
+.konto {
+  position: relative;
   margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+.knopf {
   display: flex;
   align-items: center;
-  gap: 14px;
-  min-width: 0;
+  gap: 9px;
+  min-height: 44px;
+  padding-inline: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+.kreis {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(200, 166, 106, 0.16);
+  border: 1px solid rgba(200, 166, 106, 0.4);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
 }
 
 .name {
   font-size: var(--fs-small);
-  color: var(--text-light);
-  white-space: nowrap;
+  max-width: 14ch;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 22ch;
-}
-
-.abmelden {
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.1em;
-  color: var(--text-muted-light);
-  background: none;
-  border: 1px solid var(--line-light);
-  border-radius: var(--r-btn);
-  padding: 7px 14px;
-  cursor: pointer;
   white-space: nowrap;
-  transition:
-    color var(--d-fast) var(--ease-soft),
-    border-color var(--d-fast) var(--ease-soft);
 }
 
-.abmelden:hover:not(:disabled) {
+.pfeil {
+  width: 10px;
+  height: 6px;
+  stroke: var(--text-muted-light);
+  flex-shrink: 0;
+}
+
+.aufklapp {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  padding: 8px;
+  border-radius: var(--r-card);
+  background: #1d1d1d;
+  border: 1px solid var(--line-light);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.voll {
+  padding: 8px 12px 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--line-light);
+  font-size: var(--fs-small);
   color: var(--text-light);
-  border-color: rgba(255, 255, 255, 0.32);
+  overflow-wrap: anywhere;
 }
 
-.abmelden:disabled {
+.eintrag {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 11px 12px;
+  border: none;
+  border-radius: var(--r-btn);
+  background: none;
+  color: var(--text-muted-light);
+  font-size: var(--fs-small);
+  cursor: pointer;
+  transition:
+    background-color var(--d-fast) var(--ease-soft),
+    color var(--d-fast) var(--ease-soft);
+}
+
+.eintrag:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-light);
+}
+
+.eintrag:disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-/* Auf dem Telefon ist kein Platz fuer Name und beide Ziele nebeneinander.
-   Der Name faellt zuerst — er sagt dem Mitglied nichts, was es nicht
-   weiss, und steht auf der Startseite des Clubs noch einmal gross. */
-@media (max-width: 599px) {
-  .name {
+/* Auf dem Telefon traegt die Leiste unten die Navigation. Oben bleiben
+   Logo und Konto — zwei Reihen Navigation waeren eine zu viel. */
+@media (max-width: 899px) {
+  .nav {
     display: none;
   }
 
-  .inner {
-    gap: 10px;
-  }
-
-  .nav {
-    margin-inline-start: 4px;
-    gap: 14px;
-  }
-
-  .navLink {
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
+  .name {
+    display: none;
   }
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { angemeldet } from "@/lib/zugang";
 import { ClubHeader } from "@/components/Club/ClubHeader";
+import { MobilNav } from "@/components/Club/MobilNav";
 import styles from "./layout.module.css";
 
 /**
@@ -33,6 +34,7 @@ export default async function ClubLayout({
     <div className={styles.club}>
       <ClubHeader name={sitzung?.name ?? ""} />
       <main className={styles.main}>{children}</main>
+      <MobilNav />
     </div>
   );
 }

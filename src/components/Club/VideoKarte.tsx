@@ -24,7 +24,13 @@ export function VideoKarte({
 }: {
   video: KursVideo;
   bild: MediaAsset;
-  /** false = das Bild gehoert dem Kapitel, nicht diesem Video. */
+  /**
+   * false = das Bild gehoert dem Kapitel, nicht diesem Video. Es wird
+   * dann zurueckgenommen, damit acht Kacheln mit demselben Motiv nicht
+   * wie ein Fehler aussehen — beschriftet wird es nicht. Ein Vermerk
+   * "folgt" auf jeder zweiten Kachel laesst den Club unfertig wirken,
+   * und das ist er inhaltlich nicht.
+   */
   eigen?: boolean;
   /** Erste Kachel einer Reihe darf groesser stehen. */
   breit?: boolean;
@@ -44,11 +50,6 @@ export function VideoKarte({
         <Media asset={bild} tone="dark" radius="inherit" ratio="16 / 9" />
         <span className={styles.scrim} aria-hidden="true" />
         <span className={styles.nummer}>{kursNr(video.nr)}</span>
-        {/* Zurueckhaltend, aber eindeutig: das Motiv gehoert dem Kapitel,
-            das eigene Standbild kommt mit dem fertigen Video. */}
-        {eigen ? null : (
-          <span className={styles.folgt}>Standbild folgt</span>
-        )}
         <span className={styles.play} aria-hidden="true">
           <svg viewBox="0 0 11 13" aria-hidden="true">
             <path d="M0 0v13l11-6.5z" />

@@ -1,23 +1,42 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { verlangeMitglied } from "@/lib/zugang";
-import { kursKapitel, kursVideos } from "@/data/masterclass";
-import { catalogue } from "@/data/landingPage";
-import { club } from "@/data/club";
-import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
-import { VideoKarte } from "@/components/Club/VideoKarte";
-import { Weitersehen } from "@/components/Club/Weitersehen";
+import { kursKapitel, kursVideos, videoNr } from "@/data/masterclass";
+import { club, startVideoNr } from "@/data/club";
+import { trust } from "@/data/landingPage";
+import {
+  kursBildAsset,
+  kursHeroAsset,
+  type Kursbild,
+} from "@/lib/kursMedien";
+import { liveDaten } from "@/lib/live";
+import { kanalNachrichten, datumLang } from "@/lib/kanal";
+import { FeaturedHero } from "@/components/Club/FeaturedHero";
+import { LiveKarte } from "@/components/Club/LiveKarte";
+import { MerkReihen } from "@/components/Club/MerkReihen";
+import { Reihe } from "@/components/Club/Reihe";
+import { Willkommen } from "@/components/Club/Willkommen";
 import styles from "./page.module.css";
 
 /**
- * Die Startseite des Clubs: alle vierzig Videos, nach den fuenf Kapiteln
- * geordnet.
+ * Die Startseite des Clubs.
  *
- * Bewusst ein Raster und keine seitlich laufende Reihe wie draussen. Auf
- * der Startseite soll ein Band Lust machen; hier will jemand etwas finden,
- * und was seitlich aus dem Bild laeuft, findet er nicht.
+ * Kein Armaturenbrett mit Kennzahlen — ein Bild, ein Satz, zwei Knoepfe,
+ * darunter Reihen. Wer hereinkommt, soll in einem Klick weitersehen, was
+ * er angefangen hat, oder in zweien beim naechsten Live-Termin sein.
+ *
+ * Die Reihenfolge folgt dem, was jemand tatsaechlich sucht: erst das
+ * Eigene (Weiter ansehen, Gespeichert), dann das Terminierte (Live), dann
+ * das Neue im Club, dann der Katalog. Leere Reihen rendern nichts.
  */
 export default async function ClubStart() {
   const sitzung = await verlangeMitglied("/club/");
+
+  const featured = videoNr(startVideoNr);
+  const featuredKapitel = kursKapitel.find(
+    (k) => k.id === featured?.kapitelId,
+  );
+  if (!featured || !featuredKapitel) notFound();
 
   /* Die Standbilder werden hier aufgeloest, nicht in der Kachel: die
      Adresse der Videodateien steht in einer Umgebungsvariablen, und die
@@ -29,63 +48,75 @@ export default async function ClubStart() {
     }
   }
 
+  const live = liveDaten();
+  const neuigkeiten = kanalNachrichten().slice(0, 3);
+
   /* Der Vorname reicht. "Willkommen zurück, Max Mustermann" klingt nach
      Behoerde. */
   const vorname = sitzung.name.trim().split(/\s+/)[0] ?? "";
 
   return (
-    <div className={styles.seite}>
-      <header className={styles.kopf}>
-        <p className={styles.eyebrow}>{club.start.eyebrow}</p>
-        <h1 className={styles.gruss}>
+    <>
+      <Willkommen />
+
+      <FeaturedHero
+        video={featured}
+        bild={kursHeroAsset(featured, trust.video)}
+        kapitel={featuredKapitel.label}
+      />
+
+      <div className={styles.gruss}>
+        <h2 className={styles.grussTitel}>
           {club.start.grussVor}
           <span className={styles.name}> {vorname.toUpperCase()}.</span>
-        </h1>
-        <p className={styles.lead}>{club.start.lead}</p>
-        <p className={styles.hinweis}>{club.start.hinweis}</p>
-      </header>
+        </h2>
+        <p className={styles.grussText}>{club.start.darunter}</p>
+      </div>
 
-      <Weitersehen videos={kursVideos} bilder={bilder} />
+      <MerkReihen videos={kursVideos} bilder={bilder} />
+
+      <div className={styles.spalte}>
+        <LiveKarte termin={live.naechster} />
+      </div>
+
+      {/* §50: was leer ist, erscheint nicht. Solange im Kanal nichts
+          steht, gibt es diesen Abschnitt nicht. */}
+      {neuigkeiten.length > 0 ? (
+        <div className={styles.spalte}>
+          <section className={styles.woche} aria-labelledby="woche">
+            <div className={styles.wocheKopf}>
+              <h2 id="woche" className={styles.wocheTitel}>
+                {club.kanal.dieseWoche}
+              </h2>
+              <Link href="/club/kanal/" className={styles.wocheMehr}>
+                {club.kanal.alleZeigen}
+                <span aria-hidden="true"> →</span>
+              </Link>
+            </div>
+            <ul className={styles.wocheListe}>
+              {neuigkeiten.map((n) => (
+                <li key={`${n.datum}-${n.titel}`} className={styles.wocheZeile}>
+                  <time className={styles.wocheDatum} dateTime={n.datum}>
+                    {datumLang(n.datum)}
+                  </time>
+                  <span className={styles.wocheText}>{n.titel}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      ) : null}
 
       {kursKapitel.map((kapitel) => (
-        <section
+        <Reihe
           key={kapitel.id}
-          className={styles.kapitel}
-          aria-labelledby={`k-${kapitel.id}`}
-        >
-          <div className={styles.kapitelKopf}>
-            <div>
-              <h2 id={`k-${kapitel.id}`} className={styles.kapitelTitel}>
-                {kapitel.label}
-              </h2>
-              <p className={styles.kapitelText}>{kapitel.tagline}</p>
-            </div>
-            <span className={styles.zahl}>
-              {kapitel.videos.length} Videos
-            </span>
-          </div>
-
-          <div className={styles.raster}>
-            {kapitel.videos.map((video) => (
-              <VideoKarte
-                key={video.nr}
-                video={video}
-                bild={bilder[video.nr].bild}
-                eigen={bilder[video.nr].eigen}
-              />
-            ))}
-          </div>
-
-          <Link href={`/club/kapitel/${kapitel.id}/`} className={styles.mehr}>
-            {club.start.alleAnsehen}
-            <span aria-hidden="true"> →</span>
-          </Link>
-        </section>
+          titel={kapitel.label}
+          videos={kapitel.videos}
+          bilder={bilder}
+          mehrHref={`/club/kapitel/${kapitel.id}/`}
+          mehrLabel={club.start.alleZeigen}
+        />
       ))}
-
-      <p className={styles.fuss}>
-        {catalogue.seriesCount} Kapitel · {catalogue.videoCount} Videos
-      </p>
-    </div>
+    </>
   );
 }

@@ -11,5 +11,18 @@
 
 .main {
   flex: 1;
-  padding-block: clamp(28px, 4vw, 56px) clamp(64px, 8vw, 120px);
+  /* Oben kein Abstand: die Startseite beginnt mit einem randlosen Bild,
+     das unter der Kopfzeile durchlaeuft. Seiten ohne Hero setzen ihren
+     Abstand selbst. */
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+
+/* Auf dem Telefon liegt unten die Navigationsleiste ueber dem Inhalt.
+   Ohne diesen Abstand verschwindet die letzte Zeile dahinter. */
+@media (max-width: 899px) {
+  .main {
+    padding-bottom: calc(
+      56px + env(safe-area-inset-bottom, 0px) + clamp(32px, 8vw, 64px)
+    );
+  }
 }

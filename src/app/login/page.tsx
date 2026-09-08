@@ -100,11 +100,14 @@ export default function LoginPage() {
               }
             }}
           >
-            <p className={styles.kicker}>Du bist Mitglied?</p>
-            <h1 className={styles.headline}>WILLKOMMEN ZURÜCK.</h1>
-            <p className={styles.sub}>
-              Melde dich an und mach da weiter, wo du aufgehört hast.
-            </p>
+            {/* §6: sehr minimal. Wer hier landet, weiss warum — ein
+                Vorspann waere Fuellmaterial vor einem Formular mit zwei
+                Feldern. */}
+            <h1 className={styles.headline}>
+              WILLKOMMEN
+              <br />
+              ZURÜCK.
+            </h1>
 
             <div className={styles.fields}>
               <div className={styles.field}>
@@ -161,7 +164,7 @@ export default function LoginPage() {
               className={styles.submit}
               disabled={pending}
             >
-              ANMELDEN
+              EINLOGGEN
             </Button>
 
             {notice ? (
@@ -173,7 +176,7 @@ export default function LoginPage() {
             <p className={styles.footer}>
               Noch kein Mitglied?{" "}
               <a href={`/${cta.primary.href}`} className={styles.footerLink}>
-                {cta.primary.label}
+                ZUGANG ANFRAGEN
               </a>
             </p>
           </form>

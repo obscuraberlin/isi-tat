@@ -31,22 +31,12 @@
    Fehler — leicht entsaettigt und dunkler liest es sich als Platzhalter. */
 .geliehen img {
   filter: grayscale(0.35) brightness(0.72);
+  /* Die Kapitelmotive sind hochkant aufgenommen. Mittig auf 16:9
+     beschnitten liegt der Kopf ueber dem Rand — der Ausschnitt wandert
+     deshalb nach oben, bis eigene Standbilder da sind. */
+  object-position: 50% 26%;
 }
 
-.folgt {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.66);
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: 4px 8px;
-  border-radius: var(--r-pill);
-}
 
 /* Beim Zeigen weicht der Hinweis dem Abspielknopf nicht — er sitzt oben,
    der Knopf unten. Aber das Bild darf aufhellen: es reagiert. */

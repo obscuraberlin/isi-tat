@@ -1,0 +1,165 @@
+.seite {
+  max-width: var(--max-page);
+  padding-block-start: clamp(28px, 4vw, 56px);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.kopf {
+  margin-bottom: clamp(34px, 4vw, 56px);
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.titel {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 3rem);
+  line-height: var(--lh-head);
+  letter-spacing: var(--tr-head);
+  color: var(--text-light);
+}
+
+.subline {
+  margin-top: 14px;
+  font-size: var(--fs-body-lg);
+  color: var(--text-light);
+  max-width: var(--max-text-wide);
+}
+
+.hinweis {
+  margin-top: 10px;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+  max-width: var(--max-text);
+}
+
+/* ---------- Sprungmarken ---------- */
+
+.marken {
+  margin-top: clamp(20px, 2.4vw, 30px);
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Auf dem Telefon bis an den Rand laufen lassen, sonst bricht die
+     letzte Marke hart ab. */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  padding-block: 4px;
+}
+
+.marken::-webkit-scrollbar {
+  display: none;
+}
+
+.marke {
+  flex-shrink: 0;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-light);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.08em;
+  color: var(--text-muted-light);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--d-fast) var(--ease-soft),
+    border-color var(--d-fast) var(--ease-soft);
+}
+
+.marke:hover {
+  color: var(--text-light);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- Kapitel ---------- */
+
+.kapitel {
+  margin-bottom: clamp(44px, 5vw, 76px);
+  /* Damit die Sprungmarke nicht unter der Kopfzeile landet. */
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
+
+.kapitelKopf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.kapitelTitel {
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.5rem);
+  letter-spacing: var(--tr-head);
+  color: var(--text-light);
+}
+
+.kapitelText {
+  margin-top: 6px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-muted-light);
+  max-width: 62ch;
+}
+
+.kapitelMehr {
+  flex-shrink: 0;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.kapitelMehr:hover {
+  color: var(--accent);
+}
+
+.raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: clamp(16px, 2vw, 26px);
+}
+
+.fuss {
+  padding-top: 26px;
+  border-top: 1px solid var(--line-light);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+@media (max-width: 599px) {
+  .raster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .kapitelKopf {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* §67: auf Touch-Geraeten mindestens 44 px hoch. Nur dort — auf dem
+   Desktop wuerde derselbe Zuschlag die Abstaende verschieben, und dort
+   trifft eine Maus auch 21 Pixel. */
+@media (pointer: coarse) {
+  .kapitelMehr {
+    padding-block: 12px;
+  }
+}

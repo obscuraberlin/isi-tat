@@ -25,6 +25,11 @@ yarn-error.log*
 .env*
 !.env.example
 
+# Schluessel fuer die Sitzungs-Cookies, legt der Server selbst an.
+# Die Mitgliederdatei daneben ist bewusst NICHT ausgenommen: sie traegt
+# nur Hashes, und ohne sie kaeme nach einem Deploy niemand herein.
+/daten/geheimnis
+
 # typescript
 *.tsbuildinfo
 

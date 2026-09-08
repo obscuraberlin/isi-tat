@@ -1,4 +1,6 @@
 import { createHmac, timingSafeEqual, randomBytes } from "node:crypto";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 /**
  * Die Sitzung eines angemeldeten Mitglieds — als signiertes Cookie.
@@ -18,8 +20,9 @@ import { createHmac, timingSafeEqual, randomBytes } from "node:crypto";
  * und braechte ein Format mit, dessen bekannteste Fussangel ("alg": "none")
  * wir uns damit erst einhandeln.
  *
- * Das Geheimnis kommt aus CLUB_SITZUNG_GEHEIMNIS und steht nirgends im
- * Quelltext. Fehlt es, wird niemand angemeldet — siehe `geheimnis()`.
+ * Das Geheimnis kommt aus CLUB_SITZUNG_GEHEIMNIS oder aus einer Datei,
+ * die der Server beim ersten Start selbst anlegt. Im Quelltext steht es
+ * nie — siehe `geheimnis()`.
  */
 
 /** Name des Cookies. Kurz und nichtssagend, es steht in jeder Anfrage. */
@@ -44,30 +47,60 @@ export interface Sitzung {
   exp: number;
 }
 
-/*
- * Ersatzschluessel fuer den Testbetrieb.
+/**
+ * Woher der Schluessel fuer die Unterschrift kommt.
  *
- * Er steht im Quelltext und ist damit oeffentlich — wer ihn kennt, kann
- * ein Sitzungs-Cookie faelschen. Deshalb gilt er nur, solange KEINE echte
- * Mitgliederliste eingerichtet ist. In diesem Zustand gibt es nichts zu
- * schuetzen: der einzige Zugang ist dann der Testzugang, dessen Passwort
- * ohnehin im Quelltext steht. Ein gefaelschtes Cookie oeffnet also keine
- * Tuer, die nicht schon offen waere.
+ *   1. CLUB_SITZUNG_GEHEIMNIS, wenn gesetzt und lang genug.
+ *   2. Sonst die Datei daten/geheimnis. Gibt es sie nicht, wird sie beim
+ *      ersten Aufruf mit 32 Zufallsbytes angelegt.
  *
- * Sobald CLUB_MITGLIEDER oder CLUB_MITGLIEDER_DATEI gesetzt ist, gilt er
- * nicht mehr. Dann ist CLUB_SITZUNG_GEHEIMNIS Pflicht, und ohne den Wert
- * kommt niemand herein — auffaellig statt still.
+ * Der zweite Weg ist der Grund, warum der Club ohne Einrichtung laeuft
+ * und trotzdem nichts Geheimes im Quelltext steht: der Wert entsteht auf
+ * dem Server, bleibt dort und faellt nie in ein Repository.
  *
- * Warum kein zufaelliger Wert je Start: Next buendelt proxy.ts und die
- * Routen getrennt. Zwei Buendel bekaemen zwei verschiedene Zufallswerte,
- * und der Proxy wiese jedes Cookie ab, das die Anmelderoute gerade
- * ausgestellt hat. Bei mehreren Arbeitsprozessen dasselbe Bild.
+ * Warum eine Datei und kein Zufallswert im Arbeitsspeicher: Next buendelt
+ * proxy.ts und die Routen getrennt. Zwei Buendel bekaemen zwei
+ * verschiedene Zufallswerte, und der Proxy wiese jedes Cookie ab, das die
+ * Anmelderoute gerade ausgestellt hat. Bei mehreren Arbeitsprozessen und
+ * nach einem Neustart dasselbe Bild. Die Datei sehen alle gleich.
+ *
+ * Angelegt wird mit "wx" — ausschliesslich. Kommen zwei Prozesse
+ * gleichzeitig, gewinnt einer, der andere liest, was der erste
+ * geschrieben hat. Sonst haetten beide je einen eigenen Schluessel.
  */
-const ERSATZ_FUER_TESTS = "nur-zum-ausprobieren-kein-echtes-geheimnis-0000";
+const GEHEIMNIS_DATEI = resolve(process.cwd(), "daten", "geheimnis");
 
-/** Gibt es echte Mitglieder, oder laeuft das hier zum Ausprobieren? */
-const echteListe = () =>
-  Boolean(process.env.CLUB_MITGLIEDER_DATEI || process.env.CLUB_MITGLIEDER);
+let ausDatei: string | null | undefined;
+
+function geheimnisAusDatei(): string | null {
+  if (ausDatei !== undefined) return ausDatei;
+
+  try {
+    const wert = readFileSync(GEHEIMNIS_DATEI, "utf8").trim();
+    if (wert.length >= 32) return (ausDatei = wert);
+  } catch {
+    /* noch nicht da — gleich anlegen */
+  }
+
+  try {
+    mkdirSync(dirname(GEHEIMNIS_DATEI), { recursive: true });
+    const neu = randomBytes(32).toString("base64url");
+    writeFileSync(GEHEIMNIS_DATEI, neu + "\n", { flag: "wx", mode: 0o600 });
+    return (ausDatei = neu);
+  } catch {
+    /* Jemand anders war schneller, oder die Platte ist nicht beschreibbar.
+       Noch einmal lesen — dann steht fest, welcher der beiden Faelle. */
+    try {
+      const wert = readFileSync(GEHEIMNIS_DATEI, "utf8").trim();
+      if (wert.length >= 32) return (ausDatei = wert);
+    } catch {
+      /* nicht beschreibbar und nicht lesbar */
+    }
+  }
+
+  /* Nicht zwischenspeichern: beim naechsten Versuch koennte es klappen. */
+  return null;
+}
 
 function geheimnis(): string | null {
   const wert = process.env.CLUB_SITZUNG_GEHEIMNIS ?? "";
@@ -75,36 +108,7 @@ function geheimnis(): string | null {
      als waere etwas eingerichtet. Unter 32 Zeichen gilt es als nicht
      gesetzt. */
   if (wert.length >= 32) return wert;
-
-  /* Kein eigener Wert, aber auch keine echten Mitglieder: Testbetrieb. */
-  if (!echteListe()) return ERSATZ_FUER_TESTS;
-
-  return null;
-}
-
-/** true, solange der Club mit dem oeffentlichen Ersatzschluessel laeuft. */
-export const nurTestbetrieb = () =>
-  (process.env.CLUB_SITZUNG_GEHEIMNIS ?? "").length < 32 && !echteListe();
-
-/*
- * Einmal beim Start ins Protokoll, wenn der Testbetrieb laeuft.
- *
- * Auf der Anmeldeseite hat das nichts zu suchen: dort laesen es alle mit,
- * die die Adresse kennen — und der Zugang ist dann keine Huerde mehr,
- * sondern eine Einladung. Ins Serverprotokoll schaut nur, wer ohnehin
- * Zugriff auf den Server hat.
- *
- * Ein Testzustand, den niemand bemerkt, wird trotzdem irgendwann zum
- * Dauerzustand. Deshalb ueberhaupt eine Meldung.
- */
-if (nurTestbetrieb()) {
-  console.warn(
-    "\n  ISI CLUB — TESTBETRIEB\n" +
-      "  Der oeffentliche Testzugang ist aktiv und die Cookies sind mit\n" +
-      "  einem Schluessel aus dem Quelltext unterschrieben.\n" +
-      "  Vor dem Start fuer zahlende Mitglieder setzen:\n" +
-      "    CLUB_TESTZUGANG=aus, CLUB_SITZUNG_GEHEIMNIS, Mitgliederliste\n",
-  );
+  return geheimnisAusDatei();
 }
 
 /** Ist die Anmeldung ueberhaupt eingerichtet? */

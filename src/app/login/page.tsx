@@ -18,9 +18,9 @@ import styles from "./page.module.css";
  * Video aufruft und dabei abgemeldet ist, landet nach der Anmeldung genau
  * dort und nicht auf der Uebersicht.
  *
- * Hier stehen keine Zugangsdaten. Es gibt einen Testzugang, aber er
- * gehoert nicht auf eine Seite, die jeder aufrufen kann — dass der
- * Testbetrieb laeuft, meldet der Server beim Start ins Protokoll.
+ * Hier stehen keine Zugangsdaten und keine Hinweise darauf. Ein Konto
+ * bekommt man angelegt (tools/mitglied.mjs) und die Bestaetigung per Mail;
+ * die Anmeldeseite selbst weiss von nichts.
  */
 export default function LoginPage() {
   const router = useRouter();

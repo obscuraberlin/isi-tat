@@ -1,40 +1,46 @@
 import { scryptSync, timingSafeEqual, createHash } from "node:crypto";
 import { readFileSync, statSync } from "node:fs";
+import { resolve } from "node:path";
 
 /**
  * Wer darf hinein — und mit welchem Passwort.
  *
  * Es gibt in diesem Projekt keine Datenbank, und fuer eine Mitgliederliste
- * braucht es auch keine. Zwei Wege, beide ohne Zugangsdaten im Repo:
+ * braucht es auch keine. Die Konten stehen in einer JSON-Datei:
  *
- *   CLUB_MITGLIEDER_DATEI  Pfad zu einer JSON-Datei auf dem Server.
- *                          Der bessere Weg: ein neues Mitglied eintragen,
- *                          speichern, fertig — ohne neuen Deploy.
+ *   daten/mitglieder.json  — oder wohin CLUB_MITGLIEDER_DATEI zeigt.
  *
- *   CLUB_MITGLIEDER        Dieselben Angaben als eine Zeile in einer
- *                          Umgebungsvariablen, falls der Hoster keinen
- *                          Platz fuer eine Datei bietet. Aendern heisst
- *                          hier: Anwendung neu starten.
+ * Angelegt werden sie mit `node tools/mitglied.mjs <e-mail> "<name>"`.
+ * Das Werkzeug schreibt den Eintrag in die Datei und schickt dem neuen
+ * Mitglied die Bestaetigung per Mail. Ein neues Konto wirkt sofort; die
+ * Anwendung merkt am Zeitstempel der Datei, dass sie neu lesen muss.
  *
- * Format der Datei — eine Liste, ein Eintrag je Mitglied:
+ * Format — eine Liste, ein Eintrag je Mitglied:
  *
  *   [
- *     { "email": "max@beispiel.de", "name": "Max Muster", "hash": "scrypt.16384...." }
+ *     {
+ *       "email": "max@beispiel.de",
+ *       "name": "Max Muster",
+ *       "hash": "scrypt.16384....",
+ *       "angelegt": "2026-09-08"
+ *     }
  *   ]
  *
- * Format der Variablen — ein Eintrag je Semikolon, Felder mit senkrechtem
- * Strich getrennt:
+ * Nebenweg fuer Hoster ohne Platz fuer eine Datei: CLUB_MITGLIEDER mit
+ * denselben Angaben in einer Zeile, Eintraege mit ";" getrennt, Felder
+ * mit "|". Aendern heisst dort: Anwendung neu starten.
  *
- *   max@beispiel.de|Max Muster|scrypt....;anna@beispiel.de|Anna|scrypt....
- *
- * Den Hash erzeugt `node tools/mitglied.mjs`. Klartext-Passwoerter stehen
- * an keiner der beiden Stellen.
+ * Klartext-Passwoerter stehen an keiner der beiden Stellen. Ein Konto
+ * loeschen heisst: Eintrag aus der Datei nehmen — die laufende Sitzung
+ * dieses Mitglieds ist damit beim naechsten Aufruf zu Ende.
  */
 
 export interface Mitglied {
   email: string;
   name: string;
   hash: string;
+  /** Wann das Konto angelegt wurde, als ISO-Datum. Nur zur Uebersicht. */
+  angelegt?: string;
 }
 
 /* Die Datei wird nicht bei jeder Anfrage von der Platte gelesen, aber auch
@@ -85,58 +91,26 @@ function gueltig(m: unknown): m is Mitglied {
   );
 }
 
-/* --------------------------------------------------------------------------
-   TESTZUGANG
-   --------------------------------------------------------------------------
-
-   Ein fester Zugang zum Ausprobieren, auf ausdrueckliche Anweisung des
-   Auftraggebers:
-
-       mancicmarcel@gmail.com  /  Oggy123
-
-   Das Passwort steht absichtlich hier im Klartext daneben. Es hinter dem
-   Hash zu verstecken waere Theater: wer den Quelltext lesen kann, kann
-   ihn auch gegen "Oggy123" pruefen. Ein Zugang, der im Repo steht, ist
-   oeffentlich — also soll das auch jeder sehen, der hier vorbeikommt.
-
-   Damit daraus kein dauerhaftes Loch wird:
-
-     - Er kommt ZUSAETZLICH zur echten Mitgliederliste, ersetzt sie nicht.
-     - CLUB_TESTZUGANG=aus schaltet ihn ab. Das gehoert in die
-       Umgebungsvariablen, bevor der Club fuer zahlende Mitglieder
-       aufmacht — sonst kommt jeder herein, der diese Zeilen kennt.
-
-   Das Passwort ist mit sieben Zeichen zu kurz fuer einen echten Zugang.
-   Fuer einen Testzugang, der ohnehin oeffentlich ist, spielt das keine
-   Rolle — fuer einen echten waere es der falsche Anfang. */
-const TESTZUGANG: Mitglied = {
-  email: "mancicmarcel@gmail.com",
-  name: "Marcel Mancic",
-  hash: "scrypt.16384.Y0HYChSn4UK9qDP7WNLKxg.UHYlnlGVneM1-srSVi7Qkr4RrIolwuIod71z3rJL6X8",
-};
-
-const testzugangAn = () =>
-  (process.env.CLUB_TESTZUGANG ?? "").toLowerCase() !== "aus";
+/**
+ * Wo die Mitgliederdatei liegt.
+ *
+ * Ohne Angabe: daten/mitglieder.json im Projekt. Dorthin schreibt auch
+ * tools/mitglied.mjs, wenn ein Konto angelegt wird. CLUB_MITGLIEDER_DATEI
+ * verlegt sie — sinnvoll, sobald der Hoster bei jedem Deploy das
+ * Projektverzeichnis aus dem Repository frisch aufsetzt; dann laege sie
+ * besser daneben als darin.
+ */
+export const MITGLIEDER_DATEI = () =>
+  process.env.CLUB_MITGLIEDER_DATEI ||
+  resolve(process.cwd(), "daten", "mitglieder.json");
 
 export function mitglieder(): Mitglied[] {
-  const datei = process.env.CLUB_MITGLIEDER_DATEI;
   const variable = process.env.CLUB_MITGLIEDER;
-
-  const echte = datei
-    ? ausDatei(datei)
-    : variable
-      ? ausVariable(variable)
-      : [];
-
-  if (!testzugangAn()) return echte;
-
-  /* Steht dieselbe Adresse auch in der echten Liste, gewinnt die echte:
-     sonst haette ein Mitglied, das zufaellig diese E-Mail benutzt, sein
-     eigenes Passwort verloren. */
-  const schonDa = echte.some(
-    (m) => m.email.toLowerCase() === TESTZUGANG.email,
-  );
-  return schonDa ? echte : [...echte, TESTZUGANG];
+  const ausListe = ausDatei(MITGLIEDER_DATEI());
+  /* Die Variable ist der Nebenweg fuer Hoster ohne Platz fuer eine Datei.
+     Gibt es beides, gilt beides — ein Konto aus der Datei und eins aus der
+     Variablen sperren sich nicht gegenseitig aus. */
+  return variable ? [...ausListe, ...ausVariable(variable)] : ausListe;
 }
 
 /**

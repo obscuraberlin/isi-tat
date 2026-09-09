@@ -74,6 +74,28 @@
   border: 1px solid rgba(200, 166, 106, 0.4);
 }
 
+/* Rechts oben, gegenueber dem Status: die eigene Zusage. */
+.zugesagt {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+
+.zugesagt svg {
+  width: 11px;
+  height: 11px;
+}
+
 .vergangen .bild img,
 .vergangen .ohneBild {
   filter: grayscale(0.8) brightness(0.6);

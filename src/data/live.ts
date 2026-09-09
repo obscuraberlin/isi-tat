@@ -38,6 +38,8 @@ export interface LiveTermin {
   beitreten?: string;
   /** Aufzeichnung, sobald sie vorliegt. */
   aufzeichnung?: string;
+  /** Steht nur an Beispielen aus beispiele.ts — wird als solches angezeigt. */
+  beispiel?: boolean;
 }
 
 export const liveTermine: readonly LiveTermin[] = [];

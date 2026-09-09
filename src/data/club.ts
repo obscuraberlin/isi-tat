@@ -103,7 +103,8 @@ export const club = {
     naechster: "NÄCHSTER TERMIN",
     beitreten: "LIVE BEITRETEN",
     kommende: "KOMMENDE TERMINE",
-    aufzeichnungen: "AUFZEICHNUNGEN",
+    vergangene: "VERGANGENE TERMINE",
+    vergangen: "Vergangen",
     aufzeichnungAnsehen: "AUFZEICHNUNG ANSEHEN",
     /* §64: kein erfundener Termin, aber auch kein leeres Loch. */
     leer: "Der nächste Termin wird hier angekündigt.",
@@ -155,6 +156,22 @@ export const club = {
     ansehen: "ANSEHEN",
   },
 
+  /* Zusagen — fuer Events und Live-Termine gleich. Eine Zusage ist kein
+     Ticket: sie sagt ISI, mit wem er rechnen kann, und laesst sich
+     jederzeit zuruecknehmen. */
+  zusage: {
+    zusagen: "ZUSAGEN",
+    zugesagt: "ZUGESAGT",
+    absagen: "Absagen",
+    kalender: "+ ZUM KALENDER",
+    duBist: "Du hast zugesagt.",
+    /* "Du und 3 weitere haben zugesagt." */
+    mitAnderen: (n: number) =>
+      n === 1 ? "Du und 1 weiteres Mitglied haben zugesagt." : `Du und ${n} weitere haben zugesagt.`,
+    andere: (n: number) => (n === 1 ? "1 Mitglied hat zugesagt." : `${n} Mitglieder haben zugesagt.`),
+    fehler: "Das hat gerade nicht geklappt. Versuch es gleich noch einmal.",
+  },
+
   events: {
     eyebrow: "Events",
     headline: "TREFFEN IN ECHT.",
@@ -167,10 +184,11 @@ export const club = {
     erwartet: "WAS DICH ERWARTET",
     zurueck: "Alle Events",
     status: {
-      offen: "Anmeldung offen",
+      offen: "Zusagen offen",
       ausgebucht: "Ausgebucht",
       vergangen: "Vergangen",
     },
+    zugesagtKurz: "Zugesagt",
     leer: "Das nächste Event wird hier angekündigt.",
     leerText:
       "Sobald ein Termin und ein Ort feststehen, findest du beides hier — und auf der Startseite.",
@@ -195,6 +213,8 @@ export interface Nachricht {
   text: readonly string[];
   /** Optional ein Bild, z. B. "/media/news/live-oktober.jpg". */
   bild?: string;
+  /** Steht nur an Beispielen aus beispiele.ts — wird als solches angezeigt. */
+  beispiel?: boolean;
 }
 
 /**

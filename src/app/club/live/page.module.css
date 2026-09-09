@@ -107,3 +107,22 @@
     width: auto;
   }
 }
+
+/* ---------- Vergangene ---------- */
+
+.vorbei .datum,
+.vorbei .was {
+  color: var(--text-muted);
+}
+
+.status {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-light);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  align-self: center;
+}

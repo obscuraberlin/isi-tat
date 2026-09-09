@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
 import { club } from "@/data/club";
 import { bildAdresse, datumLang, feed } from "@/lib/news";
+import { Beispiel } from "@/components/Club/Beispiel";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -62,6 +63,7 @@ export default async function NewsSeite() {
                     <time className={styles.datum} dateTime={n.datum}>
                       {datumLang(n.datum)}
                     </time>
+                    <Beispiel wenn={n.beispiel} />
                   </p>
                   <h2 className={styles.nachrichtTitel}>{n.titel}</h2>
                   {n.text.length > 0 ? (

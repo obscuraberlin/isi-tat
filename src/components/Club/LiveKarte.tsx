@@ -2,6 +2,9 @@ import Link from "next/link";
 import { club } from "@/data/club";
 import type { LiveTermin } from "@/data/live";
 import { terminDatum } from "@/lib/live";
+import { zusageStand } from "@/lib/zusagen";
+import { Beispiel } from "./Beispiel";
+import { Zusage } from "./Zusage";
 import styles from "./LiveKarte.module.css";
 
 /**
@@ -11,11 +14,21 @@ import styles from "./LiveKarte.module.css";
  * einer angekuendigt wird. Ein erfundener Termin waere schlimmer als
  * keiner, eine leere Stelle unehrlicher.
  *
- * Der Knopf erscheint nur, wenn tatsaechlich eine Adresse hinterlegt ist.
- * Ein "LIVE BEITRETEN", das nichts tut, ist die eine Sache, die ein
- * Mitglied genau einmal ausprobiert.
+ * Mit Termin: Zusagen, in den Kalender — und LIVE BEITRETEN nur, wenn
+ * tatsaechlich eine Adresse hinterlegt ist. Ein Knopf, der nichts tut,
+ * ist die eine Sache, die ein Mitglied genau einmal ausprobiert.
  */
-export function LiveKarte({ termin }: { termin: LiveTermin | null }) {
+export function LiveKarte({
+  termin,
+  email,
+  aufSeite = false,
+}: {
+  termin: LiveTermin | null;
+  /** Wer gerade angemeldet ist — fuer den Stand der Zusage. */
+  email: string;
+  /** Auf /club/live selbst: kein Link dorthin. */
+  aufSeite?: boolean;
+}) {
   if (!termin) {
     return (
       <section className={`${styles.karte} ${styles.leer}`}>
@@ -26,10 +39,14 @@ export function LiveKarte({ termin }: { termin: LiveTermin | null }) {
     );
   }
 
+  const stand = zusageStand("live", termin.id, email);
+
   return (
     <section className={styles.karte} aria-labelledby="live-naechster">
       <div className={styles.text}>
-        <p className={styles.eyebrow}>{club.live.naechster}</p>
+        <p className={styles.eyebrow}>
+          {club.live.naechster} <Beispiel wenn={termin.beispiel} />
+        </p>
         <h2 id="live-naechster" className={styles.titel}>
           {termin.titel}
         </h2>
@@ -55,10 +72,13 @@ export function LiveKarte({ termin }: { termin: LiveTermin | null }) {
             {club.live.beitreten}
           </a>
         ) : null}
-        <Link href="/club/live/" className={styles.mehr}>
-          {club.live.headline.replace(".", "")}
-          <span aria-hidden="true"> →</span>
-        </Link>
+        <Zusage art="live" id={termin.id} zugesagt={stand.zugesagt} andere={stand.andere} offen />
+        {aufSeite ? null : (
+          <Link href="/club/live/" className={styles.mehr}>
+            {club.live.headline.replace(".", "")}
+            <span aria-hidden="true"> →</span>
+          </Link>
+        )}
       </div>
     </section>
   );

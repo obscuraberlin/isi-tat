@@ -140,6 +140,12 @@
   background: var(--accent);
 }
 
+.zusage {
+  margin-top: clamp(30px, 3.5vw, 46px);
+  padding-top: clamp(20px, 2.5vw, 28px);
+  border-top: 1px solid var(--line-light);
+}
+
 .knopf {
   margin-top: clamp(30px, 3.5vw, 46px);
   display: inline-flex;

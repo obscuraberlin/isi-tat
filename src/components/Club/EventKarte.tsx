@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ClubEvent } from "@/data/events";
 import { club } from "@/data/club";
 import { eventDatum, eventStatus } from "@/lib/events";
+import { Beispiel } from "./Beispiel";
 import styles from "./EventKarte.module.css";
 
 /**
@@ -13,10 +14,13 @@ import styles from "./EventKarte.module.css";
 export function EventKarte({
   event,
   gross = false,
+  zugesagt = false,
 }: {
   event: ClubEvent;
   /** Auf der Startseite: breiter, mit Text daneben. */
   gross?: boolean;
+  /** Hat das angemeldete Mitglied zugesagt? Steht dann auf der Karte. */
+  zugesagt?: boolean;
 }) {
   const status = eventStatus(event);
 
@@ -37,6 +41,14 @@ export function EventKarte({
           </span>
         )}
         <span className={styles.status}>{club.events.status[status]}</span>
+        {zugesagt && status !== "vergangen" ? (
+          <span className={styles.zugesagt}>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            {club.events.zugesagtKurz}
+          </span>
+        ) : null}
       </div>
 
       <div className={styles.text}>
@@ -45,7 +57,9 @@ export function EventKarte({
           <span className={styles.punkt} aria-hidden="true" />
           {event.ort}
         </p>
-        <h3 className={styles.titel}>{event.titel}</h3>
+        <h3 className={styles.titel}>
+          {event.titel} <Beispiel wenn={event.beispiel} />
+        </h3>
         {gross ? <p className={styles.beschreibung}>{event.beschreibung}</p> : null}
         <span className={styles.mehr}>
           {club.events.ansehen}

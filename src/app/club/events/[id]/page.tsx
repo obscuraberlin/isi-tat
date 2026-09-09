@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
 import { club } from "@/data/club";
 import { eventDatum, eventMit, eventStatus } from "@/lib/events";
+import { zusageStand } from "@/lib/zusagen";
+import { Beispiel } from "@/components/Club/Beispiel";
+import { Zusage } from "@/components/Club/Zusage";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -12,11 +15,12 @@ export const metadata: Metadata = {
 
 /**
  * Ein Event: grosses Bild, Titel, Datum, Ort, Beschreibung, was einen
- * erwartet — und ein Knopf, wenn es eine Adresse dafuer gibt.
+ * erwartet — und die Zusage.
  *
- * Kein Knopf ohne Ziel: "Teilnahme anfragen" erscheint nur, wenn beim
- * Event steht, wohin die Anfrage geht. Vergangen oder ausgebucht: kein
- * Knopf, dafuer der Status.
+ * Offen: ZUSAGEN und Kalender. Ausgebucht: nur, wer schon zugesagt hat,
+ * sieht seine Zusage (und kann absagen). Vergangen: der Status, sonst
+ * nichts. "Teilnahme anfragen" gibt es zusaetzlich, wenn beim Event eine
+ * Adresse dafuer steht — kein Knopf ohne Ziel.
  */
 export default async function EventSeite({
   params,
@@ -27,8 +31,9 @@ export default async function EventSeite({
   const event = eventMit(id);
   if (!event) notFound();
 
-  await verlangeMitglied(`/club/events/${event.id}/`);
+  const sitzung = await verlangeMitglied(`/club/events/${event.id}/`);
   const status = eventStatus(event);
+  const stand = zusageStand("event", event.id, sitzung.email);
 
   return (
     <article className={styles.seite}>
@@ -50,7 +55,8 @@ export default async function EventSeite({
       <header className={styles.kopf}>
         <p className={styles.status} data-status={status}>
           {club.events.status[status]}
-        </p>
+        </p>{" "}
+        <Beispiel wenn={event.beispiel} />
         <h1 className={styles.titel}>{event.titel}</h1>
         <p className={styles.wann}>
           <time dateTime={event.datum}>{eventDatum(event)}</time>
@@ -72,6 +78,19 @@ export default async function EventSeite({
             ))}
           </ul>
         </section>
+      ) : null}
+
+      {status !== "vergangen" && (status === "offen" || stand.zugesagt) ? (
+        <div className={styles.zusage}>
+          <Zusage
+            art="event"
+            id={event.id}
+            zugesagt={stand.zugesagt}
+            andere={stand.andere}
+            offen={status === "offen"}
+            breit
+          />
+        </div>
       ) : null}
 
       {status === "offen" && event.anfrage ? (

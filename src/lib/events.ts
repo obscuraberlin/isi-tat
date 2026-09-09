@@ -1,5 +1,6 @@
 import { readFileSync, statSync } from "node:fs";
 import { clubEvents, type ClubEvent } from "@/data/events";
+import { beispielEvents, beispieleAktiv } from "@/data/beispiele";
 
 /**
  * Die Events — aus dem Projekt oder von der Platte.
@@ -28,6 +29,10 @@ function gueltig(e: unknown): e is ClubEvent {
 }
 
 function alle(): ClubEvent[] {
+  return [...echte(), ...(beispieleAktiv ? beispielEvents : [])];
+}
+
+function echte(): ClubEvent[] {
   const pfad = process.env.CLUB_EVENTS_DATEI;
   if (!pfad) return [...clubEvents];
   try {

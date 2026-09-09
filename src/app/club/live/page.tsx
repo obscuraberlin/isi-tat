@@ -3,6 +3,7 @@ import { verlangeMitglied } from "@/lib/zugang";
 import { club } from "@/data/club";
 import { liveDaten, terminDatum } from "@/lib/live";
 import { LiveKarte } from "@/components/Club/LiveKarte";
+import { Beispiel } from "@/components/Club/Beispiel";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -12,14 +13,14 @@ export const metadata: Metadata = {
 /**
  * Live mit ISI.
  *
- * Solange kein Termin eingetragen ist, steht hier genau ein Satz: dass
- * der naechste hier angekuendigt wird. Kein Platzhaltertermin, kein
- * Knopf, der nichts tut — beides faellt genau einmal auf und dann nie
- * wieder gut aus.
+ * Oben der naechste Termin mit Zusage und Kalender. Darunter, was noch
+ * kommt, und was schon war — mit Aufzeichnung, wenn es eine gibt, sonst
+ * nur als Zeile. Solange kein Termin eingetragen ist, steht hier genau
+ * ein Satz: dass der naechste hier angekuendigt wird.
  */
 export default async function LiveSeite() {
-  await verlangeMitglied("/club/live/");
-  const { naechster, kommend, aufzeichnungen } = liveDaten();
+  const sitzung = await verlangeMitglied("/club/live/");
+  const { naechster, kommend, vergangen } = liveDaten();
 
   /* Der erste Termin steht schon in der Karte oben. */
   const weitere = kommend.slice(1);
@@ -32,7 +33,7 @@ export default async function LiveSeite() {
         <p className={styles.subline}>{club.live.subline}</p>
       </header>
 
-      <LiveKarte termin={naechster} />
+      <LiveKarte termin={naechster} email={sitzung.email} aufSeite />
 
       {weitere.length > 0 ? (
         <section className={styles.block} aria-labelledby="kommend">
@@ -46,36 +47,51 @@ export default async function LiveSeite() {
                   {terminDatum(t.datum)}
                 </time>
                 <span className={styles.uhr}>{t.beginn} Uhr</span>
-                <span className={styles.was}>{t.titel}</span>
+                <span className={styles.was}>
+                  {t.titel} <Beispiel wenn={t.beispiel} />
+                </span>
+                <a
+                  className={styles.replay}
+                  href={`/api/kalender/?art=live&id=${encodeURIComponent(t.id)}`}
+                >
+                  {club.zusage.kalender}
+                </a>
               </li>
             ))}
           </ul>
         </section>
       ) : null}
 
-      {/* §24: kein Knopf ohne Aufzeichnung. Die Liste enthaelt nur
-          Termine, zu denen tatsaechlich eine vorliegt. */}
-      {aufzeichnungen.length > 0 ? (
-        <section className={styles.block} aria-labelledby="replays">
-          <h2 id="replays" className={styles.blockTitel}>
-            {club.live.aufzeichnungen}
+      {/* §24: kein Knopf ohne Aufzeichnung. Vergangene ohne Video stehen
+          nur als Zeile — man sieht, was war, ohne ins Leere zu klicken. */}
+      {vergangen.length > 0 ? (
+        <section className={styles.block} aria-labelledby="vergangen">
+          <h2 id="vergangen" className={styles.blockTitel}>
+            {club.live.vergangene}
           </h2>
           <ul className={styles.liste}>
-            {aufzeichnungen.map((t) => (
-              <li key={t.id} className={styles.zeile}>
+            {vergangen.map((t) => (
+              <li key={t.id} className={`${styles.zeile} ${styles.vorbei}`}>
                 <time className={styles.datum} dateTime={t.datum}>
                   {terminDatum(t.datum)}
                 </time>
-                <span className={styles.was}>{t.titel}</span>
-                <a
-                  className={styles.replay}
-                  href={t.aufzeichnung}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {club.live.aufzeichnungAnsehen}
-                  <span aria-hidden="true"> →</span>
-                </a>
+                <span className={styles.uhr}>{t.beginn} Uhr</span>
+                <span className={styles.was}>
+                  {t.titel} <Beispiel wenn={t.beispiel} />
+                </span>
+                {t.aufzeichnung ? (
+                  <a
+                    className={styles.replay}
+                    href={t.aufzeichnung}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {club.live.aufzeichnungAnsehen}
+                    <span aria-hidden="true"> →</span>
+                  </a>
+                ) : (
+                  <span className={styles.status}>{club.live.vergangen}</span>
+                )}
               </li>
             ))}
           </ul>

@@ -11,6 +11,8 @@ import { EventKarte } from "@/components/Club/EventKarte";
 import { NaechsteFolge } from "@/components/Club/NaechsteFolge";
 import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
 import { Willkommen } from "@/components/Club/Willkommen";
+import { Beispiel } from "@/components/Club/Beispiel";
+import { zusageStand } from "@/lib/zusagen";
 import styles from "./page.module.css";
 
 /**
@@ -52,7 +54,7 @@ export default async function ClubStart() {
       {/* §50: was leer ist, erscheint nicht. */}
       {live.naechster ? (
         <div className={styles.block}>
-          <LiveKarte termin={live.naechster} />
+          <LiveKarte termin={live.naechster} email={sitzung.email} />
         </div>
       ) : null}
 
@@ -67,7 +69,11 @@ export default async function ClubStart() {
               <span aria-hidden="true"> →</span>
             </Link>
           </div>
-          <EventKarte event={events.naechstes} gross />
+          <EventKarte
+            event={events.naechstes}
+            gross
+            zugesagt={zusageStand("event", events.naechstes.id, sitzung.email).zugesagt}
+          />
         </section>
       ) : null}
 
@@ -90,7 +96,9 @@ export default async function ClubStart() {
                     {datumLang(n.datum)}
                   </time>
                   <span className={styles.newsQuelle}>{club.news.quelle[n.quelle]}</span>
-                  <span className={styles.newsText}>{n.titel}</span>
+                  <span className={styles.newsText}>
+                    {n.titel} <Beispiel wenn={n.beispiel} />
+                  </span>
                 </>
               );
               return (

@@ -3,6 +3,7 @@ import { verlangeMitglied } from "@/lib/zugang";
 import { club } from "@/data/club";
 import { eventDaten } from "@/lib/events";
 import { EventKarte } from "@/components/Club/EventKarte";
+import { zusageStand } from "@/lib/zusagen";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -17,8 +18,9 @@ export const metadata: Metadata = {
  * Platzhalter-Event mit erfundenem Ort.
  */
 export default async function EventsSeite() {
-  await verlangeMitglied("/club/events/");
+  const sitzung = await verlangeMitglied("/club/events/");
   const { kommend, vergangen } = eventDaten();
+  const zugesagt = (id: string) => zusageStand("event", id, sitzung.email).zugesagt;
 
   return (
     <div className={styles.seite}>
@@ -42,7 +44,7 @@ export default async function EventsSeite() {
           </h2>
           <div className={styles.raster}>
             {kommend.map((e) => (
-              <EventKarte key={e.id} event={e} />
+              <EventKarte key={e.id} event={e} zugesagt={zugesagt(e.id)} />
             ))}
           </div>
         </section>

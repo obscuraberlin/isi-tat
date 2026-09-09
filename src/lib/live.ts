@@ -1,5 +1,6 @@
 import { readFileSync, statSync } from "node:fs";
 import { liveTermine, type LiveTermin } from "@/data/live";
+import { beispielLive, beispieleAktiv } from "@/data/beispiele";
 
 /**
  * Die Live-Termine — aus dem Projekt oder von der Platte.
@@ -25,6 +26,10 @@ function gueltig(t: unknown): t is LiveTermin {
 }
 
 function alle(): LiveTermin[] {
+  return [...echte(), ...(beispieleAktiv ? beispielLive : [])];
+}
+
+function echte(): LiveTermin[] {
   const pfad = process.env.CLUB_LIVE_DATEI;
   if (!pfad) return [...liveTermine];
 
@@ -62,12 +67,14 @@ export function liveDaten(jetzt = new Date()) {
   return {
     naechster: kommend[0] ?? null,
     kommend,
-    /* Nur mit Aufzeichnung: ein vergangener Termin ohne Video ist eine
-       Zeile, die dem Mitglied sagt, was es verpasst hat. Das nuetzt
-       niemandem. */
-    aufzeichnungen: vergangen.filter((t) => t.aufzeichnung),
+    /* Vergangene Termine bleiben sichtbar — mit Aufzeichnung, wenn eine
+       vorliegt, sonst nur als Zeile. So sieht ein neues Mitglied, was der
+       Club bisher gemacht hat, und ein altes findet die Aufzeichnung. */
+    vergangen,
   };
 }
+
+export const terminMit = (id: string) => alle().find((t) => t.id === id) ?? null;
 
 /** "Dienstag, 14. Oktober" — ohne Jahr, wenn es dasselbe ist. */
 export function terminDatum(iso: string, jetzt = new Date()): string {

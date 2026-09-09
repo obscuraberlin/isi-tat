@@ -39,6 +39,8 @@ export interface ClubEvent {
   ausgebucht?: boolean;
   /** Wohin die Anfrage geht: "mailto:..." oder eine https-Adresse. */
   anfrage?: string;
+  /** Steht nur an Beispielen aus beispiele.ts — wird als solches angezeigt. */
+  beispiel?: boolean;
 }
 
 export const clubEvents: readonly ClubEvent[] = [];

@@ -1,5 +1,6 @@
 import { readFileSync, statSync } from "node:fs";
 import { nachrichten, type Nachricht } from "@/data/club";
+import { beispielNews, beispieleAktiv } from "@/data/beispiele";
 import { socialFeed, type FeedQuelle } from "./social";
 
 /**
@@ -23,6 +24,7 @@ export interface FeedEintrag {
   link?: string;
   /** Bilder von draussen laufen durch /api/bild — siehe dort, warum. */
   bildVonDraussen?: boolean;
+  beispiel?: boolean;
 }
 
 let zwischen: { stand: number; liste: Nachricht[] } | null = null;
@@ -62,6 +64,7 @@ export function newsBeitraege(): Nachricht[] {
     }
   }
 
+  if (beispieleAktiv) liste = [...liste, ...beispielNews];
   return [...liste].sort((a, b) => b.datum.localeCompare(a.datum));
 }
 
@@ -74,6 +77,7 @@ export async function feed(): Promise<FeedEintrag[]> {
     titel: n.titel,
     text: n.text,
     bild: n.bild,
+    beispiel: n.beispiel,
   }));
 
   const draussen: FeedEintrag[] = (await socialFeed()).map((s) => ({

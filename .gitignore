@@ -40,3 +40,7 @@ yarn-error.log*
 /dist
 /.preview-build
 *.tmp.mjs
+
+# Zusagen zu Events und Live-Terminen — Nutzerdaten, nicht ins Repo.
+/daten/zusagen.json
+/daten/*.tmp

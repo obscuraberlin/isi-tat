@@ -62,8 +62,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 10px;
+  gap: 14px;
   flex-shrink: 0;
+}
+
+/* Die Zusage-Zeile rechtsbuendig, wie der Rest der Spalte. */
+.aktion > div {
+  justify-items: end;
+  text-align: right;
 }
 
 .knopf {
@@ -137,6 +143,11 @@
     align-items: stretch;
     flex-direction: column-reverse;
     gap: 14px;
+  }
+
+  .aktion > div {
+    justify-items: stretch;
+    text-align: left;
   }
 
   .knopf {

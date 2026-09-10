@@ -22,6 +22,7 @@ export function SerienKarte({
   anzahl,
   cover,
   stand,
+  prozent,
   gesperrt = false,
 }: {
   href: string;
@@ -31,6 +32,8 @@ export function SerienKarte({
   cover: MediaAsset;
   /** "3 von 8 gesehen" — ohne Angabe steht die Folgenzahl. */
   stand?: string;
+  /** 0–100, Balken unten am Plakat. Ohne Angabe kein Balken. */
+  prozent?: number;
   gesperrt?: boolean;
 }) {
   return (
@@ -43,7 +46,17 @@ export function SerienKarte({
       <div className={styles.bild}>
         <Media asset={cover} tone="dark" radius="inherit" ratio="2 / 3" />
         <span className={styles.scrim} aria-hidden="true" />
-        <span className={styles.zahl}>{stand ?? `${anzahl} Folgen`}</span>
+        <span className={styles.zahl}>
+          {stand ?? `${anzahl} Folgen`}
+          {prozent !== undefined && prozent > 0 ? (
+            <span className={styles.prozent}> · {club.kapitel.prozent(prozent)}</span>
+          ) : null}
+        </span>
+        {prozent !== undefined && prozent > 0 ? (
+          <span className={styles.balken} aria-hidden="true">
+            <span className={styles.balkenVoll} style={{ width: `${prozent}%` }} />
+          </span>
+        ) : null}
         {gesperrt ? (
           <span className={styles.schloss} title={club.gesperrt.kurz}>
             <svg viewBox="0 0 12 14" aria-hidden="true">

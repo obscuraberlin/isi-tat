@@ -50,7 +50,7 @@ export default async function KapitelSeite({
               .join(" ")}
             aria-current={k.id === kapitel.id ? "page" : undefined}
           >
-            {k.label}
+            {k.kurz}
           </Link>
         ))}
       </nav>
@@ -61,7 +61,8 @@ export default async function KapitelSeite({
         </div>
         <div className={styles.kopfText}>
           <p className={styles.zahl}>{kapitel.videos.length} Folgen</p>
-          <h1 className={styles.titel}>{kapitel.label}</h1>
+          <h1 className={styles.titel}>{kapitel.kurz}</h1>
+          <p className={styles.langname}>{kapitel.label}</p>
           <p className={styles.text}>{kapitel.description}</p>
           <SerieStart folgen={kapitel.videos} />
         </div>

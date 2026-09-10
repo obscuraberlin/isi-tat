@@ -68,7 +68,7 @@ export default async function VideoSeite({
         <header className={styles.kopf}>
           <p className={styles.serie}>
             <Link href={`/club/kapitel/${kapitel.id}/`} className={styles.serieLink}>
-              {kapitel.label}
+              {kapitel.kurz}
             </Link>
             <span className={styles.serieFolge}>Folge {folgeNr}</span>
           </p>

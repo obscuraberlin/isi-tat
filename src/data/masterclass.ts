@@ -63,17 +63,17 @@ export const kursVideos: readonly KursVideo[] = [
     kapitelId: "mindset",
     slug: "wer-ist-ismail-tatlisoez-und-warum-solltest-du-mir-zuhoeren",
     titel: "Wer ist Ismail Tatlisöz — und warum solltest du mir zuhören?",
-    unter: "Die Geschichte hinter der Masterclass",
-    kern: "Diese Masterclass basiert nicht auf Theorie, sondern auf über zwei Jahrzehnten praktischer Erfahrung in Handel, Vertrieb, Unternehmertum, Investments, Gastronomie und Personal Brand.",
+    unter: "Dein Einstieg in den ISI TAT Business Club.",
+    kern: "Dieser Club basiert nicht auf Theorie, sondern auf über zwei Jahrzehnten praktischer Erfahrung in Handel, Vertrieb, Unternehmertum, Investments, Gastronomie und Personal Brand.",
     hook: "Ich will euch hier nicht erzählen, dass ich immer alles richtig gemacht habe. Im Gegenteil: Einige meiner wichtigsten Lektionen haben mich viel Geld, Zeit und Nerven gekostet. Genau deshalb kann meine Erfahrung für euch eine Abkürzung sein.",
     gliederung: [
       { titel: "Wer ich zuerst bin", text: "Bevor Unternehmer, Investor oder Content Creator: Sohn und Familienvater. Erfolg ist für mich nicht nur materiell." },
       { titel: "Mein Weg", text: "Frühe eBay-Geschäfte, Felgenhandel, Promotion, Vertrieb, eigene Strukturen, Vermögensberatung, Beteiligungen, Gastronomie und Social Media." },
-      { titel: "Warum diese Masterclass", text: "Nicht um mein Leben zu kopieren, sondern um Denkweisen, Fehler und praktische Muster weiterzugeben." },
+      { titel: "Warum dieser Club", text: "Nicht um mein Leben zu kopieren, sondern um Denkweisen, Fehler und praktische Muster weiterzugeben." },
       { titel: "Keine Erfolgsversprechen", text: "Gleiche Information führt bei verschiedenen Menschen zu unterschiedlichen Ergebnissen. Umsetzung, Ausgangslage und Disziplin entscheiden mit." },
       { titel: "Meine wichtigste Haltung", text: "Bleib korrekt. Reputation, Charakter und das eigene Wort sind langfristiges Kapital." },
     ],
-    aufgabe: "Schreibe drei konkrete Ziele auf, die du mit dieser Masterclass erreichen willst, und daneben, woran du in 90 Tagen erkennst, ob du wirklich umgesetzt hast.",
+    aufgabe: "Schreibe drei konkrete Ziele auf, die du im Club erreichen willst, und daneben, woran du in 90 Tagen erkennst, ob du wirklich umgesetzt hast.",
     regeln: [
       "Erfahrung ist wertvoll, wenn sie dir unnötige Umwege erspart.",
       "Erfolg ohne Charakter ist für mich kein vollständiger Erfolg.",
@@ -897,11 +897,11 @@ export const kursVideos: readonly KursVideo[] = [
     kapitelId: "brand",
     slug: "vom-zuschauer-zum-geschaeftspartner",
     titel: "Vom Zuschauer zum Geschäftspartner",
-    unter: "Warum diese Masterclass nicht das Ende, sondern der Anfang sein kann",
+    unter: "Warum das hier nicht das Ende, sondern der Anfang sein kann",
     kern: "Wissen allein verändert nichts. Umsetzung macht Teilnehmer sichtbar und kann neue Kontakte oder Möglichkeiten schaffen. Zusammenarbeit bleibt immer freiwillig, selektiv und ohne Anspruch.",
     hook: "Wenn ihr alle 40 Videos gesehen habt, ist die wichtigste Frage nicht, was ihr jetzt wisst — sondern was ihr ab morgen damit macht.",
     gliederung: [
-      { titel: "Warum diese Masterclass", text: "Jahre an praktischer Erfahrung so verdichten, dass Teilnehmer Fehler vermeiden und schneller lernen können." },
+      { titel: "Warum dieser Club", text: "Jahre an praktischer Erfahrung so verdichten, dass Teilnehmer Fehler vermeiden und schneller lernen können." },
       { titel: "Wissen nimmt Arbeit nicht ab", text: "Zwei Menschen sehen denselben Kurs und erzielen unterschiedliche Ergebnisse, weil Umsetzung unterschiedlich ist." },
       { titel: "Taten zeigen Charakter", text: "Nicht „Ich bin hungrig“, sondern: Was machst du Montagmorgen?" },
       { titel: "Masterclass als Filter", text: "Umsetzung, Entwicklung, Zuverlässigkeit und Fähigkeiten können sichtbar werden. Es gibt keinerlei Anspruch auf Job, Partnerschaft oder Einkommen." },
@@ -922,9 +922,22 @@ export const kursVideos: readonly KursVideo[] = [
 /* Die fuenf Kapitel stehen schon in landingPage.ts — Titel, Beschreibung
    und Bilder. Sie hier ein zweites Mal zu tippen hiesse, sie beim naechsten
    Wortwechsel an zwei Stellen zu aendern und eine zu vergessen. */
+/* Die kurzen Namen fuer den Club. Draussen verkaufen die langen Titel
+   ("MINDSET, CHANCEN & UNTERNEHMERISCHES DENKEN"); drinnen, wo sie in
+   Pillen, Karten und Zeilen stehen, brechen sie dreizeilig. Ein Wort
+   reicht — man weiss, wo man ist. */
+export const serienKurz: Record<KapitelId, string> = {
+  mindset: "MINDSET",
+  sales: "VERTRIEB",
+  business: "BUSINESS",
+  geld: "GELD",
+  brand: "NETZWERK",
+};
+
 export const kursKapitel = insideTheClub.series.map((serie) => ({
   id: serie.id as KapitelId,
   label: serie.label,
+  kurz: serienKurz[serie.id as KapitelId],
   tagline: serie.tagline,
   description: serie.description,
   cover: serie.cover,

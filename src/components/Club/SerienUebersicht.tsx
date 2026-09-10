@@ -13,31 +13,29 @@ import { SerienKarte } from "./SerienKarte";
  * da ist, stehen die Plakate ohne — dann springt hoechstens die
  * Beschriftung, nicht das Bild.
  */
-export function SerienUebersicht() {
+export function SerienUebersicht({ anker = false }: {
+  /** Auf INHALTE: die Kacheln springen zur Liste auf derselben Seite. */
+  anker?: boolean;
+}) {
   const stand = useFortschritt();
 
   return (
     <>
       {kursKapitel.map((kapitel) => {
-        const gesehen = stand
-          ? kapitel.videos.filter((v) => stand.gesehen.has(v.nr)).length
-          : 0;
+        const serie = stand ? stand.serie(kapitel.videos.map((v) => v.nr)) : null;
         const erste = kapitel.videos[0];
         const gesperrt = Boolean(stand && erste && !stand.frei(erste.nr));
 
         return (
           <SerienKarte
             key={kapitel.id}
-            href={`/club/kapitel/${kapitel.id}/`}
-            label={kapitel.label}
+            href={anker ? `#serie-${kapitel.id}` : `/club/kapitel/${kapitel.id}/`}
+            label={kapitel.kurz}
             tagline={kapitel.tagline}
             anzahl={kapitel.videos.length}
             cover={kapitel.cover}
-            stand={
-              stand
-                ? club.kapitel.stand(gesehen, kapitel.videos.length)
-                : undefined
-            }
+            stand={serie ? club.kapitel.stand(serie.gesehen, serie.gesamt) : undefined}
+            prozent={serie?.prozent}
             gesperrt={gesperrt}
           />
         );

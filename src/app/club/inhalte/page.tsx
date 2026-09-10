@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
 import { kursKapitel } from "@/data/masterclass";
 import { club } from "@/data/club";
-import { SerienKarte } from "@/components/Club/SerienKarte";
+import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
+import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
+import { SerienBlock } from "@/components/Club/SerienBlock";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -10,13 +12,22 @@ export const metadata: Metadata = {
 };
 
 /**
- * Alle Serien.
+ * Alle Inhalte auf einer Seite.
  *
- * Fuenf Kacheln, sonst nichts. Die Folgen sieht man erst in der Serie —
- * hier waehlt man, dort arbeitet man.
+ * Oben die fuenf Serien als Plakate mit Stand — zum Springen. Darunter
+ * jede Serie mit allen Folgen, nummeriert, mit Haken, Balken und
+ * Prozent. Wer hier scrollt, sieht die ganze Bibliothek und weiss an
+ * jeder Stelle, wo er steht.
  */
 export default async function InhalteSeite() {
   await verlangeMitglied("/club/inhalte/");
+
+  const bilder: Record<number, Kursbild> = {};
+  for (const kapitel of kursKapitel) {
+    for (const video of kapitel.videos) {
+      bilder[video.nr] = kursBildAsset(video, kapitel.still);
+    }
+  }
 
   return (
     <div className={styles.seite}>
@@ -27,17 +38,12 @@ export default async function InhalteSeite() {
       </header>
 
       <div className={styles.serien}>
-        {kursKapitel.map((kapitel) => (
-          <SerienKarte
-            key={kapitel.id}
-            href={`/club/kapitel/${kapitel.id}/`}
-            label={kapitel.label}
-            tagline={kapitel.tagline}
-            anzahl={kapitel.videos.length}
-            cover={kapitel.cover}
-          />
-        ))}
+        <SerienUebersicht anker />
       </div>
+
+      {kursKapitel.map((kapitel) => (
+        <SerienBlock key={kapitel.id} kapitel={kapitel} bilder={bilder} />
+      ))}
     </div>
   );
 }

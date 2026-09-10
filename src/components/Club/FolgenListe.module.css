@@ -139,3 +139,31 @@ a.zeile:hover .titel {
     font-size: 0.8125rem;
   }
 }
+
+/* ---------- Angefangene Folge: Balken unterm Bild, Prozent im Text ---------- */
+
+.balken {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+.balkenVoll {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.prozent {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}

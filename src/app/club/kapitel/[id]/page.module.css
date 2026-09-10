@@ -121,3 +121,12 @@
     max-width: 180px;
   }
 }
+
+/* Der volle Titel aus dem Manuskript, klein unter dem kurzen Namen. */
+.langname {
+  margin-top: 8px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

@@ -47,6 +47,27 @@
   color: rgba(255, 255, 255, 0.82);
 }
 
+.prozent {
+  color: var(--accent);
+}
+
+/* Der Stand als duenner Strich am unteren Rand des Plakats — wie bei
+   jedem Streamingdienst. Nur auf begonnenen Serien. */
+.balken {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.balkenVoll {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
 /* Noch nicht dran: das Plakat zurueckgenommen, ein Schloss in der Ecke.
    Nicht unsichtbar — man soll sehen, was kommt. */
 .gesperrt .bild img {

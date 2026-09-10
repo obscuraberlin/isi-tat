@@ -91,7 +91,7 @@ export function kursVideoAsset(
     src,
     poster,
     klein: datei?.klein ?? null,
-    alt: `${video.titel} — Video ${video.nr} der Masterclass`,
+    alt: `${video.titel} — Folge ${video.nr}`,
     ratio: "16 / 9",
   };
 }

@@ -43,6 +43,8 @@ export function FolgenListe({
       {folgen.map((folge, i) => {
         const laeuft = folge.nr === aktuell;
         const gesehen = stand?.gesehen.has(folge.nr) ?? false;
+        const prozent = stand ? stand.prozent(folge.nr) : 0;
+        const angefangen = prozent > 0 && prozent < 100;
         /* Solange der Stand nicht da ist, gilt alles als offen — der
            Spieler prueft ohnehin noch einmal. */
         const offen = stand ? stand.frei(folge.nr) : true;
@@ -72,6 +74,11 @@ export function FolgenListe({
                 radius="8px"
                 ratio="16 / 9"
               />
+              {angefangen ? (
+                <span className={styles.balken} aria-hidden="true">
+                  <span className={styles.balkenVoll} style={{ width: `${prozent}%` }} />
+                </span>
+              ) : null}
               {!offen ? (
                 <span className={styles.schloss} aria-hidden="true">
                   <svg viewBox="0 0 12 14">
@@ -85,6 +92,9 @@ export function FolgenListe({
               <span className={styles.unter}>
                 {folge.nr === ersteZu ? club.gesperrt.hinweis : folge.unter}
               </span>
+              {angefangen ? (
+                <span className={styles.prozent}>{club.naechste.folgeStand(prozent)}</span>
+              ) : null}
             </span>
           </>
         );

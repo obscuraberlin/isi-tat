@@ -51,7 +51,7 @@ export const club = {
 
   willkommen: {
     titel: ["WILLKOMMEN", "IM CLUB."],
-    text: "Hier findest du die Masterclass, Live-Termine und alles, was gerade im Club passiert.",
+    text: "Hier findest du die Inhalte, Live-Termine und alles, was gerade im Club passiert.",
     knopf: "CLUB ÖFFNEN",
   },
 
@@ -64,14 +64,16 @@ export const club = {
   /* Die Karte ganz oben: wo es weitergeht. Ein Bild, die Folge, ein Knopf. */
   naechste: {
     eyebrow: "DEINE NÄCHSTE FOLGE",
+    eyebrowWeiter: "WEITER ANSEHEN",
     eyebrowAnfang: "HIER GEHT ES LOS",
     eyebrowFertig: "ALLE FOLGEN GESEHEN",
     weiter: "WEITER",
     anfangen: "ABSPIELEN",
     nochmal: "VON VORN",
-    /* "12 von 40 Folgen gesehen" — Zaehlung, kein Zeugnis. */
-    stand: (gesehen: number, gesamt: number) =>
-      `${gesehen} von ${gesamt} Folgen gesehen`,
+    /* Unter der Karte: der Stand in der Serie, nicht im ganzen Katalog. */
+    stand: (gesehen: number, gesamt: number) => `${gesehen} von ${gesamt} gesehen`,
+    /* "37 % gesehen" bei einer angefangenen Folge. */
+    folgeStand: (prozent: number) => `${prozent} % gesehen`,
     fertigText: "Ab jetzt kannst du jede Folge direkt öffnen.",
   },
 
@@ -82,9 +84,12 @@ export const club = {
   },
 
   inhalte: {
-    eyebrow: "Serien",
-    headline: "ALLE SERIEN.",
-    subline: "Fünf Serien, 40 Folgen. Fang an, wo es bei dir gerade brennt.",
+    eyebrow: "Inhalte",
+    headline: "ALLE INHALTE.",
+    subline: "Fünf Serien, 40 Folgen — hier stehen sie alle, mit deinem Stand.",
+    /* Ueber jeder Serie in der langen Liste. */
+    serie: "SERIE",
+    zurSerie: "Serie öffnen",
   },
 
   kapitel: {
@@ -92,8 +97,9 @@ export const club = {
     abspielen: "ABSPIELEN",
     weiter: "WEITER",
     naechsteOffene: "ZUR NÄCHSTEN OFFENEN FOLGE",
-    /* "3 von 8 gesehen" unter dem Plakat. */
+    /* "3 von 8 gesehen" unter dem Plakat; daneben die Prozent. */
     stand: (gesehen: number, gesamt: number) => `${gesehen} von ${gesamt} gesehen`,
+    prozent: (p: number) => `${p} %`,
   },
 
   live: {

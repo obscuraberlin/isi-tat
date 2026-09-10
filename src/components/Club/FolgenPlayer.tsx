@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { MediaAsset } from "@/data/landingPage";
 import { club } from "@/data/club";
-import { gesehenMerken, useFortschritt } from "@/lib/fortschritt";
+import { gesehenMerken, positionMerken, useFortschritt } from "@/lib/fortschritt";
 import { Media } from "@/components/Media/Media";
 import styles from "./FolgenPlayer.module.css";
 
@@ -22,7 +22,7 @@ import styles from "./FolgenPlayer.module.css";
  *     selbst. "Hier bleiben" haelt an — niemand wird weitergeschoben,
  *     der gerade mitschreibt.
  *   - Ohne Datei traegt ein Standbild die Flaeche, und WEITER zaehlt die
- *     Folge als gesehen. Sonst waere die Masterclass vor dem ersten
+ *     Folge als gesehen. Sonst waeren die Inhalte vor dem ersten
  *     Schnitt bei Folge 1 zu Ende.
  *
  * Der Stand liegt im Browser. Der Server erfaehrt nichts davon.
@@ -80,14 +80,36 @@ export function FolgenPlayer({
     return () => window.clearTimeout(t);
   }, [zaehler, weiter]);
 
+  /* Alle fuenf Sekunden die Position merken — nicht bei jedem Tick, das
+     waeren vier Schreibzugriffe pro Sekunde. */
+  const zuletztGemerkt = useRef(0);
+
   function beimFortschritt() {
     const el = video.current;
-    if (!el || !el.duration || gesehen) return;
-    if (el.currentTime / el.duration >= SCHWELLE) gesehenMerken(nr);
+    if (!el || !el.duration) return;
+    if (!gesehen && el.currentTime / el.duration >= SCHWELLE) gesehenMerken(nr);
+    if (Math.abs(el.currentTime - zuletztGemerkt.current) >= 5) {
+      zuletztGemerkt.current = el.currentTime;
+      positionMerken(nr, el.currentTime, el.duration);
+    }
+  }
+
+  /* Weiter, wo man aufgehoert hat — ausser die Folge war fast durch. */
+  function beimLaden() {
+    const el = video.current;
+    const pos = stand?.position(nr);
+    if (!el || !pos || !el.duration) return;
+    if (pos.t > 5 && pos.t / el.duration < SCHWELLE) el.currentTime = pos.t;
+  }
+
+  function beimPause() {
+    const el = video.current;
+    if (el && el.duration) positionMerken(nr, el.currentTime, el.duration);
   }
 
   function beimEnde() {
     gesehenMerken(nr);
+    positionMerken(nr, null);
     setZuEnde(true);
     if (naechsteNr !== null) setZaehler(COUNTDOWN);
   }
@@ -122,6 +144,8 @@ export function FolgenPlayer({
             preload="metadata"
             aria-label={asset.alt}
             onTimeUpdate={beimFortschritt}
+            onLoadedMetadata={beimLaden}
+            onPause={beimPause}
             onEnded={beimEnde}
           />
         ) : (

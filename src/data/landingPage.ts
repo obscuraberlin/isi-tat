@@ -1379,7 +1379,7 @@ export const datenschutz = {
     {
       head: "Was beim Aufruf dieser Seite passiert",
       body: [
-        "Beim Aufruf werden keine Cookies gesetzt und keine Daten im Browser gespeichert. Es werden keine Verbindungen zu Servern Dritter aufgebaut — Schriftarten, Bilder und Videos liegen auf demselben Server wie die Seite.",
+        "Beim Aufruf der öffentlichen Seiten werden keine Cookies gesetzt und keine Daten im Browser gespeichert. Es werden keine Verbindungen zu Servern Dritter aufgebaut — Schriftarten, Bilder und Videos liegen auf demselben Server wie die Seite. Was im Mitgliederbereich gilt, steht weiter unten.",
         "Der Hoster verarbeitet technisch notwendige Zugriffsdaten (IP-Adresse, Zeitpunkt, abgerufene Datei, Browsertyp) in Server-Logfiles. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO — das berechtigte Interesse am sicheren und stabilen Betrieb.",
       ],
     },
@@ -1400,6 +1400,25 @@ export const datenschutz = {
         "Es ist kein Formular- oder Marketingdienst eingebunden. Die Daten verlassen den Server nur auf dem Weg zu diesem Postfach; eine Übermittlung in ein Drittland findet nicht statt.",
         "Zweck ist die Bearbeitung deiner Bewerbung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Maßnahmen auf deine Anfrage hin). Die Angaben werden gelöscht, sobald sie für die Bearbeitung nicht mehr nötig sind und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.",
         "Zur Abwehr automatisierter Massenanfragen wird beim Absenden für kurze Zeit vermerkt, von welcher IP-Adresse eine Bewerbung eingegangen ist. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.",
+      ],
+    },
+    {
+      head: "Mitgliederbereich (Club)",
+      body: [
+        "Der Mitgliederbereich steht nur Personen offen, für die der Anbieter einen Zugang angelegt hat. Dafür werden Name, E-Mail-Adresse, das Datum der Einrichtung und das Passwort — ausschließlich als kryptografischer Hash, aus dem sich das Passwort nicht zurückrechnen lässt — auf dem Server dieser Website gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Vertrags über die Mitgliedschaft).",
+        "Bei der Anmeldung wird ein technisch notwendiges Cookie gesetzt („isi_sitzung“), das dich für die Dauer der Sitzung als angemeldetes Mitglied ausweist — 12 Stunden, bei „Angemeldet bleiben“ 30 Tage. Es enthält keine Kennung Dritter und wird nicht zur Analyse verwendet. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG in Verbindung mit Art. 6 Abs. 1 lit. b DSGVO.",
+        "Welche Folgen du angesehen hast und wo du in einer Folge stehen geblieben bist, speichert ausschließlich dein Browser (localStorage). Diese Angaben werden nicht an den Server übertragen und vom Anbieter nicht ausgewertet.",
+        "Sagst du zu einem Termin oder Event zu, wird deine E-Mail-Adresse zu diesem Termin auf dem Server vermerkt, damit der Anbieter weiß, mit wem er rechnen kann. Du kannst die Zusage jederzeit zurücknehmen; dann wird der Vermerk gelöscht.",
+        "Änderst du deine E-Mail-Adresse oder dein Passwort oder forderst du ein neues Passwort an, erhältst du dazu E-Mails vom Server dieser Website. Einmal-Links dafür werden nur als Hash und nur bis zu ihrem Ablauf gespeichert. Anfragen über das Support-Formular werden als E-Mail an das Postfach des Anbieters weitergeleitet und nicht zusätzlich auf dem Server gespeichert.",
+        "Zur Abwehr automatisierter Anfragen wird bei Anmeldung und Konto-Änderungen kurzzeitig vermerkt, von welcher Adresse Versuche eingegangen sind (Art. 6 Abs. 1 lit. f DSGVO).",
+        "Die Kontodaten werden gespeichert, solange die Mitgliedschaft besteht, und danach gelöscht, sobald keine gesetzlichen Aufbewahrungsfristen entgegenstehen. Im Mitgliederbereich kannst du unter „Datenschutz & Account“ jederzeit eine Kopie deiner gespeicherten Daten herunterladen und die Löschung deines Kontos anfragen.",
+      ],
+    },
+    {
+      head: "Inhalte von YouTube und Instagram im Mitgliederbereich",
+      body: [
+        "Im Mitgliederbereich werden neue Videos des Anbieters von YouTube (Google Ireland Limited) und Instagram (Meta Platforms Ireland Limited) angezeigt. Diese Inhalte holt der Server dieser Website ab und leitet auch die Vorschaubilder weiter — dein Browser baut dabei keine Verbindung zu Google oder Meta auf, und deine IP-Adresse wird nicht an sie übermittelt.",
+        "Erst wenn du einen solchen Eintrag anklickst, verlässt du diese Website und gelangst auf die jeweilige Plattform. Ab dort gelten deren Datenschutzbestimmungen.",
       ],
     },
     {

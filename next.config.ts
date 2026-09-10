@@ -33,11 +33,32 @@ const EIN_JAHR = "public, max-age=31536000, immutable";
  * einmal in der Browserliste, bleibt die Domain dort ueber Monate, auch
  * wenn HTTPS ausfaellt. Das gehoert bewusst entschieden, nicht nebenbei.
  *
- * Bewusst keine Content-Security-Policy an dieser Stelle: Next laedt
- * eigene Skripte mit Inline-Bootstrap, eine CSP ohne passende Nonce
- * wuerde die Seite zerlegen. Sie gehoert dazu, ist aber ein eigener
- * Schritt mit eigenem Test.
+ * Content-Security-Policy: alles vom eigenen Server. Skripte und Stile
+ * brauchen 'unsafe-inline', weil Next seinen Bootstrap inline schreibt —
+ * ohne Nonce-Infrastruktur geht es nicht enger. Was die Regel trotzdem
+ * leistet: kein Skript, kein Stil, kein Bild, kein Rahmen von einem
+ * fremden Server, keine Einbettung dieser Seite in fremde Seiten, keine
+ * Formulare an fremde Ziele. Bilder und Videos duerfen von https-Hosts
+ * kommen: die Kursvideos liegen spaeter beim Videohoster.
+ *
+ * Nur in Produktion — im Entwicklungsmodus braucht Next eval() fuer das
+ * Neuladen, und das soll die Regel gar nicht erst erlauben.
  */
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "media-src 'self' blob: https:",
+  "font-src 'self' data:",
+  "connect-src 'self'",
+  "frame-src 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
 const sicherheit = [
   {
     key: "Strict-Transport-Security",
@@ -52,6 +73,9 @@ const sicherheit = [
       "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=()",
   },
   { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  ...(process.env.NODE_ENV === "production"
+    ? [{ key: "Content-Security-Policy", value: csp }]
+    : []),
 ];
 
 const nextConfig: NextConfig = {

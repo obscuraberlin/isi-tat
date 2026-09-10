@@ -250,10 +250,31 @@
     transform-origin: left;
   }
 
+  /* Die Leiste ist der Bezug fuer die Schriftgroesse der Stationen (cqi). */
+  .track {
+    container-type: inline-size;
+  }
+
+  /* Spalten nach Inhalt, nicht sechs gleich breite: UNTERNEHMERTUM und
+     BETEILIGUNGEN brauchen mehr Platz als HEUTE. Bei gleichen Spalten
+     lief das laengste Wort in die naechste Station hinein. */
   .entries {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(6, auto);
     gap: clamp(14px, 1.8vw, 28px);
     padding-top: 30px;
+  }
+
+  /* Die Stationen zusammen sind rund 35 em breit. Die Schrift darf also
+     nur so gross werden, dass 35 em plus fuenf Luecken in die Leiste
+     passen — 2,4 % der Leistenbreite haelt das mit Reserve. Ein Wort,
+     das nicht mehr in seine Spalte passt, ist schlimmer als eine Stufe
+     kleinere Schrift. */
+  .year {
+    font-size: min(clamp(1.375rem, 1.05rem + 1.2vw, 2rem), 2.4cqi);
+  }
+
+  .entryTitle {
+    max-width: 17ch;
   }
 
   .dot {

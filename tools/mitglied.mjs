@@ -127,7 +127,7 @@ function willkommensmail(mitglied) {
     `Dein Passwort bekommst du getrennt von dieser Mail. Es steht hier`,
     `mit Absicht nicht — eine Mail liegt an zu vielen Orten.`,
     ``,
-    `Im Club findest du die Masterclass, die Live-Termine und den Kanal.`,
+    `Im Club findest du die Inhalte, die Live-Termine und den Kanal.`,
     ``,
     `Bis gleich im Club.`,
     `ISI TAT`,
@@ -175,7 +175,7 @@ function willkommensmail(mitglied) {
           Dein Passwort bekommst du getrennt von dieser Mail. Es steht hier mit Absicht nicht — eine Mail liegt an zu vielen Orten.
         </td></tr>
         <tr><td style="padding:22px 40px 0 40px;font-size:16px;line-height:1.6;">
-          Im Club findest du die Masterclass, die Live-Termine und den Kanal.<br><br>
+          Im Club findest du die Inhalte, die Live-Termine und den Kanal.<br><br>
           Bis gleich im Club.<br>
           <strong>ISI TAT</strong>
         </td></tr>

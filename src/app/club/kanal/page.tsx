@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  * Der Feed geht in eine Richtung: ISI schreibt, die Mitglieder lesen.
  */
 export default async function NewsSeite() {
-  await verlangeMitglied("/club/news/");
+  await verlangeMitglied("/club/kanal/");
   const eintraege = await feed();
 
   return (

@@ -44,3 +44,4 @@ yarn-error.log*
 # Zusagen zu Events und Live-Terminen — Nutzerdaten, nicht ins Repo.
 /daten/zusagen.json
 /daten/*.tmp
+/daten/tokens.json

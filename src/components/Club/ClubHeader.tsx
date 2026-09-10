@@ -109,6 +109,15 @@ export function ClubHeader({ name }: { name: string }) {
           {offen ? (
             <div className={styles.aufklapp} role="menu">
               <p className={styles.voll}>{name}</p>
+              <Link href="/club/profil/" className={styles.eintrag} role="menuitem">
+                {club.konto.profil}
+              </Link>
+              <Link href="/club/einstellungen/" className={styles.eintrag} role="menuitem">
+                {club.konto.einstellungen}
+              </Link>
+              <Link href={club.konto.mehrHref} className={styles.eintrag} role="menuitem">
+                {club.konto.mehr}
+              </Link>
               <button
                 type="button"
                 className={styles.eintrag}
@@ -143,4 +152,11 @@ export function istAktiv(pfad: string, href: string) {
     );
   }
   return pfad.startsWith(href.replace(/\/$/, ""));
+}
+
+/** Alles, was auf dem Telefon unter MEHR liegt. */
+export function istMehr(pfad: string) {
+  return ["/club/mehr", "/club/profil", "/club/einstellungen", "/club/mitgliedschaft", "/club/support", "/club/datenschutz", "/club/events"].some(
+    (p) => pfad.startsWith(p),
+  );
 }

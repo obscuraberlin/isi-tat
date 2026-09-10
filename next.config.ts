@@ -60,6 +60,11 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
 
+  async redirects() {
+    /* Der Feed hiess erst NEWS und liegt jetzt im Tab CLUB. */
+    return [{ source: "/club/news", destination: "/club/kanal/", permanent: false }];
+  },
+
   async headers() {
     return [
       /* Auf allem: die Sicherheits-Header. */

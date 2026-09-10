@@ -70,3 +70,29 @@ export function zusageSetzen(art: ZusageArt, id: string, email: string, zusage: 
   schreiben(liste);
   return zusageStand(art, id, email);
 }
+
+/** Alle Zusagen eines Mitglieds — fuer die Datenauskunft. */
+export function zusagenVon(email: string): { art: ZusageArt; id: string }[] {
+  const mich = email.trim().toLowerCase();
+  return Object.entries(lesen())
+    .filter(([, liste]) => liste.includes(mich))
+    .map(([k]) => {
+      const [art, ...rest] = k.split(":");
+      return { art: art as ZusageArt, id: rest.join(":") };
+    });
+}
+
+/** Beim Wechsel der E-Mail-Adresse: Zusagen mitnehmen. */
+export function zusagenUmschreiben(alt: string, neu: string) {
+  const a = alt.trim().toLowerCase();
+  const n = neu.trim().toLowerCase();
+  const liste = lesen();
+  let geaendert = false;
+  for (const k of Object.keys(liste)) {
+    if (liste[k].includes(a)) {
+      liste[k] = [...liste[k].filter((e) => e !== a && e !== n), n];
+      geaendert = true;
+    }
+  }
+  if (geaendert) schreiben(liste);
+}

@@ -1,0 +1,84 @@
+/* Die Seiten rund um die Anmeldung ohne Anmeldung: Passwort vergessen,
+   neues Passwort. Schmal, dunkel, ein Formular. */
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 48px) var(--gutter);
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text-light);
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.logoMark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.logoSuffix {
+  font-size: 0.5625rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.6rem);
+  line-height: var(--lh-head);
+  letter-spacing: var(--tr-head);
+  color: var(--text-light);
+}
+
+.text {
+  margin: 14px 0 26px;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-muted-light);
+}
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding-inline: 28px;
+  border-radius: var(--r-btn);
+  background: var(--accent);
+  color: var(--bg-dark);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.zurueck {
+  display: inline-block;
+  margin-top: clamp(28px, 4vw, 44px);
+  font-size: var(--fs-small);
+  color: var(--text-muted-light);
+  text-decoration: none;
+  padding-block: 10px;
+}
+
+.zurueck:hover {
+  color: var(--accent);
+}

@@ -1,0 +1,139 @@
+/* Formulare im Club: dunkle Felder, Goldknopf, eine Spalte. */
+
+.form {
+  display: grid;
+  gap: 18px;
+  max-width: 480px;
+}
+
+.feld {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-light);
+}
+
+.eingabe {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line-light);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-light);
+  font: inherit;
+  font-size: var(--fs-body);
+}
+
+.eingabe:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+textarea.eingabe {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.wert {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-body);
+  color: var(--text-light);
+  overflow-wrap: anywhere;
+}
+
+.regel {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 9px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-light);
+  background: none;
+  color: var(--text-muted-light);
+  font: inherit;
+  font-size: var(--fs-small);
+  cursor: pointer;
+}
+
+.chipAktiv {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding-inline: 28px;
+  border: 0;
+  border-radius: var(--r-btn);
+  background: var(--accent);
+  color: var(--bg-dark);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--d-fast) var(--ease-soft);
+}
+
+.knopf:hover {
+  background: #d8b578;
+}
+
+.knopf:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.leise {
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--line-light);
+}
+
+.leise:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.meldung {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-light);
+}
+
+.meldungOk {
+  color: var(--accent);
+}
+
+.zeile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 599px) {
+  .knopf {
+    width: 100%;
+  }
+}

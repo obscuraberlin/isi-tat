@@ -83,7 +83,7 @@ export default async function ClubStart() {
             <h2 id="news" className={styles.blockTitel}>
               {club.news.neu}
             </h2>
-            <Link href="/club/news/" className={styles.blockMehr}>
+            <Link href="/club/kanal/" className={styles.blockMehr}>
               {club.news.alleZeigen}
               <span aria-hidden="true"> →</span>
             </Link>

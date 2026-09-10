@@ -35,18 +35,190 @@ export const club = {
     { href: "/club/", label: "START", kuerzel: "Start" },
     { href: "/club/inhalte/", label: "INHALTE", kuerzel: "Inhalte" },
     { href: "/club/live/", label: "LIVE", kuerzel: "Live" },
-    { href: "/club/news/", label: "NEWS", kuerzel: "News" },
+    { href: "/club/kanal/", label: "CLUB", kuerzel: "Club" },
   ],
-  /* Auf dem Desktop in der Kopfzeile, auf dem Telefon hinter "Mehr" —
+  /* Auf dem Desktop in der Kopfzeile, auf dem Telefon unter MEHR —
      fuenf Punkte und "Mehr" passen unten nicht nebeneinander. */
   navMehr: [{ href: "/club/events/", label: "EVENTS", kuerzel: "Events" }],
 
-  /* Im Aufklappmenue oben rechts und hinter "Mehr" auf dem Telefon. */
+  /* Im Aufklappmenue oben rechts. */
   konto: {
     titel: "Konto",
+    profil: "Mein Profil",
+    einstellungen: "Einstellungen",
     abmelden: "Abmelden",
     mehr: "Mehr",
+    mehrHref: "/club/mehr/",
     schliessen: "Schließen",
+  },
+
+  /* Die Seite MEHR: eine Liste, drei Gruppen, unten Abmelden. */
+  mehr: {
+    eyebrow: "Mehr",
+    headline: "DEIN BEREICH.",
+    profilAnsehen: "Profil ansehen",
+    gruppen: [
+      {
+        titel: "DEIN ACCOUNT",
+        eintraege: [
+          { href: "/club/profil/", label: "Mein Profil" },
+          { href: "/club/mitgliedschaft/", label: "Mitgliedschaft" },
+          { href: "/club/einstellungen/", label: "Sicherheit & Einstellungen" },
+        ],
+      },
+      {
+        titel: "DER CLUB",
+        eintraege: [
+          { href: "/club/events/", label: "Events" },
+          { href: "/club/live/", label: "Live mit ISI" },
+          { href: "/club/kanal/", label: "ISI Kanal" },
+        ],
+      },
+      {
+        titel: "HILFE",
+        eintraege: [
+          { href: "/club/support/", label: "Hilfe & Support" },
+          { href: "/club/datenschutz/", label: "Datenschutz & Account" },
+          { href: "/impressum/", label: "Impressum" },
+        ],
+      },
+    ],
+  },
+
+  profil: {
+    eyebrow: "Profil",
+    headline: "MEIN PROFIL.",
+    lead: "Was hier steht, sehen nur du und ISI.",
+    name: "Name",
+    email: "E-Mail",
+    emailAendern: "Ändern",
+    seit: "Mitglied seit",
+    speichern: "SPEICHERN",
+    gespeichert: "Gespeichert.",
+  },
+
+  einstellungen: {
+    eyebrow: "Sicherheit",
+    headline: "SICHERHEIT & EINSTELLUNGEN.",
+    lead: "E-Mail-Adresse und Passwort deines Zugangs.",
+    emailTitel: "E-MAIL-ADRESSE",
+    emailAktuell: "Aktuelle Adresse",
+    emailNeu: "Neue E-Mail-Adresse",
+    emailPasswort: "Dein aktuelles Passwort",
+    emailKnopf: "ÄNDERUNG BESTÄTIGEN",
+    emailHinweis:
+      "Wir schicken einen Bestätigungslink an die neue Adresse. Bis du ihn öffnest, bleibt die alte.",
+    emailGesendet:
+      "Wenn die Adresse frei ist, liegt jetzt ein Bestätigungslink in dem Postfach. Er gilt 24 Stunden.",
+    emailOk: "Deine E-Mail-Adresse ist geändert.",
+    emailUngueltig: "Der Link ist nicht mehr gültig. Trag die Adresse noch einmal ein.",
+    emailVergeben: "Diese Adresse ist inzwischen vergeben. Trag eine andere ein.",
+    passwortTitel: "PASSWORT",
+    passwortAktuell: "Aktuelles Passwort",
+    passwortNeu: "Neues Passwort",
+    passwortWiederholen: "Neues Passwort wiederholen",
+    passwortRegel: "Mindestens 10 Zeichen. Ein Satz, den du dir merken kannst, ist besser als ein kurzes Wort mit Sonderzeichen.",
+    passwortKnopf: "PASSWORT SPEICHERN",
+    passwortOk: "Passwort geändert. Alle anderen Geräte sind jetzt abgemeldet.",
+    passwortUngleich: "Die beiden Passwörter sind nicht gleich.",
+    geraeteTitel: "GERÄTE",
+    geraeteText:
+      "Änderst du dein Passwort, sind alle anderen Geräte sofort abgemeldet. Eine Anmeldung gilt 12 Stunden, mit „Angemeldet bleiben“ 30 Tage.",
+  },
+
+  mitgliedschaft: {
+    eyebrow: "Mitgliedschaft",
+    headline: "DEINE MITGLIEDSCHAFT.",
+    status: "AKTIV",
+    statusText: "Dein Zugang zum ISI TAT Business Club ist aktiv.",
+    seit: "Mitglied seit",
+    enthaltenTitel: "ENTHALTEN",
+    enthalten: [
+      "Alle Inhalte: fünf Serien, 40 Folgen",
+      "Live-Termine mit ISI",
+      "Events — Treffen in echt",
+      "ISI Kanal",
+    ],
+    fragenTitel: "FRAGEN ZUR MITGLIEDSCHAFT",
+    fragenText: "Laufzeit, Rechnung, Verlängerung — schreib uns, wir antworten persönlich.",
+    fragenKnopf: "SUPPORT KONTAKTIEREN",
+  },
+
+  support: {
+    eyebrow: "Hilfe",
+    headline: "HILFE & SUPPORT.",
+    lead: "Schreib uns, worum es geht. Deine Anfrage geht direkt an ISI und sein Team.",
+    kategorieTitel: "Worum geht es?",
+    kategorien: ["Technisches Problem", "Mitgliedschaft", "Inhalte", "Live", "Events", "Sonstiges"],
+    betreff: "Betreff",
+    nachricht: "Deine Nachricht",
+    knopf: "ANFRAGE SENDEN",
+    danke: "Deine Anfrage ist angekommen.",
+    dankeText: "Wir melden uns bei dir per E-Mail — an die Adresse deines Zugangs.",
+    zurueck: "ZURÜCK ZUM CLUB",
+  },
+
+  datenschutzKonto: {
+    eyebrow: "Datenschutz",
+    headline: "DATENSCHUTZ & ACCOUNT.",
+    lead: "Was der Club über dich speichert — und was nicht.",
+    serverTitel: "AUF DEM SERVER",
+    server: [
+      "Dein Name, deine E-Mail-Adresse und das Datum, an dem dein Zugang angelegt wurde.",
+      "Dein Passwort — nur als Hash, aus dem sich das Passwort nicht zurückrechnen lässt.",
+      "Deine Zusagen zu Events und Live-Terminen.",
+    ],
+    browserTitel: "NUR IN DEINEM BROWSER",
+    browser: [
+      "Welche Folgen du gesehen hast und wo du in einer Folge stehen geblieben bist.",
+      "Ob du den Gruß beim ersten Mal schon gesehen hast.",
+      "Das Anmelde-Cookie, das dich als Mitglied ausweist.",
+    ],
+    browserHinweis:
+      "Nichts davon verlässt dein Gerät. Ein anderer Browser oder ein privates Fenster fängt bei null an.",
+    aussenTitel: "WAS NICHT PASSIERT",
+    aussen: [
+      "Kein Tracking, keine Analyse, keine Werbung.",
+      "Videos von YouTube und Instagram holt der Server; dein Browser spricht nicht mit Google oder Meta.",
+      "Der Server wertet nicht aus, wer welche Folge gesehen hat.",
+    ],
+    rechteTitel: "DEINE RECHTE",
+    auskunft: "MEINE DATEN HERUNTERLADEN",
+    auskunftText: "Alles, was der Server über dich hat, als Datei (Art. 15 und 20 DSGVO).",
+    loeschen: "KONTO LÖSCHEN ANFRAGEN",
+    loeschenText:
+      "Wir melden uns vor der Löschung kurz bei dir — ein bezahlter Zugang soll nicht durch einen Fehlklick verschwinden.",
+    loeschenGesendet: "Deine Anfrage ist angekommen. Wir melden uns per E-Mail.",
+    erklaerung: "Zur vollständigen Datenschutzerklärung",
+  },
+
+  passwortVergessen: {
+    headline: ["PASSWORT", "VERGESSEN?"],
+    text: "Trag deine E-Mail-Adresse ein. Wenn ein Zugang dazu existiert, schicken wir dir einen Link.",
+    email: "E-Mail",
+    knopf: "LINK SENDEN",
+    gesendet: "Wenn ein Zugang zu dieser E-Mail existiert, liegt jetzt ein Link im Postfach. Er gilt 30 Minuten.",
+    zurueck: "Zurück zur Anmeldung",
+    linkAufLogin: "Passwort vergessen?",
+  },
+
+  neuesPasswort: {
+    headline: ["NEUES", "PASSWORT."],
+    text: "Wähle ein neues Passwort für deinen Zugang.",
+    neu: "Neues Passwort",
+    wiederholen: "Noch einmal",
+    knopf: "PASSWORT SPEICHERN",
+    fertig: "Dein Passwort ist gesetzt.",
+    fertigText: "Melde dich jetzt mit dem neuen Passwort an.",
+    zumLogin: "ZUR ANMELDUNG",
+    ungueltig: "Der Link ist nicht mehr gültig.",
+    ungueltigText: "Er ist abgelaufen oder wurde schon benutzt. Fordere einen neuen an.",
+    neuAnfordern: "NEUEN LINK ANFORDERN",
+  },
+
+  formular: {
+    fehler: "Das hat gerade nicht geklappt. Versuch es gleich noch einmal.",
+    verbindung: "Keine Verbindung. Prüf dein Internet und versuch es noch einmal.",
   },
 
   willkommen: {
@@ -143,7 +315,7 @@ export const club = {
   },
 
   news: {
-    eyebrow: "News",
+    eyebrow: "ISI Kanal",
     headline: "NEUES IM CLUB.",
     lead: "Hier schreibt ISI. Termine, Hinweise, neue Folgen, Events.",
     hinweis:
@@ -152,7 +324,7 @@ export const club = {
     leerText:
       "Sobald es etwas zu sagen gibt — ein Termin, eine neue Folge, ein Event — findest du es an dieser Stelle.",
     neu: "NEUES IM CLUB",
-    alleZeigen: "Alle News",
+    alleZeigen: "Zum Kanal",
     /* Woher ein Eintrag kommt — steht klein ueber dem Titel. */
     quelle: {
       club: "Im Club",

@@ -154,11 +154,9 @@ export default function LoginPage() {
                 />
                 Angemeldet bleiben
               </label>
-              {/* Kein Selbstbedienungs-Weg zurueck: dafuer braeuchte es
-                  Mailversand mit Einmal-Links und eine Stelle, die sie
-                  ablegt. Solange die Zugaenge von Hand vergeben werden,
-                  ist ein neues Passwort eine kurze Nachricht. */}
-              <span className={styles.link}>Passwort vergessen? Melde dich.</span>
+              <a href="/login/passwort-vergessen/" className={styles.link}>
+                Passwort vergessen?
+              </a>
             </div>
 
             <Button

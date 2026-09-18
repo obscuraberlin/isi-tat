@@ -45,6 +45,7 @@ export const kursDateien: Record<number, MediaFile> = {
   4: {"klein":"/media/v04-klein.mp4","poster":"/media/v04-poster.jpg","src":"/media/v04.mp4"},
   5: {"klein":"/media/v05-klein.mp4","poster":"/media/v05-poster.jpg","src":"/media/v05.mp4"},
   6: {"klein":"/media/v06-klein.mp4","poster":"/media/v06-poster.jpg","src":"/media/v06.mp4"},
+  7: {"klein":"/media/v07-klein.mp4","poster":"/media/v07-poster.jpg","src":"/media/v07.mp4"},
   9: {"klein":"/media/v09-klein.mp4","poster":"/media/v09-poster.jpg","src":"/media/v09.mp4"},
   10: {"klein":"/media/v10-klein.mp4","poster":"/media/v10-poster.jpg","src":"/media/v10.mp4"},
   11: {"klein":"/media/v11-klein.mp4","poster":"/media/v11-poster.jpg","src":"/media/v11.mp4"},

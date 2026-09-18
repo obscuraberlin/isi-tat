@@ -223,13 +223,9 @@
 
   /* Der Serienname bricht hier ueber zwei Zeilen und liesse "Folge 1"
      allein auf der dritten stehen. Also untereinander, ohne Punkt. */
+  /* Auf dem Telefon bleibt die Zeile eine Zeile — mit Punkten dazwischen.
+     Untereinander klebten "MINDSET" und "Folge 3" ohne Abstand zusammen. */
   .serie {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-  }
-
-  .punkt {
-    display: none;
+    gap: 8px;
   }
 }

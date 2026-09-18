@@ -207,27 +207,6 @@ export const kursVideos: readonly KursVideo[] = [
     ],
   },
   {
-    nr: 8,
-    kapitelId: "mindset",
-    slug: "visualisiere-dein-ziel-und-arbeite-dafuer",
-    titel: "Visualisiere dein Ziel — und arbeite dafür",
-    unter: "Warum Vorstellungskraft ohne Handlung wertlos bleibt",
-    kern: "Visualisierung kann Fokus und Motivation stärken. Sie ist kein Ersatz für Arbeit und keine Garantie für ein bestimmtes Ergebnis.",
-    hook: "Ich visualisiere Ziele gerne abends. Aber morgens beginnt die Arbeit.",
-    gliederung: [
-      { titel: "Emotionale Ziele", text: "Mein erster Ferrari war für mich nicht nur ein Auto, sondern ein konkretes emotionales Ziel." },
-      { titel: "Warum Bilder helfen", text: "Ein klares Ziel kann Entscheidungen filtern und Aufmerksamkeit ausrichten." },
-      { titel: "Keine Magie", text: "Visualisierung hat mir keinen Ferrari auf den Hof gestellt. Dazwischen lagen Vertrieb, Arbeit, Chancen und Entscheidungen." },
-      { titel: "Vom Bild zum Plan", text: "Ziel -> nächste Fähigkeit -> nächste Handlung -> messbarer Fortschritt." },
-      { titel: "Dankbarkeit", text: "Ziele verfolgen, ohne so zu leben, als wäre das heutige Leben wertlos." },
-    ],
-    aufgabe: "Visualisiere heute ein konkretes Ziel und schreibe direkt darunter die drei Handlungen, die dich realistisch näherbringen.",
-    regeln: [
-      "Visualisierung kann Fokus erzeugen. Arbeit erzeugt Umsetzung.",
-      "Ich visualisiere meine Ziele abends. Aber morgens beginnt die Arbeit.",
-    ],
-  },
-  {
     nr: 9,
     kapitelId: "sales",
     slug: "verkaufen-kann-man-lernen",

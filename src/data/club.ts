@@ -27,13 +27,17 @@
    eigenem Betrieb sammeln keine Abzeichen.
    ========================================================================== */
 
+import { kursVideos } from "./masterclass";
+
+const ANZAHL = kursVideos.length;
+
 export const club = {
   /* Vier Ziele, mehr nicht. Was leer ist, steht nicht in der Navigation —
      ein Menuepunkt, hinter dem nichts liegt, laesst den Club leerer
      wirken, als er ist. */
   nav: [
     { href: "/club/", label: "START", kuerzel: "Start" },
-    { href: "/club/inhalte/", label: "INHALTE", kuerzel: "Inhalte" },
+    { href: "/club/inhalte/", label: "VIDEOS", kuerzel: "Videos" },
     { href: "/club/live/", label: "LIVE", kuerzel: "Live" },
     { href: "/club/kanal/", label: "CLUB", kuerzel: "Club" },
   ],
@@ -135,7 +139,7 @@ export const club = {
     seit: "Mitglied seit",
     enthaltenTitel: "ENTHALTEN",
     enthalten: [
-      "Alle Inhalte: fünf Serien, 40 Folgen",
+      `Alle Videos: fünf Serien, ${ANZAHL} Folgen`,
       "Live-Termine mit ISI",
       "Events — Treffen in echt",
       "ISI Kanal",
@@ -239,8 +243,10 @@ export const club = {
 
   start: {
     grussVor: "WILLKOMMEN ZURÜCK,",
-    serien: "DEINE SERIEN",
-    alleZeigen: "Alle Serien",
+    serien: "DEINE VIDEOS",
+    alleZeigen: "Alle Videos",
+    /* Ueber jeder Reihe: Serie und Stand, rechts der Weg zur Serie. */
+    serieOeffnen: "Serie öffnen",
   },
 
   /* Die Karte ganz oben: wo es weitergeht. Ein Bild, die Folge, ein Knopf. */
@@ -266,9 +272,9 @@ export const club = {
   },
 
   inhalte: {
-    eyebrow: "Inhalte",
-    headline: "ALLE INHALTE.",
-    subline: "Fünf Serien, 40 Folgen — hier stehen sie alle, mit deinem Stand.",
+    eyebrow: "Videos",
+    headline: "ALLE VIDEOS.",
+    subline: `Fünf Serien, ${ANZAHL} Folgen — hier stehen sie alle, mit deinem Stand.`,
     /* Ueber jeder Serie in der langen Liste. */
     serie: "SERIE",
     zurSerie: "Serie öffnen",

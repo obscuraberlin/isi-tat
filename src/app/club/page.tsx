@@ -1,16 +1,15 @@
 import Link from "next/link";
 import { verlangeMitglied } from "@/lib/zugang";
-import { kursKapitel, type KapitelId } from "@/data/masterclass";
-import type { MediaAsset } from "@/data/landingPage";
+import { kursKapitel } from "@/data/masterclass";
 import { club } from "@/data/club";
-import { kursBildAsset, kursSerienCover, type Kursbild } from "@/lib/kursMedien";
+import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
 import { liveDaten } from "@/lib/live";
 import { feed, datumLang } from "@/lib/news";
 import { eventDaten } from "@/lib/events";
 import { LiveKarte } from "@/components/Club/LiveKarte";
 import { EventKarte } from "@/components/Club/EventKarte";
 import { NaechsteFolge } from "@/components/Club/NaechsteFolge";
-import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
+import { FolgenReihe } from "@/components/Club/FolgenReihe";
 import { Willkommen } from "@/components/Club/Willkommen";
 import { Beispiel } from "@/components/Club/Beispiel";
 import { zusageStand } from "@/lib/zusagen";
@@ -32,9 +31,7 @@ export default async function ClubStart() {
      der Videodateien steht in einer Umgebungsvariablen, und die gehoert
      auf den Server. */
   const bilder: Record<number, Kursbild> = {};
-  const covers = {} as Record<KapitelId, MediaAsset>;
   for (const kapitel of kursKapitel) {
-    covers[kapitel.id] = kursSerienCover(kapitel);
     for (const video of kapitel.videos) {
       bilder[video.nr] = kursBildAsset(video, kapitel.still);
     }
@@ -54,6 +51,23 @@ export default async function ClubStart() {
       </p>
 
       <NaechsteFolge bilder={bilder} />
+
+      {/* Die Videos zuerst — dafuer ist der Club da. Jede Serie eine
+          Reihe, jede Folge eine Karte: ein Tipp, und es laeuft. */}
+      <section className={styles.block} aria-labelledby="videos">
+        <div className={styles.blockKopf}>
+          <h2 id="videos" className={styles.serienTitel}>
+            {club.start.serien}
+          </h2>
+          <Link href="/club/inhalte/" className={styles.blockMehr}>
+            {club.start.alleZeigen}
+            <span aria-hidden="true"> →</span>
+          </Link>
+        </div>
+        {kursKapitel.map((kapitel) => (
+          <FolgenReihe key={kapitel.id} kapitel={kapitel} bilder={bilder} />
+        ))}
+      </section>
 
       {/* §50: was leer ist, erscheint nicht. */}
       {live.naechster ? (
@@ -121,20 +135,6 @@ export default async function ClubStart() {
         </section>
       ) : null}
 
-      <section className={styles.block} aria-labelledby="serien">
-        <div className={styles.blockKopf}>
-          <h2 id="serien" className={styles.serienTitel}>
-            {club.start.serien}
-          </h2>
-          <Link href="/club/inhalte/" className={styles.blockMehr}>
-            {club.start.alleZeigen}
-            <span aria-hidden="true"> →</span>
-          </Link>
-        </div>
-        <div className={styles.serien}>
-          <SerienUebersicht covers={covers} />
-        </div>
-      </section>
     </div>
   );
 }

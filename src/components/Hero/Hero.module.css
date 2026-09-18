@@ -72,6 +72,11 @@
   line-height: var(--lh-tight);
   letter-spacing: var(--tr-tight);
   margin-top: clamp(16px, 1.8vw, 24px);
+  /* Als drop-shadow auf der ganzen Ueberschrift, nicht als text-shadow in
+     den Zeilen: die Zeilen sind fuer die Einblendung auf overflow: hidden
+     gesetzt und schnitten den weichen Schatten hart ab — hinter dem Text
+     stand dann ein Rechteck, auf dem Video sichtbar. */
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.58)) drop-shadow(0 2px 28px rgba(0, 0, 0, 0.6));
 }
 
 .line {
@@ -318,9 +323,6 @@
     /* Kraeftiger als ueblich, weil unter der Schrift jetzt fast ueberall
        Bild liegt statt Flaeche. Zwei Radien: der weite traegt, der enge
        zeichnet die Kanten nach. */
-    text-shadow:
-      0 2px 40px rgba(0, 0, 0, 0.72),
-      0 1px 8px rgba(0, 0, 0, 0.58);
     /* Der Text darf ins Bild hineinlaufen — deshalb breiter als die halbe
        Seite. Lesbar bleibt er durch den Verlauf auf dem Visual. */
     max-width: min(58%, 700px);

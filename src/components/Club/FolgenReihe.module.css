@@ -1,0 +1,235 @@
+.reihe {
+  margin-top: clamp(22px, 3vw, 36px);
+}
+
+.kopf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.titel {
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.375rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.stand {
+  margin-top: 3px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.08em;
+  color: var(--text-muted-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.mehr {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-block: 6px;
+}
+
+.mehr:hover {
+  text-decoration: underline;
+}
+
+/* Das Band: wischbar, mit Einrastpunkten. Auf dem Telefon laeuft es bis
+   an den Rand, damit man sieht, dass rechts mehr kommt. */
+.band {
+  list-style: none;
+  display: flex;
+  gap: clamp(12px, 1.5vw, 18px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 6px;
+}
+
+.band::-webkit-scrollbar {
+  display: none;
+}
+
+.eintrag {
+  flex: 0 0 clamp(220px, 22vw, 268px);
+  scroll-snap-align: start;
+}
+
+.karte {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bild {
+  position: relative;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-dark);
+  box-shadow: inset 0 0 0 1px var(--line-light);
+  transition: transform var(--d-base) var(--ease-out), box-shadow var(--d-base) var(--ease-out);
+}
+
+.karte:hover .bild,
+.karte:focus-visible .bild {
+  transform: scale(1.02);
+  box-shadow:
+    inset 0 0 0 1px rgba(200, 166, 106, 0.55),
+    0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.nummer {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  min-width: 26px;
+  height: 26px;
+  padding-inline: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.gesehen .nummer {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.nummer svg {
+  width: 12px;
+  height: 10px;
+  stroke: var(--bg-dark);
+}
+
+/* Play-Kreis in der Mitte — erst beim Zeigen. Auf Touch immer, weil
+   es dort kein Zeigen gibt. */
+.play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity var(--d-fast) var(--ease-out);
+}
+
+.play svg {
+  width: 14px;
+  height: 16px;
+  margin-left: 3px;
+  fill: #fff;
+  padding: 14px 14px 14px 17px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.karte:hover .play,
+.karte:focus-visible .play {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .play {
+    opacity: 1;
+  }
+}
+
+.schloss {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.schloss svg {
+  width: 14px;
+  height: 16px;
+  stroke: rgba(255, 255, 255, 0.85);
+  padding: 13px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.zu .bild img {
+  filter: grayscale(0.6) brightness(0.5);
+}
+
+.balken {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.balkenVoll {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.text {
+  display: block;
+  margin-top: 10px;
+}
+
+.folgeTitel {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-light);
+}
+
+.karte:hover .folgeTitel {
+  color: var(--accent);
+}
+
+.zu .folgeTitel {
+  color: var(--text-muted);
+}
+
+.folgeUnter {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 767px) {
+  .band {
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+  }
+
+  .eintrag {
+    flex-basis: 62vw;
+  }
+}

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
-import { kursKapitel } from "@/data/masterclass";
+import { kursKapitel, type KapitelId } from "@/data/masterclass";
+import type { MediaAsset } from "@/data/landingPage";
 import { club } from "@/data/club";
-import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
+import { kursBildAsset, kursSerienCover, type Kursbild } from "@/lib/kursMedien";
 import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
 import { SerienBlock } from "@/components/Club/SerienBlock";
 import styles from "./page.module.css";
@@ -23,7 +24,9 @@ export default async function InhalteSeite() {
   await verlangeMitglied("/club/inhalte/");
 
   const bilder: Record<number, Kursbild> = {};
+  const covers = {} as Record<KapitelId, MediaAsset>;
   for (const kapitel of kursKapitel) {
+    covers[kapitel.id] = kursSerienCover(kapitel);
     for (const video of kapitel.videos) {
       bilder[video.nr] = kursBildAsset(video, kapitel.still);
     }
@@ -38,11 +41,11 @@ export default async function InhalteSeite() {
       </header>
 
       <div className={styles.serien}>
-        <SerienUebersicht anker />
+        <SerienUebersicht anker covers={covers} />
       </div>
 
       {kursKapitel.map((kapitel) => (
-        <SerienBlock key={kapitel.id} kapitel={kapitel} bilder={bilder} />
+        <SerienBlock key={kapitel.id} kapitel={kapitel} bilder={bilder} cover={covers[kapitel.id]} />
       ))}
     </div>
   );

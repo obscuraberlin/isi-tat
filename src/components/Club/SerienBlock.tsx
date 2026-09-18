@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { kursKapitel } from "@/data/masterclass";
+import type { MediaAsset } from "@/data/landingPage";
 import type { Kursbild } from "@/lib/kursMedien";
 import { club } from "@/data/club";
 import { useFortschritt } from "@/lib/fortschritt";
@@ -17,9 +18,12 @@ import styles from "./SerienBlock.module.css";
 export function SerienBlock({
   kapitel,
   bilder,
+  cover,
 }: {
   kapitel: (typeof kursKapitel)[number];
   bilder: Record<number, Kursbild>;
+  /** Das Plakat — aus dem ersten vorhandenen Video, sonst das der Verkaufsseite. */
+  cover: MediaAsset;
 }) {
   const stand = useFortschritt();
   const serie = stand ? stand.serie(kapitel.videos.map((v) => v.nr)) : null;
@@ -28,7 +32,7 @@ export function SerienBlock({
     <section className={styles.block} id={`serie-${kapitel.id}`} aria-labelledby={`serie-${kapitel.id}-titel`}>
       <div className={styles.kopf}>
         <Link href={`/club/kapitel/${kapitel.id}/`} className={styles.plakat}>
-          <Media asset={kapitel.cover} tone="dark" radius="inherit" ratio="2 / 3" />
+          <Media asset={cover} tone="dark" radius="inherit" ratio="2 / 3" />
         </Link>
         <div className={styles.text}>
           <p className={styles.eyebrow}>

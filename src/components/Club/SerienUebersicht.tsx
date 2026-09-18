@@ -1,6 +1,7 @@
 "use client";
 
-import { kursKapitel } from "@/data/masterclass";
+import { kursKapitel, type KapitelId } from "@/data/masterclass";
+import type { MediaAsset } from "@/data/landingPage";
 import { club } from "@/data/club";
 import { useFortschritt } from "@/lib/fortschritt";
 import { SerienKarte } from "./SerienKarte";
@@ -13,9 +14,14 @@ import { SerienKarte } from "./SerienKarte";
  * da ist, stehen die Plakate ohne — dann springt hoechstens die
  * Beschriftung, nicht das Bild.
  */
-export function SerienUebersicht({ anker = false }: {
+export function SerienUebersicht({
+  anker = false,
+  covers,
+}: {
   /** Auf INHALTE: die Kacheln springen zur Liste auf derselben Seite. */
   anker?: boolean;
+  /** Plakate je Serie, vom Server berechnet (kursSerienCover). */
+  covers: Record<KapitelId, MediaAsset>;
 }) {
   const stand = useFortschritt();
 
@@ -33,7 +39,7 @@ export function SerienUebersicht({ anker = false }: {
             label={kapitel.kurz}
             tagline={kapitel.tagline}
             anzahl={kapitel.videos.length}
-            cover={kapitel.cover}
+            cover={covers[kapitel.id]}
             stand={serie ? club.kapitel.stand(serie.gesehen, serie.gesamt) : undefined}
             prozent={serie?.prozent}
             gesperrt={gesperrt}

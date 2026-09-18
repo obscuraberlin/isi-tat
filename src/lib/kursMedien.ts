@@ -145,3 +145,36 @@ export function kursBildAsset(
     },
   };
 }
+
+/**
+ * Das Plakat einer Serie im Club: das Standbild der ersten Folge, zu der
+ * schon ein Video vorliegt — hochkant beschnitten. Solange keine Folge da
+ * ist, bleibt das Bild von der Verkaufsseite.
+ *
+ * Nur aus dem Scan (kursDateien), nicht aus CLUB_VIDEO_BASIS: ob dort ein
+ * Poster liegt, weiss der Server nicht, und ein leeres Plakat waere
+ * schlimmer als das geliehene.
+ */
+export function kursSerienCover(kapitel: {
+  id: string;
+  label: string;
+  cover: MediaAsset;
+  videos: readonly KursVideo[];
+}): MediaAsset {
+  const erste = kapitel.videos.find((v) => kursDateien[v.nr]?.poster);
+  const poster = erste ? kursDateien[erste.nr].poster : null;
+  if (!erste || !poster) return kapitel.cover;
+  return {
+    id: `kurs-plakat-${kapitel.id}`,
+    no: erste.nr,
+    praefix: "v",
+    kind: "image",
+    src: poster,
+    avif: null,
+    webp: null,
+    poster: null,
+    klein: null,
+    alt: kapitel.label,
+    ratio: "2 / 3",
+  };
+}

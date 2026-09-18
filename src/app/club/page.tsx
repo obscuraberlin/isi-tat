@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { verlangeMitglied } from "@/lib/zugang";
-import { kursKapitel } from "@/data/masterclass";
+import { kursKapitel, type KapitelId } from "@/data/masterclass";
+import type { MediaAsset } from "@/data/landingPage";
 import { club } from "@/data/club";
-import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
+import { kursBildAsset, kursSerienCover, type Kursbild } from "@/lib/kursMedien";
 import { liveDaten } from "@/lib/live";
 import { feed, datumLang } from "@/lib/news";
 import { eventDaten } from "@/lib/events";
@@ -31,7 +32,9 @@ export default async function ClubStart() {
      der Videodateien steht in einer Umgebungsvariablen, und die gehoert
      auf den Server. */
   const bilder: Record<number, Kursbild> = {};
+  const covers = {} as Record<KapitelId, MediaAsset>;
   for (const kapitel of kursKapitel) {
+    covers[kapitel.id] = kursSerienCover(kapitel);
     for (const video of kapitel.videos) {
       bilder[video.nr] = kursBildAsset(video, kapitel.still);
     }
@@ -129,7 +132,7 @@ export default async function ClubStart() {
           </Link>
         </div>
         <div className={styles.serien}>
-          <SerienUebersicht />
+          <SerienUebersicht covers={covers} />
         </div>
       </section>
     </div>

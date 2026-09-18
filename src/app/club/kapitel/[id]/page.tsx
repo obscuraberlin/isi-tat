@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { verlangeMitglied } from "@/lib/zugang";
 import { kursKapitel } from "@/data/masterclass";
 import { club } from "@/data/club";
-import { kursBildAsset, type Kursbild } from "@/lib/kursMedien";
+import { kursBildAsset, kursSerienCover, type Kursbild } from "@/lib/kursMedien";
 import { Media } from "@/components/Media/Media";
 import { FolgenListe } from "@/components/Club/FolgenListe";
 import { AktivInsBild } from "@/components/Club/AktivInsBild";
@@ -57,7 +57,7 @@ export default async function KapitelSeite({
 
       <header className={styles.kopf}>
         <div className={styles.plakat}>
-          <Media asset={kapitel.cover} tone="dark" radius="inherit" ratio="2 / 3" />
+          <Media asset={kursSerienCover(kapitel)} tone="dark" radius="inherit" ratio="2 / 3" />
         </div>
         <div className={styles.kopfText}>
           <p className={styles.zahl}>{kapitel.videos.length} Folgen</p>

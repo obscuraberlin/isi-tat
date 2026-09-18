@@ -156,7 +156,7 @@ export function istAktiv(pfad: string, href: string) {
 
 /** Alles, was auf dem Telefon unter MEHR liegt. */
 export function istMehr(pfad: string) {
-  return ["/club/mehr", "/club/profil", "/club/einstellungen", "/club/mitgliedschaft", "/club/support", "/club/datenschutz", "/club/events"].some(
+  return ["/club/mehr", "/club/profil", "/club/einstellungen", "/club/mitgliedschaft", "/club/support", "/club/datenschutz", "/club/events", "/club/willkommen"].some(
     (p) => pfad.startsWith(p),
   );
 }

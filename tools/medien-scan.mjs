@@ -40,7 +40,24 @@ const treffer = {};
    ganze Uebergabeliste in MEDIEN.md. */
 const kurs = {};
 
+/* Dritter Satz: Dateien mit Namen statt Nummer, fuer den Club.
+   willkommen.mp4 ist das Video beim ersten Login. */
+const club = {};
+const CLUB_NAMEN = ["willkommen"];
+
 for (const name of dateien) {
+  const c = /^([a-z]+)(-poster|-klein)?\.([a-z0-9]+)$/i.exec(name);
+  if (c && CLUB_NAMEN.includes(c[1].toLowerCase())) {
+    if (!BILD.test(name) && !VIDEO.test(name)) continue;
+    const key = c[1].toLowerCase();
+    const rolle = (c[2] ?? "").toLowerCase();
+    club[key] ??= {};
+    if (rolle === "-poster") club[key].poster = `/media/${name}`;
+    else if (rolle === "-klein") club[key].klein = `/media/${name}`;
+    else club[key].src = `/media/${name}`;
+    continue;
+  }
+
   const k = /^v(\d{2})(-poster|-klein)?\.([a-z0-9]+)$/i.exec(name);
   if (k) {
     if (!BILD.test(name) && !VIDEO.test(name)) continue;
@@ -124,6 +141,14 @@ ${zeilen.join("\n")}
    Startseite. */
 export const kursDateien: Record<number, MediaFile> = {
 ${kursZeilen.join("\n")}
+};
+
+/* Dateien mit Namen — das Video beim ersten Login im Club. */
+export const clubDateien: Record<string, MediaFile> = {
+${Object.keys(club)
+  .sort()
+  .map((k) => `  ${JSON.stringify(k)}: ${JSON.stringify(club[k])},`)
+  .join("\n")}
 };
 `,
 );

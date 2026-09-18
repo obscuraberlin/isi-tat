@@ -41,3 +41,8 @@ export const mediaFiles: Record<number, MediaFile> = {
 export const kursDateien: Record<number, MediaFile> = {
 
 };
+
+/* Dateien mit Namen — das Video beim ersten Login im Club. */
+export const clubDateien: Record<string, MediaFile> = {
+  "willkommen": {"klein":"/media/willkommen-klein.mp4","poster":"/media/willkommen-poster.jpg","src":"/media/willkommen.mp4"},
+};

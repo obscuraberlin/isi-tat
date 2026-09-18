@@ -13,6 +13,7 @@ import { SerienUebersicht } from "@/components/Club/SerienUebersicht";
 import { Willkommen } from "@/components/Club/Willkommen";
 import { Beispiel } from "@/components/Club/Beispiel";
 import { zusageStand } from "@/lib/zusagen";
+import { clubDateien } from "@/data/mediaFiles";
 import styles from "./page.module.css";
 
 /**
@@ -43,7 +44,7 @@ export default async function ClubStart() {
 
   return (
     <div className={styles.seite}>
-      <Willkommen />
+      <Willkommen video={clubDateien.willkommen ?? null} />
 
       <p className={styles.gruss}>
         {club.start.grussVor} {vorname.toUpperCase()}.

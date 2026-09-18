@@ -1,0 +1,13 @@
+.rahmen {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-visual);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

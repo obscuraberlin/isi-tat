@@ -72,6 +72,7 @@ export const club = {
           { href: "/club/events/", label: "Events" },
           { href: "/club/live/", label: "Live mit ISI" },
           { href: "/club/kanal/", label: "ISI Kanal" },
+          { href: "/club/willkommen/", label: "Willkommensvideo" },
         ],
       },
       {
@@ -225,6 +226,15 @@ export const club = {
     titel: ["WILLKOMMEN", "IM CLUB."],
     text: "Hier findest du die Inhalte, Live-Termine und alles, was gerade im Club passiert.",
     knopf: "CLUB ÖFFNEN",
+    abspielen: "ABSPIELEN",
+    ueberspringen: "Überspringen",
+    videoLabel: "Willkommensvideo von ISI",
+    /* Die Seite zum Nochmal-Ansehen unter MEHR. */
+    seite: {
+      eyebrow: "Willkommen",
+      headline: "ISIs BEGRÜSSUNG.",
+      lead: "Das Video vom ersten Login — falls du es noch einmal sehen willst.",
+    },
   },
 
   start: {

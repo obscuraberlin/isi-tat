@@ -340,7 +340,7 @@ export interface Series {
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
-  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 38. */
+  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 34. */
   videos: number;
   /** Zwei bis drei Saetze in der Detailansicht. */
   description: string;
@@ -355,9 +355,9 @@ export const insideTheClub = {
   headline: "DIE MASTERCLASS.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
-  subline: "38 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
+  subline: "34 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
   body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Aufgaben.",
-  facts: "5 Kapitel · 38 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
+  facts: "5 Kapitel · 34 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
   note: "Steig dort ein, wo du gerade eine konkrete Herausforderung hast — oder arbeite die Masterclass als Ganzes durch.",
@@ -414,7 +414,7 @@ export const insideTheClub = {
       label: "BUSINESS AUFBAUEN & GELD VERDIENEN",
       tagline:
         "Ideen prüfen, Partner einschätzen, Risiken verstehen, Teams aufbauen und Systeme schaffen.",
-      videos: 10,
+      videos: 6,
       description:
         "Eine gute Idee ist der einfachste Teil. Wie ich Partner einschätze, warum ein Handschlag keinen Vertrag ersetzt und was mich das Lehrgeld gekostet hat, bevor ich das verstanden hatte.",
       cover: media("kurs-business-cover", "image", "Business aufbauen & Geld verdienen", "2 / 3"),
@@ -426,10 +426,6 @@ export const insideTheClub = {
         "Warum Verträge Pflicht sind",
         "Geld wird beim Einkauf verdient",
         "Vermögen schützen",
-        "Delegation",
-        "Zeit gegen Geld",
-        "Menschen auswählen",
-        "Menschen führen",
       ],
     },
     {
@@ -486,7 +482,7 @@ export const insideTheClub = {
 export const catalogue = {
   seriesCount: insideTheClub.series.length,
   /* Getippt wird nichts: die Videozahl ist die Summe der Kapitel.
-     7 + 7 + 10 + 9 + 5 = 38. Live mit ISI zaehlt nicht mit — das ist
+     7 + 7 + 6 + 9 + 5 = 34. Live mit ISI zaehlt nicht mit — das ist
      Club, nicht Masterclass. */
   videoCount: insideTheClub.series.reduce((summe, s) => summe + s.videos, 0),
 } as const;
@@ -859,7 +855,7 @@ export const membership = {
   ),
   rows: [
     {
-      label: "38-VIDEO MASTERCLASS",
+      label: "34-VIDEO MASTERCLASS",
       text: "Fünf Kapitel aus über 20 Jahren praktischer Erfahrung.",
     },
     {
@@ -977,13 +973,13 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Die 38-Video-Masterclass mit fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "Die 34-Video-Masterclass mit fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
     },
     /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
       q: "Wie ist die Masterclass aufgebaut?",
-      a: "38 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele und endet mit einer Umsetzungsaufgabe und klaren ISI Rules. Entscheidend ist nicht, wie schnell du durch bist, sondern was du anwendest.",
+      a: "34 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele und endet mit einer Umsetzungsaufgabe und klaren ISI Rules. Entscheidend ist nicht, wie schnell du durch bist, sondern was du anwendest.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
@@ -1080,9 +1076,9 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB | 38-Video Masterclass, Live & Netzwerk",
+  title: "ISI TAT BUSINESS CLUB | 34-Video Masterclass, Live & Netzwerk",
   description:
-    "38 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
+    "34 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -1167,7 +1163,7 @@ export const ctaBands = {
      im Hero, und es verspricht nichts. */
   nachInhalten: {
     lines: [
-      "38 VIDEOS SIND DER ANFANG.",
+      "34 VIDEOS SIND DER ANFANG.",
       "ENTSCHEIDEND IST, WAS DU DAMIT MACHST.",
     ],
     /* Vorher "Die Plaetze sind begrenzt" — eine Knappheitsaussage ohne

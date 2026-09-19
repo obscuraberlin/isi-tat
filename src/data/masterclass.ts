@@ -354,27 +354,6 @@ export const kursVideos: readonly KursVideo[] = [
     ],
   },
   {
-    nr: 16,
-    kapitelId: "sales",
-    slug: "wie-ich-einen-ferrari-um-ca-20-000-euro-runtergehandelt-habe",
-    titel: "Wie ich einen Ferrari um ca. 20.000 Euro runtergehandelt habe",
-    unter: "Verhandeln beginnt vor dem Gespräch",
-    kern: "Marktbeobachtung, Verkäuferlogik, ein klares Limit und echte Abschlussbereitschaft können stärker sein als rhetorische Tricks.",
-    hook: "Der Ferrari stand nach meiner Erinnerung für ungefähr 270.000 Euro beim Händler. Gekauft habe ich ihn für etwa 250.000. Der wichtigste Teil der Verhandlung passierte aber vor dem ersten Gespräch.",
-    gliederung: [
-      { titel: "Markt beobachten", text: "Vergleichbare F8 lagen nach meiner damaligen Wahrnehmung häufig höher." },
-      { titel: "Händlerlogik verstehen", text: "Markenfremdes Fahrzeug, Kapitalbindung, Marge und Standzeit als relevante Faktoren." },
-      { titel: "Klare Zahl", text: "Ein nachvollziehbares Angebot mit Budget und Argumenten statt endlosem Feilschen." },
-      { titel: "Kaufbereitschaft", text: "Ein Verkäufer bewertet ein sofort umsetzbares Angebot anders als unverbindliches Interesse." },
-      { titel: "Walk-away", text: "Ich wollte das Auto — aber ich musste genau dieses Angebot nicht um jeden Preis haben." },
-    ],
-    aufgabe: "Bereite deine nächste Verhandlung auf einer Seite vor: Marktpreis, Verkäuferinteresse, dein Zielpreis, dein Maximalpreis, drei echte Argumente und deine Alternative.",
-    regeln: [
-      "Verhandeln beginnt mit Marktkenntnis.",
-      "Ich will es haben — aber ich muss es nicht haben.",
-    ],
-  },
-  {
     nr: 17,
     kapitelId: "business",
     slug: "eine-gute-idee-reicht-nicht",

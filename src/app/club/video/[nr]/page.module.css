@@ -237,3 +237,58 @@
   height: 1px;
   background: var(--accent);
 }
+
+/* ---------- Handy: kompakter unter dem Player ----------
+   Auf schmalen Bildschirmen wirkt die grosse Laufweite der Beschreibung
+   ausgefranst, und die Themen-Pillen brechen ungleich um. Deshalb hier
+   eine Stufe kleiner, enger gesetzt, und die Themen als eine ruhige
+   nummerierte Liste statt als Wolke. Desktop bleibt unveraendert. */
+@media (max-width: 599px) {
+  .unter {
+    font-size: var(--fs-body);
+    line-height: 1.45;
+  }
+
+  .block {
+    margin-top: 26px;
+  }
+
+  .blockTitel {
+    margin-bottom: 4px;
+  }
+
+  .kern {
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    padding-top: 8px;
+  }
+
+  .themen {
+    display: block;
+    counter-reset: thema;
+  }
+
+  .thema {
+    counter-increment: thema;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    border: 0;
+    border-bottom: 1px solid var(--line-light);
+    border-radius: 0;
+    font-size: var(--fs-small);
+    line-height: 1.35;
+    color: var(--text-light);
+  }
+
+  .thema::before {
+    content: counter(thema, decimal-leading-zero);
+    flex: 0 0 auto;
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+}

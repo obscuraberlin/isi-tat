@@ -122,6 +122,17 @@
        zusammen — die Aussage wirkt in zwei sauberen Zeilen staerker als
        gross und zerrissen. */
     --fs-hero: clamp(2.0625rem, 1.1rem + 3.2vw, 2.75rem);
+    /* Am Handy eine Stufe kleiner und enger: dieselben Texte wirken auf
+       390 px sonst wie eine Wand. Ueberschriften bleiben gross, der
+       Lauftext tritt zurueck. Desktop ist davon nicht betroffen. */
+    --fs-section: clamp(2rem, 1.3rem + 3.2vw, 2.75rem);
+    --fs-sub: clamp(1.3125rem, 1.1rem + 1.2vw, 1.625rem);
+    --fs-body: 0.9375rem;
+    --fs-body-lg: 1rem;
+    --fs-small: 0.8125rem;
+    --lh-body: 1.55;
+    --section-y: clamp(56px, 12vw, 88px);
+    --section-y-tight: clamp(44px, 9vw, 64px);
   }
 }
 

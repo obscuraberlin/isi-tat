@@ -1009,7 +1009,7 @@ export const faq = {
   hinweis: {
     label: "Hinweis",
     text: [
-      "Die Inhalte des ISI BUSINESS CLUB dienen der allgemeinen Weiterbildung und basieren auf persönlichen Erfahrungen und Einschätzungen.",
+      "Die Inhalte des ISI TAT BUSINESS CLUB geben persönliche Erfahrungen und Einschätzungen wieder. Sie sind kein Unterricht und vermitteln keinen Lehrstoff.",
       "Sie stellen keine individuelle Rechts-, Steuer-, Versicherungs-, Finanzierungs- oder Anlageberatung dar.",
       "Persönliche Zahlen und historische Beispiele werden — soweit erforderlich — als ungefähre Erinnerungswerte dargestellt.",
       "Es werden keine Einkommens-, Investment- oder sonstigen Erfolgsversprechen abgegeben.",

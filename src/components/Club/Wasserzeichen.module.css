@@ -1,24 +1,29 @@
-/* Oben rechts, weit genug vom Rand, dass es auf dem Handy nicht am
-   Bildrand klebt, und ueber der Steuerung, damit die Leiste unten frei
-   bleibt. pointer-events: none — die Steuerung darunter bleibt bedienbar. */
+/* Fast mittig, ein Stueck unter der Bildmitte: das Gesicht sitzt im
+   oberen Drittel, die Marke soll ins Bild, aber nicht davor. Die Groesse
+   haengt an der Breite des Players (cqi), nicht am Fenster — auf dem Handy
+   wird sie also mit dem Bild kleiner. pointer-events: none — die
+   Steuerung darunter bleibt bedienbar. */
 .marke {
   position: absolute;
-  top: clamp(10px, 2.2%, 18px);
-  right: clamp(12px, 2.4%, 20px);
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
   z-index: 2;
   pointer-events: none;
   user-select: none;
+  white-space: nowrap;
 
   font-family: var(--font-archivo), var(--font-inter), system-ui, sans-serif;
-  font-size: clamp(0.5625rem, 0.42rem + 0.6vw, 0.8125rem);
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-size: clamp(0.875rem, 5.2cqi, 4.25rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.55);
-  /* Ein Hauch Schatten, damit die Marke auch auf dem hellen Studio-
-     Hintergrund lesbar bleibt, ohne wie ein Kasten zu wirken. */
+  color: rgba(255, 255, 255, 0.3);
+  /* Zwei Schatten: ein enger, damit die Kanten auf hellem Grund
+     stehen, ein weiter, der die Marke auf dunklem Grund nicht
+     verschwinden laesst. */
   text-shadow:
-    0 0 1px rgba(0, 0, 0, 0.35),
-    0 1px 6px rgba(0, 0, 0, 0.45);
+    0 0 2px rgba(0, 0, 0, 0.35),
+    0 2px 18px rgba(0, 0, 0, 0.4);
 }

@@ -87,6 +87,7 @@
 }
 
 .video {
+  container-type: inline-size;
   position: relative;
   margin-top: clamp(18px, 2.5vw, 26px);
   aspect-ratio: 16 / 9;

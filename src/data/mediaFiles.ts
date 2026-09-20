@@ -28,6 +28,7 @@ export const mediaFiles: Record<number, MediaFile> = {
   15: {"avif":"/media/15.avif","src":"/media/15.jpg","webp":"/media/15.webp"},
   16: {"avif":"/media/16.avif","src":"/media/16.jpg","webp":"/media/16.webp"},
   17: {"avif":"/media/17.avif","src":"/media/17.jpg","webp":"/media/17.webp"},
+  18: {"avif":"/media/18.avif","src":"/media/18.jpg","webp":"/media/18.webp"},
   19: {"avif":"/media/19.avif","src":"/media/19.jpg","webp":"/media/19.webp"},
   20: {"avif":"/media/20.avif","src":"/media/20.jpg","webp":"/media/20.webp"},
   21: {"avif":"/media/21.avif","src":"/media/21.jpg","webp":"/media/21.webp"},

@@ -25,12 +25,12 @@ export const beispielMarke = "Beispiel";
 export const beispielLive: readonly LiveTermin[] = [
   {
     id: "beispiel-live-09-22",
-    titel: "Deine Fragen zu Preis, Angebot und Abschluss",
+    titel: "Preis, Angebot, Abschluss: Wie ISI gerade verhandelt",
     datum: "2026-09-22",
     beginn: "19:00",
     ende: "20:30",
     beschreibung:
-      "Bring eine konkrete Situation mit: ein Angebot, das hängt, ein Kunde, der zögert, ein Preis, den du nicht nennen traust. Wir gehen sie gemeinsam durch.",
+      "ISI erzählt aus Verhandlungen der letzten Wochen: ein Angebot, das hing, ein Kunde, der zögerte, ein Preis, der stand. Danach offener Austausch unter den Mitgliedern.",
     beispiel: true,
   },
   {
@@ -100,8 +100,8 @@ export const beispielNews: readonly Nachricht[] = [
     datum: "2026-09-08",
     titel: "Nächste Live-Runde am 22. September",
     text: [
-      "Am Dienstag, 22. September, 19 Uhr, gehen wir eure Fälle zu Preis, Angebot und Abschluss durch. Sag zu, dann steht der Termin in deinem Kalender.",
-      "Wenn du eine konkrete Situation hast, schreib sie dir vorher in drei Sätzen auf. Das macht die Runde für alle besser.",
+      "Am Dienstag, 22. September, 19 Uhr, spricht ISI über Preis, Angebot und Abschluss aus seinen aktuellen Verhandlungen. Sag zu, dann steht der Termin in deinem Kalender.",
+      "Danach ist Zeit für Austausch unter den Mitgliedern — wer mag, bringt ein eigenes Thema mit.",
     ],
     beispiel: true,
   },

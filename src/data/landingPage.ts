@@ -171,7 +171,7 @@ export const hero = {
      Kapitel- und Videozahl werden gerechnet, nie getippt. */
   meta: {
     by: "VON ISI TAT",
-    edition: "MASTERCLASS 2026",
+    edition: "CLUB 2026",
   },
   /* Zwei Headline-Varianten. Umschalten ueber `headlineVariant` — beide
      sind im Layout geprueft, die Wahl ist reine Geschmackssache. */
@@ -351,18 +351,18 @@ export interface Series {
 }
 
 export const insideTheClub = {
-  eyebrow: "Die Masterclass",
-  headline: "DIE MASTERCLASS.",
+  eyebrow: "Die Videos",
+  headline: "DIE VIDEOS.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
   subline: "30 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
-  body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Aufgaben.",
-  facts: "5 Kapitel · 30 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
+  body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Haltung.",
+  facts: "5 Kapitel · 30 Videos · aus über 20 Jahren Praxis · plus Live-Formate im Club",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
-  note: "Steig dort ein, wo du gerade eine konkrete Herausforderung hast — oder arbeite die Masterclass als Ganzes durch.",
+  note: "Schau dort rein, wo dich gerade etwas beschäftigt — oder von vorn. Wie du die Videos nutzt, ist deine Sache.",
   workLine: ["WISSEN ALLEIN REICHT NICHT.", "UMSETZUNG ENTSCHEIDET."],
-  work: "Jedes Video endet mit einer konkreten Aufgabe. Nicht damit du beschäftigt bist — sondern damit aus einer Erkenntnis eine Handlung wird.",
+  work: "Jedes Video endet mit einem Impuls für die Praxis. Was du daraus machst, entscheidest du — niemand prüft, niemand bewertet.",
   /* Die Schritte als Zeile unter dem Text. Kein Lernpfad durch die
      Inhalte, sondern die Arbeitsweise an einem einzelnen Video. */
   ablauf: ["VERSTEHEN", "PRÜFEN", "ANWENDEN", "REFLEKTIEREN", "WEITERMACHEN"],
@@ -682,25 +682,25 @@ export const network = {
    ein Bestandteil der Mitgliedschaft — und steht deshalb in einem eigenen
    Bereich nach den fuenf Kapiteln. */
 export const live = {
-  lead: ["DIE MASTERCLASS", "IST NICHT DER GANZE CLUB."],
+  lead: ["DIE VIDEOS", "SIND NICHT DER GANZE CLUB."],
   label: "LIVE MIT ISI",
-  line: "Videos geben dir die Grundlagen. Im Live-Austausch geht es um die Situationen, die gerade wirklich vor dir liegen.",
+  line: "Die Videos sind ISIs Erfahrung. Live geht es um das, was gerade passiert — bei ihm und im Club.",
   items: [
     {
-      label: "FRAGEN STELLEN",
-      text: "Was beschäftigt dich gerade?",
+      label: "AKTUELLE THEMEN",
+      text: "Was ISI und die Mitglieder gerade beschäftigt.",
     },
     {
-      label: "SITUATIONEN EINORDNEN",
-      text: "Eine zweite Perspektive auf reale Entscheidungen.",
+      label: "ECHTE SITUATIONEN",
+      text: "Deals, Verhandlungen, Entscheidungen — so, wie sie gerade laufen.",
     },
     {
-      label: "VON ANDEREN LERNEN",
-      text: "Die Frage eines anderen kann genau dein Problem treffen.",
+      label: "AUSTAUSCH",
+      text: "Was ein anderes Mitglied gerade erlebt, kann genau dein Thema sein.",
     },
     {
-      label: "UMSETZUNG BESPRECHEN",
-      text: "Nicht nur Inhalte konsumieren, sondern anwenden.",
+      label: "NETZWERK",
+      text: "Leute kennenlernen, die dasselbe vorhaben.",
     },
   ],
   /* Keine Zahl und keine Frequenz, solange die Termine nicht feststehen.
@@ -852,12 +852,12 @@ export const membership = {
   ),
   rows: [
     {
-      label: "30-VIDEO MASTERCLASS",
+      label: "30 VIDEOS",
       text: "Fünf Kapitel aus über 20 Jahren praktischer Erfahrung.",
     },
     {
       label: "LIVE MIT ISI",
-      text: "Fragen stellen und reale Situationen einordnen.",
+      text: "Gespräche über das, was gerade ansteht.",
     },
     {
       label: "COMMUNITY",
@@ -880,7 +880,7 @@ export const membership = {
        ueber die vorgesehenen Formate, nicht ueber eine offene Leitung. */
     {
       label: "ZUGANG ZU ISI",
-      text: "Rücksprache über die vorgesehenen Live- und Community-Formate.",
+      text: "Kontakt über die Live- und Community-Formate des Clubs.",
     },
     {
       label: "WEITERE MÖGLICHKEITEN",
@@ -890,7 +890,7 @@ export const membership = {
   /* Sagt, worauf das hinauslaeuft — und haelt zugleich fest, dass es
      nicht ums Durcharbeiten geht. Beides zusammen in einem Satz. */
   rowsNote:
-    "Das Ziel ist nicht, dass du alles gesehen hast. Das Ziel ist, dass du weißt, wen du fragst, wenn es drauf ankommt.",
+    "Das Ziel ist nicht, dass du alles gesehen hast. Das Ziel ist, dass du die richtigen Leute kennst, wenn es drauf ankommt.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -970,19 +970,23 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Die 30-Video-Masterclass mit fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "30 Videos in fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Formate, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+    },
+    {
+      q: "Ist das ein Kurs oder ein Coaching?",
+      a: "Nein. Der ISI TAT BUSINESS CLUB ist eine Mitgliedschaft in einem Netzwerk. Die Videos sind ISIs Erfahrungen aus über 20 Jahren, die Live-Formate sind Gespräche über aktuelle Themen, die Community ist Austausch unter Mitgliedern. Niemand prüft, was du gelernt hast, niemand korrigiert dich, es gibt keine Betreuung, keine Prüfung und kein Zertifikat.",
     },
     /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
-      q: "Wie ist die Masterclass aufgebaut?",
-      a: "30 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele und endet mit einer Umsetzungsaufgabe und klaren ISI Rules. Entscheidend ist nicht, wie schnell du durch bist, sondern was du anwendest.",
+      q: "Wie sind die Videos aufgebaut?",
+      a: "30 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele aus ISIs Praxis und endet mit einem Impuls und den ISI Rules. Nichts davon wird abgegeben oder bewertet. Entscheidend ist nicht, wie schnell du durch bist, sondern was du daraus machst.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
     {
       q: "Wie viel Kontakt habe ich zu dir?",
-      a: "Der persönliche Austausch findet insbesondere über die vorgesehenen Live- und Community-Formate statt. Die konkreten Frequenzen und Formate werden vor Abschluss der Mitgliedschaft transparent kommuniziert.",
+      a: "Über die Live- und Community-Formate des Clubs. Welche Formate es gibt und wie oft, erfährst du vor Abschluss der Mitgliedschaft.",
     },
     {
       q: "Laufzeit und Zahlung?",
@@ -996,7 +1000,7 @@ export const faq = {
     },
     {
       q: "Bin ich nach der Aufnahme auf mich allein gestellt?",
-      a: "Nein. Du profitierst von den Fragen der anderen — auch von denen, die du selbst nie gestellt hättest. Entscheiden musst du weiter selbst, aber nicht mehr allein.",
+      a: "Nein. Du bist Teil eines Umfelds, in dem andere dasselbe vorhaben wie du. Entscheiden musst du weiter selbst, aber nicht mehr allein.",
     },
   ],
   /* Steht unter den Fragen, klein und sachlich — nicht als Warnkasten.
@@ -1073,7 +1077,7 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB | 30-Video Masterclass, Live & Netzwerk",
+  title: "ISI TAT BUSINESS CLUB | 30 Videos, Live & Netzwerk",
   description:
     "30 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
 } as const;

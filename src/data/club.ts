@@ -296,7 +296,7 @@ export const club = {
   live: {
     eyebrow: "Live",
     headline: "LIVE MIT ISI.",
-    subline: "Gespräche, Fragen und Situationen, die gerade anstehen.",
+    subline: "Gespräche über das, was gerade ansteht.",
     naechster: "NÄCHSTER TERMIN",
     beitreten: "LIVE BEITRETEN",
     kommende: "KOMMENDE TERMINE",
@@ -315,8 +315,8 @@ export const club = {
   video: {
     kern: "ÜBER DIESES VIDEO",
     themen: "THEMEN",
-    aufklappen: "DEINE UMSETZUNG & ISI RULES",
-    aufgabe: "Deine Umsetzung",
+    aufklappen: "IMPULS & ISI RULES",
+    aufgabe: "Impuls",
     regeln: "ISI Rules",
     weitere: "ALLE FOLGEN",
     /* Nach dem Ende: die naechste Folge, mit Countdown. */
@@ -327,7 +327,7 @@ export const club = {
     gesehenWeiter: "GESEHEN — WEITER",
     fertig: "Das war die letzte Folge.",
     aufgabeHinweis:
-      "Nichts davon wird eingereicht oder bewertet. Die Aufgabe steht hier, weil ein Video, aus dem nichts folgt, nur Unterhaltung war.",
+      "Nichts davon wird eingereicht, geprüft oder bewertet. Der Impuls steht hier, weil ein Video, aus dem nichts folgt, nur Unterhaltung war.",
     nochNicht: "Dieses Video wird gerade produziert.",
     nochNichtText:
       "Sobald es geschnitten ist, läuft es an dieser Stelle — ohne dass du etwas tun musst.",

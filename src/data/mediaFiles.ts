@@ -61,6 +61,7 @@ export const kursDateien: Record<number, MediaFile> = {
   32: {"klein":"/media/v32-klein.mp4","poster":"/media/v32-poster.jpg","src":"/media/v32.mp4"},
   33: {"klein":"/media/v33-klein.mp4","poster":"/media/v33-poster.jpg","src":"/media/v33.mp4"},
   34: {"klein":"/media/v34-klein.mp4","poster":"/media/v34-poster.jpg","src":"/media/v34.mp4"},
+  37: {"klein":"/media/v37-klein.mp4","poster":"/media/v37-poster.jpg","src":"/media/v37.mp4"},
 };
 
 /* Dateien mit Namen — das Video beim ersten Login im Club. */

@@ -62,9 +62,6 @@ const KOPIEN = 3;
 
 export function SeriesRow() {
   const [active, setActive] = useState<Series | null>(null);
-  /* Welche Karte am Handy gerade im Bild steht — fuer die Punkte unter
-     der Leiste. Am Desktop laeuft das Band, da gibt es keine Punkte. */
-  const [stelle, setStelle] = useState(0);
 
   /* Das Band stand still, bis der Besucher fast daran vorbei war: die
      Animation lief seit dem Aufruf der Seite und war bis hierher schon
@@ -102,13 +99,6 @@ export function SeriesRow() {
         className={styles.marquee}
         role="region"
         aria-label="Die fünf Kapitel"
-        onScroll={(e) => {
-          const el = e.currentTarget;
-          const karte = el.querySelector<HTMLElement>("button:not([aria-hidden])");
-          if (!karte) return;
-          const schritt = karte.offsetWidth + parseFloat(getComputedStyle(karte).marginRight || "0");
-          setStelle(Math.round(el.scrollLeft / schritt));
-        }}
       >
         <div
           className={[styles.track, inView ? "" : styles.trackWartet]
@@ -128,14 +118,32 @@ export function SeriesRow() {
         </div>
       </div>
 
-      <div className={styles.punkte} aria-hidden="true">
-        {insideTheClub.series.map((series, i) => (
-          <span
-            key={series.id}
-            className={[styles.punkt, i === stelle ? styles.punktAktiv : ""].filter(Boolean).join(" ")}
-          />
+      {/* Am Handy statt des Bands: die fuenf Kapitel als Liste, wie die
+          Folgen im Mitgliederbereich. Alles auf einen Blick, nichts
+          angeschnitten, nichts laeuft von selbst. */}
+      <ul className={styles.liste} aria-label="Die fünf Kapitel">
+        {insideTheClub.series.map((series) => (
+          <li key={series.id} className={styles.zeile}>
+            <button
+              type="button"
+              className={styles.zeileKnopf}
+              onClick={() => setActive(series)}
+              aria-label={`${series.label} öffnen`}
+            >
+              <span className={styles.zeileBild}>
+                <Media asset={series.still} tone="dark" radius="8px" ratio="16 / 9" />
+              </span>
+              <span className={styles.zeileText}>
+                <span className={styles.cardMeta}>Kapitel · {series.videos} Videos</span>
+                <span className={styles.zeileTitel}>{series.label}</span>
+              </span>
+              <svg className={styles.zeilePfeil} viewBox="0 0 9 11" aria-hidden="true">
+                <path d="M0 0v11l9-5.5z" />
+              </svg>
+            </button>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div className={styles.noteWrap}>
         <Reveal>

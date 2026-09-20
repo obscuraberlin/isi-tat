@@ -340,7 +340,7 @@ export interface Series {
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
-  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 30. */
+  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 31. */
   videos: number;
   /** Zwei bis drei Saetze in der Detailansicht. */
   description: string;
@@ -355,9 +355,9 @@ export const insideTheClub = {
   headline: "DIE VIDEOS.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
-  subline: "30 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
+  subline: "31 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
   body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Haltung.",
-  facts: "5 Kapitel · 30 Videos · aus über 20 Jahren Praxis · plus Live-Formate im Club",
+  facts: "5 Kapitel · 31 Videos · aus über 20 Jahren Praxis · plus Live-Formate im Club",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
   note: "Schau dort rein, wo dich gerade etwas beschäftigt — oder von vorn. Wie du die Videos nutzt, ist deine Sache.",
@@ -479,7 +479,7 @@ export const insideTheClub = {
 export const catalogue = {
   seriesCount: insideTheClub.series.length,
   /* Getippt wird nichts: die Videozahl ist die Summe der Kapitel.
-     7 + 7 + 6 + 8 + 3 = 30. Live mit ISI zaehlt nicht mit — das ist
+     7 + 7 + 6 + 8 + 3 = 31. Live mit ISI zaehlt nicht mit — das ist
      Club, nicht Masterclass. */
   videoCount: insideTheClub.series.reduce((summe, s) => summe + s.videos, 0),
 } as const;
@@ -836,7 +836,7 @@ export const membership = {
     headline: ["ALLES AN EINEM ORT.", "EIN LOGIN."],
     lines: [
       "Am Laptop, auf dem Tablet, auf dem Telefon.",
-      "Jede Serie, jede Aufzeichnung, der ganze Austausch.",
+      "Jede Serie, jeder Termin, der ganze Austausch.",
       "Kommt etwas dazu, liegt es am nächsten Tag drin.",
     ],
     note: "Abbildung des Mitgliederbereichs. Die Inhalte wachsen laufend.",
@@ -852,7 +852,7 @@ export const membership = {
   ),
   rows: [
     {
-      label: "30 VIDEOS",
+      label: "31 VIDEOS",
       text: "Fünf Kapitel aus über 20 Jahren praktischer Erfahrung.",
     },
     {
@@ -970,7 +970,7 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "30 Videos in fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Formate, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "31 Videos in fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Formate, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
     },
     {
       q: "Ist das ein Kurs oder ein Coaching?",
@@ -980,7 +980,7 @@ export const faq = {
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
       q: "Wie sind die Videos aufgebaut?",
-      a: "30 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele aus ISIs Praxis und endet mit einem Impuls und den ISI Rules. Nichts davon wird abgegeben oder bewertet. Entscheidend ist nicht, wie schnell du durch bist, sondern was du daraus machst.",
+      a: "31 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele aus ISIs Praxis und endet mit einem Impuls und den ISI Rules. Nichts davon wird abgegeben oder bewertet. Entscheidend ist nicht, wie schnell du durch bist, sondern was du daraus machst.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
@@ -1077,9 +1077,9 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB | 30 Videos, Live & Netzwerk",
+  title: "ISI TAT BUSINESS CLUB | 31 Videos, Live & Netzwerk",
   description:
-    "30 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
+    "31 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -1164,7 +1164,7 @@ export const ctaBands = {
      im Hero, und es verspricht nichts. */
   nachInhalten: {
     lines: [
-      "30 VIDEOS SIND DER ANFANG.",
+      "31 VIDEOS SIND DER ANFANG.",
       "ENTSCHEIDEND IST, WAS DU DAMIT MACHST.",
     ],
     /* Vorher "Die Plaetze sind begrenzt" — eine Knappheitsaussage ohne

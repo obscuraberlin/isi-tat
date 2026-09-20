@@ -271,7 +271,7 @@ export const club = {
   /* Folgen, die noch zu sind. */
   gesperrt: {
     kurz: "Noch gesperrt",
-    hinweis: "Sieh die Folge davor zu Ende, dann öffnet sich diese.",
+    hinweis: "Diese Folge ist noch nicht verfügbar.",
   },
 
   inhalte: {
@@ -302,7 +302,6 @@ export const club = {
     kommende: "KOMMENDE TERMINE",
     vergangene: "VERGANGENE TERMINE",
     vergangen: "Vergangen",
-    aufzeichnungAnsehen: "AUFZEICHNUNG ANSEHEN",
     /* §64: kein erfundener Termin, aber auch kein leeres Loch. */
     leer: "Der nächste Termin wird hier angekündigt.",
     leerText:

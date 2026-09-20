@@ -137,12 +137,12 @@ export function auswerten(
      weiter, mitten im Video. */
   const begonnen = REIHENFOLGE.filter((nr) => positionen[nr] && !satz.has(nr));
 
-  const frei = (nr: number) => {
-    if (alle || satz.has(nr)) return true;
-    const i = REIHENFOLGE.indexOf(nr);
-    if (i <= 0) return i === 0;
-    return satz.has(REIHENFOLGE[i - 1]);
-  };
+  /* Keine Sperre mehr: jede Folge ist von Anfang an offen. Eine
+     vorgegebene Reihenfolge, die der Anbieter durchsetzt, ist ein
+     Lehrgangsmerkmal (FernUSG). Der Club stellt Material bereit — in
+     welcher Reihenfolge jemand schaut, ist seine Sache. Die Funktion
+     bleibt, damit die Oberflaeche nicht umgebaut werden muss. */
+  const frei = (_nr: number) => true;
 
   /* Die naechste, die noch nicht gesehen ist — dort geht es weiter.
      Sind alle gesehen, die erste: von vorn ist auch ein Weg. */

@@ -62,8 +62,9 @@ export default async function LiveSeite() {
         </section>
       ) : null}
 
-      {/* §24: kein Knopf ohne Aufzeichnung. Vergangene ohne Video stehen
-          nur als Zeile — man sieht, was war, ohne ins Leere zu klicken. */}
+      {/* Vergangene Termine stehen nur als Zeile. Keine Aufzeichnungen:
+          aufgezeichnete Live-Termine zaehlen als zeitversetzter Unterricht
+          (BGH, III ZR 73/25) — genau das soll der Club nicht sein. */}
       {vergangen.length > 0 ? (
         <section className={styles.block} aria-labelledby="vergangen">
           <h2 id="vergangen" className={styles.blockTitel}>
@@ -79,19 +80,7 @@ export default async function LiveSeite() {
                 <span className={styles.was}>
                   {t.titel} <Beispiel wenn={t.beispiel} />
                 </span>
-                {t.aufzeichnung ? (
-                  <a
-                    className={styles.replay}
-                    href={t.aufzeichnung}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    {club.live.aufzeichnungAnsehen}
-                    <span aria-hidden="true"> →</span>
-                  </a>
-                ) : (
-                  <span className={styles.status}>{club.live.vergangen}</span>
-                )}
+                <span className={styles.status}>{club.live.vergangen}</span>
               </li>
             ))}
           </ul>

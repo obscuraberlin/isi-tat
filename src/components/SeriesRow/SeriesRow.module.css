@@ -380,9 +380,49 @@
 }
 
 @media (max-width: 767px) {
-  /* Schmalere Karten legen pro Runde weniger Weg zurueck. Ohne kuerzere
-     Dauer waere die Bewegung hier nur halb so schnell wie am Desktop. */
+  /* Am Handy kein Laufband: die angeschnittenen Nachbarn wirkten wie
+     schwarze Balken, weil ihr Textverlauf unten dunkel ist, und ein
+     Band, das von selbst laeuft, laesst sich mit dem Finger schlecht
+     treffen. Stattdessen eine Leiste zum Wischen, eine Karte gross,
+     die naechste schaut ein Stueck herein, Rasterung an den Karten. */
   .marquee {
-    --dauer: 20s;
+    --karte: min(320px, calc(100vw - 2 * var(--gutter) - 36px));
+    --gap: 12px;
+    width: 100%;
+    max-width: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .card {
+    scroll-snap-align: start;
+  }
+
+  /* Die Kopien fuer den Endlos-Lauf braucht die Leiste nicht. */
+  .card[aria-hidden="true"] {
+    display: none;
+  }
+
+  /* Rechts ein Stueck Luft, damit die letzte Karte nicht am Rand klebt. */
+  .track::after {
+    content: "";
+    flex: 0 0 calc(var(--gutter) - var(--gap));
   }
 }
+

@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cta } from "@/data/landingPage";
 import { useMediaQuery, useScrollProgress } from "@/lib/hooks";
-import { ButtonLink } from "@/components/ui/Button";
 import styles from "./StickyMobileCTA.module.css";
 
 /* Wo der Aufruf ohnehin auf der Seite steht. Solange einer davon im Bild
@@ -62,15 +62,17 @@ export function StickyMobileCTA() {
         .join(" ")}
       aria-hidden={!zeigen}
     >
-      <ButtonLink
+      <Link
         href={cta.sticky.href}
-        variant="primaryOnDark"
-        full
         className={styles.cta}
         tabIndex={zeigen ? undefined : -1}
       >
+        <span className={styles.punkt} aria-hidden="true" />
         {cta.sticky.label}
-      </ButtonLink>
+        <span className={styles.pfeil} aria-hidden="true">
+          →
+        </span>
+      </Link>
     </div>
   );
 }

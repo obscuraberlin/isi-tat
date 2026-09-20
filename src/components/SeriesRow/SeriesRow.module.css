@@ -470,7 +470,8 @@
     gap: 8px;
   }
 
-  .schritt::before {
+  .schritt::before,
+  .schritt + .schritt::before {
     content: "";
     width: 6px;
     height: 6px;

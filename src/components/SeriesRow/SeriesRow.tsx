@@ -123,7 +123,7 @@ export function SeriesRow() {
           angeschnitten, nichts laeuft von selbst. */}
       <ul className={styles.liste} aria-label="Die fünf Kapitel">
         {insideTheClub.series.map((series) => (
-          <li key={series.id} className={styles.zeile}>
+          <li key={series.id}>
             <button
               type="button"
               className={styles.zeileKnopf}
@@ -131,7 +131,7 @@ export function SeriesRow() {
               aria-label={`${series.label} öffnen`}
             >
               <span className={styles.zeileBild}>
-                <Media asset={series.still} tone="dark" radius="8px" ratio="16 / 9" />
+                <Media asset={series.still} tone="dark" radius="0" ratio="16 / 9" />
               </span>
               <span className={styles.zeileText}>
                 <span className={styles.cardMeta}>Kapitel · {series.videos} Videos</span>

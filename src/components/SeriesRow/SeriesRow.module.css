@@ -379,72 +379,130 @@
 @media (min-width: 1024px) {
 }
 
-/* ---------- Handy: Liste statt Band ---------- */
+/* ---------- Handy: Kacheln statt Band ---------- */
 
+/* Fuenf Kacheln untereinander, jede ein Bild in voller Breite mit dem
+   Titel im Bild — wie eine Reihe im Streaming-Dienst, nur gestapelt,
+   damit nichts angeschnitten ist und nichts von selbst laeuft. */
 .liste {
   display: none;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--line-dark);
-}
-
-.zeile {
-  border-bottom: 1px solid var(--line-dark);
+  gap: 12px;
 }
 
 .zeileKnopf {
-  display: grid;
-  grid-template-columns: 112px 1fr auto;
-  align-items: center;
-  gap: 14px;
+  position: relative;
+  display: block;
   width: 100%;
-  padding: 12px 0;
-  background: none;
+  aspect-ratio: 16 / 9;
+  padding: 0;
   border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card-dark);
+  color: var(--text-light);
   text-align: left;
-  color: inherit;
   cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.zeileKnopf:active {
+  transform: scale(0.99);
 }
 
 .zeileBild {
-  display: block;
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--card-dark);
+  position: absolute;
+  inset: 0;
+}
+
+.zeileBild > * {
+  width: 100%;
+  height: 100%;
+}
+
+/* Verlauf von unten, damit Schrift auf dem hellen Studio lesbar ist. */
+.zeileKnopf::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(4, 4, 4, 0.9) 0%,
+    rgba(4, 4, 4, 0.45) 38%,
+    rgba(4, 4, 4, 0) 70%
+  );
+  pointer-events: none;
 }
 
 .zeileText {
+  position: absolute;
+  left: 18px;
+  right: 64px;
+  bottom: 16px;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  min-width: 0;
+  gap: 5px;
 }
 
 .zeileTitel {
   font-family: var(--font-display);
   font-variation-settings: "wdth" var(--display-width);
-  font-size: 0.9375rem;
+  font-size: 1.125rem;
   font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-dark);
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+  color: var(--text-light);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Der Abspielknopf rechts unten, wie auf einem Player. */
 .zeilePfeil {
-  width: 9px;
-  height: 11px;
-  fill: var(--accent);
-  margin-right: 4px;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  padding: 12px 11px 12px 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  fill: #0b0b0b;
+  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
+  /* Der ganze Abschnitt dunkel: Kacheln wie im Kino, nicht auf Creme. */
+  .section {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    --text-muted: var(--text-muted-light);
+    --line-dark: var(--line-light);
+  }
+
+  .section > div[aria-hidden="true"]:first-child {
+    display: none;
+  }
+
+  .body,
+  .work {
+    color: #cfcfcf;
+  }
+
+  .schritt {
+    color: var(--text-light);
+  }
+
   .marquee {
     display: none;
   }
 
   .liste {
-    display: block;
-    margin-top: 6px;
+    display: grid;
+    padding-inline: var(--gutter);
+    margin-top: 4px;
   }
 
   /* Die Arbeitsschritte untereinander statt umbrechend: mit Umbruch
@@ -465,5 +523,3 @@
     background: var(--accent);
   }
 }
-
-

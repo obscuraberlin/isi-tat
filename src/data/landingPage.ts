@@ -442,7 +442,6 @@ export const insideTheClub = {
         "Mehr verdienen statt nur sparen",
         "Umsatz ist nicht dein Geld",
         "Warum ein guter Steuerberater Geld wert ist",
-        "Reinvestieren",
         "Geld bewusst ausgeben",
         "Lifestyle als Content",
         "Kreditkarten und Punkte",

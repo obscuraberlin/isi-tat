@@ -4,6 +4,7 @@ import { club } from "@/data/club";
 import { clubDateien } from "@/data/mediaFiles";
 import s from "@/components/Club/Seite.module.css";
 import styles from "./page.module.css";
+import { Wasserzeichen } from "@/components/Club/Wasserzeichen";
 
 export const metadata: Metadata = { robots: { index: false, follow: false, nocache: true } };
 
@@ -33,6 +34,7 @@ export default async function WillkommenSeite() {
             preload="metadata"
             aria-label={club.willkommen.videoLabel}
           />
+          <Wasserzeichen />
         </div>
       ) : null}
     </div>

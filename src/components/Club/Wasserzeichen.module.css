@@ -1,0 +1,24 @@
+/* Oben rechts, weit genug vom Rand, dass es auf dem Handy nicht am
+   Bildrand klebt, und ueber der Steuerung, damit die Leiste unten frei
+   bleibt. pointer-events: none — die Steuerung darunter bleibt bedienbar. */
+.marke {
+  position: absolute;
+  top: clamp(10px, 2.2%, 18px);
+  right: clamp(12px, 2.4%, 20px);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+
+  font-family: var(--font-archivo), var(--font-inter), system-ui, sans-serif;
+  font-size: clamp(0.5625rem, 0.42rem + 0.6vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.55);
+  /* Ein Hauch Schatten, damit die Marke auch auf dem hellen Studio-
+     Hintergrund lesbar bleibt, ohne wie ein Kasten zu wirken. */
+  text-shadow:
+    0 0 1px rgba(0, 0, 0, 0.35),
+    0 1px 6px rgba(0, 0, 0, 0.45);
+}

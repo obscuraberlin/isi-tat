@@ -7,6 +7,7 @@ import type { MediaAsset } from "@/data/landingPage";
 import { club } from "@/data/club";
 import { gesehenMerken, positionMerken, useFortschritt } from "@/lib/fortschritt";
 import { Media } from "@/components/Media/Media";
+import { Wasserzeichen } from "./Wasserzeichen";
 import styles from "./FolgenPlayer.module.css";
 
 /**
@@ -154,6 +155,7 @@ export function FolgenPlayer({
         ) : (
           <Media asset={standbild} tone="dark" radius="0" ratio="16 / 9" />
         )}
+        {laeuft ? <Wasserzeichen /> : null}
 
         {zaehler !== null && naechsteNr !== null ? (
           <div className={styles.overlay} role="status">

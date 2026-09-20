@@ -5,6 +5,7 @@ import type { MediaFile } from "@/data/mediaFiles";
 import { club } from "@/data/club";
 import { willkommenGesehen, willkommenMerken } from "@/lib/merker";
 import styles from "./Willkommen.module.css";
+import { Wasserzeichen } from "./Wasserzeichen";
 
 /**
  * Der Gruss beim ersten Mal — ISIs Willkommensvideo.
@@ -99,6 +100,7 @@ export function Willkommen({ video }: { video: MediaFile | null }) {
               onEnded={() => setFertig(true)}
               aria-label={t.videoLabel}
             />
+            {laeuft ? <Wasserzeichen /> : null}
             {!laeuft ? (
               <button type="button" className={styles.play} onClick={abspielen} autoFocus>
                 <span className={styles.playKreis} aria-hidden="true">

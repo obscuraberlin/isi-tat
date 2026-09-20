@@ -226,6 +226,9 @@ export const club = {
     verbindung: "Keine Verbindung. Prüf dein Internet und versuch es noch einmal.",
   },
 
+  /* Die Marke oben rechts in jedem Kursvideo. */
+  wasserzeichen: "Nur für Mitglieder",
+
   willkommen: {
     titel: ["WILLKOMMEN", "IM CLUB."],
     text: "Hier findest du die Inhalte, Live-Termine und alles, was gerade im Club passiert.",

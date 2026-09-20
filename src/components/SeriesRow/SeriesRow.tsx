@@ -62,6 +62,9 @@ const KOPIEN = 3;
 
 export function SeriesRow() {
   const [active, setActive] = useState<Series | null>(null);
+  /* Welche Karte am Handy gerade im Bild steht — fuer die Punkte unter
+     der Leiste. Am Desktop laeuft das Band, da gibt es keine Punkte. */
+  const [stelle, setStelle] = useState(0);
 
   /* Das Band stand still, bis der Besucher fast daran vorbei war: die
      Animation lief seit dem Aufruf der Seite und war bis hierher schon
@@ -99,6 +102,13 @@ export function SeriesRow() {
         className={styles.marquee}
         role="region"
         aria-label="Die fünf Kapitel"
+        onScroll={(e) => {
+          const el = e.currentTarget;
+          const karte = el.querySelector<HTMLElement>("button:not([aria-hidden])");
+          if (!karte) return;
+          const schritt = karte.offsetWidth + parseFloat(getComputedStyle(karte).marginRight || "0");
+          setStelle(Math.round(el.scrollLeft / schritt));
+        }}
       >
         <div
           className={[styles.track, inView ? "" : styles.trackWartet]
@@ -116,6 +126,15 @@ export function SeriesRow() {
             )),
           )}
         </div>
+      </div>
+
+      <div className={styles.punkte} aria-hidden="true">
+        {insideTheClub.series.map((series, i) => (
+          <span
+            key={series.id}
+            className={[styles.punkt, i === stelle ? styles.punktAktiv : ""].filter(Boolean).join(" ")}
+          />
+        ))}
       </div>
 
       <div className={styles.noteWrap}>

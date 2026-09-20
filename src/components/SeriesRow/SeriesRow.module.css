@@ -379,15 +379,36 @@
 @media (min-width: 1024px) {
 }
 
+/* Die Punkte unter der Leiste — nur am Handy, siehe oben. */
+.punkte {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.punkt {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  transition: background var(--d-base) var(--ease-out), transform var(--d-base) var(--ease-out);
+}
+
+.punktAktiv {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
 @media (max-width: 767px) {
   /* Am Handy kein Laufband: die angeschnittenen Nachbarn wirkten wie
      schwarze Balken, weil ihr Textverlauf unten dunkel ist, und ein
      Band, das von selbst laeuft, laesst sich mit dem Finger schlecht
-     treffen. Stattdessen eine Leiste zum Wischen, eine Karte gross,
-     die naechste schaut ein Stueck herein, Rasterung an den Karten. */
+     treffen. Stattdessen eine Karte in voller Breite, die naechste per
+     Wischen, Punkte darunter zeigen, wo man ist. */
   .marquee {
-    --karte: min(320px, calc(100vw - 2 * var(--gutter) - 36px));
-    --gap: 12px;
+    --karte: calc(100vw - 2 * var(--gutter));
+    --gap: var(--gutter);
     width: 100%;
     max-width: none;
     overflow-x: auto;
@@ -397,6 +418,7 @@
     scroll-snap-type: x mandatory;
     scroll-padding-inline: var(--gutter);
     padding-inline: var(--gutter);
+    padding-block: 8px 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -412,6 +434,7 @@
 
   .card {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   /* Die Kopien fuer den Endlos-Lauf braucht die Leiste nicht. */
@@ -422,7 +445,38 @@
   /* Rechts ein Stueck Luft, damit die letzte Karte nicht am Rand klebt. */
   .track::after {
     content: "";
-    flex: 0 0 calc(var(--gutter) - var(--gap));
+    flex: 0 0 1px;
+  }
+
+  /* Auf der Karte nur Kapitel und Titel. Der Satz dazu steht in der
+     Detailansicht — hier machte er die Karte unruhig. */
+  .cardCopyWrap {
+    display: none;
+  }
+
+  .cardBody {
+    padding: 18px 18px 20px;
+  }
+
+  .punkte {
+    display: flex;
+  }
+
+  /* Die Arbeitsschritte untereinander statt umbrechend: mit Umbruch
+     standen die Pfeile mal am Ende, mal am Anfang einer Zeile. */
+  .ablauf {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .schritt::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-inline: 0 12px;
+    border-radius: 50%;
+    background: var(--accent);
   }
 }
 

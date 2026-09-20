@@ -340,7 +340,7 @@ export interface Series {
   label: string;
   /** Ein Satz auf der Karte. */
   tagline: string;
-  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 33. */
+  /** Anzahl der Videos in diesem Kapitel. Summe ueber alle: 30. */
   videos: number;
   /** Zwei bis drei Saetze in der Detailansicht. */
   description: string;
@@ -355,9 +355,9 @@ export const insideTheClub = {
   headline: "DIE MASTERCLASS.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
-  subline: "33 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
+  subline: "30 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
   body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Aufgaben.",
-  facts: "5 Kapitel · 33 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
+  facts: "5 Kapitel · 30 Videos · konkrete Umsetzungsaufgaben · plus Live-Formate im Club",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
   note: "Steig dort ein, wo du gerade eine konkrete Herausforderung hast — oder arbeite die Masterclass als Ganzes durch.",
@@ -454,7 +454,7 @@ export const insideTheClub = {
       label: "PERSONAL BRAND, NETZWERK & WACHSTUM",
       tagline:
         "Sichtbarkeit aufbauen, Vertrauen schaffen und dafür sorgen, dass die richtigen Menschen wissen, wofür du stehst.",
-      videos: 5,
+      videos: 3,
       description:
         "Eine Personal Brand ist kein Selbstzweck. Sie sorgt dafür, dass Menschen dich kennen, bevor du dich vorstellst — und dass aus Reichweite gelegentlich ein Gespräch wird, aus dem etwas entsteht.",
       cover: media("kurs-brand-cover", "image", "Personal Brand, Netzwerk & Wachstum", "2 / 3"),
@@ -462,9 +462,7 @@ export const insideTheClub = {
       topics: [
         "Deine Personal Brand arbeitet, während du schläfst",
         "Wie Social Media echte Deals bringen kann",
-        "Warum ich Lifestyle zeige",
         "Reichweite ist nicht gleich Einfluss",
-        "Vom Zuschauer zum möglichen Geschäftskontakt",
       ],
     },
   ] as readonly Series[],
@@ -481,7 +479,7 @@ export const insideTheClub = {
 export const catalogue = {
   seriesCount: insideTheClub.series.length,
   /* Getippt wird nichts: die Videozahl ist die Summe der Kapitel.
-     7 + 7 + 6 + 8 + 5 = 33. Live mit ISI zaehlt nicht mit — das ist
+     7 + 7 + 6 + 8 + 3 = 30. Live mit ISI zaehlt nicht mit — das ist
      Club, nicht Masterclass. */
   videoCount: insideTheClub.series.reduce((summe, s) => summe + s.videos, 0),
 } as const;
@@ -854,7 +852,7 @@ export const membership = {
   ),
   rows: [
     {
-      label: "33-VIDEO MASTERCLASS",
+      label: "30-VIDEO MASTERCLASS",
       text: "Fünf Kapitel aus über 20 Jahren praktischer Erfahrung.",
     },
     {
@@ -972,13 +970,13 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "Die 33-Video-Masterclass mit fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "Die 30-Video-Masterclass mit fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Austausch, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
     },
     /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
       q: "Wie ist die Masterclass aufgebaut?",
-      a: "33 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele und endet mit einer Umsetzungsaufgabe und klaren ISI Rules. Entscheidend ist nicht, wie schnell du durch bist, sondern was du anwendest.",
+      a: "30 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele und endet mit einer Umsetzungsaufgabe und klaren ISI Rules. Entscheidend ist nicht, wie schnell du durch bist, sondern was du anwendest.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
@@ -1075,9 +1073,9 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB | 33-Video Masterclass, Live & Netzwerk",
+  title: "ISI TAT BUSINESS CLUB | 30-Video Masterclass, Live & Netzwerk",
   description:
-    "33 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
+    "30 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -1162,7 +1160,7 @@ export const ctaBands = {
      im Hero, und es verspricht nichts. */
   nachInhalten: {
     lines: [
-      "33 VIDEOS SIND DER ANFANG.",
+      "30 VIDEOS SIND DER ANFANG.",
       "ENTSCHEIDEND IST, WAS DU DAMIT MACHST.",
     ],
     /* Vorher "Die Plaetze sind begrenzt" — eine Knappheitsaussage ohne

@@ -413,19 +413,19 @@ export const insideTheClub = {
       id: "business",
       label: "BUSINESS AUFBAUEN & GELD VERDIENEN",
       tagline:
-        "Ideen prüfen, Partner einschätzen, Risiken verstehen, Teams aufbauen und Systeme schaffen.",
+        "Investments prüfen, Verträge machen, Risiken absichern und ein Team aufbauen, das bleibt.",
       videos: 6,
       description:
-        "Eine gute Idee ist der einfachste Teil. Wie ich Partner einschätze, warum ein Handschlag keinen Vertrag ersetzt und was mich das Lehrgeld gekostet hat, bevor ich das verstanden hatte.",
+        "Wie ich Partner einschätze, warum ein Handschlag keinen Vertrag ersetzt, was mich das Lehrgeld gekostet hat und warum du dein Einkommen nur über ein Team skalieren kannst.",
       cover: media("kurs-business-cover", "image", "Business aufbauen & Geld verdienen", "2 / 3"),
       still: media("kurs-business-still", "image", "Business aufbauen & Geld verdienen", "16 / 9", {}, 11),
       topics: [
-        "Eine gute Idee reicht nicht",
-        "Investiere in Menschen",
-        "Fünfstelliges Investment-Lehrgeld",
-        "Warum Verträge Pflicht sind",
-        "Geld wird beim Einkauf verdient",
-        "Vermögen schützen",
+        "Superfoods: fünfstelliges Lehrgeld",
+        "250.000 Euro und Handschlag",
+        "Ferrari gestohlen — was ich daraus gelernt habe",
+        "Zeit gegen Geld oder Team",
+        "Nicht jeder ist, wie er am Anfang wirkt",
+        "Menschen führen, ohne hinterherzulaufen",
       ],
     },
     {

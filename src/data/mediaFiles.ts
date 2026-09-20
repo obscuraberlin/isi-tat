@@ -53,6 +53,12 @@ export const kursDateien: Record<number, MediaFile> = {
   14: {"klein":"/media/v14-klein.mp4","poster":"/media/v14-poster.jpg","src":"/media/v14.mp4"},
   15: {"klein":"/media/v15-klein.mp4","poster":"/media/v15-poster.jpg","src":"/media/v15.mp4"},
   16: {"klein":"/media/v16-klein.mp4","poster":"/media/v16-poster.jpg","src":"/media/v16.mp4"},
+  17: {"klein":"/media/v17-klein.mp4","poster":"/media/v17-poster.jpg","src":"/media/v17.mp4"},
+  18: {"klein":"/media/v18-klein.mp4","poster":"/media/v18-poster.jpg","src":"/media/v18.mp4"},
+  19: {"klein":"/media/v19-klein.mp4","poster":"/media/v19-poster.jpg","src":"/media/v19.mp4"},
+  20: {"klein":"/media/v20-klein.mp4","poster":"/media/v20-poster.jpg","src":"/media/v20.mp4"},
+  21: {"klein":"/media/v21-klein.mp4","poster":"/media/v21-poster.jpg","src":"/media/v21.mp4"},
+  22: {"klein":"/media/v22-klein.mp4","poster":"/media/v22-poster.jpg","src":"/media/v22.mp4"},
   27: {"klein":"/media/v27-klein.mp4","poster":"/media/v27-poster.jpg","src":"/media/v27.mp4"},
   28: {"klein":"/media/v28-klein.mp4","poster":"/media/v28-poster.jpg","src":"/media/v28.mp4"},
   29: {"klein":"/media/v29-klein.mp4","poster":"/media/v29-poster.jpg","src":"/media/v29.mp4"},
@@ -61,6 +67,7 @@ export const kursDateien: Record<number, MediaFile> = {
   33: {"klein":"/media/v33-klein.mp4","poster":"/media/v33-poster.jpg","src":"/media/v33.mp4"},
   34: {"klein":"/media/v34-klein.mp4","poster":"/media/v34-poster.jpg","src":"/media/v34.mp4"},
   35: {"klein":"/media/v35-klein.mp4","poster":"/media/v35-poster.jpg","src":"/media/v35.mp4"},
+  36: {"klein":"/media/v36-klein.mp4","poster":"/media/v36-poster.jpg","src":"/media/v36.mp4"},
   37: {"klein":"/media/v37-klein.mp4","poster":"/media/v37-poster.jpg","src":"/media/v37.mp4"},
 };
 

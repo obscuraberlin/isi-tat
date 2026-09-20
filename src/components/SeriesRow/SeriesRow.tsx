@@ -118,29 +118,20 @@ export function SeriesRow() {
         </div>
       </div>
 
-      {/* Am Handy statt des Bands: die fuenf Kapitel als Liste, wie die
-          Folgen im Mitgliederbereich. Alles auf einen Blick, nichts
-          angeschnitten, nichts laeuft von selbst. */}
+      {/* Am Handy statt des Bands: die fuenf Kapitel als Kacheln, wie eine
+          Reihe im Streaming-Dienst. Reine Teaser — nichts zum Antippen,
+          nichts zu erklaeren. Was drin ist, sagt die Detailansicht am
+          Desktop und der Club selbst. */}
       <ul className={styles.liste} aria-label="Die fünf Kapitel">
         {insideTheClub.series.map((series) => (
-          <li key={series.id}>
-            <button
-              type="button"
-              className={styles.zeileKnopf}
-              onClick={() => setActive(series)}
-              aria-label={`${series.label} öffnen`}
-            >
-              <span className={styles.zeileBild}>
-                <Media asset={series.still} tone="dark" radius="0" ratio="16 / 9" />
-              </span>
-              <span className={styles.zeileText}>
-                <span className={styles.cardMeta}>Kapitel · {series.videos} Videos</span>
-                <span className={styles.zeileTitel}>{series.label}</span>
-              </span>
-              <svg className={styles.zeilePfeil} viewBox="0 0 9 11" aria-hidden="true">
-                <path d="M0 0v11l9-5.5z" />
-              </svg>
-            </button>
+          <li key={series.id} className={styles.kachel}>
+            <span className={styles.zeileBild}>
+              <Media asset={series.still} tone="dark" radius="0" ratio="16 / 9" />
+            </span>
+            <span className={styles.zeileText}>
+              <span className={styles.cardMeta}>Kapitel · {series.videos} Videos</span>
+              <span className={styles.zeileTitel}>{series.label}</span>
+            </span>
           </li>
         ))}
       </ul>

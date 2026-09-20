@@ -392,24 +392,16 @@
   gap: 12px;
 }
 
-.zeileKnopf {
+.kachel {
   position: relative;
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
-  padding: 0;
-  border: 0;
   border-radius: 14px;
   overflow: hidden;
   background: var(--card-dark);
   color: var(--text-light);
-  text-align: left;
-  cursor: pointer;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-}
-
-.zeileKnopf:active {
-  transform: scale(0.99);
 }
 
 .zeileBild {
@@ -423,7 +415,7 @@
 }
 
 /* Verlauf von unten, damit Schrift auf dem hellen Studio lesbar ist. */
-.zeileKnopf::after {
+.kachel::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -439,7 +431,7 @@
 .zeileText {
   position: absolute;
   left: 18px;
-  right: 64px;
+  right: 18px;
   bottom: 16px;
   z-index: 1;
   display: flex;
@@ -456,21 +448,6 @@
   letter-spacing: 0.005em;
   color: var(--text-light);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Der Abspielknopf rechts unten, wie auf einem Player. */
-.zeilePfeil {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  z-index: 1;
-  width: 40px;
-  height: 40px;
-  padding: 12px 11px 12px 14px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  fill: #0b0b0b;
-  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {

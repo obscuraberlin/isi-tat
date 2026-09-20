@@ -93,6 +93,9 @@ export function Willkommen({ video }: { video: MediaFile | null }) {
               playsInline
               preload="metadata"
               controls={laeuft}
+              controlsList="nodownload noremoteplayback"
+              disablePictureInPicture
+              onContextMenu={(e) => e.preventDefault()}
               onEnded={() => setFertig(true)}
               aria-label={t.videoLabel}
             />

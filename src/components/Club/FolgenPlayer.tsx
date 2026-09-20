@@ -139,6 +139,9 @@ export function FolgenPlayer({
             src={asset.src ?? undefined}
             poster={asset.poster ?? undefined}
             controls
+            controlsList="nodownload noremoteplayback"
+            disablePictureInPicture
+            onContextMenu={(e) => e.preventDefault()}
             playsInline
             autoPlay={autoStart}
             preload="metadata"

@@ -27,6 +27,8 @@ export default async function WillkommenSeite() {
             src={video.src}
             poster={video.poster}
             controls
+            controlsList="nodownload noremoteplayback"
+            disablePictureInPicture
             playsInline
             preload="metadata"
             aria-label={club.willkommen.videoLabel}

@@ -249,27 +249,6 @@ export const kursVideos: readonly KursVideo[] = [
     ],
   },
   {
-    nr: 11,
-    kapitelId: "sales",
-    slug: "warum-menschen-bei-menschen-kaufen",
-    titel: "Warum Menschen bei Menschen kaufen",
-    unter: "Vertrauen als Teil des Produkts",
-    kern: "Bei beratungsintensiven Produkten kaufen Menschen nicht nur Leistung und Preis, sondern auch Vertrauen in die Person, die sie begleitet.",
-    hook: "Zwei Menschen können dasselbe Produkt anbieten — und der Kunde entscheidet sich trotzdem ganz klar für einen von beiden.",
-    gliederung: [
-      { titel: "Sympathie", text: "Freundlichkeit, Humor und Augenhöhe erleichtern Gespräche." },
-      { titel: "Kompetenz", text: "Sympathie ohne Substanz reicht langfristig nicht." },
-      { titel: "Zuverlässigkeit", text: "Versprechen einhalten, erreichbar im vereinbarten Rahmen, Probleme lösen." },
-      { titel: "Integrität", text: "Nicht verkaufen, was nicht passt. Fehler zugeben. Keine falschen Versprechen." },
-      { titel: "Status als Türöffner", text: "Sichtbarer Erfolg kann Interesse erzeugen — muss aber durch Verhalten bestätigt werden." },
-    ],
-    aufgabe: "Frage drei Kunden oder Kollegen, warum sie gerne mit dir arbeiten. Suche nach wiederkehrenden Eigenschaften, nicht nach Produktmerkmalen.",
-    regeln: [
-      "Menschen kaufen nicht nur Produkte. Sie kaufen Vertrauen in Menschen.",
-      "Sympathie öffnet die Tür. Kompetenz und Zuverlässigkeit halten sie offen.",
-    ],
-  },
-  {
     nr: 12,
     kapitelId: "sales",
     slug: "verkaufe-nichts-woran-du-nicht-glaubst",
@@ -351,6 +330,27 @@ export const kursVideos: readonly KursVideo[] = [
     regeln: [
       "Nicht jeder verlorene Abschluss ist ein verlorener Kunde.",
       "Vertrauen ist langfristig oft wertvoller als ein erzwungenes Ja.",
+    ],
+  },
+  {
+    nr: 16,
+    kapitelId: "sales",
+    slug: "wie-ich-einen-ferrari-um-ca-20-000-euro-runtergehandelt-habe",
+    titel: "Wie ich einen Ferrari um ca. 20.000 Euro runtergehandelt habe",
+    unter: "Verhandeln beginnt vor dem Gespräch",
+    kern: "Marktbeobachtung, Verkäuferlogik, ein klares Limit und echte Abschlussbereitschaft können stärker sein als rhetorische Tricks.",
+    hook: "Der Ferrari stand nach meiner Erinnerung für ungefähr 270.000 Euro beim Händler. Gekauft habe ich ihn für etwa 250.000. Der wichtigste Teil der Verhandlung passierte aber vor dem ersten Gespräch.",
+    gliederung: [
+      { titel: "Markt beobachten", text: "Vergleichbare F8 lagen nach meiner damaligen Wahrnehmung häufig höher." },
+      { titel: "Händlerlogik verstehen", text: "Markenfremdes Fahrzeug, Kapitalbindung, Marge und Standzeit als relevante Faktoren." },
+      { titel: "Klare Zahl", text: "Ein nachvollziehbares Angebot mit Budget und Argumenten statt endlosem Feilschen." },
+      { titel: "Kaufbereitschaft", text: "Ein Verkäufer bewertet ein sofort umsetzbares Angebot anders als unverbindliches Interesse." },
+      { titel: "Walk-away", text: "Ich wollte das Auto — aber ich musste genau dieses Angebot nicht um jeden Preis haben." },
+    ],
+    aufgabe: "Bereite deine nächste Verhandlung auf einer Seite vor: Marktpreis, Verkäuferinteresse, dein Zielpreis, dein Maximalpreis, drei echte Argumente und deine Alternative.",
+    regeln: [
+      "Verhandeln beginnt mit Marktkenntnis.",
+      "Ich will es haben — aber ich muss es nicht haben.",
     ],
   },
   {

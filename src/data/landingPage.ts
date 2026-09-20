@@ -402,11 +402,11 @@ export const insideTheClub = {
       topics: [
         "Verkaufen kann man lernen",
         "Schlagzahl entscheidet",
-        "Warum Menschen bei Menschen kaufen",
         "Verkaufe nichts, woran du nicht glaubst",
         "Drei Kundentypen",
         "„Das ist mir zu teuer.“",
         "Warum ich Kunden gehen lasse",
+        "Wie ich bei einem Ferrari ca. 20.000 € verhandelt habe",
       ],
     },
     {

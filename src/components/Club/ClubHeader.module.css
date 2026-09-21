@@ -190,3 +190,12 @@
     display: none;
   }
 }
+
+/* Am Handy keine Haarlinie unter dem Kopf: der Player auf der Folgenseite
+   sitzt dort randlos direkt darunter, und die Linie lag als heller Strich
+   auf dem Videobild. Der dunkle, weichgezeichnete Grund trennt genug. */
+@media (max-width: 599px) {
+  .fest {
+    border-bottom-color: transparent;
+  }
+}

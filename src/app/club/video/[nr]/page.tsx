@@ -98,9 +98,6 @@ export default async function VideoSeite({
             <span className={styles.mehrPfeil} aria-hidden="true" />
           </summary>
           <div className={styles.mehrInhalt}>
-            <h3 className={styles.mehrTitel}>{club.video.aufgabe}</h3>
-            <p className={styles.aufgabe}>{video.aufgabe}</p>
-            <p className={styles.hinweis}>{club.video.aufgabeHinweis}</p>
 
             <h3 className={styles.mehrTitel}>{club.video.regeln}</h3>
             <ul className={styles.regeln}>

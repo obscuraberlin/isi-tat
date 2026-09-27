@@ -194,7 +194,7 @@ export const hero = {
   /* Drei Punkte, drei Sekunden. Der lange Satz vorher hat erklaert,
      dieser behauptet — und der letzte Teil ist der, der sitzt. */
   subheadline:
-    "Meine Erfahrung. Meine Fehler. Meine Entscheidungen. Mein Netzwerk — verdichtet, damit du nicht jeden Umweg selbst gehen musst.",
+    "Mein Netzwerk. Meine Erfahrung. Meine Fehler und Entscheidungen — und die Möglichkeiten, die daraus entstehen können.",
   /* Die Vertrauenszeile ist raus: sie hat aufgezaehlt, was die Subline
      zwei Zeilen darueber schon sagt, und den Hero unten zugestellt. */
   /* 16:9, weil das Material so gedreht ist. Im 4:5-Rahmen waere fast die
@@ -351,21 +351,21 @@ export interface Series {
 }
 
 export const insideTheClub = {
-  eyebrow: "Die Videos",
-  headline: "DIE VIDEOS.",
+  eyebrow: "Die Erfahrungsmediathek",
+  headline: "DIE MEDIATHEK.",
   /* Keine Gesamtlaufzeit: die Videos sind nicht final geschnitten, und
      eine geschaetzte Stundenzahl waere eine nachpruefbare Angabe. */
-  subline: "31 Videos. 5 Kapitel. Erfahrung aus über 20 Jahren.",
-  body: "Persönliche Geschichten. Konkrete Prinzipien. Klare Haltung.",
-  facts: "5 Kapitel · 31 Videos · aus über 20 Jahren Praxis · plus Live-Formate im Club",
+  subline: "31 Beiträge. 5 Themen. 20 Jahre Unternehmertum und Vertrieb.",
+  body: "Persönliche Einblicke. Praxisberichte. Entscheidungen, die ich getroffen habe — und was daraus wurde.",
+  facts: "Ergänzung zur Mitgliedschaft · 31 Erfahrungsbeiträge · 5 Themen · keine Reihenfolge",
   /* Loest "Keine Reihenfolge." ab. Der Kurs ist strukturiert; die
      Freiheit liegt im Einstieg, nicht in der Struktur. */
-  note: "Schau dort rein, wo dich gerade etwas beschäftigt — oder von vorn. Wie du die Videos nutzt, ist deine Sache.",
-  workLine: ["WISSEN ALLEIN REICHT NICHT.", "UMSETZUNG ENTSCHEIDET."],
-  work: "Jedes Video endet mit einem Impuls für die Praxis. Was du daraus machst, entscheidest du — niemand prüft, niemand bewertet.",
+  note: "Kein Lernweg. Schau dort rein, wo dich gerade etwas beschäftigt, in beliebiger Reihenfolge — oder gar nicht. Der Club funktioniert auch ohne.",
+  workLine: ["DER CLUB IST DAS PRODUKT.", "DIE MEDIATHEK IST DIE ERGÄNZUNG."],
+  work: "Im Mittelpunkt stehen Netzwerk, persönliche Orientierung, Veranstaltungen und die Kontakte, die daraus entstehen. Die Mediathek ist mein Erfahrungsschatz dazu: Erlebnisse, Fehler, Einschätzungen. Kein Unterricht, keine Prüfung, kein Zertifikat.",
   /* Die Schritte als Zeile unter dem Text. Kein Lernpfad durch die
      Inhalte, sondern die Arbeitsweise an einem einzelnen Video. */
-  ablauf: ["VERSTEHEN", "PRÜFEN", "ANWENDEN", "REFLEKTIEREN", "WEITERMACHEN"],
+  ablauf: ["NETZWERK", "ORIENTIERUNG", "EVENTS", "MATCHING", "MEDIATHEK"],
   /* Auf dem Telefon nur die ersten drei Beispielthemen, der Rest hinter
      einem Schalter. Zwoelf Zeilen Aufzaehlung liest dort niemand. */
   themenMehr: "Alle Themen ansehen",
@@ -382,10 +382,10 @@ export const insideTheClub = {
       cover: media("kurs-mindset-cover", "image", "Mindset, Chancen & unternehmerisches Denken", "2 / 3"),
       still: media("kurs-mindset-still", "image", "Mindset, Chancen & unternehmerisches Denken", "16 / 9", {}, 7),
       topics: [
-        "Erfahrung als Abkürzung",
-        "Der Red-Car-Effekt",
+        "Wie mir fremde Erfahrung Jahre erspart hätte",
+        "Warum ich Chancen erst sah, als ich danach gesucht habe",
         "Entscheidungen schnell treffen",
-        "Zu langsam vs. zu schnell",
+        "Wo ich zu langsam war und wo zu schnell",
         "Probleme lösen statt verwalten",
       ],
     },
@@ -400,13 +400,13 @@ export const insideTheClub = {
       cover: media("kurs-sales-cover", "image", "Sales, Menschen & Verhandeln", "2 / 3"),
       still: media("kurs-sales-still", "image", "Sales, Menschen & Verhandeln", "16 / 9", {}, 9),
       topics: [
-        "Verkaufen kann man lernen",
-        "Schlagzahl entscheidet",
-        "Verkaufe nichts, woran du nicht glaubst",
-        "Drei Kundentypen",
-        "„Das ist mir zu teuer.“",
+        "Wie ich verkaufen gelernt habe",
+        "Warum bei mir die Schlagzahl entschieden hat",
+        "Warum ich nichts verkaufe, woran ich nicht glaube",
+        "Die drei Kundentypen, die mir immer wieder begegnen",
+        "Wie ich mit „zu teuer“ umgehe",
         "Warum ich Kunden gehen lasse",
-        "Wie ich bei einem Ferrari ca. 20.000 € verhandelt habe",
+        "Wie ich einen Ferrari um ca. 20.000 Euro runtergehandelt habe",
       ],
     },
     {
@@ -420,12 +420,12 @@ export const insideTheClub = {
       cover: media("kurs-business-cover", "image", "Business aufbauen & Geld verdienen", "2 / 3"),
       still: media("kurs-business-still", "image", "Business aufbauen & Geld verdienen", "16 / 9", {}, 11),
       topics: [
-        "Superfoods: fünfstelliges Lehrgeld",
+        "Superfoods: mein teuerstes Lehrgeld",
         "250.000 Euro und Handschlag",
         "Ferrari gestohlen — was ich daraus gelernt habe",
-        "Zeit gegen Geld oder Team",
-        "Nicht jeder ist, wie er am Anfang wirkt",
-        "Menschen führen, ohne hinterherzulaufen",
+        "Warum ich aufgehört habe, nur meine Zeit zu verkaufen",
+        "Wie ich Menschen im Team einschätze",
+        "Wie ich führe, ohne hinterherzulaufen",
       ],
     },
     {
@@ -440,13 +440,13 @@ export const insideTheClub = {
       still: media("kurs-geld-still", "image", "Geld, Lifestyle & Business-Hacks", "16 / 9", {}, 13),
       topics: [
         "Mehr verdienen statt nur sparen",
-        "Umsatz ist nicht dein Geld",
+        "Als ich gelernt habe, dass Umsatz nicht mein Geld ist",
         "Warum ein guter Steuerberater Geld wert ist",
         "Geld bewusst ausgeben",
         "Lifestyle als Content",
         "Kreditkarten und Punkte",
         "Finanzierung vs. Barzahlung",
-        "Preise recherchieren",
+        "Wie ich Preise recherchiere, bevor ich kaufe",
       ],
     },
     {
@@ -460,9 +460,9 @@ export const insideTheClub = {
       cover: media("kurs-brand-cover", "image", "Personal Brand, Netzwerk & Wachstum", "2 / 3"),
       still: media("kurs-brand-still", "image", "Personal Brand, Netzwerk & Wachstum", "16 / 9", {}, 15),
       topics: [
-        "Deine Personal Brand arbeitet, während du schläfst",
-        "Wie Social Media echte Deals bringen kann",
-        "Reichweite ist nicht gleich Einfluss",
+        "Wie meine Personal Brand für mich arbeitet",
+        "Wie Social Media mir echte Deals gebracht hat",
+        "Warum Reichweite bei mir nicht gleich Einfluss ist",
       ],
     },
   ] as readonly Series[],
@@ -682,9 +682,9 @@ export const network = {
    ein Bestandteil der Mitgliedschaft — und steht deshalb in einem eigenen
    Bereich nach den fuenf Kapiteln. */
 export const live = {
-  lead: ["DIE VIDEOS", "SIND NICHT DER GANZE CLUB."],
+  lead: ["DIE MEDIATHEK", "IST NICHT DER CLUB."],
   label: "LIVE MIT ISI",
-  line: "Die Videos sind ISIs Erfahrung. Live geht es um das, was gerade passiert — bei ihm und im Club.",
+  line: "Der Club lebt von Menschen, nicht von Videos. Live geht es um das, was gerade passiert — bei ISI, im Netzwerk, bei dir.",
   items: [
     {
       label: "AKTUELLE THEMEN",
@@ -699,8 +699,8 @@ export const live = {
       text: "Was ein anderes Mitglied gerade erlebt, kann genau dein Thema sein.",
     },
     {
-      label: "NETZWERK",
-      text: "Leute kennenlernen, die dasselbe vorhaben.",
+      label: "ORIENTIERUNG",
+      text: "Wo stehst du, wo willst du hin, wer im Netzwerk passt dazu.",
     },
   ],
   /* Keine Zahl und keine Frequenz, solange die Termine nicht feststehen.
@@ -836,7 +836,7 @@ export const membership = {
     headline: ["ALLES AN EINEM ORT.", "EIN LOGIN."],
     lines: [
       "Am Laptop, auf dem Tablet, auf dem Telefon.",
-      "Jede Serie, jeder Termin, der ganze Austausch.",
+      "Mediathek, Termine, Community, Kontakte.",
       "Kommt etwas dazu, liegt es am nächsten Tag drin.",
     ],
     note: "Abbildung des Mitgliederbereichs. Die Inhalte wachsen laufend.",
@@ -852,8 +852,20 @@ export const membership = {
   ),
   rows: [
     {
-      label: "31 VIDEOS",
-      text: "Fünf Kapitel aus über 20 Jahren praktischer Erfahrung.",
+      label: "NETZWERK",
+      text: "Zugang zum privaten ISI Business Netzwerk: Unternehmer, Vertriebsprofis, Menschen, die aufbauen.",
+    },
+    {
+      label: "ORIENTIERUNG",
+      text: "Persönliche Gespräche zu deiner beruflichen und unternehmerischen Situation. Was passt zu dir, was nicht.",
+    },
+    {
+      label: "EVENTS",
+      text: "Networking-Veranstaltungen und Treffen, in echt, nicht per Video.",
+    },
+    {
+      label: "KONTAKTE & MATCHING",
+      text: "Wer passt, wird vorgestellt: Unternehmen, Unternehmer, Vertriebspartner aus dem Netzwerk. Karriere- und Business-Matching, kein Anspruch, aber die Möglichkeit.",
     },
     {
       label: "LIVE MIT ISI",
@@ -864,33 +876,15 @@ export const membership = {
       text: "Austausch mit Menschen, die ebenfalls aufbauen, verkaufen und entscheiden.",
     },
     {
-      label: "NETZWERK",
-      text: "Kontakte entstehen über Vertrauen, Zeit und gegenseitigen Mehrwert.",
-    },
-    {
-      label: "TREFFEN & EVENTS",
-      text: "Wenn es passt, nehme ich dich mit. In echt, nicht per Video.",
-    },
-    /* "Ruecksprache halten" statt "Feedback", "Betreuung" oder
-       "Lernkontrolle": das FernUSG haengt an der Ueberwachung des
-       Lernerfolgs durch den Anbieter. Fragen beantworten ist keine
-       Ueberwachung — Ergebnisse pruefen, korrigieren oder einen
-       Fortschritt bestaetigen waere eine. */
-    /* Bewusst ohne Zusage staendiger Erreichbarkeit: der Zugang laeuft
-       ueber die vorgesehenen Formate, nicht ueber eine offene Leitung. */
-    {
-      label: "ZUGANG ZU ISI",
-      text: "Kontakt über die Live- und Community-Formate des Clubs.",
-    },
-    {
-      label: "WEITERE MÖGLICHKEITEN",
-      text: "Keine Garantie. Aber die Möglichkeit, durch Umsetzung und Fähigkeiten sichtbar zu werden.",
+      label: "ERFAHRUNGSMEDIATHEK",
+      text: "31 persönliche Beiträge aus 20 Jahren Unternehmertum und Vertrieb. Einblicke, keine Lektionen.",
     },
   ],
-  /* Sagt, worauf das hinauslaeuft — und haelt zugleich fest, dass es
-     nicht ums Durcharbeiten geht. Beides zusammen in einem Satz. */
+  /* Der Satz, der die Einordnung festmacht — bewusst "kein klassischer
+     Online-Kurs" statt "kein Fernunterricht": ein Gericht schaut auf den
+     Inhalt, und der Leser versteht den Satz sofort. */
   rowsNote:
-    "Das Ziel ist nicht, dass du alles gesehen hast. Das Ziel ist, dass du die richtigen Leute kennst, wenn es drauf ankommt.",
+    "Kein klassischer Online-Kurs. Keine Prüfungen. Keine Zertifikate. Ein Netzwerk für Menschen, die sich beruflich und unternehmerisch weiterentwickeln, interessante Leute kennenlernen und neue Möglichkeiten entdecken wollen.",
 } as const;
 
 /* --------------------------------------------------------------------------
@@ -970,23 +964,23 @@ export const faq = {
     },
     {
       q: "Was bekomme ich konkret?",
-      a: "31 Videos in fünf Kapiteln: Mindset, Sales, Business, Geld und Personal Brand. Dazu die Club-Bestandteile — Live-Formate, Community und Netzwerk entsprechend deiner Mitgliedschaft.",
+      a: "Zugang zu einem Unternehmer-, Karriere- und Vertriebsnetzwerk: persönliche Gespräche zu deiner Situation, Networking-Veranstaltungen, Kontakte zu Unternehmen und Vertriebspartnern aus ISIs Netzwerk, Live-Formate und Community. Dazu die Erfahrungsmediathek mit 31 persönlichen Beiträgen aus 20 Jahren Unternehmertum und Vertrieb.",
     },
     {
       q: "Ist das ein Kurs oder ein Coaching?",
-      a: "Nein. Der ISI TAT BUSINESS CLUB ist eine Mitgliedschaft in einem Netzwerk. Die Videos sind ISIs Erfahrungen aus über 20 Jahren, die Live-Formate sind Gespräche über aktuelle Themen, die Community ist Austausch unter Mitgliedern. Niemand prüft, was du gelernt hast, niemand korrigiert dich, es gibt keine Betreuung, keine Prüfung und kein Zertifikat.",
+      a: "Nein. Der ISI TAT BUSINESS CLUB ist kein klassischer Online-Kurs, keine Ausbildung und kein Coaching, sondern die Mitgliedschaft in einem Netzwerk. Im Mittelpunkt stehen Austausch, persönliche Orientierung, Veranstaltungen und Kontakte. Die Mediathek gibt ISIs Erfahrungen wieder, kein Lehrstoff. Es gibt keine Prüfungen, keine Aufgabenbewertung, keine Zertifikate und keinen vorgegebenen Lernweg. Fragen zu deiner eigenen beruflichen Situation sind ausdrücklich willkommen, das ist Beratung, keine Lernkontrolle.",
     },
     /* Frueher: "keine feste Reihenfolge, keine Hausaufgaben, keine
        Pruefung". Es gibt Umsetzungsaufgaben — die Aussage war falsch. */
     {
-      q: "Wie sind die Videos aufgebaut?",
-      a: "31 Videos in fünf Kapiteln. Jedes Video hat eine Kernbotschaft, konkrete Beispiele aus ISIs Praxis und endet mit einem Impuls und den ISI Rules. Nichts davon wird abgegeben oder bewertet. Entscheidend ist nicht, wie schnell du durch bist, sondern was du daraus machst.",
+      q: "Was ist in der Mediathek?",
+      a: "31 persönliche Beiträge in fünf Themen: Mindset, Vertrieb, Business, Geld und Personal Brand. ISI erzählt, was er erlebt, entschieden und falsch gemacht hat, mit Beispielen aus seiner Praxis und seinen ISI Rules. Keine Reihenfolge, keine Vollständigkeit nötig, nichts wird abgefragt.",
     },
     /* Neutrale Fassung, solange Frequenz und Formate nicht feststehen.
        "Wird ergaenzt, sobald es feststeht" las sich wie eine Baustelle. */
     {
       q: "Wie viel Kontakt habe ich zu dir?",
-      a: "Über die Live- und Community-Formate des Clubs. Welche Formate es gibt und wie oft, erfährst du vor Abschluss der Mitgliedschaft.",
+      a: "Über persönliche Gespräche zu deiner beruflichen Situation, die Live-Formate, die Veranstaltungen und die Community. Welche Formate es gibt und wie oft, erfährst du vor Abschluss der Mitgliedschaft.",
     },
     {
       q: "Laufzeit und Zahlung?",
@@ -996,7 +990,7 @@ export const faq = {
        Zusammenarbeit und damit ein Versprechen, das niemand halten muss. */
     {
       q: "Kann daraus eine Zusammenarbeit werden?",
-      a: "Das kann passieren, ist aber kein Bestandteil der Mitgliedschaft. Wer über Zeit durch Umsetzung und Charakter auffällt, wird sichtbar — daraus entstehen manchmal Gespräche. Es gibt keinen Anspruch auf Zusammenarbeit, Job, Beteiligung, Investment oder Einkommen.",
+      a: "Ein Ziel des Clubs ist, interessante Persönlichkeiten, Unternehmer und Vertriebspartner miteinander zu vernetzen. Wenn ISI jemanden für sein Netzwerk oder eine Zusammenarbeit interessant findet, kann sich daraus eine berufliche Möglichkeit ergeben, unabhängig von der Mitgliedschaft. Es gibt keinen Anspruch auf Anstellung, Zusammenarbeit, Vermittlung, Beteiligung oder Einkommen.",
     },
     {
       q: "Bin ich nach der Aufnahme auf mich allein gestellt?",
@@ -1077,9 +1071,9 @@ export const footer = {
 } as const;
 
 export const meta = {
-  title: "ISI TAT BUSINESS CLUB | 31 Videos, Live & Netzwerk",
+  title: "ISI TAT BUSINESS CLUB | Netzwerk, Orientierung, Events",
   description:
-    "31 Videos aus über 20 Jahren Erfahrung in Vertrieb, Unternehmertum, Business, Geld und Personal Brand — kombiniert mit Live-Austausch, Community und Netzwerk im ISI TAT BUSINESS CLUB.",
+    "Unternehmer-, Karriere- und Vertriebsnetzwerk von ISI TAT: persönliche Orientierung, Events in Berlin, Kontakte und Matching — dazu eine Mediathek mit persönlichen Erfahrungsbeiträgen aus 20 Jahren.",
 } as const;
 
 /* --------------------------------------------------------------------------

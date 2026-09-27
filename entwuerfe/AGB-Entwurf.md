@@ -17,50 +17,82 @@ Mitgliedschaft der Club angenommen hat.
 
 ## 2. Gegenstand der Mitgliedschaft
 
-2.1 Der ISI TAT BUSINESS CLUB ist eine Mitgliedschaft in einem Netzwerk von
-Unternehmern, Selbstständigen und Menschen, die unternehmerisch arbeiten wollen.
+2.1 Gegenstand der Mitgliedschaft ist die Teilnahme an einem Unternehmer-, Karriere-
+und Vertriebsnetzwerk (ISI TAT BUSINESS CLUB).
 
-2.2 Die Mitgliedschaft umfasst:
-a) Zugang zum Mitgliederbereich mit Videos, in denen Ismail Tatlisöz aus seiner
-   beruflichen Erfahrung berichtet;
-b) Live-Formate, in denen Ismail Tatlisöz und Mitglieder sich in Echtzeit über
+2.2 Der Schwerpunkt der Mitgliedschaft liegt auf Networking, persönlichem Austausch,
+beruflicher und unternehmerischer Orientierung, individuellen Gesprächen,
+Veranstaltungen sowie der Möglichkeit, Kontakte zu Unternehmen, Unternehmern und
+Vertriebspartnern aus dem Netzwerk des Veranstalters herzustellen.
+
+2.3 Die Mitgliedschaft umfasst:
+a) Zugang zum Netzwerk und zur Community der Mitglieder;
+b) persönliche Gespräche zur beruflichen und unternehmerischen Situation des
+   Mitglieds (Orientierung);
+c) Einladungen zu Mitgliederveranstaltungen und Treffen nach Verfügbarkeit;
+d) Live-Formate in Echtzeit, in denen der Veranstalter und Mitglieder sich über
    aktuelle Themen austauschen;
-c) die Community der Mitglieder zum Austausch untereinander;
-d) Einladungen zu Treffen und Veranstaltungen nach Verfügbarkeit.
+e) als ergänzende Leistung den Zugang zur digitalen Erfahrungsmediathek (Ziffer 3).
 
-2.3 Der Club ist kein Kurs, kein Lehrgang, kein Coaching und kein Fernunterricht.
-Der Club vermittelt keine Kenntnisse mit dem Ziel eines bestimmten Lernerfolgs und
-schuldet keinen Lernerfolg.
+2.4 Die Mitgliedschaft stellt keine Ausbildung, Weiterbildung, Berufsausbildung,
+keinen Lehrgang und keinen Fernunterricht dar. Der Club vermittelt keine
+Kenntnisse mit dem Ziel eines bestimmten Lernerfolgs und schuldet keinen
+Lernerfolg.
 
-## 3. Was der Club ausdrücklich nicht leistet
+## 3. Digitale Erfahrungsmediathek
 
-3.1 Es findet keine Überwachung, Prüfung, Korrektur oder Bewertung eines
-Lernerfolgs statt. Es gibt keine Aufgaben, die eingereicht werden, keine Tests,
-keine Prüfungen, keine Zertifikate, keine Teilnahmebescheinigungen und keine
-Lernziele.
+3.1 Als ergänzende Leistung erhalten Mitglieder Zugriff auf eine digitale Mediathek
+mit persönlichen Erfahrungsberichten des Veranstalters aus den Bereichen
+Unternehmertum, Vertrieb, Verhandlung, Karriere, Persönlichkeitsentwicklung und
+Netzwerkaufbau.
 
-3.2 Die Videos enthalten Impulse für die eigene Praxis. Ob und wie ein Mitglied sie
-nutzt, bleibt ihm überlassen. Der Club begleitet, kontrolliert oder bewertet die
-Umsetzung nicht.
+3.2 Die Inhalte geben persönliche Erfahrungen, Einschätzungen, Erlebnisse und
+Praxisbeispiele des Veranstalters wieder. Sie sind keine Rechts-, Steuer-,
+Finanz- oder Anlageberatung.
 
-3.3 Es besteht kein Anspruch darauf, dass Fragen zum Inhalt der Videos beantwortet
-werden, weder in den Live-Formaten noch in der Community noch per E-Mail. Der
-Club schuldet keine individuelle Betreuung, keine Rückmeldung und kein Feedback.
-Antworten, die Ismail Tatlisöz oder andere Mitglieder im Austausch geben, sind
-Meinungsäußerungen und keine Beratung.
+3.3 Es besteht kein vorgegebener Lernweg. Die Inhalte müssen weder vollständig noch
+in einer bestimmten Reihenfolge angesehen werden. Alle Inhalte sind ab Beginn der
+Mitgliedschaft zugänglich.
 
-3.4 Live-Formate finden ausschließlich in Echtzeit statt. Der Club zeichnet sie
-nicht auf und stellt keine Aufzeichnungen zur Verfügung.
+3.4 Live-Formate finden ausschließlich in Echtzeit statt. Der Veranstalter zeichnet
+sie nicht auf und stellt keine Aufzeichnungen zur Verfügung.
 
-3.5 Der Club gibt keine Reihenfolge vor, in der Inhalte anzusehen sind. Alle Videos
-sind ab Beginn der Mitgliedschaft zugänglich.
+## 3a. Keine Lernerfolgskontrolle
 
-3.6 Der Club erbringt keine Rechts-, Steuer-, Finanz- oder Anlageberatung. Alle
-Inhalte geben persönliche Erfahrungen und Ansichten wieder. Entscheidungen trifft
-das Mitglied allein und auf eigene Verantwortung.
+3a.1 Im Rahmen der Mitgliedschaft finden keine Prüfungen, Tests, Klausuren,
+Aufgabenbewertungen oder sonstigen systematischen Kontrollen eines Lernerfolgs
+statt.
 
-3.7 Es besteht kein Anspruch auf Zusammenarbeit, Beschäftigung, Beteiligung,
-Investment, Empfehlung oder Einkommen.
+3a.2 Mitglieder müssen keine Kenntnisse oder Fähigkeiten nachweisen, um Leistungen
+des Clubs nutzen zu können.
+
+3a.3 Es wird weder ein Abschluss noch ein Zertifikat oder eine Bescheinigung über
+einen bestimmten Kenntnis- oder Ausbildungsstand erteilt.
+
+## 3b. Persönliche Gespräche
+
+Mitglieder können im Rahmen persönlicher Gespräche Fragen zu ihrer individuellen
+beruflichen oder unternehmerischen Situation stellen. Diese Gespräche dienen der
+persönlichen Beratung und Orientierung und nicht der Überprüfung oder Bewertung
+eines Lernfortschritts. Ein Anspruch auf Beantwortung von Fragen zum Inhalt der
+Mediathek oder auf Korrektur, Bewertung oder Rückmeldung zu Ergebnissen des
+Mitglieds besteht nicht.
+
+## 3c. Karriere- und Netzwerk-Matching
+
+3c.1 Ein Ziel des Clubs besteht darin, interessante Persönlichkeiten, Unternehmer
+und potenzielle Vertriebspartner miteinander zu vernetzen.
+
+3c.2 Der Veranstalter kann Mitgliedern auf Grundlage persönlicher Gespräche
+berufliche oder unternehmerische Möglichkeiten innerhalb seines Netzwerks
+vorstellen. Bei entsprechender gegenseitiger Eignung und Interesse können Kontakte
+zu Unternehmen oder Vertriebspartnern hergestellt werden.
+
+3c.3 Aus der Mitgliedschaft ergibt sich kein Anspruch auf eine Anstellung,
+Zusammenarbeit, Vermittlung, Beteiligung, ein Investment oder eine bestimmte
+Verdienstmöglichkeit. Eine weitergehende berufliche Möglichkeit kann sich
+unabhängig von der Mitgliedschaft ergeben; die Mitgliedschaft ist dafür weder
+Voraussetzung noch Gegenleistung.
 
 ## 4. Zustandekommen, Laufzeit, Kündigung
 
@@ -132,11 +164,11 @@ vor einer Verbraucherschlichtungsstelle teilzunehmen.
 
 ## Prüfliste für den Anwalt (nicht Teil der Bedingungen)
 
-- Ziffern 2.3, 3.1 bis 3.5 sind die FernUSG-relevanten Klauseln. Sie dürfen durch
+- Ziffern 2.2, 2.4, 3.3, 3.4, 3a und 3b sind die FernUSG-relevanten Klauseln. Sie dürfen durch
   Website, Präsentation, E-Mails und tatsächliche Praxis nicht widerlegt werden.
 - Wenn Live-Formate doch aufgezeichnet werden sollen: Ziffer 3.4 streichen und
   das Risiko nach BGH III ZR 73/25 neu bewerten.
-- Wenn Fragen zum Videoinhalt beantwortet werden sollen: Ziffer 3.3 anpassen und
+- Wenn Fragen zum Videoinhalt beantwortet werden sollen: Ziffer 3b anpassen und
   ZFU-Zulassung prüfen. Nach BGH III ZR 109/24 reicht ein vertragliches
   Fragerecht für die „Überwachung des Lernerfolgs“.
 - Referentenentwurf zur Aufhebung des FernUSG (Stand 17. August 2026, Aufhebung

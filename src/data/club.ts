@@ -37,7 +37,7 @@ export const club = {
      wirken, als er ist. */
   nav: [
     { href: "/club/", label: "START", kuerzel: "Start" },
-    { href: "/club/inhalte/", label: "VIDEOS", kuerzel: "Videos" },
+    { href: "/club/inhalte/", label: "MEDIATHEK", kuerzel: "Mediathek" },
     { href: "/club/live/", label: "LIVE", kuerzel: "Live" },
     { href: "/club/kanal/", label: "CLUB", kuerzel: "Club" },
   ],
@@ -139,7 +139,7 @@ export const club = {
     seit: "Mitglied seit",
     enthaltenTitel: "ENTHALTEN",
     enthalten: [
-      `Alle Videos: fünf Serien, ${ANZAHL} Folgen`,
+      `Mediathek: fünf Themen, ${ANZAHL} Beiträge`,
       "Live-Termine mit ISI",
       "Events — Treffen in echt",
       "ISI Kanal",
@@ -246,8 +246,8 @@ export const club = {
 
   start: {
     grussVor: "WILLKOMMEN ZURÜCK,",
-    serien: "DEINE VIDEOS",
-    alleZeigen: "Alle Videos",
+    serien: "MEDIATHEK",
+    alleZeigen: "Alle Beiträge",
     /* Ueber jeder Reihe: Serie und Stand, rechts der Weg zur Serie. */
     serieOeffnen: "Serie öffnen",
   },
@@ -275,7 +275,7 @@ export const club = {
   },
 
   inhalte: {
-    eyebrow: "Videos",
+    eyebrow: "Erfahrungsmediathek",
     headline: "ALLE VIDEOS.",
     subline: `Fünf Serien, ${ANZAHL} Folgen — hier stehen sie alle, mit deinem Stand.`,
     /* Ueber jeder Serie in der langen Liste. */
@@ -314,7 +314,7 @@ export const club = {
   video: {
     kern: "ÜBER DIESES VIDEO",
     themen: "THEMEN",
-    aufklappen: "IMPULS & ISI RULES",
+    aufklappen: "ISI RULES",
     aufgabe: "Impuls",
     regeln: "ISI Rules",
     weitere: "ALLE FOLGEN",

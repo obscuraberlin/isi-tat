@@ -375,7 +375,7 @@ export const insideTheClub = {
       id: "mindset",
       label: "MINDSET, CHANCEN & UNTERNEHMERISCHES DENKEN",
       tagline:
-        "Chancen erkennen, Entscheidungen treffen und Probleme lösen, ohne dich in Theorie zu verlieren.",
+        "Wie ich angefangen habe, wie ich entscheide und wie ich mit Rückschlägen umgehe.",
       videos: 7,
       description:
         "Wie ich entscheide, wenn Informationen fehlen und die Zeit knapp ist. Warum manche Chancen erst sichtbar werden, wenn man einmal darauf geachtet hat — und warum die meisten Probleme nicht gelöst, sondern nur verwaltet werden.",
@@ -393,10 +393,10 @@ export const insideTheClub = {
       id: "sales",
       label: "SALES, MENSCHEN & VERHANDELN",
       tagline:
-        "Verkaufen lernen, Menschen besser verstehen, Preise erklären und Verhandlungen vorbereiten.",
+        "Wie ich verkaufen gelernt habe, welche Kunden mir begegnen, wie ich mit Preisen umgehe und wie ich verhandle.",
       videos: 7,
       description:
-        "Verkaufen ist kein Talent, sondern Handwerk — und der größte Teil davon passiert, bevor jemand über den Preis spricht. Wie ich Kundentypen unterscheide, wie ich mit „zu teuer“ umgehe und warum ich manche Kunden ziehen lasse.",
+        "Ich war kein geborener Verkäufer. Wie ich es in Promotion-Jobs gelernt habe, welche Kundentypen mir immer wieder begegnen, was ich mache, wenn jemand „zu teuer“ sagt, und warum ich manche Kunden ziehen lasse.",
       cover: media("kurs-sales-cover", "image", "Sales, Menschen & Verhandeln", "2 / 3"),
       still: media("kurs-sales-still", "image", "Sales, Menschen & Verhandeln", "16 / 9", {}, 9),
       topics: [
@@ -413,10 +413,10 @@ export const insideTheClub = {
       id: "business",
       label: "BUSINESS AUFBAUEN & GELD VERDIENEN",
       tagline:
-        "Investments prüfen, Verträge machen, Risiken absichern und ein Team aufbauen, das bleibt.",
+        "Meine Investments, meine Verträge, meine Risiken und wie ich ein Team aufgebaut habe, das bleibt.",
       videos: 6,
       description:
-        "Wie ich Partner einschätze, warum ein Handschlag keinen Vertrag ersetzt, was mich das Lehrgeld gekostet hat und warum du dein Einkommen nur über ein Team skalieren kannst.",
+        "Was mich Lehrgeld gekostet hat, warum ein Handschlag bei mir keinen Vertrag mehr ersetzt, wie ich mein Vermögen absichere und warum ich aufgehört habe, nur meine Zeit zu verkaufen.",
       cover: media("kurs-business-cover", "image", "Business aufbauen & Geld verdienen", "2 / 3"),
       still: media("kurs-business-still", "image", "Business aufbauen & Geld verdienen", "16 / 9", {}, 11),
       topics: [
@@ -432,10 +432,10 @@ export const insideTheClub = {
       id: "geld",
       label: "GELD, LIFESTYLE & BUSINESS-HACKS",
       tagline:
-        "Liquidität verstehen, Geld sinnvoll einsetzen und finanzielle Entscheidungen erwachsener treffen.",
+        "Meine Steuerlektion, mein Steuerberater, meine Kreditkarte und warum ich nicht alles bar bezahle.",
       videos: 8,
       description:
-        "Umsatz ist nicht dein Geld — das ist der Satz, der die meisten am spätesten trifft. Wie ich zwischen Ausgeben, Reinvestieren und Behalten unterscheide, und warum ein guter Steuerberater keine Kostenstelle ist.",
+        "Als junger Händler dachte ich, das Geld auf dem Konto gehört mir. Dann kam das Finanzamt. Wie ich seitdem zwischen Ausgeben, Reinvestieren und Behalten unterscheide, und warum ich am Steuerberater nie spare.",
       cover: media("kurs-geld-cover", "image", "Geld, Lifestyle & Business-Hacks", "2 / 3"),
       still: media("kurs-geld-still", "image", "Geld, Lifestyle & Business-Hacks", "16 / 9", {}, 13),
       topics: [
@@ -453,10 +453,10 @@ export const insideTheClub = {
       id: "brand",
       label: "PERSONAL BRAND, NETZWERK & WACHSTUM",
       tagline:
-        "Sichtbarkeit aufbauen, Vertrauen schaffen und dafür sorgen, dass die richtigen Menschen wissen, wofür du stehst.",
+        "Wie meine Personal Brand aus meinem Leben entstanden ist und was sie mir gebracht hat.",
       videos: 3,
       description:
-        "Eine Personal Brand ist kein Selbstzweck. Sie sorgt dafür, dass Menschen dich kennen, bevor du dich vorstellst — und dass aus Reichweite gelegentlich ein Gespräch wird, aus dem etwas entsteht.",
+        "Die Leute kannten meine Autos und meinen Humor, bevor wir gesprochen haben. Aus einer Instagram-Nachricht im Café wurde ein Investment. Und warum mir 12.000 richtige Follower mehr bringen als eine große Zahl.",
       cover: media("kurs-brand-cover", "image", "Personal Brand, Netzwerk & Wachstum", "2 / 3"),
       still: media("kurs-brand-still", "image", "Personal Brand, Netzwerk & Wachstum", "16 / 9", {}, 15),
       topics: [

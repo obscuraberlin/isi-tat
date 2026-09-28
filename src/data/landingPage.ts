@@ -1088,7 +1088,7 @@ export const impressum = {
   title: "Impressum",
   intro: "Angaben gemäß § 5 DDG.",
   /* Anbieter: vollstaendiger Firmenname inkl. Rechtsform. */
-  anbieter: ["OFFEN — Firma inkl. Rechtsform", "OFFEN — Straße und Hausnummer", "OFFEN — PLZ und Ort"],
+  anbieter: ["ISI Tat Mentoring UG (haftungsbeschränkt)", "Gabriele-Tergit-Promenade 17", "10963 Berlin"],
   vertreten: "OFFEN — Geschäftsführer/in",
   register: { gericht: "OFFEN — Registergericht", nummer: "OFFEN — HRB-Nummer" },
   /* § 27a UStG. Die Steuernummer gehoert NICHT auf die Seite. */

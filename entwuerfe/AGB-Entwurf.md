@@ -11,8 +11,9 @@ Bedingungen dasselbe sagen.
 
 ## 1. Anbieter und Vertragspartner
 
-Anbieter ist [Firma, Rechtsform, Anschrift, Vertretungsberechtigte, Handelsregister,
-USt-IdNr.] (im Folgenden „Club“). Mitglied ist die Person, deren Antrag auf
+Anbieter ist die ISI Tat Mentoring UG (haftungsbeschränkt), Gabriele-Tergit-Promenade 17,
+10963 Berlin, vertreten durch [Geschäftsführer/in], eingetragen beim [Registergericht]
+unter [HRB-Nummer], USt-IdNr. [OFFEN] (im Folgenden „Club“). Mitglied ist die Person, deren Antrag auf
 Mitgliedschaft der Club angenommen hat.
 
 ## 2. Gegenstand der Mitgliedschaft

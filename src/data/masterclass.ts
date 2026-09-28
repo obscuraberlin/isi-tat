@@ -62,7 +62,7 @@ export const kursVideos: readonly KursVideo[] = [
     nr: 1,
     kapitelId: "mindset",
     slug: "wer-ist-ismail-tatlisoez-und-warum-solltest-du-mir-zuhoeren",
-    titel: "Wer ist Ismail Tatlisöz — und warum solltest du mir zuhören?",
+    titel: "Wer ist Ismail Tatlisözlüler — und warum solltest du mir zuhören?",
     unter: "Wer ich bin, woher ich komme und warum es diesen Club gibt.",
     kern: "Ich erzähle hier nicht aus der Theorie. Über zwanzig Jahre Handel, Vertrieb, eigene Firmen, Beteiligungen, Gastronomie und Personal Brand, mit allem, was dabei schiefgegangen ist. Ich verspreche dir keinen Erfolg, ich zeige dir, wie es bei mir gelaufen ist.",
     hook: "Ich will euch hier nicht erzählen, dass ich immer alles richtig gemacht habe. Im Gegenteil: Einige meiner wichtigsten Lektionen haben mich viel Geld, Zeit und Nerven gekostet. Genau deshalb kann meine Erfahrung für euch eine Abkürzung sein.",
